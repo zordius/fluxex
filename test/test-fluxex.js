@@ -36,6 +36,32 @@ describe('fluxex', function () {
         });
     });
 
+    describe('.set()', function () {
+        it('do not set on undefined key by default', function (done) {
+            var F = new fluxex({a: {b: 3}});
+
+            F.set('c', 4);
+            assert.equal(undefined, F.get('c'));
+            done();
+        });
+
+        it('can auto create undefined key', function (done) {
+            var F = new fluxex({a: {b: 3}});
+
+            F.set('c', 4, true);
+            assert.equal(4, F.get('c'));
+            done();
+        });
+
+        it('can auto create undefined key deeply', function (done) {
+            var F = new fluxex({a: {b: 3}});
+
+            F.set('c.d.e', 9, true);
+            assert.equal(9, F.get('c.d.e'));
+            done();
+        });
+    });
+
     describe('.toString()', function () {
         it('will not include prototype methods', function (done) {
             var F = new fluxex({a: 1, b: 2});
