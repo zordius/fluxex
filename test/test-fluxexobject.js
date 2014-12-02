@@ -27,6 +27,14 @@ describe('FluxexObject', function () {
         done();
     });
 
+    it('constructor should be FluxexObject', function (done) {
+        var F = new fluxexobj({a: 1, b: 2});
+
+        assert.equal(fluxexobj, F.constructor);
+        assert.equal('FluxexObject', F.constructor.name);
+        done();
+    });
+
     describe('.get()', function () {
         it('can get property by path', function (done) {
             var F = new fluxexobj({a: {b: 3}});
@@ -67,8 +75,6 @@ describe('FluxexObject', function () {
             var F = new fluxexobj({a: 1, b: 2});
 
             assert.equal(undefined, F.toString().match(/toString/));
-            assert.equal(fluxexobj, F.constructor);
-            assert.equal('FluxexObject', F.constructor.name);
             done();
         });
     });
