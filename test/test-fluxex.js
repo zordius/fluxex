@@ -25,4 +25,13 @@ describe('fluxex', function () {
         assert.equal(2, F.b);
         done();
     });
+
+    describe('.toString()', function () {
+        it('will not include prototype methods', function (done) {
+            var F = new fluxex({a: 1, b: 2});
+
+            assert.equal(undefined, F.toString().match(/toString/));
+            done();
+        });
+    });
 });
