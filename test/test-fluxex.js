@@ -27,6 +27,15 @@ describe('fluxex', function () {
         done();
     });
 
+    describe('.get()', function () {
+        it('can get property by path', function (done) {
+            var F = new fluxex({a: {b: 3}});
+
+            assert.equal(3, F.get('a.b'));
+            done();
+        });
+    });
+
     describe('.toString()', function () {
         it('will not include prototype methods', function (done) {
             var F = new fluxex({a: 1, b: 2});
