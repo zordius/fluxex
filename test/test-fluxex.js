@@ -21,8 +21,9 @@ describe('fluxex', function () {
 
     it('can be constructed by an object', function (done) {
         var F = new fluxex({a: 1, b: 2});
-        assert.equal(1, F.a);
-        assert.equal(2, F.b);
+
+        assert.equal(1, F.get('a'));
+        assert.equal(2, F.get('b'));
         done();
     });
 
