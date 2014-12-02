@@ -2,3 +2,25 @@ fluxex
 ======
 
 An extended flux implement for both server/client side
+
+[![npm version](https://img.shields.io/npm/v/fluxex.svg)](https://www.npmjs.org/package/fluxex)
+
+Difference with Flux
+====================
+
+Fluxex is context based flux implemention. Server side react rendering can be done easy when the flux is scoped under a request based context. Store and dispatcher are singletons in <a href="https://github.com/facebook/flux">Facebook flux</a>, but in fluxex they are not.
+
+**Fluxex**
+* Fluxex is an instance, it is constructed by context information.
+* Fluxex can be serialized by `.toString()` and reconstructed by the serialized string. All server side store status can be transfered to client side by this way.
+
+**Action**
+* An action can be executed with `.execute()` method undee a Fluxex instance.
+* When the action be `.execute()`, the Fluxex instance can be referenced by `this`.
+
+**Dispatcher**
+* the Fluxex instance itself is a dispatcher with `.dispatch()` method.
+
+**Store**
+* Store is an instance, it is constructed by serialized status.
+* Store is created under a Fluxex instance by `.create(storePrototype, status)`
