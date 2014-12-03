@@ -1,6 +1,6 @@
 'use strict';
 
-var fluxex = require('./'),
+var fluxex = require('../'),
     testStore = require('./testStore.js'),
 
 myApp = function () {

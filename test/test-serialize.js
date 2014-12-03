@@ -1,7 +1,7 @@
 'use strict';
 
 var assert = require('chai').assert,
-    app = require('../app');
+    app = require('./testApp');
 
 describe('a fluxex app', function () {
     it('can be constructed by undefined', function (done) {

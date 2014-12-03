@@ -1,7 +1,7 @@
 'use strict';
 
 var assert = require('chai').assert,
-    testStore = require('../testStore.js'),
+    testStore = require('./testStore.js'),
     fluxex = require('..');
 
 describe('fluxex', function () {
