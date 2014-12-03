@@ -6,7 +6,7 @@ if [ "${TRAVIS_BUILD_NUMBER}.2" != "${TRAVIS_JOB_NUMBER}" ]; then
   exit 0
 fi
 
-if [ "${TRAVIS_REPO_SLUG}" != "zordius/subtask.js" ]; then
+if [ "${TRAVIS_REPO_SLUG}" != "zordius/fluxex" ]; then
   echo "Skip deploy because this is a fork... quit."
   exit 0
 fi
