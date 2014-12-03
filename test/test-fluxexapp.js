@@ -47,4 +47,21 @@ describe('a fluxex app', function () {
         }, Error, '.initStore() should not be called externally!');
         done();
     });
+
+    describe('.dispatch', function () {
+        it('should throw when no name provided', function (done) {
+            assert.throws(function () {
+                var App = new app();
+                App.dispatch();
+            }, Error, 'Can not dispatch without name!');
+            done();
+        });
+
+        it('should return a promise', function (done) {
+            var App = new app();
+
+            assert.equal('function', typeof App.dispatch('test').then);
+            done();
+        });
+    });
 });
