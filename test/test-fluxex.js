@@ -65,4 +65,13 @@ describe('fluxex', function () {
             done();
         });
     });
+
+    describe('.getStore()', function () {
+        it('should throw when no store defined', function (done) {
+            var F = new fluxex();
+
+            assert.throws(function () {F.getStore('test')}, Error, 'no store defined as "test"');
+            done();
+        });
+    });
 });
