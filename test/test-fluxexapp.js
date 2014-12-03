@@ -57,6 +57,13 @@ describe('a fluxex app', function () {
         done();
     });
 
+    it('default .isDispatching is false', function (done) {
+        var App = new app({a: 2});
+
+        assert.equal(false, App.isDispatching);
+        done();
+    });
+
     describe('.dispatch', function () {
         it('should throw when no name provided', function (done) {
             assert.throws(function () {
