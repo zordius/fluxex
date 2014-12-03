@@ -4,11 +4,13 @@ var fluxex = require('./'),
     testStore = require('./testStore.js'),
 
 myApp = function () {
-    this.addStore('sampleStore', testStore);
+    this.stores = {
+        sampleStore: require('./testStore')
+    };
 
     fluxex.apply(this, arguments);
 }
 
-myApp.prototype = new fluxex();
+myApp.prototype = fluxex.prototype;
 
 module.exports = myApp;
