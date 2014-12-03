@@ -5,8 +5,7 @@ module.exports = {
         return 'OK';
     },
     handle_dispatch: function (payload) {
-        payload.dispatch('more_dispatch');
-        return payload.get('isDispatching');
+        payload.dispatch('more_dispatch').done();
     },
     getList: function () {
         return this.get('list');

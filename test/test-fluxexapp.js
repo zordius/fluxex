@@ -57,13 +57,6 @@ describe('a fluxex app', function () {
         done();
     });
 
-    it('default .isDispatching is false', function (done) {
-        var App = new app({a: 2});
-
-        assert.equal(false, App.isDispatching);
-        done();
-    });
-
     describe('.dispatch', function () {
         it('should throw when no name provided', function (done) {
             assert.throws(function () {
@@ -83,26 +76,26 @@ describe('a fluxex app', function () {
         it('should return rejected promise when no store handle it', function (done) {
             var App = new app();
 
-            App.dispatch('_none_').then(function () {
-                assert.equal('Should not resolved!');
-                done();
-            }, function (E) {
+            App.dispatch('_none_').catch(function (E) {
                 assert.equal('No store handled the "_none_" action. Maybe you forget to provide "handle__none_" method in a store?', E.message);
                 done();
-            }).done();
+            });
         });
 
-        it('should failed when dispatch in dispatch', function (done) {
-            var App = new app();
+        it('should throw when dispatch in dispatch', function (done) {
+            var D = require('domain').create();
 
-    //        sinon.spy(App, 'set');
-            App.dispatch('dispatch', App).then(function () {
-     //           assert.equal('Should not resolved!');
+            D.on('error', function (E) {
+                D.exit();
+                assert.equal('Can not dispatch "more_dispatch" action when previous "dispatch" action is not done!', E.message);
+                D.dispose();
                 done();
-            }, function (E) {
-                assert.equal('xxx??');
-                done();
-            }).done();
+            });
+
+            D.run(function () {
+                var App = new app();
+                App.dispatch('dispatch', App);
+            });
         });
     });
 });
