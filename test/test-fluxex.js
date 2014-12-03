@@ -61,7 +61,6 @@ describe('fluxex', function () {
                 S = F.createStore(testStore, {a: 3});
 
             assert.equal('FluxexObject', S.constructor.name);
-console.log(S);
             assert.equal('function', typeof S.getList);
             done();
         });
