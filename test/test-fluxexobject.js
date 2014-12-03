@@ -78,6 +78,14 @@ describe('FluxexObject', function () {
             assert.equal(9, F.get('c.d.e'));
             done();
         });
+
+        it('can set into ._context', function (done) {
+            var F = new fluxexobj({a: {b: 3}});
+
+            F.set('c.d.e', 9, true);
+            assert.equal(9, F._context.c.d.e);
+            done();
+        });
     });
 
     describe('.toString()', function () {
