@@ -5,7 +5,7 @@ var assert = require('chai').assert,
 
 describe('a fluxex app', function () {
     it('can be constructed by undefined', function (done) {
-        new app();
+        var A = new app();
         done();
     });
 
@@ -18,6 +18,10 @@ describe('a fluxex app', function () {
         var F = new app({stores: {sampleStore: {a: 1}}});
 
         assert(1, F.getStore('sampleStore').get('a'));
+        done();
+    });
+
+    it('will throw when no this.store defined', function (done) {
         done();
     });
 });
