@@ -15,12 +15,14 @@ Fluxex is context based flux implemention. Server side react rendering can be do
 * Fluxex can be serialized by `.toString()` and reconstructed by the serialized string. All server side store status can be transfered to client side by this way.
 
 **Action**
-* An action can be executed with `.execute()` method undee a Fluxex instance.
+* An action can be executed with `.execute()` method under a Fluxex instance.
 * When the action be `.execute()`, the Fluxex instance can be referenced by `this`.
 
 **Dispatcher**
 * the Fluxex instance itself is a dispatcher with `.dispatch()` method.
+* the dispatched `FOOBAR` message will auto trigger all stores with `handleFOOBAR` method under the Fluxex instance.
 
 **Store**
 * Store is an instance, it is constructed by serialized status.
-* Store is created under a Fluxex instance by `.create(storePrototype, status)`
+* Store is created by a Fluxex object constructor automatically.
+* Store naming and prototype information are provided by the `.stores` property of Fluxex instance.
