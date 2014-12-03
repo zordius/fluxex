@@ -4,4 +4,4 @@ module.exports = {
     getList: function () {
         return this.get('list');
     }
-}
+};
