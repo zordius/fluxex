@@ -63,5 +63,16 @@ describe('a fluxex app', function () {
             assert.equal('function', typeof App.dispatch('test').then);
             done();
         });
+
+        it('should return rejected promise when no store handle it', function (done) {
+            var App = new app();
+            App.dispatch('_none_').then(function () {
+                assert.ok(false, 'Should not resolved!');
+                done();
+            }, function (E) {
+                assert.equal('No store handled the "_none_" action. Maybe you forget to provide "handle__none_" method in a store?', E.message);
+                done();
+            });
+        });
     });
 });
