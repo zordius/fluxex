@@ -1,6 +1,7 @@
 'use strict';
 
 var assert = require('chai').assert,
+    sinon = require('sinon'),
     fluxex = require('../'),
     app = require('./testApp');
 
@@ -78,6 +79,8 @@ describe('a fluxex app', function () {
 
         it('should failed when dispatch in dispatch', function (done) {
             var App = new app();
+
+            sinon.spy(App, 'set');
 
             App.dispatch('dispatch', App).then(function () {
      //           assert.equal('Should not resolved!');
