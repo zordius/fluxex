@@ -27,6 +27,16 @@ describe('FluxexObject', function () {
         done();
     });
 
+    it('can point context to same construct object', function (done) {
+        var data = {a: 1, b: 2},
+            F = new fluxexobj(data);
+
+        assert.equal(2, F.get('b'));
+        data.c = 3;
+        assert.equal(3, F.get('c'));
+        done();
+    });
+
     it('constructor should be FluxexObject', function (done) {
         var F = new fluxexobj({a: 1, b: 2});
 
@@ -75,6 +85,14 @@ describe('FluxexObject', function () {
             var F = new fluxexobj({a: 1, b: 2});
 
             assert.equal(undefined, F.toString().match(/toString/));
+            done();
+        });
+
+        it('will dump full context', function (done) {
+            var data = {a: 1, b: 2, c: 3},
+                F = new fluxexobj(data);
+
+            assert.deepEqual(data, JSON.parse(F.toString()));
             done();
         });
     });
