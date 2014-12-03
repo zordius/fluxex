@@ -49,6 +49,14 @@ describe('a fluxex app', function () {
         done();
     });
 
+    it('can .get() and .set()', function (done) {
+        var App = new app({a: 2});
+
+        App.set('a', 3);
+        assert.equal(3, App.get('a'));
+        done();
+    });
+
     describe('.dispatch', function () {
         it('should throw when no name provided', function (done) {
             assert.throws(function () {
@@ -80,8 +88,7 @@ describe('a fluxex app', function () {
         it('should failed when dispatch in dispatch', function (done) {
             var App = new app();
 
-            sinon.spy(App, 'set');
-
+    //        sinon.spy(App, 'set');
             App.dispatch('dispatch', App).then(function () {
      //           assert.equal('Should not resolved!');
                 done();
