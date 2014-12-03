@@ -1,6 +1,6 @@
 'use strict';
 
-module.export = {
+module.exports = {
     getList: function () {
         return this.get('list');
     }

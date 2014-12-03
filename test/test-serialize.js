@@ -13,6 +13,12 @@ describe('a fluxex app', function () {
         var F = new app(123);
         done();
     });
+
+    it('can be constructed by object', function (done) {
+        var F = new app({stores: {sampleStore: {a: 1}}});
+        F.stores
+        done();
+    });
 });
 
 describe('app serialization', function () {

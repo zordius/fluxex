@@ -1,6 +1,7 @@
 'use strict';
 
 var assert = require('chai').assert,
+    testStore = require('../testStore.js'),
     fluxex = require('..');
 
 describe('fluxex', function () {
@@ -54,11 +55,14 @@ describe('fluxex', function () {
         });
     });
 
-    describe('.toString()', function () {
-        it('will not include prototype methods', function (done) {
-            var F = new fluxex({a: 1, b: 2});
+    describe('.createStore()', function () {
+        it('will return a store instance', function (done) {
+            var F = new fluxex(),
+                S = F.createStore(testStore, {a: 3});
 
-            assert.equal(undefined, F.toString().match(/toString/));
+            assert.equal('FluxexObject', S.constructor.name);
+console.log(S);
+            assert.equal('function', typeof S.getList);
             done();
         });
     });
