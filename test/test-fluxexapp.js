@@ -39,4 +39,12 @@ describe('a fluxex app', function () {
         }, Error, 'You should create app with information of stores');
         done();
     });
+
+    it('will throw when initStore() be called externally', function (done) {
+        assert.throws(function () {
+            var App = new app();
+            App.initStore();
+        }, Error, '.initStore() should not be called externally!');
+        done();
+    });
 });
