@@ -22,7 +22,17 @@ describe('a fluxex app', function () {
         done();
     });
 
-    it('will throw when no store defined', function (done) {
+    it('will throw when no this.stores defined', function (done) {
+        assert.throws(function () {
+            var App = function () {
+                fluxex.apply(this, arguments);
+            }
+            new App();
+        }, Error, 'Your app should define this.stores !!');
+        done();
+    });
+
+    it('will throw when no store info defined', function (done) {
         assert.throws(function () {
             var App = fluxex.createApp();
             new App();
