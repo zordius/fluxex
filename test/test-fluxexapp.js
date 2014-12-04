@@ -63,6 +63,17 @@ describe('a fluxex app', function () {
         done();
     });
 
+    describe('.getStore()', function () {
+        it('should return instance', function (done) {
+            var App = new app({a: 2}),
+                Store = App.getStore('sampleStore');
+
+            console.log(Store.prototype);
+            assert.equal('function', typeof Store.emitChange);
+            done();
+        });
+    });
+
     describe('.dispatch()', function () {
         it('should throw when no name provided', function (done) {
             assert.throws(function () {
@@ -134,12 +145,10 @@ describe('a fluxex app', function () {
 
         it('should execute action well', function (done) {
             var App = new app();
-done();
-/*
+
             App.executeAction(actions.sampleAction, 3).then(function() {
                 done();
             });
-*/
         });
     });
 });

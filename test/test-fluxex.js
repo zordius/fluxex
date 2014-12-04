@@ -60,7 +60,7 @@ describe('fluxex', function () {
             var F = new fluxex(),
                 S = F.createStore(testStore, {a: 3});
 
-            assert.equal('FluxexObject', S.constructor.name);
+            assert.equal('FluxStore', S.constructor.name);
             assert.equal('function', typeof S.getList);
             done();
         });
