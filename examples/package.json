@@ -5,8 +5,8 @@
   "author": "Zordius <zordius@yahoo-inc.com>",
   "main": "server.js",
   "scripts": {
-    "build": "gulp build_jsx",
-    "start": "node server.js"
+    "build": "gulp",
+    "start": "gulp develop"
   },
   "dependencies": {
     "fluxex": "0.1.6",

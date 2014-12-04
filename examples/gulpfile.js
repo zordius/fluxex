@@ -8,6 +8,16 @@ var gulp = require('gulp'),
     react = require('gulp-react'),
     jshint = require('gulp-jshint'),
 
+start_browserSync = function () {
+    browserSync.init(null, {
+        proxy: "http://localhost:3000",
+        files: ["static/css/*.css"],
+        port: 3001,
+        online: false,
+        open: false
+    });
+},
+
 bundleAll = function (b) {
     b.bundle()
     .on('error', function (E) {
@@ -57,3 +67,20 @@ gulp.task('watch_jsx', function () {
     return buildJsx(true);
 });
 
+gulp.task('nodemon_server', function() {
+    nodemon({
+        ignore: '*',
+        script: require(process.cwd() + '/package.json').main,
+        ext: 'js'
+    })
+    .on('log', function (log) {
+        gutil.log(log.colour);
+    })
+    .on('start', function () {
+        start_browserSync();
+    });
+});
+
+gulp.task('develop', ['watch_jsx', 'nodemon_server']);
+gulp.task('buildall', ['build_jsx']);
+gulp.task('default',['buildall']);
