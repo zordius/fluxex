@@ -1,0 +1,14 @@
+{
+  "name": "fluxex-example",
+  "version": "0.0.1",
+  "description": "A demo project for fluxex",
+  "author": "Zordius <zordius@yahoo-inc.com>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "fluxex": "0.1.6",
+    "express": "4.10.4"
+  }
+}
