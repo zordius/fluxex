@@ -1,3 +1,5 @@
+'use strict';
+
 var React = require('react'),
     Fluxex = require('fluxex'),
     Product = require('./Product.jsx'),

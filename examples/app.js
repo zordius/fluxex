@@ -3,7 +3,6 @@
 module.exports = require('fluxex').createApp({
     sampleStore: require('./stores/sample'),
     page: {},                                // no special implement for this store
-    paramStore: {},                          // no special implement for this store
     productStore: require('./stores/product')
 });
 

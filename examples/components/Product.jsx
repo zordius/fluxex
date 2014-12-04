@@ -5,7 +5,7 @@ Product = React.createClass({
     mixins: [Fluxex.mixin],
 
     getStateFromStores: function () {
-        return this.getStore('productStore').get('.');
+        return this.getStore('productStore').get('data');
     },
 
     getInitialState: function () {

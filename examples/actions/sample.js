@@ -11,17 +11,18 @@ module.exports = {
     },
     updateStoreByApi: function (payload) {
         return this.createPromise(function (resolve) {
-            var S = this.getStore('paramStore'),
-                id = S.get('id');
+            var self = this,
+                S = this.getStore('page'),
+                id = S.get('query.id');
 
             if (id) {
                 setTimeout(function () {
                     // simulate api call here...
-                    this.getStore('productStore').set('.', {
+                    self.getStore('productStore').set('data', {
                         title: 'this is sample title',
                         description: 'this is sample description',
                         price: 100
-                    }, true);
+                    }, {});
                     resolve();
                 });
             } else {
