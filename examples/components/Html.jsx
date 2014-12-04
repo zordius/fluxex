@@ -1,7 +1,12 @@
 var React = require('react'),
+    Fluxex = require('fluxex'),
+    Product = require('./Product.jsx'),
 
 Html = React.createClass({
+    mixins: [Fluxex.mixin],
+
     render: function () {
+        return (
         <html>
          <head>
           <meta charSet="utf-8" />
@@ -9,9 +14,11 @@ Html = React.createClass({
           <title>{this.getStore('page').get('title')}</title>
          </head>
          <body>
+          <Product/>
          </body>
          <script src="/static/js/main.js"></script>
-         </html> 
+        </html> 
+        );
     }
 });
 
