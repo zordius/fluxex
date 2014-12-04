@@ -55,4 +55,28 @@ describe('FluxexStore', function () {
         F.emitChange();
         done();
     });
+
+    it('.addChangeListener() should works well', function (done) {
+        var F = new fluxstore({a: {b: 3}});
+
+        F.addChangeListener(function () {
+            done();
+        });
+        F.emitChange();
+    });
+
+    it('.removeChangeListener() should works well', function (done) {
+        var F = new fluxstore({a: {b: 3}}),
+            doNotCall = function () {
+                throw 'this should not be called!';
+            };
+
+        F.addChangeListener(doNotCall);
+        F.removeChangeListener(doNotCall);
+
+        F.emitChange();
+        setTimeout(function () {
+            done();
+        }, 50);
+    });
 });
