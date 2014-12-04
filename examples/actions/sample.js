@@ -19,9 +19,9 @@ module.exports = {
                 setTimeout(function () {
                     // simulate api call here...
                     self.getStore('productStore').set('data', {
-                        title: 'this is sample title',
-                        description: 'this is sample description',
-                        price: 100
+                        title: 'this is sample title (' + id + ')',
+                        description: 'this is sample description (id=' + id + ')',
+                        price: 100 * id
                     }, {});
                     resolve();
                 });

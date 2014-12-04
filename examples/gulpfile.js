@@ -41,6 +41,8 @@ buildJsx = function (watch) {
     var b = browserify(process.cwd() + '/app.js', {
         cache: {},
         packageCache: {},
+        require: './components/Html.jsx',
+        standalone: 'Fluxex',
         fullPaths: watch,
         debug: watch
     });

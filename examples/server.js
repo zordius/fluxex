@@ -7,7 +7,6 @@ var express = require('express'),
     fluxexapp = require('./app'),
     serverAction = require('./actions/server'),
     react = require('react'),
-    Html = react.createFactory(require('./components/Html.jsx')),
     app = express();
 
 app.use('/static', express.static(__dirname + '/static'));
@@ -16,10 +15,10 @@ app.use('/test', function (req, res, next) {
 
     // prepare query for client
     Fluxex.getStore('page').set('query', req.query, true);
+
     Fluxex.executeAction(serverAction.samplePage).then(function () {
-console.log(Fluxex.toString());
         react.withContext({fluxex: Fluxex}, function () {
-            res.send(react.renderToString(Html()));
+            res.send(react.renderToString(Fluxex.getHtmlJsx()));
         });
     }).catch(function (E) {
 console.log('not ok!');
