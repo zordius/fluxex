@@ -4,8 +4,16 @@ var React = require('react'),
 Product = React.createClass({
     mixins: [Fluxex.mixin],
 
-    
+    getStateFromStores: function () {
+        return this.getStore('productStore').get('.');
+    },
+
+    getInitialState: function () {
+        return this.getStateFromStores();
+    },
+
     onStoreChange: function () {
+        this.setState(this.getStateFromStores());
     },
 
     render: function () {
