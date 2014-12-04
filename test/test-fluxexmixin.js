@@ -27,6 +27,11 @@ describe('fluxex.mixin', function () {
         done();
     });
 
+    it('.componentDidMount() will do nothing when no listenStores defined', function (done) {
+        getMixedComponent().componentDidMount();
+        done();
+    });
+
     it('.componentDidMount() throws when no onStoreChange defined', function (done) {
         var C = getMixedComponent();
         C.listenStores = ['test'];
@@ -35,5 +40,27 @@ describe('fluxex.mixin', function () {
             C.componentDidMount();
         }, Error, 'the component should provide .onStoreChange() to handle .listenStores[] !');
         done();
+    });
+
+    it('.componentDidMount() will addChangeListener on specific store', function (done) {
+        var C = getMixedComponent();
+        C.listenStores = ['sampleStore'];
+        C.onStoreChange = function () {};
+
+        C.getStore('sampleStore').addChangeListener = function () {
+            done();
+        };
+        C.componentDidMount();
+    });
+
+    it('componentWillUnmount will removeChangeListener on specific store', function (done) {
+        var C = getMixedComponent();
+        C.listenStores = ['sampleStore'];
+        C.onStoreChange = function () {};
+
+        C.getStore('sampleStore').removeChangeListener = function () {
+            done();
+        };
+        C.componentWillUnmount();
     });
 });
