@@ -62,7 +62,7 @@ describe('a fluxex app', function () {
         done();
     });
 
-    describe('.dispatch', function () {
+    describe('.dispatch()', function () {
         it('should throw when no name provided', function (done) {
             assert.throws(function () {
                 var App = new app();
@@ -102,5 +102,8 @@ describe('a fluxex app', function () {
                 App.dispatch('dispatch', App);
             });
         });
+    });
+
+    describe('.executeAction()', function () {
     });
 });
