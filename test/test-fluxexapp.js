@@ -105,5 +105,30 @@ describe('a fluxex app', function () {
     });
 
     describe('.executeAction()', function () {
+        it('should return a promise', function (done) {
+            var App = new app();
+
+            App.executeAction().catch(function () {
+                done();
+            });
+        });
+
+        it('should return a rejected promise when no action provided', function (done) {
+            var App = new app();
+
+            App.executeAction().catch(function (E) {
+                assert.equal('.executeAction() require a action creator function as first parameter!', E.message);
+                done();
+            });
+        });
+
+        it('should return a rejected promise when the action do not return a promise', function (done) {
+            var App = new app();
+
+            App.executeAction(function (){}).catch(function (E) {
+                assert.equal('Execute an action creator that do not return a promise!', E.message);
+                done();
+            });
+        });
     });
 });
