@@ -17,6 +17,11 @@ describe('a fluxex app', function () {
     });
 
     it('can be constructed by object', function (done) {
+        var F = new app({a: 3});
+        done();
+    });
+
+    it('creates stores automatically when be constructed', function (done) {
         var F = new app({stores: {sampleStore: {a: 1}}});
 
         assert.equal(1, F.getStore('sampleStore').get('a'));
