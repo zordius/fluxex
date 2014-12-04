@@ -9,7 +9,9 @@ require('node-jsx').install({extension: '.jsx'});
 
 app.use('/static', express.static(__dirname + '/static'));
 app.use(function (req, res, next) {
-    res.send('OK!');
+    var Fluxex = new fluxexapp();
+    Fluxex.getStore('paramStore').set('query', req.query, true);
+    res.send('<html><title>Example</title><body></body></html>');
 });
 
 app.listen(3000);

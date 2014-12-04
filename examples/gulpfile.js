@@ -71,7 +71,7 @@ gulp.task('nodemon_server', function() {
     nodemon({
         ignore: '*',
         script: require(process.cwd() + '/package.json').main,
-        ext: 'js'
+        ext: 'not_watch'
     })
     .on('log', function (log) {
         gutil.log(log.colour);
