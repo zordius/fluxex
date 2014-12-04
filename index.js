@@ -3,14 +3,19 @@
 var objectAssign = require('object-assign'),
     Fluxex = require('./lib/fluxex');
 
-Fluxex.createApp = function (stores, prototype) {
+Fluxex.createApp = function (stores, HtmlJsx, prototype) {
     var App = function FluxexApp() {
         this.stores = stores;
+        this.HtmlJsx = HtmlJsx;
         Fluxex.apply(this, arguments);
     };
 
     if (!stores) {
-        throw new Error('You should create app with information of stores');
+        throw new Error('You should create app with information of stores as first parameter');
+    }
+
+    if (!HtmlJsx) {
+        throw new Error('You should create app with HtmlJsx as second parameter');
     }
 
     App.prototype = new Fluxex();

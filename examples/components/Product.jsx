@@ -2,7 +2,10 @@ var React = require('react'),
     Fluxex = require('fluxex'),
 
 Product = React.createClass({
-    mixins: [Fluxex.mixin],
+    mixins: [
+        Fluxex.mixin,
+        {listenStores: ['productStore']}
+    ],
 
     getStateFromStores: function () {
         return this.getStore('productStore').get('data');
