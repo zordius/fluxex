@@ -35,22 +35,24 @@ describe('FluxexStore', function () {
         done();
     });
 
-    describe('.get()', function () {
-        it('can get property by path', function (done) {
-            var F = new fluxstore({a: {b: 3}});
+    it('.get() can get property by path', function (done) {
+        var F = new fluxstore({a: {b: 3}});
 
-            assert.equal(3, F.get('a.b'));
-            done();
-        });
+        assert.equal(3, F.get('a.b'));
+        done();
     });
 
-    describe('.set()', function () {
-        it('do not set on undefined key by default', function (done) {
-            var F = new fluxstore({a: {b: 3}});
+    it('.set() can set on undefined key', function (done) {
+        var F = new fluxstore({a: {b: 3}});
 
-            F.set('c', 4);
-            assert.equal(undefined, F.get('c'));
-            done();
-        });
+        F.set('c', 4, true);
+        assert.equal(4, F.get('c'));
+        done();
+    });
+
+    it('.emitChange() should be a function', function (done) {
+        var F = new fluxstore({a: {b: 3}});
+        F.emitChange();
+        done();
     });
 });
