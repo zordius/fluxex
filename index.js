@@ -20,4 +20,6 @@ Fluxex.createApp = function (stores, prototype) {
     return App;
 };
 
+Fluxex.mixin = require('./lib/fluxmixin');
+
 module.exports = Fluxex;
