@@ -3,6 +3,7 @@
 var assert = require('chai').assert,
     sinon = require('sinon'),
     fluxex = require('../'),
+    actions = require('./testAction'),
     app = require('./testApp');
 
 describe('a fluxex app', function () {
@@ -129,6 +130,16 @@ describe('a fluxex app', function () {
                 assert.equal('Execute an action creator that do not return a promise!', E.message);
                 done();
             });
+        });
+
+        it('should execute action well', function (done) {
+            var App = new app();
+done();
+/*
+            App.executeAction(actions.sampleAction, 3).then(function() {
+                done();
+            });
+*/
         });
     });
 });

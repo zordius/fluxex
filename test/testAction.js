@@ -1,10 +1,10 @@
 'use strict';
 
 module.exports = {
-    sampleAction: function () {
+    sampleAction: function (payload) {
         return this.createPromise(function (resolve) {
             var S = this.getStore('sampleStore');
-            S.set('c', 123, true);
+            S.set('c', payload, true);
             S.emitChange();
             resolve();
         });
