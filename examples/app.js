@@ -5,3 +5,6 @@ module.exports = require('fluxex').createApp({
     paramStore: {},                          // no special implement for this store
     productStore: require('./stores/product')
 });
+
+//some trick to bundle jsx , later will be removed
+require('./components/Html.jsx');
