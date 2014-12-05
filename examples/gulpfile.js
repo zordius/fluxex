@@ -24,7 +24,11 @@ bundleAll = function (b) {
     })
     .pipe(source('main.js'))
     .pipe(gulp.dest('static/js/'))
-    .pipe(browserSync.reload({stream: true, once: true}));
+    .on('end', function () {
+//(browserSync.reload({stream: true, once: true}));
+console.log('bundle done!');
+console.log(arguments);
+    });
 },
 
 buildApp = function (watch) {
@@ -47,8 +51,7 @@ buildApp = function (watch) {
         });
     }
 
-    bundleAll(b);
-    return b;
+    return bundleAll(b);
 };
 
 gulp.task('build_app', function () {
