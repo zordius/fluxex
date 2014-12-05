@@ -41,9 +41,15 @@ describe('a fluxex app', function () {
 
     it('will throw when no store info defined', function (done) {
         assert.throws(function () {
-            var App = fluxex.createApp();
-            new App();
-        }, Error, 'You should create app with information of stores');
+            fluxex.createApp();
+        }, Error, 'You should create app with information of stores as first parameter');
+        done();
+    });
+
+    it('will throw when no HtmlJsx provided', function (done) {
+        assert.throws(function () {
+            fluxex.createApp({fakeStore: '...'});
+        }, Error, 'You should create app with HtmlJsx as second parameter');
         done();
     });
 
