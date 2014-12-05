@@ -16,9 +16,9 @@ Fluxex is context based flux implemention. Server side react rendering can be do
 
 **Action**
 * An action creator should return a promise.
-* An action creator function can be executed with `.execute()` method under a Fluxex instance.
-* When the action be `.execute()`, the Fluxex instance can be referenced by `this`.
-* `.execute()` will return a promise, so you can manage asynchronous actions in promise way.
+* An action creator function can be executed with `.executeAction()` method under a Fluxex instance.
+* When the action be `.executeAction()`, the Fluxex instance can be referenced by `this`.
+* `.executeAction()` will return a promise, so you can manage asynchronous actions in promise way.
 
 **Dispatcher**
 * the Fluxex instance itself is a dispatcher with `.dispatch()` method.
