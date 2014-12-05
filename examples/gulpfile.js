@@ -85,6 +85,10 @@ gulp.task('watch_jsx', ['lint_jsx'], function () {
 gulp.task('lint_jsx', function () {
     return gulp.src(build_files.jsx)
     .pipe(react())
+    .on('error', function (E) {
+        gutil.log('[jsx ERROR]', gutil.colors.red(E.fileName));
+        gutil.log('[jsx ERROR]', gutil.colors.red(E.message));
+    })
     .pipe(jshint(configs.jshint_jsx))
     .pipe(jshint.reporter('jshint-stylish'));
 });
