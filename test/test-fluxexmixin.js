@@ -17,13 +17,13 @@ getMixedComponent = function () {
 };
 
 describe('fluxex.mixin', function () {
-    it('.getContext() will return context', function (done) {
-        assert.equal(true, getMixedComponent().getContext() instanceof app);
+    it('._getContext() will return context', function (done) {
+        assert.equal(true, getMixedComponent()._getContext() instanceof app);
         done();
     });
 
-    it('.getInitScript() will return string', function (done) {
-        assert.equal('string', typeof getMixedComponent().getInitScript());
+    it('._getInitScript() will return string', function (done) {
+        assert.equal('string', typeof getMixedComponent()._getInitScript());
         done();
     });
 
