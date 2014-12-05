@@ -3,9 +3,7 @@
 module.exports = {
     sampleAction: function (payload) {
         return this.createPromise(function (resolve) {
-            var S = this.getStore('sampleStore');
-            S.set('c', payload, true);
-            S.emitChange();                                                        
+            this.dispatch('UPDATE_SAMPLE', {c: payload});
             resolve();
         });
     },
@@ -18,11 +16,11 @@ module.exports = {
             if (id) {
                 setTimeout(function () {
                     // simulate api call here...
-                    self.getStore('productStore').set('data', {
+                    self.dispatch('UPDATE_PRODUCT', {
                         title: 'this is sample title (' + id + ')',
                         description: 'this is sample description (id=' + id + ')',
                         price: 100 * id
-                    }, {});
+                    });
                     resolve();
                 });
             } else {

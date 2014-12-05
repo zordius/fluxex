@@ -152,6 +152,16 @@ describe('a fluxex app', function () {
                 App.dispatch('dispatch', App);
             });
         });
+
+        it('should dispatch 2 actions one by one well', function (done) {
+            var App = new app();
+
+            App.dispatch('SAMPLE', 3);
+            assert.equal(3, App.getStore('sampleStore').get('c'));
+            App.dispatch('SAMPLE', 40);
+            assert.equal(40, App.getStore('sampleStore').get('c'));
+            done();
+        });
     });
 
     describe('.executeAction()', function () {

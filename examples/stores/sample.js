@@ -1,3 +1,8 @@
 'use strict';
 
-// no special implement for this store
+module.exports = {
+    handle_UPDATE_SAMPLE: function (v) {
+        this.set('c', v, true);
+        this.emitChange();
+    }
+};

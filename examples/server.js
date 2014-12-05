@@ -17,6 +17,7 @@ app.use('/test', function (req, res, next) {
     Fluxex.getStore('page').set('query', req.query, true);
 
     Fluxex.executeAction(serverAction.samplePage).then(function () {
+console.log(Fluxex.toString());
         react.withContext({fluxex: Fluxex}, function () {
             res.send(react.renderToString(Fluxex.getHtmlJsx()));
         });
