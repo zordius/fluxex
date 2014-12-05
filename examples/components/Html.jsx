@@ -3,6 +3,7 @@
 var React = require('react'),
     Fluxex = require('fluxex'),
     Product = require('./Product.jsx'),
+    Sample = require('./Sample.jsx'),
 
 Html = React.createClass({
     mixins: [Fluxex.mixin],
@@ -21,6 +22,7 @@ Html = React.createClass({
          </head>
          <body>
           <Product />
+          <Sample />
          </body>
          <script src="/static/js/main.js"></script>
          <script dangerouslySetInnerHTML={{__html: this._getInitScript()}}></script>

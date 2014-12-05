@@ -2,10 +2,7 @@
 
 module.exports = {
     sampleAction: function (payload) {
-        return this.createPromise(function (resolve) {
-            this.dispatch('UPDATE_SAMPLE', {c: payload});
-            resolve();
-        });
+        return this.dispatch('UPDATE_SAMPLE', {c: payload});
     },
     updateStoreByApi: function (payload) {
         return this.createPromise(function (resolve) {
