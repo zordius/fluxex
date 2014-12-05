@@ -7,6 +7,10 @@ var React = require('react'),
 Html = React.createClass({
     mixins: [Fluxex.mixin],
 
+    shouldComponentUpdate: function () {
+        return false;
+    },
+
     render: function () {
         return (
         <html>
@@ -16,7 +20,7 @@ Html = React.createClass({
           <title>{this.getStore('page').get('title')}</title>
          </head>
          <body>
-          <Product/>
+          <Product />
          </body>
          <script src="/static/js/main.js"></script>
          <script dangerouslySetInnerHTML={{__html: this._getInitScript()}}></script>
