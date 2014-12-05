@@ -3,10 +3,15 @@ var gulp = require('gulp'),
     browserify = require('browserify'),
     watchify = require('watchify'),
     source = require('vinyl-source-stream'),
-    nodemon = require('nodemon'),                                                                       
+    nodemon = require('nodemon'),
     browserSync = require('browser-sync'),
     react = require('gulp-react'),
     jshint = require('gulp-jshint'),
+
+build_files = {
+    js: ['actions/*.js', 'stores/*.js'],
+    jsx: ['components/*.jsx']
+},
 
 start_browserSync = function () {
     browserSync.init(null, {
@@ -37,7 +42,7 @@ start_browserSync = function () {
     });
 },
 
-buildJsx = function (watch) {
+buildApp = function (watch) {
     var b = browserify(process.cwd() + '/app.js', {
         cache: {},
         packageCache: {},
@@ -61,12 +66,27 @@ buildJsx = function (watch) {
     return b;
 };
 
-gulp.task('build_jsx', function () {
-    return buildJsx(false);
+gulp.task('build_app', function () {
+    return buildApp(false);
+});
+
+gulp.task('watch_app', function () {
+    return buildApp(true);
+});
+
+gulp.task('watch_flux_js', function () {
+    gulp.watch(build_files.js, ['lint_flux_js']);
+});
+
+gulp.task('lint_flux_js', function () {
+    gulp.src(build_files.js)
+    .pipe(react())
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('watch_jsx', function () {
-    return buildJsx(true);
+    gulp.watch(build_files.jsx, ['lint_flux_js']);
 });
 
 gulp.task('nodemon_server', function() {
@@ -83,6 +103,6 @@ gulp.task('nodemon_server', function() {
     });
 });
 
-gulp.task('develop', ['watch_jsx', 'nodemon_server']);
-gulp.task('buildall', ['build_jsx']);
+gulp.task('develop', ['watch_jsx', 'watch_app', 'nodemon_server']);
+gulp.task('buildall', ['lint_flux_js', 'build_app']);
 gulp.task('default',['buildall']);
