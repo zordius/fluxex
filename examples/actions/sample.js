@@ -4,7 +4,7 @@ module.exports = {
     sampleAction: function (payload) {
         return this.dispatch('UPDATE_SAMPLE', {c: payload});
     },
-    updateStoreByApi: function (payload) {
+    updateStoreByApi: function () {
         return this.createPromise(function (resolve) {
             var self = this,
                 S = this.getStore('page'),

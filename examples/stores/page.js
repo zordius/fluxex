@@ -11,4 +11,4 @@ module.exports = {
             this.set('title', title, true);
         }
     }
-}
+};

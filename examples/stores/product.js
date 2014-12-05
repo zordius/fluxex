@@ -5,4 +5,4 @@ module.exports = {
         this.set('data', data, true);
         this.emitChange();
     }
-}
+};
