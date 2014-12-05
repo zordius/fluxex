@@ -28,7 +28,7 @@ start_browserSync = function () {
 },
 
 bundleAll = function (b) {
-    b.bundle()
+    return b.bundle()
     .on('error', function (E) {
         gutil.log('[browserify ERROR]', gutil.colors.red(E));
     })
@@ -83,7 +83,7 @@ gulp.task('watch_flux_js', ['lint_flux_js'], function () {
 });
 
 gulp.task('lint_flux_js', function () {
-    gulp.src(build_files.js)
+    return gulp.src(build_files.js)
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
 });
@@ -93,7 +93,7 @@ gulp.task('watch_jsx', ['lint_jsx'], function () {
 });
 
 gulp.task('lint_jsx', function () {
-    gulp.src(build_files.jsx)
+    return gulp.src(build_files.jsx)
     .pipe(react())
     .pipe(jshint(configs.jshint_jsx))
     .pipe(jshint.reporter('jshint-stylish'));
