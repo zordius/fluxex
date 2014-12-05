@@ -74,19 +74,25 @@ gulp.task('watch_app', function () {
     return buildApp(true);
 });
 
-gulp.task('watch_flux_js', function () {
+gulp.task('watch_flux_js', ['lint_flux_js'], function () {
     gulp.watch(build_files.js, ['lint_flux_js']);
 });
 
 gulp.task('lint_flux_js', function () {
     gulp.src(build_files.js)
-    .pipe(react())
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('watch_jsx', function () {
-    gulp.watch(build_files.jsx, ['lint_flux_js']);
+gulp.task('watch_jsx', ['lint_jsx'], function () {
+    gulp.watch(build_files.jsx, ['lint_jsx']);
+});
+
+gulp.task('lint_jsx', function () {
+    gulp.src(build_files.jsx)
+    .pipe(react())
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('nodemon_server', function() {
@@ -103,6 +109,6 @@ gulp.task('nodemon_server', function() {
     });
 });
 
-gulp.task('develop', ['watch_jsx', 'watch_app', 'nodemon_server']);
-gulp.task('buildall', ['lint_flux_js', 'build_app']);
+gulp.task('develop', ['watch_flux_js', 'watch_jsx', 'watch_app', 'nodemon_server']);
+gulp.task('buildall', ['lint_flux_js', 'lint_jsx', 'build_app']);
 gulp.task('default',['buildall']);
