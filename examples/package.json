@@ -14,18 +14,16 @@
   },
   "devDependencies": {
     "browserify": "6.3.3",
+    "watchify": "2.1.1",
     "reactify": "0.14.0",
-    "gulp": "3.8.9",
-    "gulp-jshint": "1.8.6",
     "jshint-stylish": "1.0.0",
     "nodemon": "1.2.1",
     "browser-sync": "1.7.1",
+    "gulp": "3.8.9",
+    "gulp-jshint": "1.8.6",
     "gulp-react": "2.0.0",
-    "gulp-rename": "1.2.0",
-    "gulp-sourcemaps": "1.2.4",
+    "gulp-changed": "1.0.0",
     "gulp-util": "3.0.1",
-    "gulp-watch": "1.1.0",
-    "vinyl-source-stream": "1.0.0",
-    "watchify": "2.1.1"
+    "vinyl-source-stream": "1.0.0"
   }
 }

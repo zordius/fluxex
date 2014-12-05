@@ -1,14 +1,16 @@
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
+    react = require('gulp-react'),
+    changed = require('gulp-changed'),
+    jshint = require('gulp-jshint'),
+    source = require('vinyl-source-stream'),
     browserify = require('browserify'),
     watchify = require('watchify'),
-    source = require('vinyl-source-stream'),
     nodemon = require('nodemon'),
     browserSync = require('browser-sync'),
-    react = require('gulp-react'),
-    jshint = require('gulp-jshint'),
 
 configs = {
+    watchify: {debug: true},
     jshint_jsx: {quotmark: false}
 },
 
@@ -27,7 +29,6 @@ bundleAll = function (b) {
     .on('end', function () {
 //(browserSync.reload({stream: true, once: true}));
 console.log('bundle done!');
-console.log(arguments);
     });
 },
 
@@ -44,9 +45,9 @@ buildApp = function (watch) {
     b.transform('reactify');
 
     if (watch) {
-        b = watchify(b, {delay: 1000});
+        b = watchify(b, configs.watchify);
         b.on('update', function (F) {
-            gutil.log('[browserify] ' + F + ' updated');
+            gutil.log('[browserify] ' + F[0] + ' updated');
             bundleAll(b);
         });
     }
@@ -79,7 +80,10 @@ gulp.task('lint_jsx', function () {
     return gulp.src(build_files.jsx)
     .pipe(react())
     .pipe(jshint(configs.jshint_jsx))
-    .pipe(jshint.reporter('jshint-stylish'));
+    .pipe(jshint.reporter('jshint-stylish'))
+    .on('end', function () {
+      console.log('okok?!');
+    });
 });
 
 gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app'], function() {
