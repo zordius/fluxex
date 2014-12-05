@@ -21,7 +21,7 @@ Html = React.createClass({
           <title>{this.getStore('page').get('title')}</title>
          </head>
          <body>
-          <div>Test...OK???!</div>
+          <div>Test...OK??.</div>
           <Product />
           <Sample />
          </body>

@@ -5,6 +5,3 @@ module.exports = require('fluxex').createApp({
     page: require('./stores/page'),
     productStore: require('./stores/product')
 }, process.cwd() + '/components/Html.jsx');
-
-//some trick to bundle jsx , later will be removed
-require('./components/Html.jsx');
