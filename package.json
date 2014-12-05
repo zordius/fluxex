@@ -1,6 +1,6 @@
 {
   "name": "fluxex",
-  "version": "0.1.6",
+  "version": "0.1.6-0",
   "description": "An extended flux implement for both server/client side",
   "author": "Zordius <zordius@yahoo-inc.com>",
   "contributors": [
