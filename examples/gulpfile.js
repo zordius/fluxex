@@ -1,16 +1,20 @@
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
     react = require('gulp-react'),
-    changed = require('gulp-changed'),
+    cache = require('gulp-cached'),
     jshint = require('gulp-jshint'),
     source = require('vinyl-source-stream'),
     browserify = require('browserify'),
     watchify = require('watchify'),
     nodemon = require('nodemon'),
     browserSync = require('browser-sync'),
+    serverStarted = false,
 
 configs = {
-    watchify: {debug: true},
+    nodemon_restart_delay: 200,
+    nodemon_delay: 2000,
+    gulp_watch: {debounceDelay: 2000},
+    watchify: {debug: true, delay: 2000},
     jshint_jsx: {quotmark: false}
 },
 
@@ -27,8 +31,9 @@ bundleAll = function (b) {
     .pipe(source('main.js'))
     .pipe(gulp.dest('static/js/'))
     .on('end', function () {
-//(browserSync.reload({stream: true, once: true}));
-console.log('bundle done!');
+        setTimeout(function () {
+            nodemon.emit('restart');
+        }, configs.nodemon_restart_delay);
     });
 },
 
@@ -64,26 +69,24 @@ gulp.task('watch_app', function () {
 });
 
 gulp.task('watch_flux_js', ['lint_flux_js'], function () {
-    gulp.watch(build_files.js, ['lint_flux_js']);
+    gulp.watch(build_files.js, configs.gulp_watch, ['lint_flux_js']);
 });
 
 gulp.task('lint_flux_js', function () {
     return gulp.src(build_files.js)
-    .pipe(jshint());
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('watch_jsx', ['lint_jsx'], function () {
-    gulp.watch(build_files.jsx, ['lint_jsx']);
+    gulp.watch(build_files.jsx, configs.gulp_watch, ['lint_jsx']);
 });
 
 gulp.task('lint_jsx', function () {
     return gulp.src(build_files.jsx)
     .pipe(react())
     .pipe(jshint(configs.jshint_jsx))
-    .pipe(jshint.reporter('jshint-stylish'))
-    .on('end', function () {
-      console.log('okok?!');
-    });
+    .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app'], function() {
@@ -96,13 +99,18 @@ gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app'], functio
         gutil.log(log.colour);
     })
     .on('start', function () {
-        browserSync.init(null, {
-            proxy: 'http://localhost:3000',
-            files: ['static/css/*.css'],
-            port: 3001,
-            online: false,
-            open: false
-        });
+        if (serverStarted) {
+            setTimeout(browserSync.reload, configs.nodemon_delay);
+        } else {
+            browserSync.init(null, {
+                proxy: 'http://localhost:3000',
+                files: ['static/css/*.css'],
+                port: 3001,
+                online: false,
+                open: false
+            });
+            serverStarted = true;
+        }
     });
 });
 
