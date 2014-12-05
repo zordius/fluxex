@@ -11,6 +11,7 @@ var gulp = require('gulp'),
     serverStarted = false,
 
 configs = {
+    mainjs: require(process.cwd() + '/package.json').main,
     nodemon_restart_delay: 200,
     nodemon_delay: 2000,
     gulp_watch: {debounceDelay: 2000},
@@ -38,7 +39,7 @@ bundleAll = function (b) {
 },
 
 buildApp = function (watch) {
-    var b = browserify(process.cwd() + '/app.js', {
+    var b = browserify(process.cwd() + '/fluxexapp.js', {
         cache: {},
         packageCache: {},
         require: './components/Html.jsx',
@@ -96,7 +97,7 @@ gulp.task('lint_jsx', function () {
 gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app'], function() {
     nodemon({
         ignore: '*',
-        script: require(process.cwd() + '/package.json').main,
+        script: configs.mainjs,
         ext: 'do_not_watch'
     })
     .on('log', function (log) {

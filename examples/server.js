@@ -4,7 +4,7 @@ require('node-jsx').install({extension: '.jsx'});
 
 var express = require('express'),
     fluxex = require('fluxex'),
-    fluxexapp = require('./app'),
+    fluxexapp = require('./fluxexapp'),
     serverAction = require('./actions/server'),
     react = require('react'),
     app = express();
