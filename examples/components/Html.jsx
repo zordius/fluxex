@@ -19,7 +19,7 @@ Html = React.createClass({
           <Product/>
          </body>
          <script src="/static/js/main.js"></script>
-         <script dangerouslySetInnerHTML={{__html: this.getInitScript()}}></script>
+         <script dangerouslySetInnerHTML={{__html: this._getInitScript()}}></script>
         </html> 
         );
     }
