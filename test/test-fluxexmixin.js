@@ -1,10 +1,11 @@
 'use strict';
 
 var assert = require('chai').assert,
-    testStore = require('./testStore.js'),
     fluxex = require('..'),
     app = require('./testApp'),
+    testStore = require('./testStore.js'),
     mixin = fluxex.mixin,
+    sinon = require('sinon'),
 
 getMixedComponent = function () {
     var App = new app(),
@@ -62,5 +63,16 @@ describe('fluxex.mixin', function () {
             done();
         };
         C.componentWillUnmount();
+    });
+
+    it('.executeAction() will work well', function (done) {
+        var C = getMixedComponent(),
+            CX = C._getContext();
+
+        sinon.stub(CX, 'executeAction');
+        C.executeAction(123, 456);
+        assert.deepEqual([123, 456], CX.executeAction.getCall(0).args);
+        CX.executeAction.restore();
+        done();
     });
 });
