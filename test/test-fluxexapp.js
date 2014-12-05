@@ -3,6 +3,7 @@
 var assert = require('chai').assert,
     sinon = require('sinon'),
     fluxex = require('../'),
+    react = require('react'),
     actions = require('./testAction'),
     app = require('./testApp');
 
@@ -53,11 +54,42 @@ describe('a fluxex app', function () {
         done();
     });
 
-    it('will throw when initStore() be called externally', function (done) {
+    it('will throw when .initStore() be called externally', function (done) {
         assert.throws(function () {
             var App = new app();
             App.initStore();
         }, Error, '.initStore() should not be called externally!');
+        done();
+    });
+
+    it('will throw when .getHtmlJsx() with wrong module name', function (done) {
+        assert.throws(function () {
+            var App = new app();
+            App.getHtmlJsx();
+        }, Error, 'Cannot find module \'noneed_htmlJsx\'');
+        done();
+    });
+
+    it('will react.render() with self', function (done) {
+        var App = new app({c: 3});
+
+        sinon.stub(react, 'withContext', function (obj, cb) {
+            global.document = {body: {parentNode: {parentNode: 0}}};
+            cb();
+        });
+
+        sinon.stub(App, 'getHtmlJsx').returns('123');
+        sinon.stub(react, 'render');
+
+        App.initClient();
+
+        assert.strictEqual(App, react.withContext.getCall(0).args[0].fluxex);
+        assert.equal('123', react.render.getCall(0).args[0]);
+        delete global.document;
+
+        react.withContext.restore();
+        react.render.restore();
+
         done();
     });
 
