@@ -17,33 +17,14 @@ build_files = {
     jsx: ['components/*.jsx']
 },
 
-start_browserSync = function () {
-    browserSync.init(null, {
-        proxy: "http://localhost:3000",
-        files: ["static/css/*.css"],
-        port: 3001,
-        online: false,
-        open: false
-    });
-},
-
 bundleAll = function (b) {
     return b.bundle()
     .on('error', function (E) {
         gutil.log('[browserify ERROR]', gutil.colors.red(E));
     })
     .pipe(source('main.js'))
-    .pipe(gulp.dest('static/js/'));
-},
-
-start_browserSync = function () {
-    browserSync.init(null, {
-        proxy: "http://localhost:3000",
-        files: ["static/css/*.css"],
-        port: 3001,
-        online: false,
-        open: false
-    });
+    .pipe(gulp.dest('static/js/'))
+    .pipe(browserSync.reload({stream: true, once: true}));
 },
 
 buildApp = function (watch) {
@@ -84,8 +65,7 @@ gulp.task('watch_flux_js', ['lint_flux_js'], function () {
 
 gulp.task('lint_flux_js', function () {
     return gulp.src(build_files.js)
-    .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'));
+    .pipe(jshint());
 });
 
 gulp.task('watch_jsx', ['lint_jsx'], function () {
@@ -99,20 +79,26 @@ gulp.task('lint_jsx', function () {
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('nodemon_server', function() {
+gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app'], function() {
     nodemon({
         ignore: '*',
         script: require(process.cwd() + '/package.json').main,
-        ext: 'not_watch'
+        ext: 'do_not_watch'
     })
     .on('log', function (log) {
         gutil.log(log.colour);
     })
     .on('start', function () {
-        start_browserSync();
+        browserSync.init(null, {
+            proxy: 'http://localhost:3000',
+            files: ['static/css/*.css'],
+            port: 3001,
+            online: false,
+            open: false
+        });
     });
 });
 
-gulp.task('develop', ['watch_flux_js', 'watch_jsx', 'watch_app', 'nodemon_server']);
+gulp.task('develop', ['nodemon_server']);
 gulp.task('buildall', ['lint_flux_js', 'lint_jsx', 'build_app']);
 gulp.task('default',['buildall']);
