@@ -13,6 +13,7 @@ var gulp = require('gulp'),
 configs = {
     static_dir: 'static/',
     mainjs: require(process.cwd() + '/package.json').main,
+    appjs: process.cwd() + '/fluxexapp.js',
     nodemon_restart_delay: 200,
     nodemon_delay: 2000,
     gulp_watch: {debounceDelay: 2000},
@@ -42,7 +43,7 @@ bundleAll = function (b) {
 },
 
 buildApp = function (watch) {
-    var b = browserify(process.cwd() + '/fluxexapp.js', {
+    var b = browserify(configs.appjs, {
         cache: {},
         packageCache: {},
         require: './components/Html.jsx',
@@ -119,6 +120,11 @@ gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app'], functio
             });
             serverStarted = true;
         }
+    });
+
+    return gulp.watch(configs.mainjs)
+    .on('end', function () {
+        nodemon.emit('restart');
     });
 });
 

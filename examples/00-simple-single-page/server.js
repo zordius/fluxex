@@ -1,7 +1,5 @@
 'use strict';
 
-require('node-jsx').install({extension: '.jsx'});
-
 var express = require('express'),
     fluxexapp = require('./fluxexapp'),
     serverAction = require('./actions/server'),
