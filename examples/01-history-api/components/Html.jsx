@@ -11,6 +11,18 @@ Html = React.createClass({
         return false;
     },
 
+    handleClickLink: function (E) {
+        var HREF = E.target.href;
+
+        if (!HREF || HREF.match(/#/)) {
+            return;
+        }
+
+        E.preventDefault();
+        E.stopPropagation();
+        console.log(HREF);
+    },
+
     render: function () {
         return (
         <html>
@@ -19,11 +31,13 @@ Html = React.createClass({
           <meta name="viewport" content="width=device-width, user-scalable=no" />
           <title>{this.getStore('page').get('title')}</title>
          </head>
-         <body>
+         <body onClick={this.handleClickLink}>
           <Product />
          </body>
          <script src="/static/js/main.js"></script>
          <script dangerouslySetInnerHTML={{__html: this._getInitScript()}}></script>
+<script>
+</script>
         </html> 
         );
     }

@@ -28,9 +28,9 @@ Product = React.createClass({
          <i>Serial(random):{this.state.serial}</i>
          <h4>Related products</h4>
          <ul>
-          <li><a href="/proudct?id=123">ID = 123</a></li>
-          <li><a href="/proudct?id=456">ID = 456</a></li>
-          <li><a href="/proudct?id=789">ID = 789</a></li>
+          <li><a href="/product?id=123">ID = 123</a></li>
+          <li><a href="/product?id=456">ID = 456</a></li>
+          <li><a href="/product?id=789">ID = 789</a></li>
          </ul>
         </div>
         );
