@@ -11,6 +11,7 @@ var gulp = require('gulp'),
     serverStarted = false,
 
 configs = {
+    static_dir: 'static/',
     mainjs: require(process.cwd() + '/package.json').main,
     nodemon_restart_delay: 200,
     nodemon_delay: 2000,
@@ -30,7 +31,7 @@ bundleAll = function (b) {
         gutil.log('[browserify ERROR]', gutil.colors.red(E));
     })
     .pipe(source('main.js'))
-    .pipe(gulp.dest('static/js/'))
+    .pipe(gulp.dest(configs.static_dir + 'js/'))
     .on('end', function () {
         setTimeout(function () {
             nodemon.emit('restart');
@@ -109,7 +110,7 @@ gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app'], functio
         } else {
             browserSync.init(null, {
                 proxy: 'http://localhost:3000',
-                files: ['static/css/*.css'],
+                files: [configs.static_dir + 'css/*.css'],
                 port: 3001,
                 online: false,
                 open: false
@@ -120,5 +121,6 @@ gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app'], functio
 });
 
 gulp.task('develop', ['nodemon_server']);
-gulp.task('buildall', ['lint_flux_js', 'lint_jsx', 'build_app']);
+gulp.task('lint_all', ['lint_flux_js', 'lint_jsx']);
+gulp.task('buildall', ['lint_all', 'build_app']);
 gulp.task('default',['buildall']);
