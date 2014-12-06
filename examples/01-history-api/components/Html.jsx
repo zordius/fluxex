@@ -3,16 +3,26 @@
 var React = require('react'),
     Fluxex = require('fluxex'),
     Product = require('./Product.jsx'),
+    sampleActions = require('../actions/sample'),
 
 Html = React.createClass({
-    mixins: [Fluxex.mixin],
+    mixins: [
+        Fluxex.mixin,
+        require('fluxex/extra/storechange'),
+        {listenStores: ['page']}
+    ],
 
     shouldComponentUpdate: function () {
-        return false;
+        return true; //false;
+    },
+
+    getStateFromStores: function () {
+        return {};
     },
 
     handleClickLink: function (E) {
-        var HREF = E.target.href;
+        var HREF = E.target.href,
+            self = this;
 
         if (!HREF || HREF.match(/#/)) {
             return;
@@ -20,7 +30,21 @@ Html = React.createClass({
 
         E.preventDefault();
         E.stopPropagation();
-        console.log(HREF);
+
+        // Store original state 1 time
+        if (!this._initHistoryState) {
+            this._initHistoryState = this._getContext().toString();
+        }
+
+        // Go to the url
+        this._getContext().dispatch('UPDATE_URL', HREF).then(function () {
+            // Run action to update page stores
+            return this.executeAction(sampleActions.updateProductPage);
+        }).then(function () {
+            // Success, update url
+            /*global history*/
+            history.pushState(null, self._getContext().toString(), HREF);
+        });
     },
 
     render: function () {

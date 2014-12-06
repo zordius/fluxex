@@ -1,6 +1,11 @@
 'use strict';
 
-module.exports = {
+var samples = {
+    updateProductPage: function () {
+        return this.executeAction(samples.updateStoreByApi).then(function () {
+            return this.dispatch('UPDATE_TITLE', this.getStore('productStore').get('data.title'));
+        });
+    },
     updateStoreByApi: function () {
         return this.createPromise(function (resolve) {
             var self = this,
@@ -24,3 +29,5 @@ module.exports = {
         });
     }
 };
+
+module.exports = samples;

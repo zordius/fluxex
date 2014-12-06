@@ -9,7 +9,7 @@
     "start": "gulp develop"
   },
   "dependencies": {
-    "fluxex": "0.1.6-2",
+    "fluxex": "*",
     "express": "4.10.4"
   },
   "devDependencies": {
