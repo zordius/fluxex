@@ -22,7 +22,8 @@ Html = React.createClass({
 
     handleClickLink: function (E) {
         var HREF = E.target.href,
-            self = this;
+            self = this,
+            initState;
 
         if (!HREF || HREF.match(/#/)) {
             return;
@@ -31,9 +32,21 @@ Html = React.createClass({
         E.preventDefault();
         E.stopPropagation();
 
-        // Store original state 1 time
-        if (!this._initHistoryState) {
-            this._initHistoryState = this._getContext().toString();
+        // Store original state 1 time. And, setup history event listener
+        if (!initState) {
+            initState = this._getContext().toString();
+            /*global window*/
+            window.addEventListener('popstate', function (E) {
+                var state = E.state || initState;
+                if (!state) {
+                    return console.log('NO STATE DATA....can not handle re-rendering');
+                }
+                self._getContext()._context = JSON.parse(state);
+console.log(state);
+                self.forceUpdate(function () {
+console.log('render ok?');
+});
+            });
         }
 
         // Go to the url
@@ -43,7 +56,7 @@ Html = React.createClass({
         }).then(function () {
             // Success, update url
             /*global history*/
-            history.pushState(null, self._getContext().toString(), HREF);
+            history.pushState(self._getContext().toString(), undefined, HREF);
         });
     },
 
