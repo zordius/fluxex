@@ -19,6 +19,7 @@ module.exports = {
         handle_UPDATE_URL: function (url) {
             var M = url.match(/^(?:(https?:)\/\/(([^:/]+)(:[^\/]+)?))?([^#?]*)(\\?[^#]*)?(#.*)?$/),
                 search = M[6] || '',
+                hash = M[7] || '',
                 params = {},
                 slist = search.substring(1).split(/[;&]/),
                 P, I;
@@ -34,14 +35,14 @@ module.exports = {
             }
 
             this.set('url', {
-                href: M[5] + M[6] + M[7],
+                href: M[5] + M[6] + hash,
                 protocol:  M[1],
                 host: M[2],
                 hostname: M[3],
                 port: M[4] || '',
                 pathname: M[5] || '',
                 search: search,
-                hash: M[7] || '',
+                hash: hash,
                 params: params
             }, true);
         }

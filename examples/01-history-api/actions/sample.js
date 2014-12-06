@@ -5,7 +5,7 @@ module.exports = {
         return this.createPromise(function (resolve) {
             var self = this,
                 S = this.getStore('page'),
-                id = S.get('query.id');
+                id = S.get('url.params.id');
 
             if (id) {
                 setTimeout(function () {
