@@ -13,9 +13,6 @@ module.exports = {
                 this.set('title', title, true);
             }
         },
-        handle_ENABLE_HISTORYAPI: function () {
-            this.set('cfg.push_states', true, true);
-        },
         handle_UPDATE_URL: function (url) {
             var M = url.match(/^(?:(https?:)\/\/(([^:/]+)(:[^\/]+)?))?([^#?]*)(\\?[^#]*)?(#.*)?$/),
                 search = M[6] || '',
