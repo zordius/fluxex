@@ -1,12 +1,18 @@
 'use strict';
 
-var actions = require('./sample');
+var other_actions = require('./sample'),
 
-module.exports = {
+server_actions = {
+    samplePageWithQuery: function (req) {
+        // Dark magic, set query direct to store
+        this.getStore('page').set('query', req.query, true);
+        return this.executeAction(server_actions.samplePage);
+    },
     samplePage: function () {
-        var self = this;
-        return this.executeAction(actions.updateStoreByApi).then(function () {
-            self.dispatch('UPDATE_TITLE', self.getStore('productStore').get('data.title'));
+        return this.executeAction(other_actions.updateStoreByApi).then(function () {
+            this.dispatch('UPDATE_TITLE', this.getStore('productStore').get('data.title'));
         });
     }
 };
+
+module.exports = server_actions;

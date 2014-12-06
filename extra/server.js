@@ -6,7 +6,7 @@ require('node-jsx').install({extension: '.jsx'});
 
 module.exports = {
     initStatic: function (app) {
-       app.use('/static', express.static(process.cwd() + '/static'));
+       app.use('/static', require('express').static(process.cwd() + '/static'));
     },
     
     middleware: function (fluxexapp, action) {

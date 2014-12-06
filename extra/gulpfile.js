@@ -25,6 +25,12 @@ build_files = {
     jsx: ['components/*.jsx']
 },
 
+restart_nodemon = function () {
+    setTimeout(function () {
+        nodemon.emit('restart');
+    }, configs.nodemon_restart_delay);
+},
+
 bundleAll = function (b) {
     return b.bundle()
     .on('error', function (E) {
@@ -32,11 +38,7 @@ bundleAll = function (b) {
     })
     .pipe(source('main.js'))
     .pipe(gulp.dest(configs.static_dir + 'js/'))
-    .on('end', function () {
-        setTimeout(function () {
-            nodemon.emit('restart');
-        }, configs.nodemon_restart_delay);
-    });
+    .on('end', restart_nodemon);
 },
 
 buildApp = function (watch) {
