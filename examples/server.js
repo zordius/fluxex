@@ -16,7 +16,7 @@ app.use('/test', function (req, res, next) {
     Fluxex.getStore('page').set('query', req.query, true);
 
     Fluxex.renderHtml(serverAction.samplePage).then(function (HTML) {
-      res.send(HTML);
+        res.send(HTML);
     }).catch(function (E) {
 console.log('not ok!');
 console.log(E.stack);
