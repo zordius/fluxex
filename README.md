@@ -8,7 +8,7 @@ An extended flux implement for both server/client side.
 See the Fluxex Magic
 --------------------
 
-In this <a href="examples">example project</a> you can see how fluxex do server side rendering + context deliver + Full HTML react rendering!
+Check <a href="examples">example projects</a> you can see how fluxex do server side rendering + context deliver + Full HTML react rendering!
 
 So far we do not include these in the example, but ....coming soon!
 
