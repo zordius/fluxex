@@ -19,6 +19,7 @@ var samples = {
                         title: 'this is sample title (' + id + ')',
                         description: 'this is sample description (id=' + id + ')',
                         price: 100 * id,
+                        time: (new Date()).getTime(),
                         serial: Math.random()
                     });
                     resolve();
