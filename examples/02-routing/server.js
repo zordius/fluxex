@@ -12,9 +12,6 @@ fluxexServerExtra.initStatic(app);
 // Mount test pages with routing action
 app.use(fluxexServerExtra.middleware(fluxexapp, function (req) {
     return this.dispatch('UPDATE_URL', req.url).then(function () {
-console.log('REQ' + req.url);
-console.log(this.toString());
-console.log(this.getStore('page').get('location.pathname'));
         return this.executeAction(routing);
     });
 }));

@@ -2,14 +2,21 @@
 
 module.exports = {
     getTopFiveProducts: function () {
+        return this.dispatch('UPDATE_TOP_FIVE_PRODUCTS', [
+            {id: 123, title: 'sample 123'},
+            {id: 456, title: 'sample 456'},
+            {id: 789, title: 'sample 789'},
+            {id: 135, title: 'sample 135'},
+            {id: 246, title: 'sample 246'}
+        ]);
     },
     getProductById: function (id) {
         return this.createPromise(function (resolve, reject) {
             var self = this;
 
             if (id) {
+                // simulate api call here...
                 setTimeout(function () {
-                    // simulate api call here...
                     self.dispatch('UPDATE_PRODUCT', {
                         title: 'this is sample title (' + id + ')',
                         description: 'this is sample description (id=' + id + ')',
@@ -20,7 +27,7 @@ module.exports = {
                     resolve();
                 });
             } else {
-                reject('no product id!');
+                reject(new Error('no product id!'));
             }
         });
     }

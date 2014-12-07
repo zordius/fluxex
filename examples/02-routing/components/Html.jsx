@@ -3,6 +3,7 @@
 var React = require('react'),
     Fluxex = require('fluxex'),
     Product = require('./Product.jsx'),
+    TopProducts = require('./TopProducts.jsx'),
     routeAction = require('../actions/routing'),
 
 Html = React.createClass({
@@ -81,6 +82,18 @@ Html = React.createClass({
     },
 
     render: function () {
+        var route_name = this.getStore('page').get('routing.name'),
+            body;
+console.log(route_name);
+        switch (route_name) {
+        case 'top':
+            body = <TopProducts />;
+            break;
+        case 'product':
+            body = <Product />;
+            break;
+        }
+
         return (
         <html>
          <head>
@@ -89,7 +102,9 @@ Html = React.createClass({
           <title>{this.getStore('page').get('title')}</title>
          </head>
          <body onClick={this.handleClickLink}>
-          <Product />
+          {body}
+          <hr />
+          <a href="/main">Go to Main...</a>
          </body>
          <script src="/static/js/main.js"></script>
          <script dangerouslySetInnerHTML={{__html: this._getInitScript()}}></script>
