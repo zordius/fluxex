@@ -14,7 +14,13 @@ module.exports = {
             (new fluxexapp()).renderHtml(action, req).then(function (HTML) {
                 res.send(HTML);
             }).catch(function (E) {
-                console.log(E.stack);
+                if (E) {
+                    if (E.redirect) {
+                        res.redirect(E.redirect);
+                        return;
+                    }
+                    console.log(E.stack || E);
+                }
                 next();
             });
         };
