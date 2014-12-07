@@ -221,6 +221,7 @@ describe('a fluxex app', function () {
 
             App.renderHtml(actions.sampleAction, 3).then(function (html) {
                 assert.equal('{"stores":{"sampleStore":{"c":3}}}', react.withContext.getCall(0).args[0].fluxex.toString());
+                react.withContext.restore();
                 done();
             });
         });
