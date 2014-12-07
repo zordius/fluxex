@@ -210,4 +210,19 @@ describe('a fluxex app', function () {
             });
         });
     });
+
+    describe('.renderHtml()', function () {
+        it('will do react.renderToString() with self as context', function (done) {
+            var App = new app(),
+                element = react.createElement('div', {className: 'test'});
+
+            sinon.stub(App, 'getHtmlJsx').returns(element);
+            sinon.spy(react, 'withContext');
+
+            App.renderHtml(actions.sampleAction, 3).then(function (html) {
+                assert.equal('{"stores":{"sampleStore":{"c":3}}}', react.withContext.getCall(0).args[0].fluxex.toString());
+                done();
+            });
+        });
+    });
 });
