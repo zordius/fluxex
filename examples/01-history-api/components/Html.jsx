@@ -48,7 +48,7 @@ Html = React.createClass({
                 return console.log('NO STATE DATA....can not handle re-rendering');
             }
 
-            // Ya, trigger page restore
+            // Ya, trigger page restore by an anonymous action
             self.executeAction(function () {
                     this.restore(JSON.parse(state));
                     this.dispatch('UPDATE_TITLE');
