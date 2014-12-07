@@ -43,8 +43,15 @@ Html = React.createClass({
                 }
                 // Ya, trigger page restore
                 self.executeAction(function () {
+                    var I;
+
                     this._context = JSON.parse(state);
-console.log(state);
+                    for (I in this._stores) {
+                        if (this._stores.hasOwnProperty(I)) {
+                            this._stores[I]._context = this._context.stores[I];
+                        }
+                    }
+
                     this.dispatch('UPDATE_TITLE');
                     this.getStore('productStore').emitChange();
                     return this.resolvePromise(true);
