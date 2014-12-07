@@ -16,9 +16,9 @@ module.exports = {
                 this.set('title', title, true);
             }
         },
-        // No emitChange because this action related with routing
-        handle_UPDATE_PARAMS: function (params) {
-            this.set('params', params, true);
+        // No emitChange
+        handle_UPDATE_ROUTING: function (routing) {
+            this.set('routing', params, true);
         },
         handle_UPDATE_URL: function (url) {
             var M = url.match(/^(?:(https?:)\/\/(([^:/]+)(:[^\/]+)?))?([^#?]*)(\\?[^#]*)?(#.*)?$/),
