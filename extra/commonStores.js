@@ -16,11 +16,15 @@ module.exports = {
                 this.set('title', title, true);
             }
         },
+        // No emitChange because this action related with routing
+        handle_UPDATE_PARAMS: function (params) {
+            this.set('params', params, true);
+        },
         handle_UPDATE_URL: function (url) {
             var M = url.match(/^(?:(https?:)\/\/(([^:/]+)(:[^\/]+)?))?([^#?]*)(\\?[^#]*)?(#.*)?$/),
                 search = M[6] || '',
                 hash = M[7] || '',
-                params = {},
+                query = {},
                 slist = search.substring(1).split(/[;&]/),
                 P, I;
 
@@ -30,7 +34,7 @@ module.exports = {
                         continue;
                     }
                     P = slist[I].split(/=/);
-                    params[decodeURIComponent(P[0].replace(/\+/g, '%20'))] = decodeURIComponent(P[1].replace(/\+/g, '%20'));
+                    query[decodeURIComponent(P[0].replace(/\+/g, '%20'))] = decodeURIComponent(P[1].replace(/\+/g, '%20'));
                 }
             }
 
@@ -43,7 +47,7 @@ module.exports = {
                 pathname: M[5] || '',
                 search: search,
                 hash: hash,
-                params: params
+                query: query 
             }, true);
         }
     }
