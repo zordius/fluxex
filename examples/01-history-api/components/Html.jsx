@@ -20,10 +20,47 @@ Html = React.createClass({
         return {};
     },
 
+    componentDidMount: function () {
+        /*global window,document*/
+        var blockDoublePop = (document.readyState != 'complete'),
+            initState = this._getContext().toString(),
+            initUrl = window.location.href,
+            self = this;
+
+        if (!window.addEventListener) {
+            return;
+        }
+
+        window.addEventListener('load', function() {
+            setTimeout(function () {
+                blockDoublePop = false;
+            }, 1);
+        });
+
+        window.addEventListener('popstate', function (E) {
+            var state = E.state || ((window.location.href === initUrl) ? initState : undefined);
+
+            if (blockDoublePop && (document.readyState === 'complete')) {
+                return;
+            }
+
+            if (!state) {
+                return console.log('NO STATE DATA....can not handle re-rendering');
+            }
+
+            // Ya, trigger page restore
+            self.executeAction(function () {
+                    this.restore(JSON.parse(state));
+                    this.dispatch('UPDATE_TITLE');
+                    this.getStore('productStore').emitChange();
+                    return this.resolvePromise(true);
+                });
+            });
+    },
+
     handleClickLink: function (E) {
         var HREF = E.target.href,
-            self = this,
-            initState;
+            self = this;
 
         if (!HREF || HREF.match(/#/)) {
             return;
@@ -31,33 +68,6 @@ Html = React.createClass({
 
         E.preventDefault();
         E.stopPropagation();
-
-        // Store original state 1 time. And, setup history event listener
-        if (!initState) {
-            initState = this._getContext().toString();
-            /*global window*/
-            window.addEventListener('popstate', function (E) {
-                var state = E.state || initState;
-                if (!state) {
-                    return console.log('NO STATE DATA....can not handle re-rendering');
-                }
-                // Ya, trigger page restore
-                self.executeAction(function () {
-                    var I;
-
-                    this._context = JSON.parse(state);
-                    for (I in this._stores) {
-                        if (this._stores.hasOwnProperty(I)) {
-                            this._stores[I]._context = this._context.stores[I];
-                        }
-                    }
-
-                    this.dispatch('UPDATE_TITLE');
-                    this.getStore('productStore').emitChange();
-                    return this.resolvePromise(true);
-                });
-            });
-        }
 
         // Go to the url
         this._getContext().dispatch('UPDATE_URL', HREF).then(function () {
