@@ -11,7 +11,7 @@ How to try this
   * the dark side: `FluxexApp.getStore('productStore').set('data.title', 'yes! you change the product title and it re-rendered!').emitChange();`
 
 What's in this example
-======================
+----------------------
 * <a href="components/Html.jsx">Html.jsx</a> is the top level ract component with fluxex magic.
 * <a href="actions/server.js">A server action</a> contains a start action to render the page.
 * <a href="fluxexapp.js">fluxexapp.js</a> defined used stores and the top level react component.
