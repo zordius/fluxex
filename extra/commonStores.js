@@ -2,14 +2,17 @@
 
 module.exports = {
     // All current page states stays here include location related things
+    // Because we can not re-render Html at client side,
+    // so we do not emitChange() in this store
     page: {
         handle_UPDATE_TITLE: function (title) {
-            // Because we can not re-render Html at client side
-            // So we play DOM update here.
+            // Play DOM update here because title beyonds body
             if (this.get('title')) {
                 /*global document*/
-                document.getElementsByTagName('title')[0].innerHTML = title;
-            } else {
+                document.getElementsByTagName('title')[0].innerHTML = title || this.get('title');
+            }
+
+            if (title) {
                 this.set('title', title, true);
             }
         },

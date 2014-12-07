@@ -10,14 +10,17 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     serverStarted = false,
 
+// If you use vim and watch tasks be triggered 2 times when saving
+// You can :set nowritebackup in vim to prevent this
+// Reference: https://github.com/joyent/node/issues/3172
 configs = {
     static_dir: 'static/',
     mainjs: require(process.cwd() + '/package.json').main,
     appjs: process.cwd() + '/fluxexapp.js',
     nodemon_restart_delay: 200,
     nodemon_delay: 2000,
-    gulp_watch: {debounceDelay: 2000},
-    watchify: {debug: true, delay: 2000},
+    gulp_watch: {debounceDelay: 500},
+    watchify: {debug: true, delay: 500},
     jshint_jsx: {quotmark: false}
 },
 

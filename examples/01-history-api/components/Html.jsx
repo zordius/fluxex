@@ -41,11 +41,14 @@ Html = React.createClass({
                 if (!state) {
                     return console.log('NO STATE DATA....can not handle re-rendering');
                 }
-                self._getContext()._context = JSON.parse(state);
+                // Ya, trigger page restore
+                self.executeAction(function () {
+                    this._context = JSON.parse(state);
 console.log(state);
-                self.forceUpdate(function () {
-console.log('render ok?');
-});
+                    this.dispatch('UPDATE_TITLE');
+                    this.getStore('productStore').emitChange();
+                    return this.resolvePromise(true);
+                });
             });
         }
 
@@ -54,7 +57,7 @@ console.log('render ok?');
             // Run action to update page stores
             return this.executeAction(sampleActions.updateProductPage);
         }).then(function () {
-            // Success, update url
+            // Success, update url to history
             /*global history*/
             history.pushState(self._getContext().toString(), undefined, HREF);
         });
