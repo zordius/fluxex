@@ -35,7 +35,7 @@ module.exports = {
             }
 
             this.set('url', {
-                href: M[5] + M[6] + hash,
+                href: M[5] + search + hash,
                 protocol:  M[1],
                 host: M[2],
                 hostname: M[3],
