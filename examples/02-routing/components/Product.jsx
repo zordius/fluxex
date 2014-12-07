@@ -21,13 +21,12 @@ Product = React.createClass({
          <ul>
           <li>data generated time:{this.state.time}</li>
           <li>Serial(random):{this.state.serial}</li>
-          <li>render time:{(new Date()).getTime()}</li>
          </ul>
          <h4>Related products</h4>
          <ul>
-          <li><a href="/product?id=123">ID = 123</a></li>
-          <li><a href="/product?id=456">ID = 456</a></li>
-          <li><a href="/product?id=789">ID = 789</a></li>
+          <li><a href="/product/123">ID = 123</a></li>
+          <li><a href="/product/456">ID = 456</a></li>
+          <li><a href="/product/789">ID = 789</a></li>
          </ul>
         </div>
         );

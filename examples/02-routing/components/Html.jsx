@@ -13,12 +13,11 @@ Html = React.createClass({
         {listenStores: ['page']}
     ],
 
-    shouldComponentUpdate: function () {
-        return true; //false;
-    },
-
     getStateFromStores: function () {
-        return {};
+        return {
+            route_name: this.getStore('page').get('routing.name'),
+            no_historyapi: true
+        };
     },
 
     componentDidMount: function () {
@@ -28,7 +27,8 @@ Html = React.createClass({
             initUrl = window.location.href,
             self = this;
 
-        if (!window.addEventListener) {
+        // Do not use history api...
+        if (this.state.no_historyapi || !window.addEventListener) {
             return;
         }
 
@@ -63,7 +63,7 @@ Html = React.createClass({
         var HREF = E.target.href,
             self = this;
 
-        if (!HREF || HREF.match(/#/)) {
+        if (this.state.no_historyapi || !HREF || HREF.match(/#/)) {
             return;
         }
 
@@ -82,10 +82,9 @@ Html = React.createClass({
     },
 
     render: function () {
-        var route_name = this.getStore('page').get('routing.name'),
-            body;
-console.log(route_name);
-        switch (route_name) {
+        var body;
+
+        switch (this.state.route_name) {
         case 'top':
             body = <TopProducts />;
             break;
