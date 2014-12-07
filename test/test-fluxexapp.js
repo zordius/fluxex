@@ -70,7 +70,7 @@ describe('a fluxex app', function () {
         done();
     });
 
-    it('will react.render() with self', function (done) {
+    it('.initClient() will react.render() with self', function (done) {
         var App = new app({c: 3});
 
         sinon.stub(react, 'withContext', function (obj, cb) {
@@ -101,6 +101,17 @@ describe('a fluxex app', function () {
         done();
     });
 
+    describe('.restore()', function () {
+        it('will update stores context', function (done) {
+            var F = new app({stores: {sampleStore: {a: 1}}});
+
+            assert.equal(1, F.getStore('sampleStore').get('a'));
+            F.restore({stores: {sampleStore: {b: 2}}});
+            assert.equal(undefined, F.getStore('sampleStore').get('a'));
+            assert.equal(2, F.getStore('sampleStore').get('b'));
+            done();
+        });
+    });
     describe('.getStore()', function () {
         it('should return instance', function (done) {
             var App = new app({a: 2}),
