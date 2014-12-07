@@ -45,6 +45,28 @@ describe('FluxexObject', function () {
         done();
     });
 
+    describe('.restore() ', function () {
+        it('will replace whole context', function (done) {
+            var data = {a: 1, b: 2},
+                F = new fluxexobj(data);
+
+            F.restore({a: 1, c: 4});
+            assert.equal(undefined, F.get('b'));
+            assert.equal(4, F.get('c'));
+            done();
+        });
+
+        it('will break original object connection', function (done) {
+            var data = {a: 1, b: 2},
+                F = new fluxexobj(data);
+
+            F.restore({a: 1, b: 2});
+            data.c = 3;
+            assert.equal(undefined, F.get('c'));
+            done();
+        });
+    });
+
     describe('.get()', function () {
         it('can get property by path', function (done) {
             var F = new fluxexobj({a: {b: 3}});
