@@ -1,8 +1,18 @@
 #!/bin/sh
 
-./prepare_major_release
+WHATSNEW=`./prepare_major_release`
+VERSION=`echo "$WHATSNEW" |head -n 1 | awk '{print $1}'`
 CODE=$?
 if [ $CODE -ne 0 ]; then
   echo No need to release, abort.
   exit $CODE
 fi
+
+echo "=== Show final git diff... ==="
+git diff
+
+echo "What's new:"
+echo "$WHATSNEW"
+echo
+
+read -p "Press [Enter] to commit changes and release the version: $VERSION ..."

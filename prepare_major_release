@@ -29,7 +29,7 @@ updates.forEach(function (O) {
 });
 
 console.warn('');
-console.log('What\'s new:');
+console.warn('What\'s new:');
 console.log(message.join('\n'));
 console.warn('');
 
