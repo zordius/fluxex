@@ -12,7 +12,6 @@ Check <a href="examples">example projects</a> you can see how fluxex do server s
 
 So far we do not include these in the example, but ....coming soon!
 
-* routing
 * api call cross server/client
 * complex action creator
 
