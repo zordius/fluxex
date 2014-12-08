@@ -16,3 +16,9 @@ echo "$WHATSNEW"
 echo
 
 read -p "Press [Enter] to commit changes and release the version: $VERSION ..."
+read -p "Press [Enter] to ENSURE commit changes and release the version: $VERSION ..."
+
+git commit -a -m "Prepare to release $VERSION"
+npm version $VERSION
+git push
+git push --tags
