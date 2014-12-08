@@ -43,4 +43,18 @@ Fluxex is context based flux implemention. Server side react rendering can be do
 Usage
 -----
 
-todo...
+**Define your app**
+
+Provide store `{name: implementation}` pairs and Html.jsx location (<a href="https://github.com/zordius/fluxex/blob/master/examples/02-routing/fluxexapp.js">example</a>):
+```javascript
+'use strict';
+
+var commonStores = require('fluxex/extra/commonStores');
+
+module.exports = require('fluxex').createApp({
+    page: commonStores.page,
+    productStore: require('./stores/product')
+}, process.cwd() + '/components/Html.jsx');
+```
+
+.... to be continue ...
