@@ -21,7 +21,6 @@ Product = React.createClass({
          <ul>
           <li>data generated time:{this.state.time}</li>
           <li>Serial(random):{this.state.serial}</li>
-          <li>render time:{(new Date()).getTime()}</li>
          </ul>
          <h4>Related products</h4>
          <ul>
