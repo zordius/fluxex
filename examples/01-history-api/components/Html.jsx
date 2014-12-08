@@ -12,10 +12,6 @@ Html = React.createClass({
         {listenStores: ['page']}
     ],
 
-    shouldComponentUpdate: function () {
-        return true; //false;
-    },
-
     getStateFromStores: function () {
         return {};
     },
