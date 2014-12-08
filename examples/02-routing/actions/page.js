@@ -2,6 +2,9 @@
 
 var apis = require('./api'),
 
+// All page actions here.
+// A page action will prepare all required store for a page
+// and update the page title.
 pages = {
     product: function () {
         return this.executeAction(apis.getProductById, this.getStore('page').get('routing.params.id')).then(function () {

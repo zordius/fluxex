@@ -6,6 +6,7 @@ var page = require('./page'),
 router.addRoute('/product/:id', ['product', page.product]);
 router.addRoute('/main', ['top', page.main]);
 
+// The single routing action can be used at both server/client side.
 module.exports = function () {
     var path = this.getStore('page').get('url.pathname'),
         match = router.match(path);
