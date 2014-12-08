@@ -16,3 +16,8 @@ What's in this example
 * <a href="actions/server.js">A server action</a> contains a start action to render the page.
 * <a href="fluxexapp.js">fluxexapp.js</a> defined used stores and the top level react component.
 * <a href="server.js">server.js</a> start an express server and use fluxex middleware to serve the sample page at /test.
+
+IMPROVEMENTS
+------------
+
+* actions: check <a href="../02-routing/actions/">another example</a> to see well organized actions.
