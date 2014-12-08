@@ -32,6 +32,8 @@
     "when": "3.6.3"
   },
   "devDependencies": {
+    "semver": "4.1.0",
+    "escape-regexp": "0.0.1",
     "chai": "*",
     "istanbul": "^0.3.2",
     "jsdom": "^1.0.0-pre.3",

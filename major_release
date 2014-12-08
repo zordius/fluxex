@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+'use strict';
+
+var version = require('./package.json').version,
+    fs = require('fs'),
+    escape = require('escape-regexp'),
+    semver = require('semver'),
+    published = semver.inc(version, 'prerelease'),
+    nextv = semver.inc(published, 'patch'),
+    history = fs.readFileSync('HISTORY.md', 'utf8'),
+    versions = history.match(/^([\d\-\.]+)/mg),
+    whatsnew = history.match(new RegExp([escape(versions[0]), '(.|\n)+', escape(versions[1])].join(''))),
+    updates = whatsnew[0].match(/\* .+/g),
+    below = history.match(new RegExp(escape(versions[1]) + '(.|\n)+')),
+    message = [];
+
+console.warn('Package.json   : ' + version);
+console.warn('Npm Version    : ' + published);
+console.warn('Release History: ' + versions[0]);
+
+if (!semver.gt(versions[0], published)) {
+    console.warn('No need to release...');
+    process.exit(1);
+}
+
+message.push(versions[0] + ' https://github.com/zordius/fluxex/releases/tag/v' + versions[0]);
+updates.forEach(function (O) {
+    message.push('   ' + O);
+});
+console.warn('What\'s new:');
+console.log(message.join('\n'));
+
+fs.writeFileSync('HISTORY.md', 'HISTORY\n=======\n\n' + message.join('\n') + '\n\n' + below[0], 'utf8');

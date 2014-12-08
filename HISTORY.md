@@ -1,7 +1,7 @@
 HISTORY
 =======
 
-0.1.6-3 https://github.com/zordius/fluxex/releases/tag/v0.1.6-3
+0.1.7 https://github.com/zordius/fluxex/releases/tag/v0.1.7
    * [CORE] Now all action promise handler can access context by `this`.
    * [CORE] New `.restore()` API for `FluxexObject` and `Fluxex`.
    * [EXTRA] New helper function to mount an action as express middleware.
