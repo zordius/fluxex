@@ -15,6 +15,12 @@ Product = React.createClass({
     render: function () {
         var hits = [], I, P;
 
+        if (this.state.total == 0) {
+            return (
+            <div>Not Found!</div>
+            );
+        }
+
         for (I in this.state.hits) {
             P = this.state.hits[I];
             hits.push(<li><h5>{P.ec_title}</h5><img src={P.ec_image} /><p>{P.ec_hotsale_title}</p><span>Price: ${P.ec_price}</span></li>);

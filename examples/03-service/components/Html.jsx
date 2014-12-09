@@ -3,6 +3,7 @@
 var React = require('react'),
     Fluxex = require('fluxex'),
     Results = require('./Results.jsx'),
+    SearchBox = require('./SearchBox.jsx'),
 
 Html = React.createClass({
     mixins: [
@@ -22,6 +23,7 @@ Html = React.createClass({
           <title>{this.getStore('page').get('title')}</title>
          </head>
          <body onClick={this.handleClickLink}>
+          <SearchBox />
           <Results />
          </body>
          <script src="/static/js/main.js"></script>
