@@ -2,8 +2,7 @@
 
 var React = require('react'),
     Fluxex = require('fluxex'),
-    Product = require('./Product.jsx'),
-    TopProducts = require('./TopProducts.jsx'),
+    Results = require('./Results.jsx'),
 
 Html = React.createClass({
     mixins: [
@@ -11,24 +10,10 @@ Html = React.createClass({
     ],
 
     getInitialState: function () {
-        return {
-            route_name: this.getStore('page').get('routing.name'),
-            no_historyapi: true
-        };
+        return {};
     },
 
     render: function () {
-        var body;
-
-        switch (this.state.route_name) {
-        case 'top':
-            body = <TopProducts />;
-            break;
-        case 'product':
-            body = <Product />;
-            break;
-        }
-
         return (
         <html>
          <head>
@@ -37,9 +22,7 @@ Html = React.createClass({
           <title>{this.getStore('page').get('title')}</title>
          </head>
          <body onClick={this.handleClickLink}>
-          {body}
-          <hr />
-          <a href="/main">Go to Main...</a>
+          <Results />
          </body>
          <script src="/static/js/main.js"></script>
          <script dangerouslySetInnerHTML={{__html: this._getInitScript()}}></script>

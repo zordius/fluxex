@@ -3,8 +3,7 @@
 var page = require('./page'),
     router = require('routes')();
 
-router.addRoute('/product/:id', ['product', page.product]);
-router.addRoute('/main', ['top', page.main]);
+router.addRoute('/search', ['search', page.search]);
 
 // The single routing action can be used at both server/client side.
 module.exports = function () {
