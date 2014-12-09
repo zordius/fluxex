@@ -15,7 +15,7 @@ Product = React.createClass({
     render: function () {
         var hits = [], I, P;
 
-        if (this.state.total == 0) {
+        if (this.state.total === 0) {
             return (
             <div>Not Found!</div>
             );

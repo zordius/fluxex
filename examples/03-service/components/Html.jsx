@@ -7,7 +7,8 @@ var React = require('react'),
 
 Html = React.createClass({
     mixins: [
-        Fluxex.mixin
+        Fluxex.mixin,
+        require('fluxex/extra/pjax')
     ],
 
     getInitialState: function () {
@@ -24,6 +25,11 @@ Html = React.createClass({
          </head>
          <body onClick={this.handleClickLink}>
           <SearchBox />
+          <ul>
+           <li><a href="/search?q=apple">Apple</a></li>
+           <li><a href="/search?q=banana">Banana</a></li>
+           <li><a href="/search?q=orange">Orange</a></li>
+          </ul>
           <Results />
          </body>
          <script src="/static/js/main.js"></script>

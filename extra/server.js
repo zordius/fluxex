@@ -1,10 +1,10 @@
 'use strict';                                                 
 
-var react = require('react');
-
 require('node-jsx').install({extension: '.jsx'});
 
-module.exports = {
+var react = require('react'),
+
+ServerExtra = {
     initStatic: function (app) {
        app.use('/static', require('express').static(process.cwd() + '/static'));
     },
@@ -24,5 +24,17 @@ module.exports = {
                 next();
             });
         };
+    },
+
+    middlewareRouting: function (fluxexapp, routing) {
+        fluxexapp.routing = routing;
+
+        return ServerExtra.middleware(fluxexapp, function (req) {
+            return this.dispatch('UPDATE_URL', req.url).then(function () {
+                return this.executeAction(routing);
+            });
+        });
     }
 }
+
+module.exports = ServerExtra;

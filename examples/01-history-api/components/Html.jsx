@@ -50,8 +50,8 @@ Html = React.createClass({
                     this.dispatch('UPDATE_TITLE');
                     this.getStore('productStore').emitChange();
                     return this.resolvePromise(true);
-                });
             });
+        });
     },
 
     handleClickLink: function (E) {

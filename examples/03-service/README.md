@@ -4,8 +4,8 @@ How to try this
 1. npm install ../..
 2. npm install
 3. npm start
-4. browse http://localhost:3001/main
-5. click on any link of product
+4. browse http://localhost:3001/search?q=apple
+5. click the inputbox and search anything!
 
 What's in this example
 ----------------------
