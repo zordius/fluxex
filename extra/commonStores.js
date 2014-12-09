@@ -1,9 +1,8 @@
 'use strict';
 
 module.exports = {
-    // All current page states stays here include location related things
-    // Because we can not re-render Html at client side,
-    // so we do not emitChange() in this store
+    // All current page and location related things stay here.
+    // We do not emitChange() in this store because this store should not trigger re-rendering.
     page: {
         handle_UPDATE_TITLE: function (title) {
             // Play DOM update here because title beyonds body
@@ -16,7 +15,6 @@ module.exports = {
                 this.set('title', title, true);
             }
         },
-        // No emitChange
         handle_UPDATE_ROUTING: function (routing) {
             this.set('routing', routing, true);
         },
