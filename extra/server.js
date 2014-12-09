@@ -26,12 +26,11 @@ ServerExtra = {
         };
     },
 
-    middlewareRouting: function (fluxexapp, routing) {
-        fluxexapp.routing = routing;
-
+    // Using this when your fluxexapp provide .routing() action
+    middlewareRouting: function (fluxexapp) {
         return ServerExtra.middleware(fluxexapp, function (req) {
             return this.dispatch('UPDATE_URL', req.url).then(function () {
-                return this.executeAction(routing);
+                return this.executeAction(this.routing);
             });
         });
     }

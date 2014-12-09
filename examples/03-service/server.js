@@ -2,15 +2,14 @@
 
 var express = require('express'),
     fluxexapp = require('./fluxexapp'),
-    routing = require('./actions/routing'),
     fluxexServerExtra = require('fluxex/extra/server'),
     app = express();
 
 // Provide /static/js/main.js
 fluxexServerExtra.initStatic(app);
 
-// Mount test pages with routing action
-app.use(fluxexServerExtra.middlewareRouting(fluxexapp, routing));
+// Mount fluxexapp , it will handle routing itself
+app.use(fluxexServerExtra.middlewareRouting(fluxexapp));
 
 // Start server
 app.listen(3000);

@@ -66,8 +66,9 @@ module.exports = {
             /*global history*/
             history.pushState(self._getContext().toString(), undefined, url);
         }).catch(function (E) {
+            alert(E.stack);
             // pjax failed, go to url...
             location.href = url;
         });
-    },
+    }
 };
