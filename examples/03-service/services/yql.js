@@ -1,34 +1,24 @@
 'use strict';
 
-var request = require('request'),
-    when = require('when'),
+var fetch = require('./fetch');
 
-yql = {
-    getConfig: function (name) {
-        var module = './service_config.js',
-            config;
-
-        try {
-            // Trick to brevent browerify pack the config module into bundle.
-            config = require(module);
-        } catch {
-            config = {};
-        }
-
-        return config.name;
-    },
-    fetch: function (name, cfg) {
-        if (!name) {
-            return when.reject(new Error('service name required!'));
-        }
-
-        if (!cfg) {
-            cfg = {};
-        }
-
-        cfg.url = yql.getConfig(name) || '/services/' + name;
-        
+module.exports = function (yql) {
+    if (!yql) {
+        throw new Error('call yql without yql statement!');
     }
+
+    return fetch('yql', {
+        q: encodeURIComponent(yql),
+        json: true
+    }).then(function (O) {
+        if (O.body && O.body.query && O.body.query.results) {
+            return O.body.query.results;
+        } else {
+            throw new Error({
+                message: 'no query.results in response',
+                request: O
+            });
+        }
+    });
 };
 
-module.exports = yql;
