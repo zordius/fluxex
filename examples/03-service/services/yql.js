@@ -8,7 +8,9 @@ module.exports = function (yql) {
     }
 
     return fetch('yql', {
-        q: encodeURIComponent(yql),
+        qs: {
+            q: yql
+        },
         json: true
     }).then(function (O) {
         if (O.body && O.body.query && O.body.query.results) {

@@ -14,7 +14,7 @@ getConfig = function (name) {
         config = {};
     }
 
-    return config.name;
+    return config[name];
 };
 
 module.exports = function (name, cfg) {
