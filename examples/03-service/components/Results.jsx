@@ -5,29 +5,26 @@ Product = React.createClass({
     mixins: [
         Fluxex.mixin,
         require('fluxex/extra/storechange'),
-        {listenStores: ['productStore']}
+        {listenStores: ['search']}
     ],
 
     getStateFromStores: function () {
-        return this.getStore('productStore').get('data');
+        return this.getStore('search').get('data');
     },
 
     render: function () {
+        var hits = [], I, P;
+
+        for (I in this.state.hits) {
+            P = this.state.hits[I];
+            hits.push(<li><h5>{P.ec_title}</h5><img src={P.ec_image} /><p>{P.ec_hotsale_title}</p><span>Price: ${P.ec_price}</span></li>);
+        }
+
         return (
         <div>
-         <h3>{this.state.title}</h3>
-         <p>{this.state.description}</p>
-         <span>Price:{this.state.price}</span>
-         <ul>
-          <li>data generated time:{this.state.time}</li>
-          <li>Serial(random):{this.state.serial}</li>
-         </ul>
-         <h4>Related products</h4>
-         <ul>
-          <li><a href="/product/123">ID = 123</a></li>
-          <li><a href="/product/456">ID = 456</a></li>
-          <li><a href="/product/789">ID = 789</a></li>
-         </ul>
+         <h1>Search keyword: '{this.state.keyword}'</h1>
+         <h3>found {this.state.total} results</h3>
+         <ul>{hits}</ul>
         </div>
         );
     }
