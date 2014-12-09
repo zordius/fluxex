@@ -65,6 +65,15 @@ describe('FluxexStore', function () {
         F.emitChange();
     });
 
+    it('[\'handle_**UPDATEALL**\']() should trigger listener', function (done) {
+        var F = new fluxstore({a: {b: 3}});
+
+        F.addChangeListener(function () {
+            done();
+        });
+        F['handle_**UPDATEALL**']();
+    });
+
     it('.removeChangeListener() should works well', function (done) {
         var F = new fluxstore({a: {b: 3}}),
             doNotCall = function () {
