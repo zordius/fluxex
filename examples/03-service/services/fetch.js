@@ -3,14 +3,14 @@
 var request = require('request'),
     when = require('when'),
 
-getConfig: function (name) {
+getConfig = function (name) {
         var module = './service_config',
             config;
 
     try {
         // Trick to brevent browerify pack the config module into bundle.
         config = require(module);
-    } catch {
+    } catch (E) {
         config = {};
     }
 

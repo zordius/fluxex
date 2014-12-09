@@ -1,6 +1,6 @@
 'use strict';
 
-var yql = require('../services/yql.js');
+var yql = require('../services/yql');
 
 module.exports = {
     search: function (payload) {
@@ -11,6 +11,8 @@ module.exports = {
             return this.resovePromise({});
         }
 
-        return this.createPromise(yql('SELECT * FROM search.ec (' + start + ', 10) WHERE keyword="' + payload.q + '" and property="shopping"'));
+        return yql('SELECT * FROM search.ec (' + start + ', 10) WHERE keyword="' + payload.q + '" and property="shopping"').then(function (O) {
+            console.log(O);
+        });
     }
 };
