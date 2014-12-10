@@ -1,7 +1,7 @@
 HISTORY
 =======
 
-0.1.8
+0.1.8 https://github.com/zordius/fluxex/releases/tag/v0.1.8
    * [CORE] Now all stores receive magic action `**UPDATEALL**` then emit change.
    * [EXTRA] Now gulp `develop` task will watch/lint/restart by server script.
    * [EXTRA] New `.getUrl()` method in common store `page`.
