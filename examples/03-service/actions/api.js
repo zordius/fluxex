@@ -17,7 +17,7 @@ module.exports = {
             return self.dispatch('UPDATE_SEARCH_RESULT', {
                 keyword: keyword,
                 offset: start,
-                hits: O ? O.Result : undefined
+                hits: O ? (O.Result.length ? O.Result : [O.Result]) : undefined
             });
         });
     }

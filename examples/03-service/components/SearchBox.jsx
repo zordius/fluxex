@@ -12,14 +12,15 @@ Product = React.createClass({
         return this.getStore('search').get('data');
     },
 
-    handleInput: function (E) {
+    handleChange: function (E) {
+        this.setState({keyword: E.target.value});
         this._getContext().routeToURL(this.getStore('page').getUrl({q: E.target.value}));
     },
 
     render: function () {
         return (
         <form>
-         <input type="text" onInput={this.handleInput} value={this.state.keyword} />
+         <input type="text" onChange={this.handleChange} value={this.state.keyword} />
          <input type="submit" value="Search!" />
         </form>
         );

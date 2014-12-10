@@ -1,7 +1,7 @@
 var React = require('react'),
     Fluxex = require('fluxex'),
 
-Product = React.createClass({
+Results = React.createClass({
     mixins: [
         Fluxex.mixin,
         require('fluxex/extra/storechange'),
@@ -23,8 +23,9 @@ Product = React.createClass({
 
         for (I in this.state.hits) {
             P = this.state.hits[I];
+
             hits.push(
-            <li>
+            <li key={P.id}>
              <h5><a href={P.Url}>{P.Title}</a></h5>
              <ul>
               <li>Distance: {P.Distance}</li>
@@ -44,4 +45,4 @@ Product = React.createClass({
     }
 });
 
-module.exports = Product;
+module.exports = Results;
