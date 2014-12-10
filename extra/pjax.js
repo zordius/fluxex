@@ -53,22 +53,6 @@ module.exports = {
         E.preventDefault();
         E.stopPropagation();
 
-        this.routing(HREF);
-    },
-
-    routing: function (url) {
-        // Try to route
-        this._getContext().dispatch('UPDATE_URL', url).then(function () {
-            // Run action to update page stores
-            return this.executeAction(this._getContext().routing);
-        }).then(function () {
-            // Success, update url to history
-            /*global history*/
-            history.pushState(self._getContext().toString(), undefined, url);
-        }).catch(function (E) {
-            alert(E.stack);
-            // pjax failed, go to url...
-            location.href = url;
-        });
+        this._getContext().routeToURL(HREF);
     }
 };
