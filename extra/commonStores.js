@@ -1,5 +1,8 @@
 'use strict';
 
+var objectAssign = require('object-assign'),
+    querystring = require('querystring');
+
 module.exports = {
     // All current page and location related things stay here.
     // We do not emitChange() in this store because this store should not trigger re-rendering.
@@ -21,20 +24,7 @@ module.exports = {
         handle_UPDATE_URL: function (url) {
             var M = url.match(/^(?:(https?:)\/\/(([^:/]+)(:[^\/]+)?))?([^#?]*)(\\?[^#]*)?(#.*)?$/),
                 search = M[6] || '',
-                hash = M[7] || '',
-                query = {},
-                slist = search.substring(1).split(/[;&]/),
-                P, I;
-
-            for (I in slist) {
-                if (slist.hasOwnProperty(I)) {
-                    if (!slist[I]) {
-                        continue;
-                    }
-                    P = slist[I].split(/=/);
-                    query[decodeURIComponent(P[0].replace(/\+/g, '%20'))] = decodeURIComponent(P[1].replace(/\+/g, '%20'));
-                }
-            }
+                hash = M[7] || '';
 
             this.set('url', {
                 href: M[5] + search + hash,
@@ -45,8 +35,13 @@ module.exports = {
                 pathname: M[5] || '',
                 search: search,
                 hash: hash,
-                query: query 
+                query: querystring.decode(search.substring(1)) || {}
             }, true);
+        },
+        getUrl: function (query) {
+            var mixedSearch = querystring.encode(objectAssign(this.get('url.query'), query));
+
+            return this.get('url.pathname') + (mixedSearch ? '?' : '') + mixedSearch + this.get('url.hash');
         }
     }
 };
