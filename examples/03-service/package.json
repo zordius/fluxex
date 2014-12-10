@@ -12,7 +12,7 @@
     "fluxex": "*",
     "routes": "2.0.0",
     "express": "4.10.4",
-    "request": "2.49.0"
+    "request": "2.40.0"
   },
   "devDependencies": {
     "browserify": "6.3.3",
