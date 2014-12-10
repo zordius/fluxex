@@ -1,6 +1,7 @@
 'use strict';
 
 // Use this mixin at HTML/BODY level to enable pjax behavior
+// Your fluxexapp should provide routeToURL() for this mixin
 module.exports = {
     componentDidMount: function () {
         /*global window,document*/
