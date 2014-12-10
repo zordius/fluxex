@@ -1,10 +1,17 @@
 HISTORY
 =======
 
+0.1.8
+   * [CORE] Now all stores receive magic action `**UPDATEALL**` then emit change.
+   * [EXTRA] Now gulp `develop` task will watch/lint/restart by server script.
+   * [EXTRA] New `.getUrl()` method in common store `page`.
+   * [EXTRA] New method `routeToURL()` to deal with client side routing by `this.routing` action.
+   * [EXTRA] New helper function `middlewareRouting()` to mount a routing fluxexapp.
+
 0.1.7 https://github.com/zordius/fluxex/releases/tag/v0.1.7
    * [CORE] Now all action promise handler can access context by `this`.
-   * [CORE] New `.restore()` API for `FluxexObject` and `Fluxex`.
-   * [EXTRA] New helper function to mount an action as express middleware.
+   * [CORE] New `.restore()` method for `FluxexObject`, `FluxexStore` and `Fluxex`.
+   * [EXTRA] New helper function `middleware` to mount fluxexapp + action as express middleware.
    * [EXTRA] New common store `page` to deal with url and routing information.
    * [EXTRA] Sorter watch delay time for gulp tasks. Add document about vim setting to prevent double change events.
    * [EXTRA] New mixin to provide common `getInitialState()` and `onStoreChange`()` implement.
