@@ -1,7 +1,7 @@
 var React = require('react'),
     Fluxex = require('fluxex'),
 
-Product = React.createClass({
+TopProducts = React.createClass({
     mixins: [
         Fluxex.mixin,
         require('fluxex/extra/storechange'),
@@ -17,7 +17,7 @@ Product = React.createClass({
             I;
 
         for (I=0;I<this.state.list.length;I++) {
-            list.push(<li><a href={'product/' + this.state.list[I].id}>{this.state.list[I].title}</a></li>);
+            list.push(<li key={this.state.list[I].id}><a href={'product/' + this.state.list[I].id}>{this.state.list[I].title}</a></li>);
         }
 
         return (
@@ -30,4 +30,4 @@ Product = React.createClass({
     }
 });
 
-module.exports = Product;
+module.exports = TopProducts;
