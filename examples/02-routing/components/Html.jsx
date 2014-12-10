@@ -5,11 +5,6 @@ var React = require('react'),
     Product = require('./Product.jsx'),
     TopProducts = require('./TopProducts.jsx'),
 
-Routing = {
-    top: <TopProducts />,
-    product: <Product />
-},
-
 Html = React.createClass({
     mixins: [
         Fluxex.mixin
@@ -23,6 +18,11 @@ Html = React.createClass({
     },
 
     render: function () {
+        var Routing = {
+            top: <TopProducts />,
+            product: <Product />
+        };
+
         return (
         <html>
          <head>
