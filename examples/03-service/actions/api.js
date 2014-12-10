@@ -10,7 +10,7 @@ module.exports = {
             self = this;
 
         if (!keyword) {
-            return this.resovePromise({});
+            return this.resolvePromise({});
         }
 
         return yql('select * from local.search where zip="94085" and query="'+ keyword + '"').then(function (O) {

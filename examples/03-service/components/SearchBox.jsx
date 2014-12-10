@@ -1,7 +1,7 @@
 var React = require('react'),
     Fluxex = require('fluxex'),
 
-Product = React.createClass({
+SearchBox = React.createClass({
     mixins: [
         Fluxex.mixin,
         require('fluxex/extra/storechange'),
@@ -27,4 +27,4 @@ Product = React.createClass({
     }
 });
 
-module.exports = Product;
+module.exports = SearchBox;
