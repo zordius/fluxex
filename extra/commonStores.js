@@ -39,9 +39,11 @@ module.exports = {
             }, true);
         },
         getUrl: function (query) {
-            var mixedSearch = querystring.encode(objectAssign(this.get('url.query'), query));
+            var url = this.get('url'),
+                mixedSearch = querystring.encode(objectAssign(url.query, query));
 
-            return this.get('url.pathname') + (mixedSearch ? '?' : '') + mixedSearch + this.get('url.hash');
+            /*global location*/
+            return location.protocol + '//' + location.host + location.pathname + (mixedSearch ? '?' : '') + mixedSearch + location.hash;
         }
     }
 };
