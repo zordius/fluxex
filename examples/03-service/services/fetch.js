@@ -4,17 +4,21 @@ var request = require('request'),
     when = require('when'),
 
 getConfig = function (name) {
-        var module = './service_config',
-            config;
+    var module = './service_config',
+        location;
 
+    /*global window*/
     try {
-        // Trick to brevent browerify pack the config module into bundle.
-        config = require(module);
+        location = window.location;
+        if (location) {
+            return location.protocol + '//' + location.host + '/services/' + name;
+        }
     } catch (E) {
-        config = {};
+        // do nothing...
     }
 
-    return config[name];
+    // Trick to brevent browerify pack the config module into bundle.
+    return require(module)[name];
 };
 
 module.exports = function (name, cfg) {
@@ -26,7 +30,7 @@ module.exports = function (name, cfg) {
         cfg = {};
     }
 
-    cfg.url = getConfig(name) || '/services/' + name;
+    cfg.url = getConfig(name);
 
     return when.promise(function (resolve, reject) {
         request(cfg, function (error, response, body) {
