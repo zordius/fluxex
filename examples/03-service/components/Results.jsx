@@ -15,9 +15,9 @@ Product = React.createClass({
     render: function () {
         var hits = [], I, P;
 
-        if (this.state.total === 0) {
+        if (!this.state.hits) {
             return (
-            <div>Not Found!</div>
+               <h1>Search keyword: '{this.state.keyword}' not found!</h1>
             );
         }
 

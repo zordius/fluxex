@@ -12,6 +12,7 @@ module.exports = function (url) {
         /*global history*/
         history.pushState(self.toString(), undefined, url);
     }).catch(function (E) {
+        alert(E.toString());
         alert(E.stack);
         // pjax failed, go to url...
         location.href = url;
