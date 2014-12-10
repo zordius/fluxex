@@ -23,13 +23,21 @@ Product = React.createClass({
 
         for (I in this.state.hits) {
             P = this.state.hits[I];
-            hits.push(<li><h5>{P.ec_title}</h5><img src={P.ec_image} /><p>{P.ec_hotsale_title}</p><span>Price: ${P.ec_price}</span></li>);
+            hits.push(
+            <li>
+             <h5><a href={P.Url}>{P.Title}</a></h5>
+             <ul>
+              <li>Distance: {P.Distance}</li>
+              <li>Rating: {P.Rating.AverageRating}</li>
+              <li>Address: <a href={P.MapUrl}>{P.Address} {P.City} {P.State}</a></li>
+             </ul>
+            </li>
+            );
         }
 
         return (
         <div>
          <h1>Search keyword: '{this.state.keyword}'</h1>
-         <h3>found {this.state.total} results</h3>
          <ul>{hits}</ul>
         </div>
         );

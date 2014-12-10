@@ -13,7 +13,7 @@ Product = React.createClass({
     },
 
     handleInput: function (E) {
-        console.log(E.target.value);
+        this._getContext().routeToURL(this.getStore('page').getUrl({q: E.target.value}));
     },
 
     render: function () {
