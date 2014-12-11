@@ -1,9 +1,19 @@
 fluxex
 ======
 
-An extended flux implement for both server/client side.
+An extended flux implement to do react HTML component server/client side rendering.
 
 [![npm version](https://img.shields.io/npm/v/fluxex.svg)](https://www.npmjs.org/package/fluxex) [![Dependency Status](https://david-dm.org/zordius/fluxex.png)](https://david-dm.org/zordius/fluxex)  [![Build Status](https://travis-ci.org/zordius/fluxex.svg?branch=master)](https://travis-ci.org/zordius/fluxex) [![Test Coverage](https://codeclimate.com/github/zordius/fluxex/badges/coverage.svg)](https://codeclimate.com/github/zordius/fluxex) [![Code Climate](https://codeclimate.com/github/zordius/fluxex/badges/gpa.svg)](https://codeclimate.com/github/zordius/fluxex) [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE.txt)
+
+Features
+--------
+
+* [CORE] Super lightweight, less than 300 lines of code
+* [CORE] Context based flux system
+* [CORE] React Server side rendering + client mount
+* [EXTRA] express middleware helper functions
+* [EXTRA] full integrated gulp task for development
+* [EXTRA] pjax support
 
 See the Fluxex Magic
 --------------------
