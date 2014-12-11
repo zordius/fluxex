@@ -9,7 +9,8 @@ module.exports = function (yql) {
 
     return fetch('yql', {
         qs: {
-            q: yql
+            q: yql,
+            format: 'json'
         },
         json: true
     }).then(function (O) {

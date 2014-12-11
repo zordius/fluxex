@@ -31,9 +31,9 @@ Html = React.createClass({
            <li><a href="/search?q=orange">Orange</a></li>
           </ul>
           <Results />
+          <script src="/static/js/main.js"></script>
+          <script dangerouslySetInnerHTML={{__html: this._getInitScript()}}></script>
          </body>
-         <script src="/static/js/main.js"></script>
-         <script dangerouslySetInnerHTML={{__html: this._getInitScript()}}></script>
         </html> 
         );
     }
