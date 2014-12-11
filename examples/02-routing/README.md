@@ -12,7 +12,7 @@ What's in this example
 * <a href="components/Html.jsx">Html.jsx</a> is the top level ract component with fluxex magic. In render function you can see component routing logic.
 * <a href="fluxexapp.js">fluxexapp.js</a> defined used stores and the top level react component.
 * <a href="server.js">server.js</a> start an express server and use fluxex middleware to serve sample pages with a routing action.
-* <a href="actions/routing.js">routing.js</a> uses the <a href="https://github.com/aaronblohowiak/routes.js">npm:routes.js</a> to pick correct page action.
+* <a href="actions/routing.js">routing.js</a> uses the <a href="https://github.com/aaronblohowiak/routes.js">npm:routes</a> to pick correct page action.
 * <a href="actions/page.js">page.js</a> contains all page actions.
 
 Used fluxex extra
