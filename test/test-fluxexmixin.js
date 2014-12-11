@@ -28,6 +28,27 @@ describe('fluxex.mixin', function () {
         done();
     });
 
+    it('.getInitScript() will return string', function (done) {
+        assert.equal('string', typeof getMixedComponent().getInitScript());
+        assert.equal(true, getMixedComponent().getInitScript().length > 0);
+        done();
+    });
+
+    it('.getInitScript() will return empty string when app already .initClient()', function (done) {
+        var component = getMixedComponent();
+
+        assert.equal(true, component.getInitScript().length > 0);
+
+        try {
+            component._getContext().initClient();
+        } catch (E) {
+            // document undefined, ignore it.
+        }
+
+        assert.equal(0, component.getInitScript().length);
+        done();
+    });
+
     it('.componentDidMount() will do nothing when no listenStores defined', function (done) {
         getMixedComponent().componentDidMount();
         done();
