@@ -191,4 +191,4 @@ require('fluxex/extra/gulpfile');
 
 **Start the server**
 
-`gulp develop` then browse http://localhost:3001/test , click on the page to see React!
+`gulp develop` then browse http://localhost:3001/test , click on the page to see React rendering!
