@@ -59,7 +59,7 @@ Quick Start!
 
 ```
 npm init
-npm install fluxex react express browserify watchify reactify jshint-stylish nodemon browser-sync gulp gulp-jshint gulp-react gulp-cached gulp-util vinyl-source-stream
+npm install fluxex react node-jsx express browserify watchify reactify jshint-stylish nodemon browser-sync gulp gulp-jshint gulp-react gulp-cached gulp-util vinyl-source-stream
 mkdir actions
 mkdir components
 mkdir stores
@@ -191,4 +191,4 @@ require('fluxex/extra/gulpfile');
 
 **Start the server**
 
-`gulp develop` then browse http://localhost:3001/test
+`gulp develop` then browse http://localhost:3001/test , click on the page to see React!
