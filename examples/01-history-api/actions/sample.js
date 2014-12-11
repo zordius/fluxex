@@ -10,7 +10,7 @@ var samples = {
         return this.createPromise(function (resolve) {
             var self = this,
                 S = this.getStore('page'),
-                id = S.get('url.params.id');
+                id = S.get('url.query.id');
 
             if (id) {
                 setTimeout(function () {

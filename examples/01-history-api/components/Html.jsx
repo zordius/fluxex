@@ -86,9 +86,9 @@ Html = React.createClass({
          </head>
          <body onClick={this.handleClickLink}>
           <Product />
+          <script src="/static/js/main.js"></script>
+          <script dangerouslySetInnerHTML={{__html: this.getInitScript()}}></script>
          </body>
-         <script src="/static/js/main.js"></script>
-         <script dangerouslySetInnerHTML={{__html: this._getInitScript()}}></script>
         </html> 
         );
     }
