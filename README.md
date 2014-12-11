@@ -56,9 +56,16 @@ Quick Start!
 ------------
 
 **Prepare the project**
-`npm install fluxex`
+
+```
+npm install fluxex express browserify watchify reactify jshint-stylish nodemon browser-sync gulp gulp-jshint gulp-react gulp-cached gulp-util vinyl-source-stream
+mkdir actions
+mkdir components
+mkdir stores
+```
 
 **Create Action**
+
 [actions/page.js] Define an action.
 
 ```javascript
@@ -72,6 +79,7 @@ module.exports = function () {
 ```
 
 **Create Store**
+
 [stores/product.js] Define your store API and handle the action.
 
 ```javascript
@@ -87,6 +95,7 @@ module.exports = {
 ```
 
 **Create HTML**
+
 [components/Html.jsx] Define your page as react component.
 
 ```
@@ -138,6 +147,7 @@ module.exports = Html;
 ```
 
 **Create Your App**
+
 [fluxexapp.js] Provide store `{name: implementation}` pairs and Html.jsx.
 
 ```javascript
@@ -149,6 +159,7 @@ module.exports = require('fluxex').createApp({
 ```
 
 **The Server**
+
 [server.js] Create an express server.
 ```javascript
 'use strict';
