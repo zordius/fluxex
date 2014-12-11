@@ -58,7 +58,8 @@ Quick Start!
 **Prepare the project**
 
 ```
-npm install fluxex express browserify watchify reactify jshint-stylish nodemon browser-sync gulp gulp-jshint gulp-react gulp-cached gulp-util vinyl-source-stream
+npm init
+npm install fluxex react express browserify watchify reactify jshint-stylish nodemon browser-sync gulp gulp-jshint gulp-react gulp-cached gulp-util vinyl-source-stream
 mkdir actions
 mkdir components
 mkdir stores
@@ -160,7 +161,7 @@ module.exports = require('fluxex').createApp({
 
 **The Server**
 
-[server.js] Create an express server.
+[index.js] Create an express server.
 ```javascript
 'use strict';
 
