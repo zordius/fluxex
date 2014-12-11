@@ -62,7 +62,7 @@ Quick Start!
 [actions/page.js] Define an action
 
 ```javascript
-module.exports = function () {                                                           
+module.exports = function () {
     return this.dispatch('UPDATE_PRODUCT', {
         title: 'sample product',
         price: 12345,
@@ -77,7 +77,7 @@ module.exports = function () {
 ```javascript
 module.exports = {
     handle_UPDATE_PRODUCT: function (payload) {
-        this.set('data', payload, true);                                                       
+        this.set('data', payload, true);
         this.emitChange();
     },
     getData: function () {
