@@ -8,7 +8,10 @@ module.exports = function (url) {
         // Run action to update page stores
         return this.executeAction(this.routing);
     }).then(function () {
-        // Success, update url to history
+        // Success, trigger page refresh
+        this.getStore('page').emitChange();
+
+        // update url to history
         /*global history*/
         history.pushState(self.toString(), undefined, url);
     }).catch(function (E) {

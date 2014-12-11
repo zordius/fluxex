@@ -20,4 +20,4 @@ Used fluxex extra
 -----------------
 * <a href="fluxexapp.js">fluxexapp.js</a> use the `page` store from <a href="../../extra/commonStores.js">commonStores</a> , this store maintains page location, title, and routing information. And it used the <a href="../../extra/routeToURL.js">routeToURL()</a> extra function to handle pjax.
 * <A href="components/Html.jsx">Html.jsx</a> use the `pjax` mixin from <a href="../../extra/pjax.js">pjax.js</a> , this mixin implements default `componentDidMount()` and `handleClickLink()` to provide pjax behaviors.
-* <a href="components/SearchBox.jsx">SearchBox.jsx</a> and <a href="components/Resultss.jsx">Results.jsx</a> use the `storechange` mixin from <a href="../../extra/storechange.js">storechange.js</a> , this mixin implements default `onStoreChange()` and `getInitialState()` behaviors rely on `getStateFromStores()` .
+* <a href="components/SearchBox.jsx">SearchBox.jsx</a> and <a href="components/Results.jsx">Results.jsx</a> use the `storechange` mixin from <a href="../../extra/storechange.js">storechange.js</a> , this mixin implements default `onStoreChange()` and `getInitialState()` behaviors rely on `getStateFromStores()` .

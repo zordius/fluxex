@@ -7,13 +7,15 @@ var React = require('react'),
 
 Html = React.createClass({
     mixins: [
-        Fluxex.mixin
+        Fluxex.mixin,
+        require('fluxex/extra/storechange'),
+        require('fluxex/extra/pjax'),
+        {listenStores: ['page']}
     ],
 
-    getInitialState: function () {
+    getStateFromStores: function () {
         return {
-            route_name: this.getStore('page').get('routing.name'),
-            no_historyapi: true
+            route_name: this.getStore('page').get('routing.name')
         };
     },
 
@@ -21,7 +23,8 @@ Html = React.createClass({
         var Routing = {
             top: <TopProducts />,
             product: <Product />
-        };
+        },
+        body = Routing[this.state.route_name];
 
         return (
         <html>
@@ -31,12 +34,14 @@ Html = React.createClass({
           <title>{this.getStore('page').get('title')}</title>
          </head>
          <body onClick={this.handleClickLink}>
-          {Routing[this.state.route_name]}
+          <div>
+           {body}
+          </div>
           <hr />
           <a href="/main">Go to Main...</a>
+          <script src="/static/js/main.js"></script>
+          <script dangerouslySetInnerHTML={{__html: this.getInitScript()}}></script>
          </body>
-         <script src="/static/js/main.js"></script>
-         <script dangerouslySetInnerHTML={{__html: this._getInitScript()}}></script>
         </html> 
         );
     }
