@@ -59,7 +59,7 @@ Quick Start!
 `npm install fluxex`
 
 **Create Action**
-[actions/page.js] Define an action
+[actions/page.js] Define an action.
 
 ```javascript
 module.exports = function () {
@@ -72,7 +72,7 @@ module.exports = function () {
 ```
 
 **Create Store**
-[stores/product.js] Define your store API and handle the action
+[stores/product.js] Define your store API and handle the action.
 
 ```javascript
 module.exports = {
@@ -87,7 +87,7 @@ module.exports = {
 ```
 
 **Create HTML**
-[components/Html.jsx] Define your page as react component
+[components/Html.jsx] Define your page as react component.
 
 ```
 'use strict';
@@ -137,9 +137,8 @@ Html = React.createClass({
 module.exports = Html;
 ```
 
-**Define your app**
-
-[fluxexapp.js] Provide store `{name: implementation}` pairs and Html.jsx
+**Create Your App**
+[fluxexapp.js] Provide store `{name: implementation}` pairs and Html.jsx.
 
 ```javascript
 'use strict';
@@ -148,3 +147,36 @@ module.exports = require('fluxex').createApp({
     product: require('./stores/product')
 }, process.cwd() + '/components/Html.jsx');
 ```
+
+**The Server**
+[server.js] Create an express server.
+```javascript
+'use strict';
+
+var express = require('express'),
+    fluxexapp = require('./fluxexapp'),
+    pageAction = require('./actions/page'),
+    fluxexServerExtra = require('fluxex/extra/server'),
+    app = express();
+
+// Provide /static/js/main.js
+fluxexServerExtra.initStatic(app);
+
+// Mount test page at /test
+app.use('/test', fluxexServerExtra.middleware(fluxexapp, pageAction));
+
+// Start server
+app.listen(3000);
+console.log('Fluxex started on port 3000');
+```
+
+**Create gulp task**
+
+[gulpfile.js] Use the fluxex gulpfile extra.
+```javascript
+require('fluxex/extra/gulpfile');
+```
+
+**Start the server**
+
+`gulp develop` then browse http://localhost:3001/test
