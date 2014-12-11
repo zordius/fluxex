@@ -1,8 +1,5 @@
 'use strict';
 
-var commonStores = require('fluxex/extra/commonStores');
-
 module.exports = require('fluxex').createApp({
-    product: require('./stores/product'),
-    page: commonStores.page
+    product: require('./stores/product')
 }, process.cwd() + '/components/Html.jsx');

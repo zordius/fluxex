@@ -55,31 +55,55 @@ Fluxex is context based flux implemention. Server side react rendering can be do
 Quick Start!
 ------------
 
-**Install**
+**Prepare the project**
 
 `npm install fluxex`
 
-**Prepare the project**
+**Create Action**
+[actions/page.js] Define your action
 
-`npm 
+```javascript
+'use strict';
+
+module.exports = function () {
+    return this.dispatch('UPDATE_TITLE', 'HELLO!');
+};
+```
+
+**Create Store**
+
+[stores/product.js] Define your store API
+
+```javascript
+'use strict';
+
+module.exports = {
+    getData: function () {
+        return {
+            title: 'sample product',
+            price: 12345
+        };
+    }
+};
+```
 
 **Define your app**
 
-[fluxexapp.js] Provide store `{name: implementation}` pairs and Html.jsx location (<a href="https://github.com/zordius/fluxex/blob/master/examples/02-routing/fluxexapp.js">fluxexapp.js example</a>):
+[fluxexapp.js] Provide store `{name: implementation}` pairs and Html.jsx location
 ```javascript
 'use strict';
 
 var commonStores = require('fluxex/extra/commonStores');
 
 module.exports = require('fluxex').createApp({
-    page: commonStores.page,
-    productStore: require('./stores/product')
+    product: require('./stores/product'),                                                
+    page: commonStores.page
 }, process.cwd() + '/components/Html.jsx');
 ```
 
 **Create HTML**
 
-[components/Html.jsx] Define your page as react (<a href="https://github.com/zordius/fluxex/blob/master/examples/03-service/components/Html.jsx">Html.jsx example</a>)
+[components/Html.jsx] Define your page as react component
 
 ```
 'use strict';
@@ -88,30 +112,31 @@ var React = require('react'),
     Fluxex = require('fluxex'),
 
 Html = React.createClass({
-    mixins: [
-        Fluxex.mixin,
-    ],
+    mixins: [ Fluxex.mixin ],
 
     getInitialState: function () {
-        return {};
+        return {
+            title: this.getStore('page').get('title'),
+            product: this.getStore('product').getData(),
+            count: 0
+        };
     },
-
+    handleClick: function () {
+        this.setState({count: this.state.count + 1});
+    },
     render: function () {
-        var product = this.getStore('product').getData(),
-            title = this.getStore('page').get('title');
-
         return (
         <html>
          <head>
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, user-scalable=no" />
-          <title>{title}</title>
+          <title>{this.state.title}</title>
          </head>
-         <body>
-          <h1>Hello!!</h1>
+         <body onClick={this.handleClick}>
+          <h1>Hello!! {this.state.count}</h1>
           <ul>
-           <li>Product: {product.title}</li>
-           <li>Price: {product.price}</li>
+           <li>Product: {this.state.product.title}</li>
+           <li>Price: {this.state.product.price}</li>
           </ul>
          <script src="/static/js/main.js"></script>
          <script dangerouslySetInnerHTML={{__html: this.getInitScript()}}></script>

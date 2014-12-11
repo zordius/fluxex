@@ -6,18 +6,20 @@ var React = require('react'),
 Html = React.createClass({
     mixins: [
         Fluxex.mixin,
+        require('fluxex/extra/storechange'),
+        {listenStores: ['product']}
     ],
 
-    getInitialState: function () {
-        return {
-            title: this.getStore('page').get('title'),
-            product: this.getStore('product').getData(),
-            count: 0
-        };
+    getStateFromStores: function () {
+        return this.getStore('product').getData();
     },
 
     handleClick: function () {
-        this.setState({count: this.state.count + 1});
+        var product = this.state;
+        product.sold++;
+        this.executeAction(function () {
+            return this.dispatch('UPDATE_PRODUCT', product);
+        });
     },
 
     render: function () {
@@ -26,13 +28,14 @@ Html = React.createClass({
          <head>
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, user-scalable=no" />
-          <title>{this.state.title}</title>
+          <title>Hello!</title>
          </head>
          <body onClick={this.handleClick}>
-          <h1>Hello!! {this.state.count}</h1>
+          <h1>Hello!!</h1>
           <ul>
-           <li>Product: {this.state.product.title}</li>
-           <li>Price: {this.state.product.price}</li>
+           <li>Product: {this.state.title}</li>
+           <li>Price: {this.state.price}</li>
+           <li>Sold: {this.state.sold}</li>
           </ul>
          <script src="/static/js/main.js"></script>
          <script dangerouslySetInnerHTML={{__html: this.getInitScript()}}></script>
