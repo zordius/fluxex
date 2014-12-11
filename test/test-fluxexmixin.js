@@ -39,11 +39,8 @@ describe('fluxex.mixin', function () {
 
         assert.equal(true, component.getInitScript().length > 0);
 
-        try {
-            component._getContext().initClient();
-        } catch (E) {
-            // document undefined, ignore it.
-        }
+        // Simulate component._getContext().initClient() done
+        component._getContext().inited = true;
 
         assert.equal(0, component.getInitScript().length);
         done();
