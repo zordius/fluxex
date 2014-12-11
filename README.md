@@ -44,7 +44,7 @@ Fluxex is context based flux implemention. Server side react rendering can be do
 
 **Dispatcher**
 * the Fluxex instance itself is a dispatcher with `.dispatch()` method.
-* the dispatched `FOOBAR` action will trigger all stores with `handleFOOBAR` method under the Fluxex instance.
+* the dispatched `FOOBAR` action will trigger all stores with `handle_FOOBAR` method under the Fluxex instance.
 
 **Store**
 * Store is an instance, it is constructed by serialized status.
