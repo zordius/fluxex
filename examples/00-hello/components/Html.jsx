@@ -27,11 +27,8 @@ Html = React.createClass({
         <html>
          <head>
           <meta charSet="utf-8" />
-          <meta name="viewport" content="width=device-width, user-scalable=no" />
-          <title>Hello!</title>
          </head>
          <body onClick={this.handleClick}>
-          <h1>Hello!!</h1>
           <ul>
            <li>Product: {this.state.title}</li>
            <li>Price: {this.state.price}</li>

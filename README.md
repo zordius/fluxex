@@ -56,53 +56,37 @@ Quick Start!
 ------------
 
 **Prepare the project**
-
 `npm install fluxex`
 
 **Create Action**
-[actions/page.js] Define your action
+[actions/page.js] Define an action
 
 ```javascript
-'use strict';
-
-module.exports = function () {
-    return this.dispatch('UPDATE_TITLE', 'HELLO!');
+module.exports = function () {                                                           
+    return this.dispatch('UPDATE_PRODUCT', {
+        title: 'sample product',
+        price: 12345,
+        sold: 0
+    });
 };
 ```
 
 **Create Store**
-
-[stores/product.js] Define your store API
+[stores/product.js] Define your store API and handle the action
 
 ```javascript
-'use strict';
-
 module.exports = {
+    handle_UPDATE_PRODUCT: function (payload) {
+        this.set('data', payload, true);                                                       
+        this.emitChange();
+    },
     getData: function () {
-        return {
-            title: 'sample product',
-            price: 12345
-        };
+        return this.get('data');
     }
 };
 ```
 
-**Define your app**
-
-[fluxexapp.js] Provide store `{name: implementation}` pairs and Html.jsx location
-```javascript
-'use strict';
-
-var commonStores = require('fluxex/extra/commonStores');
-
-module.exports = require('fluxex').createApp({
-    product: require('./stores/product'),                                                
-    page: commonStores.page
-}, process.cwd() + '/components/Html.jsx');
-```
-
 **Create HTML**
-
 [components/Html.jsx] Define your page as react component
 
 ```
@@ -112,31 +96,35 @@ var React = require('react'),
     Fluxex = require('fluxex'),
 
 Html = React.createClass({
-    mixins: [ Fluxex.mixin ],
+    mixins: [
+        Fluxex.mixin,
+        require('fluxex/extra/storechange'),
+        {listenStores: ['product']}
+    ],
 
-    getInitialState: function () {
-        return {
-            title: this.getStore('page').get('title'),
-            product: this.getStore('product').getData(),
-            count: 0
-        };
+    getStateFromStores: function () {
+        return this.getStore('product').getData();
     },
+
     handleClick: function () {
-        this.setState({count: this.state.count + 1});
+        var product = this.state;
+        product.sold++;
+        this.executeAction(function () {
+            return this.dispatch('UPDATE_PRODUCT', product);
+        });
     },
+
     render: function () {
         return (
         <html>
          <head>
           <meta charSet="utf-8" />
-          <meta name="viewport" content="width=device-width, user-scalable=no" />
-          <title>{this.state.title}</title>
          </head>
          <body onClick={this.handleClick}>
-          <h1>Hello!! {this.state.count}</h1>
           <ul>
-           <li>Product: {this.state.product.title}</li>
-           <li>Price: {this.state.product.price}</li>
+           <li>Product: {this.state.title}</li>
+           <li>Price: {this.state.price}</li>
+           <li>Sold: {this.state.sold}</li>
           </ul>
          <script src="/static/js/main.js"></script>
          <script dangerouslySetInnerHTML={{__html: this.getInitScript()}}></script>
@@ -147,4 +135,16 @@ Html = React.createClass({
 });
 
 module.exports = Html;
+```
+
+**Define your app**
+
+[fluxexapp.js] Provide store `{name: implementation}` pairs and Html.jsx
+
+```javascript
+'use strict';
+
+module.exports = require('fluxex').createApp({
+    product: require('./stores/product')
+}, process.cwd() + '/components/Html.jsx');
 ```
