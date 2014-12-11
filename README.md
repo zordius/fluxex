@@ -8,12 +8,13 @@ An extended flux implement to do react HTML component server/client side renderi
 Features
 --------
 
-* [CORE] Super lightweight, less than 300 lines of code
-* [CORE] Context based flux system
-* [CORE] React Server side rendering + client mount
-* [EXTRA] express middleware helper functions
-* [EXTRA] full integrated gulp task for development
-* [EXTRA] pjax support
+* [CORE] Super lightweight, less than 300 lines of code.
+* [CORE] Context based flux system.
+* [CORE] React Server side rendering + client mount.
+* [CORE] render HTML as top level react component, do not need container.
+* [EXTRA] express middleware helper functions.
+* [EXTRA] full integrated gulp task for development.
+* [EXTRA] pjax support.
 
 See the Fluxex Magic
 --------------------
@@ -22,9 +23,9 @@ Check <a href="examples">example projects</a> you can see how fluxex do server s
 
 So far we do not include these in the example, but ....coming soon!
 
-* extra for service middleware
-* example to cache the service
-* example to cancel previous service call
+* extra for service middleware.
+* example to cache the service.
+* example to cancel previous service call.
 
 Difference with Flux
 --------------------
