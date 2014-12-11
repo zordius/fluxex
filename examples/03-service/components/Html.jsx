@@ -25,6 +25,7 @@ Html = React.createClass({
          </head>
          <body onClick={this.handleClickLink}>
           <SearchBox />
+          Sample Search:
           <ul>
            <li><a href="/search?q=apple">Apple</a></li>
            <li><a href="/search?q=banana">Banana</a></li>

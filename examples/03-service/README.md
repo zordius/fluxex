@@ -5,7 +5,7 @@ How to try this
 2. npm install
 3. npm start
 4. browse http://localhost:3001/search?q=pizza
-5. click the inputbox and search anything!
+5. click the inputbox and search anything, enjoy the pjax! You can also click on sample search links to see the pjax.
 
 What's in this example
 ----------------------
