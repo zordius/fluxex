@@ -11,8 +11,13 @@ Html = React.createClass({
     getInitialState: function () {
         return {
             title: this.getStore('page').get('title'),
-            product: this.getStore('product').getData()
+            product: this.getStore('product').getData(),
+            count: 0
         };
+    },
+
+    handleClick: function () {
+        this.setState({count: this.state.count + 1});
     },
 
     render: function () {
@@ -23,8 +28,8 @@ Html = React.createClass({
           <meta name="viewport" content="width=device-width, user-scalable=no" />
           <title>{this.state.title}</title>
          </head>
-         <body>
-          <h1>Hello!!</h1>
+         <body onClick={this.handleClick}>
+          <h1>Hello!! {this.state.count}</h1>
           <ul>
            <li>Product: {this.state.product.title}</li>
            <li>Price: {this.state.product.price}</li>

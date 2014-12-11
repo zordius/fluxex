@@ -52,8 +52,16 @@ Fluxex is context based flux implemention. Server side react rendering can be do
 * Store naming and prototype information are provided by the `.stores` property of Fluxex instance.
 * Use `.getStore(name)` to get the store by name from an Fluxex instance.
 
-Usage
------
+Quick Start!
+------------
+
+**Install**
+
+`npm install fluxex`
+
+**Prepare the project**
+
+`npm 
 
 **Define your app**
 
@@ -78,7 +86,6 @@ module.exports = require('fluxex').createApp({
 
 var React = require('react'),
     Fluxex = require('fluxex'),
-    SearchBox = require('./SearchBox.jsx'),
 
 Html = React.createClass({
     mixins: [
@@ -90,15 +97,22 @@ Html = React.createClass({
     },
 
     render: function () {
+        var product = this.getStore('product').getData(),
+            title = this.getStore('page').get('title');
+
         return (
         <html>
          <head>
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, user-scalable=no" />
-          <title>{this.getStore('page').get('title')}</title>
+          <title>{title}</title>
          </head>
          <body>
           <h1>Hello!!</h1>
+          <ul>
+           <li>Product: {product.title}</li>
+           <li>Price: {product.price}</li>
+          </ul>
          <script src="/static/js/main.js"></script>
          <script dangerouslySetInnerHTML={{__html: this.getInitScript()}}></script>
          </body>
