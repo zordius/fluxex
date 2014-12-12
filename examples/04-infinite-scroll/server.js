@@ -9,14 +9,10 @@ var express = require('express'),
 // Provide /static/js/main.js
 fluxexServerExtra.initStatic(app);
 
-// Provide fetch services
-app.use('/services/:name', function (req, res, next) {
-    fetch(req.params.name, {qs: req.query}).then(function (O) {
-        res.send(O.body);
-    }).catch(function (E) {
-        console.log(E.stack || E);
-        next();
-    });
+// Setup fetch services
+fetch.createServices(app, {
+    baseURL: '/_srv_/',
+    yql: 'https://query.yahooapis.com/v1/public/yql'
 });
 
 // Mount fluxexapp , it will handle routing itself
