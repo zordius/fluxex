@@ -6,6 +6,6 @@ var gulp = require('gulp'),
 gulp.task('build_example', function () {
     return gulp.src('examples/*-*/')
     .pipe(
-        shell(['cd <%=file.path %>;npm install ../..;npm install;npm run-script build'])
+        shell(['cd <%=file.path %>;npm install ../..;npm prune;npm install;npm run-script build'])
     );
 });
