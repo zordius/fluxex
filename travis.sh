@@ -2,7 +2,7 @@
 echo "DEBUG ENV: ${TRAVIS_JOB_NUMBER} ${TRAVIS_BUILD_NUMBER} ..."
 
 if [ "${TRAVIS_BUILD_NUMBER}.1" != "${TRAVIS_JOB_NUMBER}" ]; then
-  echo "Only run sauce labs 1 time 1 commit... quit."
+  echo "Only run extra tasks 1 time 1 commit... quit."
   exit 0
 fi
 
@@ -25,6 +25,11 @@ fi
 # Setup git
 git config --global user.name "Travis-CI"
 git config --global user.email "zordius@yahoo-inc.com"
+
+# build examples
+npm run-script build_example
+git commit -m "Auto generated example bundle from Travis [ci skip]" examples
+git push "https://${GHTK}@github.com/zordius/fluxex.git" HEAD:${TRAVIS_BRANCH} > /dev/null 2>&1
 
 # Bump npm version and push back to git
 npm version prerelease -m "Auto commit for npm publish version %s [ci skip]"
