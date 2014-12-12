@@ -13,7 +13,7 @@ module.exports = function (url) {
 
         // update url to history
         /*global history*/
-        history.pushState(self.toString(), undefined, url);
+        history.pushState(this.toString(), undefined, url);
     }).catch(function (E) {
         console.log('Pjax failed! Failback to page loading....');
         console.log(E.stack || E);
