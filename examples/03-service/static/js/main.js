@@ -380,7 +380,7 @@ var objectKeys = Object.keys || function (obj) {
 
 },{"util/":162}],9:[function(require,module,exports){
 module.exports=require(7)
-},{"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/lib/_empty.js":7}],10:[function(require,module,exports){
+},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/lib/_empty.js":7}],10:[function(require,module,exports){
 'use strict';
 
 
@@ -6980,7 +6980,7 @@ function base64Write (buf, string, offset, length) {
 }
 
 function utf16leWrite (buf, string, offset, length) {
-  var charsWritten = blitBuffer(utf16leToBytes(string), buf, offset, length)
+  var charsWritten = blitBuffer(utf16leToBytes(string), buf, offset, length, 2)
   return charsWritten
 }
 
@@ -7664,7 +7664,8 @@ function base64ToBytes (str) {
   return base64.toByteArray(str)
 }
 
-function blitBuffer (src, dst, offset, length) {
+function blitBuffer (src, dst, offset, length, unitSize) {
+  if (unitSize) length -= length % unitSize;
   for (var i = 0; i < length; i++) {
     if ((i + offset >= dst.length) || (i >= src.length))
       break
@@ -17610,47 +17611,47 @@ module.exports = function (crypto, exports) {
 };
 },{"./ecdh":93}],95:[function(require,module,exports){
 module.exports=require(68)
-},{"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/bn.js/lib/bn.js":68}],96:[function(require,module,exports){
+},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/bn.js/lib/bn.js":68}],96:[function(require,module,exports){
 module.exports=require(69)
-},{"../package.json":115,"./elliptic/curve":99,"./elliptic/curves":102,"./elliptic/ec":103,"./elliptic/hmac-drbg":106,"./elliptic/utils":107,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic.js":69,"brorand":108}],97:[function(require,module,exports){
+},{"../package.json":115,"./elliptic/curve":99,"./elliptic/curves":102,"./elliptic/ec":103,"./elliptic/hmac-drbg":106,"./elliptic/utils":107,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic.js":69,"brorand":108}],97:[function(require,module,exports){
 module.exports=require(70)
-},{"../../elliptic":96,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/base.js":70,"assert":8,"bn.js":95}],98:[function(require,module,exports){
+},{"../../elliptic":96,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/base.js":70,"assert":8,"bn.js":95}],98:[function(require,module,exports){
 module.exports=require(71)
-},{"../../elliptic":96,"../curve":99,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/edwards.js":71,"assert":8,"bn.js":95,"inherits":140}],99:[function(require,module,exports){
+},{"../../elliptic":96,"../curve":99,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/edwards.js":71,"assert":8,"bn.js":95,"inherits":140}],99:[function(require,module,exports){
 module.exports=require(72)
-},{"./base":97,"./edwards":98,"./mont":100,"./short":101,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/index.js":72}],100:[function(require,module,exports){
+},{"./base":97,"./edwards":98,"./mont":100,"./short":101,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/index.js":72}],100:[function(require,module,exports){
 module.exports=require(73)
-},{"../../elliptic":96,"../curve":99,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/mont.js":73,"assert":8,"bn.js":95,"inherits":140}],101:[function(require,module,exports){
+},{"../../elliptic":96,"../curve":99,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/mont.js":73,"assert":8,"bn.js":95,"inherits":140}],101:[function(require,module,exports){
 module.exports=require(74)
-},{"../../elliptic":96,"../curve":99,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/short.js":74,"assert":8,"bn.js":95,"inherits":140}],102:[function(require,module,exports){
+},{"../../elliptic":96,"../curve":99,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/short.js":74,"assert":8,"bn.js":95,"inherits":140}],102:[function(require,module,exports){
 module.exports=require(75)
-},{"../elliptic":96,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curves.js":75,"assert":8,"bn.js":95,"hash.js":109}],103:[function(require,module,exports){
+},{"../elliptic":96,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curves.js":75,"assert":8,"bn.js":95,"hash.js":109}],103:[function(require,module,exports){
 module.exports=require(76)
-},{"../../elliptic":96,"./key":104,"./signature":105,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/ec/index.js":76,"assert":8,"bn.js":95}],104:[function(require,module,exports){
+},{"../../elliptic":96,"./key":104,"./signature":105,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/ec/index.js":76,"assert":8,"bn.js":95}],104:[function(require,module,exports){
 module.exports=require(77)
-},{"../../elliptic":96,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/ec/key.js":77,"assert":8,"bn.js":95}],105:[function(require,module,exports){
+},{"../../elliptic":96,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/ec/key.js":77,"assert":8,"bn.js":95}],105:[function(require,module,exports){
 module.exports=require(78)
-},{"../../elliptic":96,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/ec/signature.js":78,"assert":8,"bn.js":95}],106:[function(require,module,exports){
+},{"../../elliptic":96,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/ec/signature.js":78,"assert":8,"bn.js":95}],106:[function(require,module,exports){
 module.exports=require(79)
-},{"../elliptic":96,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/hmac-drbg.js":79,"assert":8,"hash.js":109}],107:[function(require,module,exports){
+},{"../elliptic":96,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/hmac-drbg.js":79,"assert":8,"hash.js":109}],107:[function(require,module,exports){
 module.exports=require(80)
-},{"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/utils.js":80,"assert":8,"bn.js":95}],108:[function(require,module,exports){
+},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/utils.js":80,"assert":8,"bn.js":95}],108:[function(require,module,exports){
 module.exports=require(81)
-},{"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/brorand/index.js":81}],109:[function(require,module,exports){
+},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/brorand/index.js":81}],109:[function(require,module,exports){
 module.exports=require(82)
-},{"./hash/common":110,"./hash/hmac":111,"./hash/ripemd":112,"./hash/sha":113,"./hash/utils":114,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash.js":82}],110:[function(require,module,exports){
+},{"./hash/common":110,"./hash/hmac":111,"./hash/ripemd":112,"./hash/sha":113,"./hash/utils":114,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash.js":82}],110:[function(require,module,exports){
 module.exports=require(83)
-},{"../hash":109,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/common.js":83}],111:[function(require,module,exports){
+},{"../hash":109,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/common.js":83}],111:[function(require,module,exports){
 module.exports=require(84)
-},{"../hash":109,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/hmac.js":84}],112:[function(require,module,exports){
+},{"../hash":109,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/hmac.js":84}],112:[function(require,module,exports){
 module.exports=require(85)
-},{"../hash":109,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/ripemd.js":85}],113:[function(require,module,exports){
+},{"../hash":109,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/ripemd.js":85}],113:[function(require,module,exports){
 module.exports=require(86)
-},{"../hash":109,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/sha.js":86}],114:[function(require,module,exports){
+},{"../hash":109,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/sha.js":86}],114:[function(require,module,exports){
 module.exports=require(87)
-},{"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/utils.js":87}],115:[function(require,module,exports){
+},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/utils.js":87}],115:[function(require,module,exports){
 module.exports=require(88)
-},{"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/package.json":88}],116:[function(require,module,exports){
+},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/package.json":88}],116:[function(require,module,exports){
 (function (Buffer){
 var BN = require('bn.js');
 var MillerRabin = require('miller-rabin');
@@ -17968,7 +17969,7 @@ module.exports = function (crypto, exports) {
 }).call(this,require("buffer").Buffer)
 },{"./dh":116,"./generatePrime":117,"./primes.json":122,"buffer":23}],119:[function(require,module,exports){
 module.exports=require(68)
-},{"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/bn.js/lib/bn.js":68}],120:[function(require,module,exports){
+},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/bn.js/lib/bn.js":68}],120:[function(require,module,exports){
 var bn = require('bn.js');
 var brorand = require('brorand');
 
@@ -18086,7 +18087,7 @@ MillerRabin.prototype.getDivisor = function getDivisor(n, k) {
 
 },{"bn.js":119,"brorand":121}],121:[function(require,module,exports){
 module.exports=require(81)
-},{"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/brorand/index.js":81}],122:[function(require,module,exports){
+},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/brorand/index.js":81}],122:[function(require,module,exports){
 module.exports={
     "modp1": {
         "gen": "02",
@@ -59155,37 +59156,37 @@ module.exports = require('./lib/React');
 
 },{"./lib/React":245}],364:[function(require,module,exports){
 module.exports=require(178)
-},{"./Scheduler":365,"./env":377,"./makePromise":378,"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/Promise.js":178}],365:[function(require,module,exports){
+},{"./Scheduler":365,"./env":377,"./makePromise":378,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/Promise.js":178}],365:[function(require,module,exports){
 module.exports=require(179)
-},{"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/Scheduler.js":179}],366:[function(require,module,exports){
+},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/Scheduler.js":179}],366:[function(require,module,exports){
 module.exports=require(180)
-},{"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/TimeoutError.js":180}],367:[function(require,module,exports){
+},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/TimeoutError.js":180}],367:[function(require,module,exports){
 module.exports=require(181)
-},{"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/apply.js":181}],368:[function(require,module,exports){
+},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/apply.js":181}],368:[function(require,module,exports){
 module.exports=require(182)
-},{"../apply":367,"../state":379,"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/array.js":182}],369:[function(require,module,exports){
+},{"../apply":367,"../state":379,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/array.js":182}],369:[function(require,module,exports){
 module.exports=require(183)
-},{"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/flow.js":183}],370:[function(require,module,exports){
+},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/flow.js":183}],370:[function(require,module,exports){
 module.exports=require(184)
-},{"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/fold.js":184}],371:[function(require,module,exports){
+},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/fold.js":184}],371:[function(require,module,exports){
 module.exports=require(185)
-},{"../state":379,"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/inspect.js":185}],372:[function(require,module,exports){
+},{"../state":379,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/inspect.js":185}],372:[function(require,module,exports){
 module.exports=require(186)
-},{"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/iterate.js":186}],373:[function(require,module,exports){
+},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/iterate.js":186}],373:[function(require,module,exports){
 module.exports=require(187)
-},{"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/progress.js":187}],374:[function(require,module,exports){
+},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/progress.js":187}],374:[function(require,module,exports){
 module.exports=require(188)
-},{"../TimeoutError":366,"../env":377,"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/timed.js":188}],375:[function(require,module,exports){
+},{"../TimeoutError":366,"../env":377,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/timed.js":188}],375:[function(require,module,exports){
 module.exports=require(189)
-},{"../env":377,"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/unhandledRejection.js":189}],376:[function(require,module,exports){
+},{"../env":377,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/unhandledRejection.js":189}],376:[function(require,module,exports){
 module.exports=require(190)
-},{"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/with.js":190}],377:[function(require,module,exports){
+},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/with.js":190}],377:[function(require,module,exports){
 module.exports=require(191)
-},{"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/env.js":191,"_process":142}],378:[function(require,module,exports){
+},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/env.js":191,"_process":142}],378:[function(require,module,exports){
 module.exports=require(192)
-},{"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/makePromise.js":192}],379:[function(require,module,exports){
+},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/makePromise.js":192}],379:[function(require,module,exports){
 module.exports=require(193)
-},{"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/state.js":193}],380:[function(require,module,exports){
+},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/state.js":193}],380:[function(require,module,exports){
 module.exports=require(194)
-},{"./lib/Promise":364,"./lib/TimeoutError":366,"./lib/apply":367,"./lib/decorators/array":368,"./lib/decorators/flow":369,"./lib/decorators/fold":370,"./lib/decorators/inspect":371,"./lib/decorators/iterate":372,"./lib/decorators/progress":373,"./lib/decorators/timed":374,"./lib/decorators/unhandledRejection":375,"./lib/decorators/with":376,"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/when.js":194}]},{},[6])(6)
+},{"./lib/Promise":364,"./lib/TimeoutError":366,"./lib/apply":367,"./lib/decorators/array":368,"./lib/decorators/flow":369,"./lib/decorators/fold":370,"./lib/decorators/inspect":371,"./lib/decorators/iterate":372,"./lib/decorators/progress":373,"./lib/decorators/timed":374,"./lib/decorators/unhandledRejection":375,"./lib/decorators/with":376,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/when.js":194}]},{},[6])(6)
 });
