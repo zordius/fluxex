@@ -6,6 +6,7 @@ var gulp = require('gulp'),
     source = require('vinyl-source-stream'),
     browserify = require('browserify'),
     watchify = require('watchify'),
+    uglifyify = require("uglifyify"),
     nodemon = require('nodemon'),
     browserSync = require('browser-sync'),
     serverStarted = false,
@@ -63,6 +64,8 @@ buildApp = function (watch) {
             gutil.log('[browserify] ' + F[0] + ' updated');
             bundleAll(b);
         });
+    } else {
+        b.transform(uglifyify);
     }
 
     return bundleAll(b);
