@@ -34,7 +34,7 @@ FetchUtil = {
         }
 
         return FetchUtil.config[name] ? FetchUtil.config[name].url : undefined;
-    }
+    },
 
     fetch: function (name, cfg) {
         if (!name) {
