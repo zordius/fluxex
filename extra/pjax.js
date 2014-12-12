@@ -27,6 +27,12 @@ module.exports = {
                 return;
             }
 
+            try {
+                state = JSON.parse(state);
+            } catch (E) {
+                state = 0;
+            }
+
             if (!state) {
                 // NO STATE DATA....can not re-render, so reload.
                 location.reload();
@@ -35,7 +41,7 @@ module.exports = {
 
             // Ya, trigger page restore by an anonymous action
             self.executeAction(function () {
-                this.restore(JSON.parse(state));
+                this.restore(state);
                 this.dispatch('UPDATE_TITLE');
                 this.dispatch('**UPDATEALL**');
                 return this.resolvePromise(true);
