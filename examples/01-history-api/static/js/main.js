@@ -1,187 +1,12 @@
 !function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.Fluxex=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"./components/Html.jsx":[function(require,module,exports){
-/** @jsx React.DOM */'use strict';
-
-var React = require('react'),
-    Fluxex = require('fluxex'),
-    Product = require('./Product.jsx'),
-    sampleActions = require('../actions/sample'),
-
-Html = React.createClass({displayName: 'Html',
-    mixins: [
-        Fluxex.mixin,
-        require('fluxex/extra/storechange'),
-        {listenStores: ['page']}
-    ],
-
-    getStateFromStores: function () {
-        return {};
-    },
-
-    componentDidMount: function () {
-        /*global window,document*/
-        var blockDoublePop = (document.readyState != 'complete'),
-            initState = this._getContext().toString(),
-            initUrl = window.location.href,
-            self = this;
-
-        if (!window.addEventListener) {
-            return;
-        }
-
-        window.addEventListener('load', function() {
-            setTimeout(function () {
-                blockDoublePop = false;
-            }, 1);
-        });
-
-        window.addEventListener('popstate', function (E) {
-            var state = E.state || ((window.location.href === initUrl) ? initState : undefined);
-
-            if (blockDoublePop && (document.readyState === 'complete')) {
-                return;
-            }
-
-            if (!state) {
-                return console.log('NO STATE DATA....can not handle re-rendering');
-            }
-
-            // Ya, trigger page restore by an anonymous action
-            self.executeAction(function () {
-                    this.restore(JSON.parse(state));
-                    this.dispatch('UPDATE_TITLE');
-                    this.getStore('productStore').emitChange();
-                    return this.resolvePromise(true);
-            });
-        });
-    },
-
-    handleClickLink: function (E) {
-        var HREF = E.target.href,
-            self = this;
-
-        if (!HREF || HREF.match(/#/)) {
-            return;
-        }
-
-        E.preventDefault();
-        E.stopPropagation();
-
-        // Go to the url
-        this._getContext().dispatch('UPDATE_URL', HREF).then(function () {
-            // Run action to update page stores
-            return this.executeAction(sampleActions.updateProductPage);
-        }).then(function () {
-            // Success, update url to history
-            /*global history*/
-            history.pushState(self._getContext().toString(), undefined, HREF);
-        });
-    },
-
-    render: function () {
-        return (
-        React.createElement("html", null, 
-         React.createElement("head", null, 
-          React.createElement("meta", {charSet: "utf-8"}), 
-          React.createElement("meta", {name: "viewport", content: "width=device-width, user-scalable=no"}), 
-          React.createElement("title", null, this.getStore('page').get('title'))
-         ), 
-         React.createElement("body", {onClick: this.handleClickLink}, 
-          React.createElement(Product, null), 
-          React.createElement("script", {src: "/static/js/main.js"}), 
-          React.createElement("script", {dangerouslySetInnerHTML: {__html: this.getInitScript()}})
-         )
-        ) 
-        );
-    }
-});
-
-module.exports = Html;
-
+"use strict";var React=require("react"),Fluxex=require("fluxex"),Product=require("./Product.jsx"),sampleActions=require("../actions/sample"),Html=React.createClass({displayName:"Html",mixins:[Fluxex.mixin,require("fluxex/extra/storechange"),{listenStores:["page"]}],getStateFromStores:function(){return{}},componentDidMount:function(){var e="complete"!=document.readyState,t=this._getContext().toString(),n=window.location.href,r=this;window.addEventListener&&(window.addEventListener("load",function(){setTimeout(function(){e=!1},1)}),window.addEventListener("popstate",function(i){var a=i.state||(window.location.href===n?t:void 0);if(!e||"complete"!==document.readyState)return a?void r.executeAction(function(){return this.restore(JSON.parse(a)),this.dispatch("UPDATE_TITLE"),this.getStore("productStore").emitChange(),this.resolvePromise(!0)}):console.log("NO STATE DATA....can not handle re-rendering")}))},handleClickLink:function(e){var t=e.target.href,n=this;t&&!t.match(/#/)&&(e.preventDefault(),e.stopPropagation(),this._getContext().dispatch("UPDATE_URL",t).then(function(){return this.executeAction(sampleActions.updateProductPage)}).then(function(){history.pushState(n._getContext().toString(),void 0,t)}))},render:function(){return React.createElement("html",null,React.createElement("head",null,React.createElement("meta",{charSet:"utf-8"}),React.createElement("meta",{name:"viewport",content:"width=device-width, user-scalable=no"}),React.createElement("title",null,this.getStore("page").get("title"))),React.createElement("body",{onClick:this.handleClickLink},React.createElement(Product,null),React.createElement("script",{src:"/static/js/main.js"}),React.createElement("script",{dangerouslySetInnerHTML:{__html:this.getInitScript()}})))}});module.exports=Html;
 },{"../actions/sample":1,"./Product.jsx":2,"fluxex":10,"fluxex/extra/storechange":9,"react":182}],1:[function(require,module,exports){
-'use strict';
-
-var samples = {
-    updateProductPage: function () {
-        return this.executeAction(samples.updateStoreByApi).then(function () {
-            return this.dispatch('UPDATE_TITLE', this.getStore('productStore').get('data.title'));
-        });
-    },
-    updateStoreByApi: function () {
-        return this.createPromise(function (resolve) {
-            var self = this,
-                S = this.getStore('page'),
-                id = S.get('url.query.id');
-
-            if (id) {
-                setTimeout(function () {
-                    // simulate api call here...
-                    self.dispatch('UPDATE_PRODUCT', {
-                        title: 'this is sample title (' + id + ')',
-                        description: 'this is sample description (id=' + id + ')',
-                        price: 100 * id,
-                        time: (new Date()).getTime(),
-                        serial: Math.random()
-                    });
-                    resolve();
-                });
-            } else {
-                resolve();
-            }
-        });
-    }
-};
-
-module.exports = samples;
-
+"use strict";var samples={updateProductPage:function(){return this.executeAction(samples.updateStoreByApi).then(function(){return this.dispatch("UPDATE_TITLE",this.getStore("productStore").get("data.title"))})},updateStoreByApi:function(){return this.createPromise(function(t){var e=this,i=this.getStore("page"),s=i.get("url.query.id");s?setTimeout(function(){e.dispatch("UPDATE_PRODUCT",{title:"this is sample title ("+s+")",description:"this is sample description (id="+s+")",price:100*s,time:(new Date).getTime(),serial:Math.random()}),t()}):t()})}};module.exports=samples;
 },{}],2:[function(require,module,exports){
-/** @jsx React.DOM */var React = require('react'),
-    Fluxex = require('fluxex'),
-
-Product = React.createClass({displayName: 'Product',
-    mixins: [
-        Fluxex.mixin,
-        require('fluxex/extra/storechange'),
-        {listenStores: ['productStore']}
-    ],
-
-    getStateFromStores: function () {
-        return this.getStore('productStore').get('data');
-    },
-
-    render: function () {
-        return (
-        React.createElement("div", null, 
-         React.createElement("h3", null, this.state.title), 
-         React.createElement("p", null, this.state.description), 
-         React.createElement("span", null, "Price:", this.state.price), 
-         React.createElement("ul", null, 
-          React.createElement("li", null, "data generated time:", this.state.time), 
-          React.createElement("li", null, "Serial(random):", this.state.serial)
-         ), 
-         React.createElement("h4", null, "Related products"), 
-         React.createElement("ul", null, 
-          React.createElement("li", null, React.createElement("a", {href: "/product?id=123"}, "ID = 123")), 
-          React.createElement("li", null, React.createElement("a", {href: "/product?id=456"}, "ID = 456")), 
-          React.createElement("li", null, React.createElement("a", {href: "/product?id=789"}, "ID = 789"))
-         )
-        )
-        );
-    }
-});
-
-module.exports = Product;
-
+var React=require("react"),Fluxex=require("fluxex"),Product=React.createClass({displayName:"Product",mixins:[Fluxex.mixin,require("fluxex/extra/storechange"),{listenStores:["productStore"]}],getStateFromStores:function(){return this.getStore("productStore").get("data")},render:function(){return React.createElement("div",null,React.createElement("h3",null,this.state.title),React.createElement("p",null,this.state.description),React.createElement("span",null,"Price:",this.state.price),React.createElement("ul",null,React.createElement("li",null,"data generated time:",this.state.time),React.createElement("li",null,"Serial(random):",this.state.serial)),React.createElement("h4",null,"Related products"),React.createElement("ul",null,React.createElement("li",null,React.createElement("a",{href:"/product?id=123"},"ID = 123")),React.createElement("li",null,React.createElement("a",{href:"/product?id=456"},"ID = 456")),React.createElement("li",null,React.createElement("a",{href:"/product?id=789"},"ID = 789"))))}});module.exports=Product;
 },{"fluxex":10,"fluxex/extra/storechange":9,"react":182}],3:[function(require,module,exports){
 (function (process){
-'use strict';
-
-var commonStores = require('fluxex/extra/commonStores');
-
-module.exports = require('fluxex').createApp({
-    page: commonStores.page,
-    productStore: require('./stores/product')
-}, process.cwd() + '/components/Html.jsx');
-
+"use strict";var commonStores=require("fluxex/extra/commonStores");module.exports=require("fluxex").createApp({page:commonStores.page,productStore:require("./stores/product")},process.cwd()+"/components/Html.jsx");
 }).call(this,require('_process'))
 },{"./stores/product":36,"_process":4,"fluxex":10,"fluxex/extra/commonStores":8}],4:[function(require,module,exports){
 // shim for using process in browser
@@ -10614,15 +10439,7 @@ define(function (require) {
 })(typeof define === 'function' && define.amd ? define : function (factory) { module.exports = factory(require); });
 
 },{"./lib/Promise":19,"./lib/TimeoutError":21,"./lib/apply":22,"./lib/decorators/array":23,"./lib/decorators/flow":24,"./lib/decorators/fold":25,"./lib/decorators/inspect":26,"./lib/decorators/iterate":27,"./lib/decorators/progress":28,"./lib/decorators/timed":29,"./lib/decorators/unhandledRejection":30,"./lib/decorators/with":31}],36:[function(require,module,exports){
-'use strict';
-
-module.exports = {
-    handle_UPDATE_PRODUCT: function (data) {
-        this.set('data', data, true);
-        this.emitChange();
-    }
-};
-
+"use strict";module.exports={handle_UPDATE_PRODUCT:function(t){this.set("data",t,!0),this.emitChange()}};
 },{}],37:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.

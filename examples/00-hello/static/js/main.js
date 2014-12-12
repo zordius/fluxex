@@ -1,58 +1,8 @@
 !function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.Fluxex=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"./components/Html.jsx":[function(require,module,exports){
-/** @jsx React.DOM */'use strict';
-
-var React = require('react'),
-    Fluxex = require('fluxex'),
-
-Html = React.createClass({displayName: 'Html',
-    mixins: [
-        Fluxex.mixin,
-        require('fluxex/extra/storechange'),
-        {listenStores: ['product']}
-    ],
-
-    getStateFromStores: function () {
-        return this.getStore('product').getData();
-    },
-
-    handleClick: function () {
-        var product = this.state;
-        product.sold++;
-        this.executeAction(function () {
-            return this.dispatch('UPDATE_PRODUCT', product);
-        });
-    },
-
-    render: function () {
-        return (
-        React.createElement("html", null, 
-         React.createElement("head", null, 
-          React.createElement("meta", {charSet: "utf-8"})
-         ), 
-         React.createElement("body", {onClick: this.handleClick}, 
-          React.createElement("ul", null, 
-           React.createElement("li", null, "Product: ", this.state.title), 
-           React.createElement("li", null, "Price: ", this.state.price), 
-           React.createElement("li", null, "Sold: ", this.state.sold)
-          ), 
-         React.createElement("script", {src: "/static/js/main.js"}), 
-         React.createElement("script", {dangerouslySetInnerHTML: {__html: this.getInitScript()}})
-         )
-        )
-        );
-    }
-});
-
-module.exports = Html;
-
+"use strict";var React=require("react"),Fluxex=require("fluxex"),Html=React.createClass({displayName:"Html",mixins:[Fluxex.mixin,require("fluxex/extra/storechange"),{listenStores:["product"]}],getStateFromStores:function(){return this.getStore("product").getData()},handleClick:function(){var e=this.state;e.sold++,this.executeAction(function(){return this.dispatch("UPDATE_PRODUCT",e)})},render:function(){return React.createElement("html",null,React.createElement("head",null,React.createElement("meta",{charSet:"utf-8"})),React.createElement("body",{onClick:this.handleClick},React.createElement("ul",null,React.createElement("li",null,"Product: ",this.state.title),React.createElement("li",null,"Price: ",this.state.price),React.createElement("li",null,"Sold: ",this.state.sold)),React.createElement("script",{src:"/static/js/main.js"}),React.createElement("script",{dangerouslySetInnerHTML:{__html:this.getInitScript()}})))}});module.exports=Html;
 },{"fluxex":4,"fluxex/extra/storechange":3,"react":176}],1:[function(require,module,exports){
 (function (process){
-'use strict';
-
-module.exports = require('fluxex').createApp({
-    product: require('./stores/product')
-}, process.cwd() + '/components/Html.jsx');
-
+"use strict";module.exports=require("fluxex").createApp({product:require("./stores/product")},process.cwd()+"/components/Html.jsx");
 }).call(this,require('_process'))
 },{"./stores/product":30,"_process":2,"fluxex":4}],2:[function(require,module,exports){
 // shim for using process in browser
@@ -10255,19 +10205,7 @@ define(function (require) {
 })(typeof define === 'function' && define.amd ? define : function (factory) { module.exports = factory(require); });
 
 },{"./lib/Promise":13,"./lib/TimeoutError":15,"./lib/apply":16,"./lib/decorators/array":17,"./lib/decorators/flow":18,"./lib/decorators/fold":19,"./lib/decorators/inspect":20,"./lib/decorators/iterate":21,"./lib/decorators/progress":22,"./lib/decorators/timed":23,"./lib/decorators/unhandledRejection":24,"./lib/decorators/with":25}],30:[function(require,module,exports){
-'use strict';
-
-module.exports = {
-    handle_UPDATE_PRODUCT: function (payload) {
-        this.set('data', payload, true);
-        this.emitChange();
-    },
-
-    getData: function () {
-        return this.get('data');
-    }
-};
-
+"use strict";module.exports={handle_UPDATE_PRODUCT:function(t){this.set("data",t,!0),this.emitChange()},getData:function(){return this.get("data")}};
 },{}],31:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.

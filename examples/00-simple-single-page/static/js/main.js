@@ -1,131 +1,12 @@
 !function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.Fluxex=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"./components/Html.jsx":[function(require,module,exports){
-/** @jsx React.DOM */'use strict';
-
-var React = require('react'),
-    Fluxex = require('fluxex'),
-    Product = require('./Product.jsx'),
-    Sample = require('./Sample.jsx'),
-
-Html = React.createClass({displayName: 'Html',
-    mixins: [Fluxex.mixin],
-
-    shouldComponentUpdate: function () {
-        return false;
-    },
-
-    render: function () {
-        return (
-        React.createElement("html", null, 
-         React.createElement("head", null, 
-          React.createElement("meta", {charSet: "utf-8"}), 
-          React.createElement("meta", {name: "viewport", content: "width=device-width, user-scalable=no"}), 
-          React.createElement("title", null, this.getStore('page').get('title'))
-         ), 
-         React.createElement("body", null, 
-          React.createElement("div", null, "Test...OK??."), 
-          React.createElement(Product, null), 
-          React.createElement(Sample, null)
-         ), 
-         React.createElement("script", {src: "/static/js/main.js"}), 
-         React.createElement("script", {dangerouslySetInnerHTML: {__html: this._getInitScript()}})
-        ) 
-        );
-    }
-});
-
-module.exports = Html;
-
+"use strict";var React=require("react"),Fluxex=require("fluxex"),Product=require("./Product.jsx"),Sample=require("./Sample.jsx"),Html=React.createClass({displayName:"Html",mixins:[Fluxex.mixin],shouldComponentUpdate:function(){return!1},render:function(){return React.createElement("html",null,React.createElement("head",null,React.createElement("meta",{charSet:"utf-8"}),React.createElement("meta",{name:"viewport",content:"width=device-width, user-scalable=no"}),React.createElement("title",null,this.getStore("page").get("title"))),React.createElement("body",null,React.createElement("div",null,"Test...OK??."),React.createElement(Product,null),React.createElement(Sample,null)),React.createElement("script",{src:"/static/js/main.js"}),React.createElement("script",{dangerouslySetInnerHTML:{__html:this._getInitScript()}}))}});module.exports=Html;
 },{"./Product.jsx":1,"./Sample.jsx":2,"fluxex":5,"react":179}],1:[function(require,module,exports){
-/** @jsx React.DOM */var React = require('react'),
-    Fluxex = require('fluxex'),
-
-Product = React.createClass({displayName: 'Product',
-    mixins: [
-        Fluxex.mixin,
-        {listenStores: ['productStore']}
-    ],
-
-    getStateFromStores: function () {
-        return this.getStore('productStore').get('data');
-    },
-
-    getInitialState: function () {
-        return this.getStateFromStores();
-    },
-
-    onStoreChange: function () {
-        this.setState(this.getStateFromStores());
-    },
-
-    render: function () {
-        return (
-        React.createElement("div", null, 
-         React.createElement("h3", null, this.state.title), 
-         React.createElement("p", null, this.state.description), 
-         React.createElement("span", null, "Price:", this.state.price)
-        )
-        );
-    }
-});
-
-module.exports = Product;
-
+var React=require("react"),Fluxex=require("fluxex"),Product=React.createClass({displayName:"Product",mixins:[Fluxex.mixin,{listenStores:["productStore"]}],getStateFromStores:function(){return this.getStore("productStore").get("data")},getInitialState:function(){return this.getStateFromStores()},onStoreChange:function(){this.setState(this.getStateFromStores())},render:function(){return React.createElement("div",null,React.createElement("h3",null,this.state.title),React.createElement("p",null,this.state.description),React.createElement("span",null,"Price:",this.state.price))}});module.exports=Product;
 },{"fluxex":5,"react":179}],2:[function(require,module,exports){
-/** @jsx React.DOM */var React = require('react'),
-    Fluxex = require('fluxex'),
-
-Product = React.createClass({displayName: 'Product',
-    mixins: [
-        Fluxex.mixin,
-        {listenStores: ['sampleStore']}
-    ],
-
-    getStateFromStores: function () {
-        return this.getStore('sampleStore').get();
-    },
-
-    getInitialState: function () {
-        return this.getStateFromStores();
-    },
-
-    onStoreChange: function () {
-        this.setState(this.getStateFromStores());
-    },
-
-    UpdateSampleToOne: function () {
-        // Dirty way without action creator, do not do it
-        this._getContext().dispatch('UPDATE_SAMPLE', 1);
-    },
-
-    UpdateSampleToTen: function () {
-        // Dirty way without action creator, do not do it
-        this._getContext().dispatch('UPDATE_SAMPLE', 10);
-    },
-
-    render: function () {
-        return (
-        React.createElement("div", null, 
-         "Dump sample data: ", this.state, 
-         React.createElement("hr", null), 
-         React.createElement("button", {onClick: this.UpdateSampleToOne}, "Set to 1"), 
-         React.createElement("button", {onClick: this.UpdateSampleToTen}, "Set to 10")
-        )
-        );
-    }
-});
-
-module.exports = Product;
-
+var React=require("react"),Fluxex=require("fluxex"),Product=React.createClass({displayName:"Product",mixins:[Fluxex.mixin,{listenStores:["sampleStore"]}],getStateFromStores:function(){return this.getStore("sampleStore").get()},getInitialState:function(){return this.getStateFromStores()},onStoreChange:function(){this.setState(this.getStateFromStores())},UpdateSampleToOne:function(){this._getContext().dispatch("UPDATE_SAMPLE",1)},UpdateSampleToTen:function(){this._getContext().dispatch("UPDATE_SAMPLE",10)},render:function(){return React.createElement("div",null,"Dump sample data: ",this.state,React.createElement("hr",null),React.createElement("button",{onClick:this.UpdateSampleToOne},"Set to 1"),React.createElement("button",{onClick:this.UpdateSampleToTen},"Set to 10"))}});module.exports=Product;
 },{"fluxex":5,"react":179}],3:[function(require,module,exports){
 (function (process){
-'use strict';
-
-module.exports = require('fluxex').createApp({
-    sampleStore: require('./stores/sample'),
-    page: require('./stores/page'),
-    productStore: require('./stores/product')
-}, process.cwd() + '/components/Html.jsx');
-
+"use strict";module.exports=require("fluxex").createApp({sampleStore:require("./stores/sample"),page:require("./stores/page"),productStore:require("./stores/product")},process.cwd()+"/components/Html.jsx");
 }).call(this,require('_process'))
 },{"./stores/page":31,"./stores/product":32,"./stores/sample":33,"_process":4,"fluxex":5}],4:[function(require,module,exports){
 // shim for using process in browser
@@ -10311,41 +10192,11 @@ define(function (require) {
 })(typeof define === 'function' && define.amd ? define : function (factory) { module.exports = factory(require); });
 
 },{"./lib/Promise":14,"./lib/TimeoutError":16,"./lib/apply":17,"./lib/decorators/array":18,"./lib/decorators/flow":19,"./lib/decorators/fold":20,"./lib/decorators/inspect":21,"./lib/decorators/iterate":22,"./lib/decorators/progress":23,"./lib/decorators/timed":24,"./lib/decorators/unhandledRejection":25,"./lib/decorators/with":26}],31:[function(require,module,exports){
-'use strict';
-
-module.exports = {
-    handle_UPDATE_TITLE: function (title) {
-        // Because we can not re-render Html at client side
-        // So we play DOM here.
-        if (this.get('title')) {
-            /*global document*/
-            document.getElementsByTagName('title')[0].innerHTML = title;
-        } else {
-            this.set('title', title, true);
-        }
-    }
-};
-
+"use strict";module.exports={handle_UPDATE_TITLE:function(t){this.get("title")?document.getElementsByTagName("title")[0].innerHTML=t:this.set("title",t,!0)}};
 },{}],32:[function(require,module,exports){
-'use strict';
-
-module.exports = {
-    handle_UPDATE_PRODUCT: function (data) {
-        this.set('data', data, true);
-        this.emitChange();
-    }
-};
-
+"use strict";module.exports={handle_UPDATE_PRODUCT:function(t){this.set("data",t,!0),this.emitChange()}};
 },{}],33:[function(require,module,exports){
-'use strict';
-
-module.exports = {
-    handle_UPDATE_SAMPLE: function (v) {
-        this.set('c', v, true);
-        this.emitChange();
-    }
-};
-
+"use strict";module.exports={handle_UPDATE_SAMPLE:function(t){this.set("c",t,!0),this.emitChange()}};
 },{}],34:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.
