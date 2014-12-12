@@ -19,6 +19,7 @@
     "browserify": "6.3.3",
     "watchify": "2.1.1",
     "reactify": "0.14.0",
+    "uglifyify": "2.6.0",
     "jshint-stylish": "1.0.0",
     "nodemon": "1.2.1",
     "browser-sync": "1.7.1",
