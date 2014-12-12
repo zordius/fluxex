@@ -1,0 +1,32 @@
+{
+  "name": "fluxex-example",
+  "version": "0.0.1",
+  "description": "A demo project for fluxex",
+  "author": "Zordius <zordius@yahoo-inc.com>",
+  "main": "server.js",
+  "scripts": {
+    "build": "gulp",
+    "start": "gulp develop"
+  },
+  "dependencies": {
+    "fluxex": "*",
+    "routes": "2.0.0",
+    "express": "4.10.4",
+    "request": "2.40.0"
+  },
+  "devDependencies": {
+    "browserify": "6.3.3",
+    "watchify": "2.1.1",
+    "reactify": "0.14.0",
+    "uglifyify": "2.6.0",
+    "jshint-stylish": "1.0.0",
+    "nodemon": "1.2.1",
+    "browser-sync": "1.7.1",
+    "gulp": "3.8.9",
+    "gulp-jshint": "1.8.6",
+    "gulp-react": "2.0.0",
+    "gulp-cached": "1.0.1",
+    "gulp-util": "3.0.1",
+    "vinyl-source-stream": "1.0.0"
+  }
+}
