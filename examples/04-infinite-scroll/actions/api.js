@@ -1,6 +1,6 @@
 'use strict';
 
-var yql = require('../services/yql');
+var yql = require('./yql');
 
 module.exports = {
     search: function (payload) {

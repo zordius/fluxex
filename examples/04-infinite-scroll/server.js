@@ -11,7 +11,6 @@ fluxexServerExtra.initStatic(app);
 
 // Setup fetch services
 fetch.createServices(app, {
-    baseURL: '/_srv_/',
     yql: 'https://query.yahooapis.com/v1/public/yql'
 });
 
