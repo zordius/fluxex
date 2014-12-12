@@ -1,6 +1,6 @@
 'use strict';
 
-var fetch = require('./fetch');
+var fetch = require('fluxex/extra/fetch');
 
 module.exports = function (yql) {
     if (!yql) {

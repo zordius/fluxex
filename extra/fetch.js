@@ -2,23 +2,15 @@
 
 var request = require('request'),
     when = require('when'),
-    config = undefined,
 
 FetchUtil = {
-    serviceURL: '/_fetch_/',
-
-    setConfig = function (name) {
-        // Trick to brevent browerify pack the config module into bundle.
-        config = require(name);
-    },
-
-    getConfig: function (name) {
-        return config ? config[name] : undefined;
+    config: {
+        serviceURL: '/_fetch_/',
     },
 
     addService: function (app) {
         // Provide fetch services
-        app.use(FetchUtil.serviceURL + ':name', function (req, res, next) {
+        app.use(FetchUtil.config.serviceURL + ':name', function (req, res, next) {
             fetch(req.params.name, {qs: req.query}).then(function (O) {
                 res.send(O.body);
             }).catch(function (E) {
@@ -41,7 +33,7 @@ FetchUtil = {
             // do nothing...
         }
 
-        return FetchUtil.getConfig(name).url;
+        return FetchUtil.config[name] ? FetchUtil.config[name].url : undefined;
     }
 
     fetch: function (name, cfg) {

@@ -3,7 +3,7 @@
 var express = require('express'),
     fluxexapp = require('./fluxexapp'),
     fluxexServerExtra = require('fluxex/extra/server'),
-    fetch = require('./services/fetch'),
+    fetch = require('fluxex/extra/fetch'),
     app = express();
 
 // Provide /static/js/main.js
