@@ -59,7 +59,7 @@ Quick Start!
 
 ```
 npm init
-npm install fluxex react node-jsx express browserify watchify reactify jshint-stylish nodemon browser-sync gulp gulp-jshint gulp-react gulp-cached gulp-util vinyl-source-stream
+npm install fluxex react node-jsx express browserify watchify reactify uglifyify jshint-stylish nodemon browser-sync gulp gulp-jshint gulp-react gulp-cached gulp-util vinyl-source-stream
 mkdir actions
 mkdir components
 mkdir stores
