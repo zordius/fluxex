@@ -66,12 +66,11 @@ module.exports.createServices = function (app, cfg, base) {
     }
 
     // Provide fetch services
-    app.use(baseURL + ':name', function (req, res, next) {
+    app.use(baseURL + ':name', function (req, res) {
         fetch(req.params.name, {qs: req.query}).then(function (O) {
             res.send(O.body);
         }).catch(function (E) {
-            console.log(E.stack || E);
-            next();
+            res.status(500)send(E.stack || E);
         });
     });
 };

@@ -10,7 +10,8 @@ module.exports = function (yql) {
     return fetch('yql', {
         qs: {
             q: yql,
-            format: 'json'
+            format: 'json',
+            env: 'store://datatables.org/alltableswithkeys'
         },
         json: true
     }).then(function (O) {

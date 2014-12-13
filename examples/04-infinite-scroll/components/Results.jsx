@@ -13,25 +13,21 @@ Results = React.createClass({
     },
 
     render: function () {
-        var hits = [], I, P;
+        var videos = [], I, V;
 
-        if (!this.state.hits) {
+        if (!this.state.videos) {
             return (
                <h1>Search keyword: '{this.state.keyword}' not found!</h1>
             );
         }
 
-        for (I in this.state.hits) {
-            P = this.state.hits[I];
+        for (I in this.state.videos) {
+            V = this.state.videos[I];
 
-            hits.push(
-            <li key={P.id}>
-             <h5><a href={P.Url}>{P.Title}</a></h5>
-             <ul>
-              <li>Distance: {P.Distance}</li>
-              <li>Rating: {P.Rating.AverageRating}</li>
-              <li>Address: <a href={P.MapUrl}>{P.Address} {P.City} {P.State}</a></li>
-             </ul>
+            videos.push(
+            <li key={V.id}>
+             <h5><a href={V.url}>{V.title}</a></h5>
+             <a href={V.url}><img src={V.thumbnails.thumbnail[0].content}/>{V.duration+' seconds'}</a>
             </li>
             );
         }
@@ -39,7 +35,7 @@ Results = React.createClass({
         return (
         <div>
          <h1>Search keyword: '{this.state.keyword}'</h1>
-         <ul>{hits}</ul>
+         <ul>{videos}</ul>
         </div>
         );
     }
