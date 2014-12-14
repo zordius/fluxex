@@ -23,6 +23,7 @@ Results = React.createClass({
     },
 
     handleScroll: function () {
+        var self = this;
         if (this.appending) {
             return;
         }
@@ -30,11 +31,11 @@ Results = React.createClass({
             this.appending = true;
             this.executeAction(apis.load_more).then(function () {
                 console.log('load more ok');
-                this.appending = false;
+                self.appending = false;
             }).catch(function (E) {
                 console.log('load more failed');
                 console.log(E);
-                this.appending = false;
+                self.appending = false;
             });
         }
     },
