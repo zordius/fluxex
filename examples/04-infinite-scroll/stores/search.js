@@ -5,7 +5,9 @@ module.exports = {
         if (this.get('data.keyword') !== data.keyword) {
             this.set('data', data, true);
         } else {
-            this.get('data.videos').append(data.videos);
+            this.set('data.videos', function (D) {
+                return Array.prototype.concat.call(D, data.videos);
+            });
         }
         this.emitChange();
     }
