@@ -6,3 +6,4 @@ All fluxex examples
 * <a href="01-history-api">01-history-api</a>: single page demo shows react re-rendering triggered by html5 history api push/pop.
 * <a href="02-routing">02-routing</a>: a routing example prowerd by <a href="https://github.com/aaronblohowiak/routes.js">npm:routes</a> .
 * <a href="03-service">03-service</a>: a single page demo supports pjax and shows how to wrap <a href="https://github.com/request/request">npm:request</a> to `service name` => `api url` mapping, prevents api urls be exposed.
+* <a href="04-infinite-scroll">04-infinite-scroll</a>: an youtube search demo support pjax and infinite scroll.
