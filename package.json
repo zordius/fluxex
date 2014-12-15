@@ -22,6 +22,7 @@
   "scripts": {
     "test": "mocha",
     "build_example": "gulp build_example",
+    "build_doc": "jsdoc -p -d documents index.js lib/*.js",
     "coverage": "istanbul cover -- _mocha",
     "lint": "jshint"
   },
@@ -35,6 +36,7 @@
   "devDependencies": {
     "gulp": "3.8.10",
     "gulp-shell": "0.2.11",
+    "jsdoc": "3.3.0-alpha11",
     "semver": "4.1.0",
     "escape-regexp": "0.0.1",
     "chai": "*",
