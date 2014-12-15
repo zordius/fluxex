@@ -99,7 +99,7 @@ module.exports = {
 
 [components/Html.jsx] Define your page as react component.
 
-```
+```jsx
 'use strict';
 
 var React = require('react'),
