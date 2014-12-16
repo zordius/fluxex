@@ -26,10 +26,17 @@ fi
 git config --global user.name "Travis-CI"
 git config --global user.email "zordius@yahoo-inc.com"
 
-# build document
-npm run-script build_doc
+# build examples
+npm run-script build_example
+git commit -m "Auto generated example bundle from Travis [ci skip]" examples
+git push "https://${GHTK}@github.com/zordius/fluxex.git" HEAD:${TRAVIS_BRANCH} > /dev/null 2>&1
+
+# Save pwd
 PWD=`pwd`
 echo Current directory: $PWD
+
+# build document
+npm run-script build_doc
 cd documents
 if [ "${TRAVIS_BRANCH}" != "master" ]; then
   echo "Document will be pushed here: http://zordius.github.io/fluxex/${TRAVIS_BRANCH}/"
@@ -45,15 +52,14 @@ else
   git add .
 fi
 
+# push document
 git commit -m "Auto deployed to Github Pages from branch ${TRAVIS_BRANCH} @${TRAVIS_COMMIT} [ci skip]"
 git push --force --quiet "https://${GHTK}@github.com/zordius/fluxex.git" master:gh-pages > /dev/null 2>&1
+
+# back to project directory
+cd /
 cd $PWD
 pwd
-
-# build examples
-npm run-script build_example
-git commit -m "Auto generated example bundle from Travis [ci skip]" examples
-git push "https://${GHTK}@github.com/zordius/fluxex.git" HEAD:${TRAVIS_BRANCH} > /dev/null 2>&1
 
 # Bump npm version and push back to git
 npm version prerelease -m "Auto commit for npm publish version %s [ci skip]"
