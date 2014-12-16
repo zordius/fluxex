@@ -70,7 +70,7 @@ module.exports.createServices = function (app, cfg, base) {
         fetch(req.params.name, {qs: req.query}).then(function (O) {
             res.send(O.body);
         }).catch(function (E) {
-            res.status(500)send(E.stack || E);
+            res.status(500).send(E.stack || E);
         });
     });
 };

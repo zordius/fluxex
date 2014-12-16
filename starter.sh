@@ -1,5 +1,5 @@
 #!/bin/sh
-npm install --save react node-jsx express
+npm install --save react node-jsx express routes
 npm install --save-dev browserify watchify reactify uglifyify jshint-stylish nodemon browser-sync gulp gulp-jshint gulp-react gulp-cached gulp-util vinyl-source-stream
 mkdir actions
 mkdir components
