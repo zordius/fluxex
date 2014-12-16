@@ -122,6 +122,10 @@ var objectAssign = require('object-assign'),
  * @param {React} HtmlJsx - The Html element defined as a React component
  * @param {Object} prototype - Extra methods/properties want to be merged into application prototype
  * @returns {Object} The created fluxex application instance
+ * @example
+var myApp = require('fluxex').createApp({
+    product: require('./stores/product')      // Define a 'product' store
+}, process.cwd() + '/components/Html.jsx');   // Your Html.jsx
  */
 Fluxex.createApp = function (stores, HtmlJsx, prototype) {
     var App = function FluxexApp() {
