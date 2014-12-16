@@ -121,6 +121,7 @@ var myAction = function (payload) {
 * Store is an instance, it is constructed by serialized status.
 * Store is created by a Fluxex.
 * Use `.getStore(name)` to get the store by name.
+* Everything you `.set()` can be serialized by `.toString()` and be tracked by your Fluxex application.
 
 ```javascript
 var myStore = {
