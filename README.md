@@ -70,6 +70,7 @@ Difference with Flux
 
 Fluxex is context based flux implemention. Server side react rendering can be done easy when the flux is scoped under a request based context. Store and dispatcher are singletons in <a href="https://github.com/facebook/flux">Facebook flux</a>, but in fluxex they are not.
 
+<hr/>
 **Fluxex**
 * Fluxex is an instance, it is constructed by provided context.
 * Fluxex can be serialized by `.toString()` and reconstructed by the serialized string. All server side store status can be transfered to client side by this way.
@@ -81,6 +82,7 @@ var myApp = require('fluxex').createApp({
 }, process.cwd() + '/components/Html.jsx');
 ```
 
+<hr/>
 **Action**
 * An action creator should return a promise.
 * An action creator function can be executed by `.executeAction()`.
@@ -98,6 +100,7 @@ handleClick: function () {
 }
 ```
 
+<hr/>
 **Dispatcher**
 * the Fluxex instance itself is a dispatcher with `.dispatch()` method.
 * the dispatched `FOOBAR` action will trigger all stores with `handle_FOOBAR` method.
@@ -110,6 +113,7 @@ var myAction = function (payload) {
 }
 ```
 
+<hr/>
 **Store**
 * Store is an instance, it is constructed by serialized status.
 * Store is created by a Fluxex.
