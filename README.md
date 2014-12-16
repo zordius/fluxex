@@ -29,6 +29,8 @@ See the FluxEx Magic
 --------------------
 
 * Check <a href="https://github.com/zordius/fluxex/tree/master/examples">example projects</a> you can see how fluxex do server side rendering + context deliver + Full HTML react rendering!
+* No more index.html. Start with <a href="https://github.com/strongloop/express">npm:express</a> and Html.jsx!
+* No more ajax, just use <a href="https://github.com/request/request">npm:request</a>!
 
 ```html
 // This is the magic in the Html.jsx !!
