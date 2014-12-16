@@ -5,6 +5,7 @@ Build your own fluxex application from scratch!
 
 Prepare the project
 -------------------
+
 ```
 npm init
 npm install fluxex react node-jsx express browserify watchify reactify uglifyify jshint-stylish nodemon browser-sync gulp gulp-jshint gulp-react gulp-cached gulp-util vinyl-source-stream
@@ -15,7 +16,7 @@ mkdir stores
 
 Create Action
 -------------
-[actions/page.js] Define an action.
+edit `actions/page.js` - Define an action.
 
 ```javascript
 'use strict';
@@ -31,7 +32,7 @@ module.exports = function () {
 
 Create Store
 ------------
-[stores/product.js] Define your store interface and handle the action.
+edit `stores/product.js` - Define your store interface and handle the action.
 
 ```javascript
 'use strict';
@@ -49,7 +50,7 @@ module.exports = {
 
 Create HTML
 -----------
-[components/Html.jsx] Define your page as react component.
+edit `components/Html.jsx` - Define your page as react component.
 
 ```jsx
 'use strict';
@@ -101,7 +102,7 @@ module.exports = Html;
 
 Create Your App
 ---------------
-[fluxexapp.js] Provide store `{name: implementation}` pairs and Html.jsx.
+edit `fluxexapp.js` - Provide store `{name: implementation}` pairs and Html.jsx.
 
 ```javascript
 'use strict';
@@ -113,7 +114,8 @@ module.exports = require('fluxex').createApp({
 
 The Server
 ----------
-[index.js] Create an express server.
+edit `index.js` - Create an express server.
+
 ```javascript
 'use strict';
 
@@ -136,7 +138,8 @@ console.log('Fluxex started on port 3000');
 
 Create gulp task
 ----------------
-[gulpfile.js] Use the fluxex gulpfile extra.
+edit `gulpfile.js` - Use the fluxex gulpfile extra.
+
 ```javascript
 require('fluxex/extra/gulpfile');
 ```
