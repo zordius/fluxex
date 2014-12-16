@@ -55,6 +55,9 @@ node_modules/.bin/gulp develop
 
 * Connect to http://localhost:3001/search?q=pizza
 * You can start your development now, gulp handled everything (lint, bundle, restart, browsersync).
+* Edit components/Html.jsx to add your React components
+* Edit fluxexapp.js to add your store
+* Put your actions, stores and components into correspond directory.
 
 Difference with Flux
 --------------------
@@ -70,6 +73,18 @@ Fluxex is context based flux implemention. Server side react rendering can be do
 * An action creator function can be executed with `.executeAction()` method under a Fluxex instance.
 * When the action be `.executeAction()`, the Fluxex instance can be referenced by `this`.
 * `.executeAction()` will return a promise, so you can manage asynchronous actions in promise way.
+```javascript
+// inside a component
+handleClick: function () {
+    this.executeAction(myAction, payload);  // this returns a promise
+}
+
+// myAction
+var myAction = function (payload) {
+    ... do your tasks ....
+    return this.dispatch('UPDATE_SOMETHING', ....); // this returns a promise
+}
+```
 
 **Dispatcher**
 * the Fluxex instance itself is a dispatcher with `.dispatch()` method.
@@ -81,3 +96,11 @@ Fluxex is context based flux implemention. Server side react rendering can be do
 * Store naming and prototype information are provided by the `.stores` property of Fluxex instance.
 * Use `.getStore(name)` to get the store by name from an Fluxex instance.
 
+```javascript
+var myStore = {
+    // handle this.dispatch('UPDATE_SOMETHING', ....)
+    handle_UPDATE_SOMETHING: function (payload) {
+        this.set('data', payload); // There are .get() and .set() in all stores
+    }
+}
+```
