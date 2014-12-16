@@ -30,6 +30,9 @@
     "coverage": "istanbul cover -- _mocha",
     "lint": "jshint"
   },
+  "bin": {
+    "fluxex_starter": "./starter.sh"
+  },
   "main": "index.js",
   "dependencies": {
     "object-assign": "2.0.0",
