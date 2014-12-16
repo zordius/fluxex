@@ -67,8 +67,8 @@ node_modules/.bin/fluxex_starter
 
 **Start the Server**
 ```sh
-npm start
+node_modules/.bin/gulp develop
 ```
 
 * Connect to http://localhost:3001/search?q=pizza
-* You can start your development now, gulp handled everything.
+* You can start your development now, gulp handled everything (lint, bundle, restart, browsersync).
