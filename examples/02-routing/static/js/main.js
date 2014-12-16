@@ -443,10 +443,21 @@ module.exports = {
 
 },{}],15:[function(require,module,exports){
 'use strict';
-
+/**
+ * Fluxex core module to provide .createApp() and mixin for React components.
+ * @module fluxex
+ */
 var objectAssign = require('object-assign'),
     Fluxex = require('./lib/fluxex');
 
+/**
+ * Create an fluxex application by provided defintion.
+ * @static
+ * @param {Object} Store defination as {storeName: implement} pairs
+ * @param {Object} The Html element defined as a React component
+ * @param {Object} Extra methods/properties want to be merged into the prototype of the flucex application
+ * @returns {Object} The created fluxex application instance.
+ */
 Fluxex.createApp = function (stores, HtmlJsx, prototype) {
     var App = function FluxexApp() {
         this.stores = stores;
@@ -482,6 +493,12 @@ var objectAssign = require('object-assign'),
     FluxexObject = require('./fluxobj'),
     FluxexStore = require('./fluxstore'),
 
+/**
+ * Fluxex object is an isomorphic application
+ * @class
+ * @augments FluxexObject
+ * @param {Object=} state - Serialized Fluxex application state
+ */
 Fluxex = function Fluxex() {
     FluxexObject.apply(this, arguments);
 
@@ -494,8 +511,16 @@ Fluxex = function Fluxex() {
 
 Fluxex.prototype = new FluxexObject();
 
-objectAssign(Fluxex.prototype, {
+objectAssign(Fluxex.prototype,
+/** @lends Fluxex# */
+{
     constructor: Fluxex,
+
+    /**
+     * Create a promise by provided resolver function
+     * @param {Function} resolver - A resolver function
+     * @return {Promise}
+     */
     createPromise: function (resolver) {
         var self = this;
         return when.promise(function (resolve, reject) {
@@ -506,11 +531,37 @@ objectAssign(Fluxex.prototype, {
             }
         }).with(this);
     },
+
+    /**
+     * Create a fulfilled promise with provided value
+     * @method
+     * @param {Object|Number|String} return - Fulfilled value
+     * @return {Promise} A fulfilled promise
+     */
     resolvePromise: when.resolve,
+
+    /**
+     * Create a rejected promise with provided error
+     * @method
+     * @param {Error} return - Rejected error
+     * @return {Promise} A rejected promise
+     */
     rejectPromise: when.reject,
+
+    /**
+     * Return HTML react element registered to the application.
+     * @return {element} the HTML react element
+     */
     getHtmlJsx: function () {
         return react.createFactory(require(this.HtmlJsx.replace(/\/\//, './')))();
     },
+
+    /**
+     * Render HTML execute an action with payload.
+     * @param {Function} action - An action to prepare a page
+     * @param {Object=} payload
+     * @return {String} Rendered HTML
+     */
     renderHtml: function (action, payload) {
         var self = this;
         return this.executeAction(action, payload).then(function () {
@@ -521,6 +572,10 @@ objectAssign(Fluxex.prototype, {
             });
         });
     },
+
+    /**
+     * Rract.render() the HTML, this rebind all client side react events.
+     */
     initClient: function () {
         var self = this;
 
@@ -530,6 +585,11 @@ objectAssign(Fluxex.prototype, {
             self.inited = true;
         });
     },
+
+    /**
+     * Create store instances and keep context sync.
+     * @protected
+     */
     initStore: function () {
         var I, states = this.get('stores');
 
@@ -553,6 +613,14 @@ objectAssign(Fluxex.prototype, {
             }
         }
     },
+
+    /**
+     * Create a store by store prototype and initial status.
+     * @protected
+     * @param {Object} store - prototype for the new store instance
+     * @param {Object} states - the initial status of the new store
+     * @return {FluxexStore} A created store instance
+     */
     createStore: function (store, states) {
         var S = function() {
             FluxexStore.apply(this, arguments);
@@ -560,6 +628,11 @@ objectAssign(Fluxex.prototype, {
         S.prototype = objectAssign(new FluxexStore(), store);
         return new S(states);
     },
+
+    /**
+     * Restore the fluxex application status by provided state
+     * @param {Object} states - the status to restore
+     */
     restore: function () {
         var I, states;
 
@@ -571,12 +644,25 @@ objectAssign(Fluxex.prototype, {
             }
         }
     },
+
+    /**
+     * Get a store by store name
+     * @param {String} name - store name
+     * @return {FluxexStore} A fluxex store instance
+     */
     getStore: function (name) {
         if (!this._stores[name]) {
             throw new Error('no store defined as "' + name + '"!');
         }
         return this._stores[name];
     },
+
+    /**
+     * Execute an action creator with provided payload
+     * @param {Function} action - the action creator function
+     * @param {Object=} payload - payload for the action
+     * @return {Promise} A promise instance
+     */
     executeAction: function (action, payload) {
         var A;
 
@@ -592,6 +678,13 @@ objectAssign(Fluxex.prototype, {
 
         return A;
     },
+
+    /**
+     * Dispatch an action with payload
+     * @param {string} action - the action name
+     * @param {Object=} payload - payload for the action
+     * @return {Promise} A promise instance
+     */
     dispatch: function (name, payload) {
         if (!name) {
             throw new Error('Can not dispatch without name!');
@@ -684,21 +777,48 @@ module.exports = {
 var objectAssign = require('object-assign'),
     jpp = require('json-path-processor'),
 
+/**
+ * FluxexObject is an object can be serialized and be constructed with the serialized status.
+ * @class
+ * @param {Object=} state - Serialized state
+ */
 FluxexObject = function FluxexObject(state) {
     this._context = state || {};
 };
 
-objectAssign(FluxexObject.prototype, {
+objectAssign(FluxexObject.prototype,
+/** @lends FluxexObject# */
+{
+    /**
+     * Get a value or an object by name
+     * @param {String} name - a simple key name or json path
+     * @return {Object|Number|String|Null} the value
+     */
     get: function (name) {
         return jpp(this._context, name);
     },
+    /**
+     * Restore the FluxexObject status by provided status object
+     * @param {Object} state - the status to restore
+     */
     restore: function (state) {
         this._context = state;
     },
+
+    /**
+     * Set value by name
+     * @param {String} name - a simple key name or json path
+     * @return {FluxexObject} Self
+     */
     set: function (name, value, cb) {
-        jpp(this._context).set(name, value, cb);
+        jpp(this._context).set(name, value, (cb === undefined) ? true : cb);
         return this;
     },
+
+    /**
+     * Get serialized state
+     * @return {String} A JSON string of current status
+     */
     toString: function () {
         return JSON.stringify(this._context);
     }
@@ -713,31 +833,62 @@ var objectAssign = require('object-assign'),
     FluxexObject = require('./fluxobj'),
     EventEmitter = require('eventemitter2').EventEmitter2,
 
-FluxStore = function FluxStore() {
+/**
+ * FluxexStore is an FluxexObject can be listen to the change event.
+ * @class
+ * @augments FluxexObject
+ * @param {Object=} state - Serialized state
+ */
+FluxexStore = function FluxexStore() {
     FluxexObject.apply(this, arguments);
     this.eventEmitter = new EventEmitter();
 };
 
-FluxStore.prototype = new FluxexObject();
+FluxexStore.prototype = new FluxexObject();
 
-objectAssign(FluxStore.prototype, {
-    constructor: FluxStore,
-    // Support magic dispatch('**UPDATEALL') for all stores
+objectAssign(FluxexStore.prototype,
+/** @lends FluxexStore# */
+{
+    constructor: FluxexStore,
+
+    /**
+     * This method supports magic dispatch('**UPDATEALL') for all stores
+     */
     'handle_**UPDATEALL**': function () {
         this.emitChange();
     },
+
+    /**
+     * Emit a change event for this store
+     * @return {FluxexStore} Self
+     */
     emitChange: function () {
         this.eventEmitter.emit('CHANGE');
+        return this;
     },
-    addChangeListener: function (callback) {
-        this.eventEmitter.addListener('CHANGE', callback);
+
+    /**
+     * Add a change listener
+     * @param {Function} handler - the listener handler
+     * @return {FluxexStore} Self
+     */
+    addChangeListener: function (handler) {
+        this.eventEmitter.addListener('CHANGE', handler);
+        return this;
     },
-    removeChangeListener: function (callback) {
-        this.eventEmitter.removeListener('CHANGE', callback);
+
+    /**
+     * Remove a change listener
+     * @param {Function} handler - the listener handler
+     * @return {FluxexStore} Self
+     */
+    removeChangeListener: function (handler) {
+        this.eventEmitter.removeListener('CHANGE', handler);
+        return this;
     }
 });
 
-module.exports = FluxStore;
+module.exports = FluxexStore;
 
 },{"./fluxobj":18,"eventemitter2":20,"object-assign":23}],20:[function(require,module,exports){
 /*!

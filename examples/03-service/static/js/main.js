@@ -380,7 +380,7 @@ var objectKeys = Object.keys || function (obj) {
 
 },{"util/":162}],9:[function(require,module,exports){
 module.exports=require(7)
-},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/lib/_empty.js":7}],10:[function(require,module,exports){
+},{"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/lib/_empty.js":7}],10:[function(require,module,exports){
 'use strict';
 
 
@@ -6980,7 +6980,7 @@ function base64Write (buf, string, offset, length) {
 }
 
 function utf16leWrite (buf, string, offset, length) {
-  var charsWritten = blitBuffer(utf16leToBytes(string), buf, offset, length, 2)
+  var charsWritten = blitBuffer(utf16leToBytes(string), buf, offset, length)
   return charsWritten
 }
 
@@ -7664,8 +7664,7 @@ function base64ToBytes (str) {
   return base64.toByteArray(str)
 }
 
-function blitBuffer (src, dst, offset, length, unitSize) {
-  if (unitSize) length -= length % unitSize;
+function blitBuffer (src, dst, offset, length) {
   for (var i = 0; i < length; i++) {
     if ((i + offset >= dst.length) || (i >= src.length))
       break
@@ -17611,47 +17610,47 @@ module.exports = function (crypto, exports) {
 };
 },{"./ecdh":93}],95:[function(require,module,exports){
 module.exports=require(68)
-},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/bn.js/lib/bn.js":68}],96:[function(require,module,exports){
+},{"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/bn.js/lib/bn.js":68}],96:[function(require,module,exports){
 module.exports=require(69)
-},{"../package.json":115,"./elliptic/curve":99,"./elliptic/curves":102,"./elliptic/ec":103,"./elliptic/hmac-drbg":106,"./elliptic/utils":107,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic.js":69,"brorand":108}],97:[function(require,module,exports){
+},{"../package.json":115,"./elliptic/curve":99,"./elliptic/curves":102,"./elliptic/ec":103,"./elliptic/hmac-drbg":106,"./elliptic/utils":107,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic.js":69,"brorand":108}],97:[function(require,module,exports){
 module.exports=require(70)
-},{"../../elliptic":96,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/base.js":70,"assert":8,"bn.js":95}],98:[function(require,module,exports){
+},{"../../elliptic":96,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/base.js":70,"assert":8,"bn.js":95}],98:[function(require,module,exports){
 module.exports=require(71)
-},{"../../elliptic":96,"../curve":99,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/edwards.js":71,"assert":8,"bn.js":95,"inherits":140}],99:[function(require,module,exports){
+},{"../../elliptic":96,"../curve":99,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/edwards.js":71,"assert":8,"bn.js":95,"inherits":140}],99:[function(require,module,exports){
 module.exports=require(72)
-},{"./base":97,"./edwards":98,"./mont":100,"./short":101,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/index.js":72}],100:[function(require,module,exports){
+},{"./base":97,"./edwards":98,"./mont":100,"./short":101,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/index.js":72}],100:[function(require,module,exports){
 module.exports=require(73)
-},{"../../elliptic":96,"../curve":99,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/mont.js":73,"assert":8,"bn.js":95,"inherits":140}],101:[function(require,module,exports){
+},{"../../elliptic":96,"../curve":99,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/mont.js":73,"assert":8,"bn.js":95,"inherits":140}],101:[function(require,module,exports){
 module.exports=require(74)
-},{"../../elliptic":96,"../curve":99,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/short.js":74,"assert":8,"bn.js":95,"inherits":140}],102:[function(require,module,exports){
+},{"../../elliptic":96,"../curve":99,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curve/short.js":74,"assert":8,"bn.js":95,"inherits":140}],102:[function(require,module,exports){
 module.exports=require(75)
-},{"../elliptic":96,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curves.js":75,"assert":8,"bn.js":95,"hash.js":109}],103:[function(require,module,exports){
+},{"../elliptic":96,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/curves.js":75,"assert":8,"bn.js":95,"hash.js":109}],103:[function(require,module,exports){
 module.exports=require(76)
-},{"../../elliptic":96,"./key":104,"./signature":105,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/ec/index.js":76,"assert":8,"bn.js":95}],104:[function(require,module,exports){
+},{"../../elliptic":96,"./key":104,"./signature":105,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/ec/index.js":76,"assert":8,"bn.js":95}],104:[function(require,module,exports){
 module.exports=require(77)
-},{"../../elliptic":96,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/ec/key.js":77,"assert":8,"bn.js":95}],105:[function(require,module,exports){
+},{"../../elliptic":96,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/ec/key.js":77,"assert":8,"bn.js":95}],105:[function(require,module,exports){
 module.exports=require(78)
-},{"../../elliptic":96,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/ec/signature.js":78,"assert":8,"bn.js":95}],106:[function(require,module,exports){
+},{"../../elliptic":96,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/ec/signature.js":78,"assert":8,"bn.js":95}],106:[function(require,module,exports){
 module.exports=require(79)
-},{"../elliptic":96,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/hmac-drbg.js":79,"assert":8,"hash.js":109}],107:[function(require,module,exports){
+},{"../elliptic":96,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/hmac-drbg.js":79,"assert":8,"hash.js":109}],107:[function(require,module,exports){
 module.exports=require(80)
-},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/utils.js":80,"assert":8,"bn.js":95}],108:[function(require,module,exports){
+},{"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/lib/elliptic/utils.js":80,"assert":8,"bn.js":95}],108:[function(require,module,exports){
 module.exports=require(81)
-},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/brorand/index.js":81}],109:[function(require,module,exports){
+},{"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/brorand/index.js":81}],109:[function(require,module,exports){
 module.exports=require(82)
-},{"./hash/common":110,"./hash/hmac":111,"./hash/ripemd":112,"./hash/sha":113,"./hash/utils":114,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash.js":82}],110:[function(require,module,exports){
+},{"./hash/common":110,"./hash/hmac":111,"./hash/ripemd":112,"./hash/sha":113,"./hash/utils":114,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash.js":82}],110:[function(require,module,exports){
 module.exports=require(83)
-},{"../hash":109,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/common.js":83}],111:[function(require,module,exports){
+},{"../hash":109,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/common.js":83}],111:[function(require,module,exports){
 module.exports=require(84)
-},{"../hash":109,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/hmac.js":84}],112:[function(require,module,exports){
+},{"../hash":109,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/hmac.js":84}],112:[function(require,module,exports){
 module.exports=require(85)
-},{"../hash":109,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/ripemd.js":85}],113:[function(require,module,exports){
+},{"../hash":109,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/ripemd.js":85}],113:[function(require,module,exports){
 module.exports=require(86)
-},{"../hash":109,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/sha.js":86}],114:[function(require,module,exports){
+},{"../hash":109,"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/sha.js":86}],114:[function(require,module,exports){
 module.exports=require(87)
-},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/utils.js":87}],115:[function(require,module,exports){
+},{"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/hash.js/lib/hash/utils.js":87}],115:[function(require,module,exports){
 module.exports=require(88)
-},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/package.json":88}],116:[function(require,module,exports){
+},{"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/package.json":88}],116:[function(require,module,exports){
 (function (Buffer){
 var BN = require('bn.js');
 var MillerRabin = require('miller-rabin');
@@ -17969,7 +17968,7 @@ module.exports = function (crypto, exports) {
 }).call(this,require("buffer").Buffer)
 },{"./dh":116,"./generatePrime":117,"./primes.json":122,"buffer":23}],119:[function(require,module,exports){
 module.exports=require(68)
-},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/bn.js/lib/bn.js":68}],120:[function(require,module,exports){
+},{"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/bn.js/lib/bn.js":68}],120:[function(require,module,exports){
 var bn = require('bn.js');
 var brorand = require('brorand');
 
@@ -18087,7 +18086,7 @@ MillerRabin.prototype.getDivisor = function getDivisor(n, k) {
 
 },{"bn.js":119,"brorand":121}],121:[function(require,module,exports){
 module.exports=require(81)
-},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/brorand/index.js":81}],122:[function(require,module,exports){
+},{"/Users/zordius/fluxex/examples/03-service/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/elliptic/node_modules/brorand/index.js":81}],122:[function(require,module,exports){
 module.exports={
     "modp1": {
         "gen": "02",
@@ -24722,10 +24721,21 @@ module.exports = {
 
 },{}],169:[function(require,module,exports){
 'use strict';
-
+/**
+ * Fluxex core module to provide .createApp() and mixin for React components.
+ * @module fluxex
+ */
 var objectAssign = require('object-assign'),
     Fluxex = require('./lib/fluxex');
 
+/**
+ * Create an fluxex application by provided defintion.
+ * @static
+ * @param {Object} Store defination as {storeName: implement} pairs
+ * @param {Object} The Html element defined as a React component
+ * @param {Object} Extra methods/properties want to be merged into the prototype of the flucex application
+ * @returns {Object} The created fluxex application instance.
+ */
 Fluxex.createApp = function (stores, HtmlJsx, prototype) {
     var App = function FluxexApp() {
         this.stores = stores;
@@ -24761,6 +24771,12 @@ var objectAssign = require('object-assign'),
     FluxexObject = require('./fluxobj'),
     FluxexStore = require('./fluxstore'),
 
+/**
+ * Fluxex object is an isomorphic application
+ * @class
+ * @augments FluxexObject
+ * @param {Object=} state - Serialized Fluxex application state
+ */
 Fluxex = function Fluxex() {
     FluxexObject.apply(this, arguments);
 
@@ -24773,8 +24789,16 @@ Fluxex = function Fluxex() {
 
 Fluxex.prototype = new FluxexObject();
 
-objectAssign(Fluxex.prototype, {
+objectAssign(Fluxex.prototype,
+/** @lends Fluxex# */
+{
     constructor: Fluxex,
+
+    /**
+     * Create a promise by provided resolver function
+     * @param {Function} resolver - A resolver function
+     * @return {Promise}
+     */
     createPromise: function (resolver) {
         var self = this;
         return when.promise(function (resolve, reject) {
@@ -24785,11 +24809,37 @@ objectAssign(Fluxex.prototype, {
             }
         }).with(this);
     },
+
+    /**
+     * Create a fulfilled promise with provided value
+     * @method
+     * @param {Object|Number|String} return - Fulfilled value
+     * @return {Promise} A fulfilled promise
+     */
     resolvePromise: when.resolve,
+
+    /**
+     * Create a rejected promise with provided error
+     * @method
+     * @param {Error} return - Rejected error
+     * @return {Promise} A rejected promise
+     */
     rejectPromise: when.reject,
+
+    /**
+     * Return HTML react element registered to the application.
+     * @return {element} the HTML react element
+     */
     getHtmlJsx: function () {
         return react.createFactory(require(this.HtmlJsx.replace(/\/\//, './')))();
     },
+
+    /**
+     * Render HTML execute an action with payload.
+     * @param {Function} action - An action to prepare a page
+     * @param {Object=} payload
+     * @return {String} Rendered HTML
+     */
     renderHtml: function (action, payload) {
         var self = this;
         return this.executeAction(action, payload).then(function () {
@@ -24800,6 +24850,10 @@ objectAssign(Fluxex.prototype, {
             });
         });
     },
+
+    /**
+     * Rract.render() the HTML, this rebind all client side react events.
+     */
     initClient: function () {
         var self = this;
 
@@ -24809,6 +24863,11 @@ objectAssign(Fluxex.prototype, {
             self.inited = true;
         });
     },
+
+    /**
+     * Create store instances and keep context sync.
+     * @protected
+     */
     initStore: function () {
         var I, states = this.get('stores');
 
@@ -24832,6 +24891,14 @@ objectAssign(Fluxex.prototype, {
             }
         }
     },
+
+    /**
+     * Create a store by store prototype and initial status.
+     * @protected
+     * @param {Object} store - prototype for the new store instance
+     * @param {Object} states - the initial status of the new store
+     * @return {FluxexStore} A created store instance
+     */
     createStore: function (store, states) {
         var S = function() {
             FluxexStore.apply(this, arguments);
@@ -24839,6 +24906,11 @@ objectAssign(Fluxex.prototype, {
         S.prototype = objectAssign(new FluxexStore(), store);
         return new S(states);
     },
+
+    /**
+     * Restore the fluxex application status by provided state
+     * @param {Object} states - the status to restore
+     */
     restore: function () {
         var I, states;
 
@@ -24850,12 +24922,25 @@ objectAssign(Fluxex.prototype, {
             }
         }
     },
+
+    /**
+     * Get a store by store name
+     * @param {String} name - store name
+     * @return {FluxexStore} A fluxex store instance
+     */
     getStore: function (name) {
         if (!this._stores[name]) {
             throw new Error('no store defined as "' + name + '"!');
         }
         return this._stores[name];
     },
+
+    /**
+     * Execute an action creator with provided payload
+     * @param {Function} action - the action creator function
+     * @param {Object=} payload - payload for the action
+     * @return {Promise} A promise instance
+     */
     executeAction: function (action, payload) {
         var A;
 
@@ -24871,6 +24956,13 @@ objectAssign(Fluxex.prototype, {
 
         return A;
     },
+
+    /**
+     * Dispatch an action with payload
+     * @param {string} action - the action name
+     * @param {Object=} payload - payload for the action
+     * @return {Promise} A promise instance
+     */
     dispatch: function (name, payload) {
         if (!name) {
             throw new Error('Can not dispatch without name!');
@@ -24963,21 +25055,48 @@ module.exports = {
 var objectAssign = require('object-assign'),
     jpp = require('json-path-processor'),
 
+/**
+ * FluxexObject is an object can be serialized and be constructed with the serialized status.
+ * @class
+ * @param {Object=} state - Serialized state
+ */
 FluxexObject = function FluxexObject(state) {
     this._context = state || {};
 };
 
-objectAssign(FluxexObject.prototype, {
+objectAssign(FluxexObject.prototype,
+/** @lends FluxexObject# */
+{
+    /**
+     * Get a value or an object by name
+     * @param {String} name - a simple key name or json path
+     * @return {Object|Number|String|Null} the value
+     */
     get: function (name) {
         return jpp(this._context, name);
     },
+    /**
+     * Restore the FluxexObject status by provided status object
+     * @param {Object} state - the status to restore
+     */
     restore: function (state) {
         this._context = state;
     },
+
+    /**
+     * Set value by name
+     * @param {String} name - a simple key name or json path
+     * @return {FluxexObject} Self
+     */
     set: function (name, value, cb) {
-        jpp(this._context).set(name, value, cb);
+        jpp(this._context).set(name, value, (cb === undefined) ? true : cb);
         return this;
     },
+
+    /**
+     * Get serialized state
+     * @return {String} A JSON string of current status
+     */
     toString: function () {
         return JSON.stringify(this._context);
     }
@@ -24992,31 +25111,62 @@ var objectAssign = require('object-assign'),
     FluxexObject = require('./fluxobj'),
     EventEmitter = require('eventemitter2').EventEmitter2,
 
-FluxStore = function FluxStore() {
+/**
+ * FluxexStore is an FluxexObject can be listen to the change event.
+ * @class
+ * @augments FluxexObject
+ * @param {Object=} state - Serialized state
+ */
+FluxexStore = function FluxexStore() {
     FluxexObject.apply(this, arguments);
     this.eventEmitter = new EventEmitter();
 };
 
-FluxStore.prototype = new FluxexObject();
+FluxexStore.prototype = new FluxexObject();
 
-objectAssign(FluxStore.prototype, {
-    constructor: FluxStore,
-    // Support magic dispatch('**UPDATEALL') for all stores
+objectAssign(FluxexStore.prototype,
+/** @lends FluxexStore# */
+{
+    constructor: FluxexStore,
+
+    /**
+     * This method supports magic dispatch('**UPDATEALL') for all stores
+     */
     'handle_**UPDATEALL**': function () {
         this.emitChange();
     },
+
+    /**
+     * Emit a change event for this store
+     * @return {FluxexStore} Self
+     */
     emitChange: function () {
         this.eventEmitter.emit('CHANGE');
+        return this;
     },
-    addChangeListener: function (callback) {
-        this.eventEmitter.addListener('CHANGE', callback);
+
+    /**
+     * Add a change listener
+     * @param {Function} handler - the listener handler
+     * @return {FluxexStore} Self
+     */
+    addChangeListener: function (handler) {
+        this.eventEmitter.addListener('CHANGE', handler);
+        return this;
     },
-    removeChangeListener: function (callback) {
-        this.eventEmitter.removeListener('CHANGE', callback);
+
+    /**
+     * Remove a change listener
+     * @param {Function} handler - the listener handler
+     * @return {FluxexStore} Self
+     */
+    removeChangeListener: function (handler) {
+        this.eventEmitter.removeListener('CHANGE', handler);
+        return this;
     }
 });
 
-module.exports = FluxStore;
+module.exports = FluxexStore;
 
 },{"./fluxobj":172,"eventemitter2":174,"object-assign":177}],174:[function(require,module,exports){
 /*!
@@ -59156,37 +59306,37 @@ module.exports = require('./lib/React');
 
 },{"./lib/React":245}],364:[function(require,module,exports){
 module.exports=require(178)
-},{"./Scheduler":365,"./env":377,"./makePromise":378,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/Promise.js":178}],365:[function(require,module,exports){
+},{"./Scheduler":365,"./env":377,"./makePromise":378,"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/Promise.js":178}],365:[function(require,module,exports){
 module.exports=require(179)
-},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/Scheduler.js":179}],366:[function(require,module,exports){
+},{"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/Scheduler.js":179}],366:[function(require,module,exports){
 module.exports=require(180)
-},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/TimeoutError.js":180}],367:[function(require,module,exports){
+},{"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/TimeoutError.js":180}],367:[function(require,module,exports){
 module.exports=require(181)
-},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/apply.js":181}],368:[function(require,module,exports){
+},{"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/apply.js":181}],368:[function(require,module,exports){
 module.exports=require(182)
-},{"../apply":367,"../state":379,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/array.js":182}],369:[function(require,module,exports){
+},{"../apply":367,"../state":379,"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/array.js":182}],369:[function(require,module,exports){
 module.exports=require(183)
-},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/flow.js":183}],370:[function(require,module,exports){
+},{"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/flow.js":183}],370:[function(require,module,exports){
 module.exports=require(184)
-},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/fold.js":184}],371:[function(require,module,exports){
+},{"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/fold.js":184}],371:[function(require,module,exports){
 module.exports=require(185)
-},{"../state":379,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/inspect.js":185}],372:[function(require,module,exports){
+},{"../state":379,"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/inspect.js":185}],372:[function(require,module,exports){
 module.exports=require(186)
-},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/iterate.js":186}],373:[function(require,module,exports){
+},{"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/iterate.js":186}],373:[function(require,module,exports){
 module.exports=require(187)
-},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/progress.js":187}],374:[function(require,module,exports){
+},{"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/progress.js":187}],374:[function(require,module,exports){
 module.exports=require(188)
-},{"../TimeoutError":366,"../env":377,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/timed.js":188}],375:[function(require,module,exports){
+},{"../TimeoutError":366,"../env":377,"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/timed.js":188}],375:[function(require,module,exports){
 module.exports=require(189)
-},{"../env":377,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/unhandledRejection.js":189}],376:[function(require,module,exports){
+},{"../env":377,"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/unhandledRejection.js":189}],376:[function(require,module,exports){
 module.exports=require(190)
-},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/with.js":190}],377:[function(require,module,exports){
+},{"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/decorators/with.js":190}],377:[function(require,module,exports){
 module.exports=require(191)
-},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/env.js":191,"_process":142}],378:[function(require,module,exports){
+},{"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/env.js":191,"_process":142}],378:[function(require,module,exports){
 module.exports=require(192)
-},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/makePromise.js":192}],379:[function(require,module,exports){
+},{"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/makePromise.js":192}],379:[function(require,module,exports){
 module.exports=require(193)
-},{"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/state.js":193}],380:[function(require,module,exports){
+},{"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/lib/state.js":193}],380:[function(require,module,exports){
 module.exports=require(194)
-},{"./lib/Promise":364,"./lib/TimeoutError":366,"./lib/apply":367,"./lib/decorators/array":368,"./lib/decorators/flow":369,"./lib/decorators/fold":370,"./lib/decorators/inspect":371,"./lib/decorators/iterate":372,"./lib/decorators/progress":373,"./lib/decorators/timed":374,"./lib/decorators/unhandledRejection":375,"./lib/decorators/with":376,"/home/travis/build/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/when.js":194}]},{},[6])(6)
+},{"./lib/Promise":364,"./lib/TimeoutError":366,"./lib/apply":367,"./lib/decorators/array":368,"./lib/decorators/flow":369,"./lib/decorators/fold":370,"./lib/decorators/inspect":371,"./lib/decorators/iterate":372,"./lib/decorators/progress":373,"./lib/decorators/timed":374,"./lib/decorators/unhandledRejection":375,"./lib/decorators/with":376,"/Users/zordius/fluxex/examples/03-service/node_modules/fluxex/node_modules/when/when.js":194}]},{},[6])(6)
 });
