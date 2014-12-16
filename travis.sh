@@ -29,6 +29,7 @@ git config --global user.email "zordius@yahoo-inc.com"
 # build document
 npm run-script build_doc
 PWD=`pwd`
+echo Current directory: $PWD
 cd documents
 if [ "${TRAVIS_BRANCH}" != "master" ]; then
   echo "Document will be pushed here: http://zordius.github.io/fluxex/${TRAVIS_BRANCH}/"
@@ -47,6 +48,7 @@ fi
 git commit -m "Auto deployed to Github Pages from branch ${TRAVIS_BRANCH} @${TRAVIS_COMMIT} [ci skip]"
 git push --force --quiet "https://${GHTK}@github.com/zordius/fluxex.git" master:gh-pages > /dev/null 2>&1
 cd $PWD
+pwd
 
 # build examples
 npm run-script build_example
