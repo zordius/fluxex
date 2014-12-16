@@ -8,7 +8,7 @@ An extended Flux implement to build isomorphic javascript React app.
 Features
 --------
 
-* [CORE] Super lightweight, less than 300 lines of code.
+* [CORE] Super lightweight, less than 250 lines of code.
 * [CORE] Context based flux system.
 * [CORE] React Server side rendering + client mount.
 * [CORE] render HTML as top level react component, do not need container.
@@ -19,7 +19,7 @@ Features
 See the Fluxex Magic
 --------------------
 
-Check <a href="examples">example projects</a> you can see how fluxex do server side rendering + context deliver + Full HTML react rendering!
+Check <a href="https://github.com/zordius/fluxex/tree/master/examples">example projects</a> you can see how fluxex do server side rendering + context deliver + Full HTML react rendering!
 
 So far we do not include these in the example, but ....coming soon!
 
