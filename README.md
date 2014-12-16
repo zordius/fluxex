@@ -8,13 +8,13 @@ An extended Flux implement to build isomorphic javascript React app.
 Features
 --------
 
-**All in one starter**
+**All in one Starter**
 
-<img src="gulp_starter.jpg" />
+<a href="https://github.com/zordius/fluxex/blob/master/extra/gulpfile.js"><img src="https://raw.githubusercontent.com/zordius/fluxex/master/gulp_starter.jpg" /></a>
 
-**Start from Html.jsx**
+**Everything in React**
 
-<img src="start_from_html.jpg" />
+<a href="https://github.com/zordius/fluxex/blob/master/examples/04-infinite-scroll/components/Html.jsx"><img src="https://raw.githubusercontent.com/zordius/fluxex/master/start_from_html.jpg" /></a>
 
 * [CORE] Super lightweight, less than 250 lines of code.
 * [CORE] Context based flux system.

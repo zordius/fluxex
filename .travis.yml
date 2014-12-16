@@ -8,12 +8,12 @@ script:
 cache:
   directories:
     - node_modules
-    - examples/00-hello/node_modules
-    - examples/00-simple-single-page/node_modules
-    - examples/01-history-api/node_modules
-    - examples/02-routing/node_modules
-    - examples/03-service/node_modules
-    - examples/04-infinite-scroll/node_modules
+    - 'examples/00-hello/node_modules'
+    - 'examples/00-simple-single-page/node_modules'
+    - 'examples/01-history-api/node_modules'
+    - 'examples/02-routing/node_modules'
+    - 'examples/03-service/node_modules'
+    - 'examples/04-infinite-scroll/node_modules'
 env:
   global:
     - secure: "P2gJ13WKny0dIRdfMYxUeKN4t8m7TZYOJnW1AXla2Q064emFWOH+LW5AZK4RA6Lfu/gMhiBSJGZFrkowd+DrPLx1NJNR0yN1thable0iZbSfgGzbcJHO51kG3qprfcbcN5ZpsprkSuRXar5ard3LpSIS5TYpHd2SVGXPYxg1P9g="
