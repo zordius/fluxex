@@ -70,7 +70,7 @@ Fluxex is context based flux implemention. Server side react rendering can be do
 
 **Action**
 * An action creator should return a promise.
-* An action creator function can be executed with `.executeAction()` method under a Fluxex instance.
+* An action creator function can be executed by `.executeAction()`.
 * When the action be `.executeAction()`, the Fluxex instance can be referenced by `this`.
 * `.executeAction()` will return a promise, so you can manage asynchronous actions in promise way.
 ```javascript
@@ -88,13 +88,12 @@ var myAction = function (payload) {
 
 **Dispatcher**
 * the Fluxex instance itself is a dispatcher with `.dispatch()` method.
-* the dispatched `FOOBAR` action will trigger all stores with `handle_FOOBAR` method under the Fluxex instance.
+* the dispatched `FOOBAR` action will trigger all stores with `handle_FOOBAR` method.
 
 **Store**
 * Store is an instance, it is constructed by serialized status.
-* Store is created by a Fluxex object automatically.
-* Store naming and prototype information are provided by the `.stores` property of Fluxex instance.
-* Use `.getStore(name)` to get the store by name from an Fluxex instance.
+* Store is created by a Fluxex.
+* Use `.getStore(name)` to get the store by name.
 
 ```javascript
 var myStore = {
