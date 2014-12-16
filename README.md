@@ -50,3 +50,25 @@ Start from Scratch
 ------------------
 
 Read <a href="https://github.com/zordius/fluxex/blob/master/SCRATCH.md">Start from Scratch</a> to know how to create a fluxex application!
+
+Quick Start
+-----------
+
+**Prepare your project**
+```sh
+npm init
+npm install fluxex
+```
+
+**Use the Starter template**
+```sh
+node_modules/.bin/fluxex_starter
+```
+
+**Start the Server**
+```sh
+npm start
+```
+
+* Connect to http://localhost:3001/search?q=pizza
+* You can start your development now, gulp handled everything.
