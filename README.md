@@ -89,6 +89,10 @@ var myApp = require('fluxex').createApp({
 
 ```javascript
 // inside a component, requires Fluxex.mixin
+...
+onStoreChange: function () {
+    return this.getStore('myStore').getSomething();
+},
 handleClick: function () {
     this.executeAction(myAction, payload);  // this returns a promise
 }
