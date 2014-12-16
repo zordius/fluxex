@@ -27,11 +27,11 @@ describe('FluxexStore', function () {
         done();
     });
 
-    it('constructor should be FluxStore', function (done) {
+    it('constructor should be FluxexStore', function (done) {
         var F = new fluxstore({a: 1, b: 2});
 
         assert.equal(fluxstore, F.constructor);
-        assert.equal('FluxStore', F.constructor.name);
+        assert.equal('FluxexStore', F.constructor.name);
         done();
     });
 
