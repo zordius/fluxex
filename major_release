@@ -20,5 +20,6 @@ read -p "Press [Enter] to ENSURE commit changes and release the version: $VERSIO
 
 git commit -a -m "Prepare to release $VERSION"
 npm version $VERSION -m "$WHATSNEW"
+npm publish
 git push
 git push --tags
