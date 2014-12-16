@@ -10,3 +10,4 @@ cp $BASE/components/* components
 cp $BASE/stores/* stores
 cp $BASE/server.js index.js
 cp $BASE/fluxexapp.js fluxexapp.js
+cp $BASE/gulpfile.js gulpfile.js
