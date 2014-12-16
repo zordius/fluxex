@@ -88,21 +88,23 @@ var myApp = require('fluxex').createApp({
 * `.executeAction()` will return a promise, so you can manage asynchronous actions in promise way.
 
 ```javascript
-// inside a component, require Fluxex.mixin
+// inside a component, requires Fluxex.mixin
 handleClick: function () {
     this.executeAction(myAction, payload);  // this returns a promise
-}
-
-// myAction
-var myAction = function (payload) {
-    ... do your tasks ....
-    return this.dispatch('UPDATE_SOMETHING', ....); // this returns a promise
 }
 ```
 
 **Dispatcher**
 * the Fluxex instance itself is a dispatcher with `.dispatch()` method.
 * the dispatched `FOOBAR` action will trigger all stores with `handle_FOOBAR` method.
+
+```javascript
+// myAction
+var myAction = function (payload) {
+    ... do your tasks ....
+    return this.dispatch('UPDATE_SOMETHING', ....); // this returns a promise
+}
+```
 
 **Store**
 * Store is an instance, it is constructed by serialized status.
