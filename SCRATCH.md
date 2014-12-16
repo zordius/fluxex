@@ -18,6 +18,8 @@ Create Action
 [actions/page.js] Define an action.
 
 ```javascript
+'use strict';
+
 module.exports = function () {
     return this.dispatch('UPDATE_PRODUCT', {
         title: 'sample product',
@@ -32,6 +34,8 @@ Create Store
 [stores/product.js] Define your store interface and handle the action.
 
 ```javascript
+'use strict';
+
 module.exports = {
     handle_UPDATE_PRODUCT: function (payload) {
         this.set('data', payload);
