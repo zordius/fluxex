@@ -443,12 +443,9 @@ module.exports = {
 
 },{}],15:[function(require,module,exports){
 'use strict';
-/**
- * Fluxex core module to provide .createApp() and mixin for React components.
- * @module fluxex
- */
+
 var objectAssign = require('object-assign'),
-/** @lends Fluxex. */
+/** @lends Fluxex */
     Fluxex = require('./lib/fluxex');
 
 /**
