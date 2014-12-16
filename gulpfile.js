@@ -9,3 +9,9 @@ gulp.task('build_example', function () {
         shell(['cd <%=file.path %>;npm install ../..;npm prune;npm install;npm run-script build'])
     );
 });
+
+gulp.task('watch_document', function () {
+    return gulp.watch(['index.js', 'lib/*.js'], ['build_document']);
+});
+
+gulp.task('build_document', shell.task('jsdoc -p -d documents index.js lib/*.js'));
