@@ -11,7 +11,7 @@ Features
 * [CORE] Super lightweight, less than 250 lines of code.
 * [CORE] Context based flux system.
 * [CORE] React Server side rendering + client mount.
-* [CORE] render HTML as top level react component, do not need container.
+* [CORE] HTML as top level react component, no need container.
 * [EXTRA] express middleware helper functions.
 * [EXTRA] full integrated gulp task for development.
 * [EXTRA] pjax support.
@@ -19,13 +19,7 @@ Features
 See the Fluxex Magic
 --------------------
 
-Check <a href="https://github.com/zordius/fluxex/tree/master/examples">example projects</a> you can see how fluxex do server side rendering + context deliver + Full HTML react rendering!
-
-So far we do not include these in the example, but ....coming soon!
-
-* extra for service middleware.
-* example to cache the service.
-* example to cancel previous service call.
+* Check <a href="https://github.com/zordius/fluxex/tree/master/examples">example projects</a> you can see how fluxex do server side rendering + context deliver + Full HTML react rendering!
 
 Difference with Flux
 --------------------
