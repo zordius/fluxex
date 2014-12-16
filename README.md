@@ -55,8 +55,9 @@ node_modules/.bin/gulp develop
 
 * Connect to http://localhost:3001/search?q=pizza
 * You can start your development now, gulp handled everything (lint, bundle, restart, browsersync).
-* Edit components/Html.jsx to add your React components
-* Edit fluxexapp.js to add your store
+* Edit components/Html.jsx to include your React components.
+* Edit actions/routing.js to add routing.
+* Edit fluxexapp.js to add your store.
 * Put your actions, stores and components into correspond directory.
 
 Difference with Flux
