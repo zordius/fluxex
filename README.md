@@ -29,6 +29,11 @@ See the Fluxex Magic
 
 * Check <a href="https://github.com/zordius/fluxex/tree/master/examples">example projects</a> you can see how fluxex do server side rendering + context deliver + Full HTML react rendering!
 
+```html
+// This is the magic in the Html.jsx !!
+<script dangerouslySetInnerHTML={{__html: this.getInitScript()}}></script>
+```
+
 Start from Scratch
 ------------------
 
