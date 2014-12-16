@@ -20,9 +20,10 @@ Features
 * [CORE] Context based flux system.
 * [CORE] React Server side rendering + client mount.
 * [CORE] HTML as top level react component, no need container.
-* [EXTRA] express middleware helper functions.
+* [EXTRA] express middleware to serve the fluxex application.
 * [EXTRA] full integrated gulp task for development.
 * [EXTRA] pjax support.
+* [EXTRA] request and wrapped request service support.
 
 See the Fluxex Magic
 --------------------
