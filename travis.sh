@@ -26,6 +26,27 @@ fi
 git config --global user.name "Travis-CI"
 git config --global user.email "zordius@yahoo-inc.com"
 
+# build document
+npm run-script build_doc
+pushd documents
+if [ "${TRAVIS_BRANCH}" != "master" ]; then
+  echo "Document will be pushed here: http://zordius.github.io/fluxex/${TRAVIS_BRANCH}/"
+  cd ..
+  git init
+  git pull --quiet "https://${GHTK}@github.com/zordius/fluxex.git" gh-pages:master > /dev/null 2>&1
+  rm -rf $TRAVIS_BRANCH
+  mv documents $TRAVIS_BRANCH
+  git add $TRAVIS_BRANCH
+else
+  echo "Document will be pushed here: http://zordius.github.io/fluxex/"
+  git init
+  git add .
+fi
+
+git commit -m "Auto deployed to Github Pages from branch ${TRAVIS_BRANCH} @${TRAVIS_COMMIT} [ci skip]"
+git push --force --quiet "https://${GHTK}@github.com/zordius/fluxex.git" master:gh-pages > /dev/null 2>&1
+popd
+
 # build examples
 npm run-script build_example
 git commit -m "Auto generated example bundle from Travis [ci skip]" examples
