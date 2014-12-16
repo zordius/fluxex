@@ -60,7 +60,7 @@ node_modules/.bin/gulp develop
 ```
 
 * Connect to http://localhost:3001/search?q=pizza
-* You can start your development now, gulp handled everything (lint, bundle, restart, browsersync).
+* You can start your development now, gulp handled everything (jshint, browserify, nodemon, restart, browser-sync).
 * Put your actions, stores and components into correspond directories.
 * Edit components/Html.jsx to include your React components.
 * Edit actions/routing.js to add routing.
@@ -104,7 +104,7 @@ handleClick: function () {
 <hr/>
 **Dispatcher**
 * the Fluxex instance itself is a dispatcher with `.dispatch()` method.
-* the dispatched `FOOBAR` action will trigger all stores with `handle_FOOBAR` method.
+* the dispatched `FOOBAR` action will trigger all `handle_FOOBAR` method of all stores. When there is no `handle_FOOBAR` method in any store, an error will be throw.
 
 ```javascript
 // myAction
