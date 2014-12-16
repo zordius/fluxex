@@ -10,7 +10,7 @@ gulp.task('build_example', function () {
     );
 });
 
-gulp.task('watch_document', function () {
+gulp.task('watch_document', ['build_document'], function () {
     return gulp.watch(['index.js', 'lib/*.js'], ['build_document']);
 });
 
