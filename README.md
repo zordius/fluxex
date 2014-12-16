@@ -86,6 +86,7 @@ var myApp = require('fluxex').createApp({
 * An action creator function can be executed by `.executeAction()`.
 * When the action be `.executeAction()`, the Fluxex instance can be referenced by `this`.
 * `.executeAction()` will return a promise, so you can manage asynchronous actions in promise way.
+
 ```javascript
 // inside a component, require Fluxex.mixin
 handleClick: function () {
