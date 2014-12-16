@@ -11,7 +11,7 @@ gulp.task('build_example', function () {
 });
 
 gulp.task('watch_document', ['build_document'], function () {
-    return gulp.watch(['index.js', 'lib/*.js'], ['build_document']);
+    return gulp.watch(['README.md', 'index.js', 'lib/*.js', 'extra/*.js'], ['build_document']);
 });
 
-gulp.task('build_document', shell.task('jsdoc -p README.md index.js lib/*.js -d documents'));
+gulp.task('build_document', shell.task('jsdoc -p README.md index.js lib/*.js extra/*.js -d documents'));

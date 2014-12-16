@@ -61,32 +61,8 @@
 <h2>See the Fluxex Magic</h2><ul>
 <li>Check <a href="https://github.com/zordius/fluxex/tree/master/examples">example projects</a> you can see how fluxex do server side rendering + context deliver + Full HTML react rendering!</li>
 </ul>
-<h2>Difference with Flux</h2><p>Fluxex is context based flux implemention. Server side react rendering can be done easy when the flux is scoped under a request based context. Store and dispatcher are singletons in <a href="https://github.com/facebook/flux">Facebook flux</a>, but in fluxex they are not.</p>
-<p><strong>Fluxex</strong></p>
-<ul>
-<li>Fluxex is an instance, it is constructed by provided context.</li>
-<li>Fluxex can be serialized by <code>.toString()</code> and reconstructed by the serialized string. All server side store status can be transfered to client side by this way.</li>
-</ul>
-<p><strong>Action</strong></p>
-<ul>
-<li>An action creator should return a promise.</li>
-<li>An action creator function can be executed with <code>.executeAction()</code> method under a Fluxex instance.</li>
-<li>When the action be <code>.executeAction()</code>, the Fluxex instance can be referenced by <code>this</code>.</li>
-<li><code>.executeAction()</code> will return a promise, so you can manage asynchronous actions in promise way.</li>
-</ul>
-<p><strong>Dispatcher</strong></p>
-<ul>
-<li>the Fluxex instance itself is a dispatcher with <code>.dispatch()</code> method.</li>
-<li>the dispatched <code>FOOBAR</code> action will trigger all stores with <code>handle_FOOBAR</code> method under the Fluxex instance.</li>
-</ul>
-<p><strong>Store</strong></p>
-<ul>
-<li>Store is an instance, it is constructed by serialized status.</li>
-<li>Store is created by a Fluxex object automatically.</li>
-<li>Store naming and prototype information are provided by the <code>.stores</code> property of Fluxex instance.</li>
-<li>Use <code>.getStore(name)</code> to get the store by name from an Fluxex instance.</li>
-</ul>
-<h2>Start from Scratch</h2><p>Read <a href="https://github.com/zordius/fluxex/blob/master/SCRATCH.md">Start from Scratch</a> to know how to create a fluxex application!</p>
+<pre class="prettyprint source lang-html"><code>// This is the magic in the Html.jsx !!
+&lt;script dangerouslySetInnerHTML={{__html: this.getInitScript()}}>&lt;/script></code></pre><h2>Start from Scratch</h2><p>Read <a href="https://github.com/zordius/fluxex/blob/master/SCRATCH.md">Start from Scratch</a> to know how to create a fluxex application!</p>
 <h2>Quick Start</h2><p><strong>Prepare your project</strong></p>
 <pre class="prettyprint source lang-sh"><code>npm init
 npm install fluxex</code></pre><p><strong>Use the Starter template</strong></p>
@@ -94,7 +70,59 @@ npm install fluxex</code></pre><p><strong>Use the Starter template</strong></p>
 <pre class="prettyprint source lang-sh"><code>node_modules/.bin/gulp develop</code></pre><ul>
 <li>Connect to http://localhost:3001/search?q=pizza</li>
 <li>You can start your development now, gulp handled everything (lint, bundle, restart, browsersync).</li>
-</ul></article>
+<li>Put your actions, stores and components into correspond directories.</li>
+<li>Edit components/Html.jsx to include your React components.</li>
+<li>Edit actions/routing.js to add routing.</li>
+<li>Edit fluxexapp.js to add your store.</li>
+</ul>
+<h2>Difference with Flux</h2><p>Fluxex is context based flux implemention. Server side react rendering can be done easy when the flux is scoped under a request based context. Store and dispatcher are singletons in <a href="https://github.com/facebook/flux">Facebook flux</a>, but in fluxex they are not.</p>
+<p><hr/>
+<strong>Fluxex</strong></p>
+<ul>
+<li>Fluxex is an instance, it is constructed by provided context.</li>
+<li>Fluxex can be serialized by <code>.toString()</code> and reconstructed by the serialized string. All server side store status can be transfered to client side by this way.</li>
+<li>use the static <code>.createApp()</code> to create a Fluxex application.</li>
+</ul>
+<pre class="prettyprint source lang-javascript"><code>var myApp = require('fluxex').createApp({
+    product: require('./stores/product')
+}, process.cwd() + '/components/Html.jsx');</code></pre><p><hr/>
+<strong>Action</strong></p>
+<ul>
+<li>An action creator should return a promise.</li>
+<li>An action creator function can be executed by <code>.executeAction()</code>.</li>
+<li>When the action be <code>.executeAction()</code>, the Fluxex instance can be referenced by <code>this</code>.</li>
+<li><code>.executeAction()</code> will return a promise, so you can manage asynchronous actions in promise way.</li>
+</ul>
+<pre class="prettyprint source lang-javascript"><code>// inside a component, requires Fluxex.mixin
+...
+onStoreChange: function () {
+    return this.getStore('myStore').getSomething();
+},
+handleClick: function () {
+    this.executeAction(myAction, payload);  // this returns a promise
+}</code></pre><p><hr/>
+<strong>Dispatcher</strong></p>
+<ul>
+<li>the Fluxex instance itself is a dispatcher with <code>.dispatch()</code> method.</li>
+<li>the dispatched <code>FOOBAR</code> action will trigger all stores with <code>handle_FOOBAR</code> method.</li>
+</ul>
+<pre class="prettyprint source lang-javascript"><code>// myAction
+var myAction = function (payload) {
+    ... do your tasks ....
+    return this.dispatch('UPDATE_SOMETHING', ....); // this returns a promise
+}</code></pre><p><hr/>
+<strong>Store</strong></p>
+<ul>
+<li>Store is an instance, it is constructed by serialized status.</li>
+<li>Store is created by a Fluxex.</li>
+<li>Use <code>.getStore(name)</code> to get the store by name.</li>
+</ul>
+<pre class="prettyprint source lang-javascript"><code>var myStore = {
+    // handle this.dispatch('UPDATE_SOMETHING', ....)
+    handle_UPDATE_SOMETHING: function (payload) {
+        this.set('data', payload); // There are .get() and .set() in all stores
+    }
+}</code></pre></article>
     </section>
 
 
@@ -111,7 +139,7 @@ npm install fluxex</code></pre><p><strong>Use the Starter template</strong></p>
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha11</a> on Tue Dec 16 2014 16:37:21 GMT+0800 (CST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha11</a> on Tue Dec 16 2014 18:46:07 GMT+0800 (CST)
 </footer>
 
 <script> prettyPrint(); </script>
