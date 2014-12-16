@@ -24916,7 +24916,7 @@ objectAssign(Fluxex.prototype,
     },
 
     /**
-     * Render HTML execute an action with payload.
+     * Render HTML by executing an action with payload.
      * @param {Function} action - An action to prepare a page
      * @param {Object=} payload
      * @return {String} Rendered HTML
@@ -25084,18 +25084,54 @@ module.exports = Fluxex;
 },{"./fluxobj":174,"./fluxstore":175,"object-assign":179,"react":363,"when":196}],173:[function(require,module,exports){
 'use strict';
 
-var react = require('react');
+/**
+ * @external ReactComponent
+ * @see {@link http://facebook.github.io/react/docs/component-api.html}
+ */
+var react = require('react'),
 
-module.exports = {
+/**
+ * A React component mixin to provide Fluxex interface
+ * @mixin
+ * @borrows Fluxex#executeAction as #executeAction
+ * @borrows Fluxex#getStore as #getStore
+ * @mixes external:ReactComponent
+ */
+FluxexMixin = {
+    /**
+     * Define property for fluxex context delivery
+     * @instance
+     */
     contextTypes: {
         fluxex: react.PropTypes.object.isRequired
     },
+
+    /**
+     * Get the fluxex application. This is internal method for other mixin method, you will not use this directly.
+     * @protected
+     * @instance
+     * @return {Fluxex} The Fluxex application instance
+     */
     _getContext: function () {
         return this.context.fluxex;
     },
+
+    /**
+     * Get Javascript String to initialize a Fluxex application. This is internal method for other mixin method, you will not use this directly.
+     * @protected
+     * @instance
+     * @return {String} JavaScript code to initialize a Fluxex application
+     */
     _getInitScript: function () {
         return 'var FluxexApp = new Fluxex(' + this._getContext().toString() + ');FluxexApp.initClient()';
     },
+
+    /**
+     * Do store listener task. This is internal method for other mixin method, you will not use this directly.
+     * @protected
+     * @instance
+     * @param {string} method 'addChangeListener' or 'removeChangeListener'
+     */
     _doStoreListeners: function (method) {
         var I;
 
@@ -25113,22 +25149,42 @@ module.exports = {
             }
         }
     },
+
+    /**
+     * Get Javascript String to initialize a Fluxex application. You should only use this one time in your Html.jsx .
+     * @instance
+     * @return {String} JavaScript code to initialize a Fluxex application
+     */
     getInitScript: function () {
         return this._getContext().inited ? '' : this._getInitScript();
     },
+
     executeAction: function (action, payload) {
         return this._getContext().executeAction(action, payload);
     },
+
     getStore: function (name) {
         return this._getContext().getStore(name);
     },
+
+    /**
+     * This add store change listeners automatically
+     * @instance
+     */
     componentDidMount: function () {
         this._doStoreListeners('addChangeListener');
     },
+
+    /**
+     * This remove store change listeners automatically
+     * @instance
+     */
     componentWillUnmount: function () {
         this._doStoreListeners('removeChangeListener');
     }
 };
+
+module.exports = FluxexMixin;
 
 },{"react":363}],174:[function(require,module,exports){
 'use strict';
