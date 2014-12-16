@@ -57,7 +57,7 @@ git commit -m "Auto deployed to Github Pages from branch ${TRAVIS_BRANCH} @${TRA
 git push --force --quiet "https://${GHTK}@github.com/zordius/fluxex.git" master:gh-pages > /dev/null 2>&1
 
 # back to project directory
-if [ "${TRAVIS_BRANCH}" != "master" ]; then
+if [ "${TRAVIS_BRANCH}" == "master" ]; then
   cd ..
 fi
 
