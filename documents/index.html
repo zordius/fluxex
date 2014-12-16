@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Index</title>
+    <title>JSDoc: Home</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,15 +17,17 @@
 
 <div id="main">
 
-    <h1 class="page-title">Index</h1>
+    <h1 class="page-title">Home</h1>
 
     
+
 
 
     
 
 
     <h3> </h3>
+
 
 
 
@@ -44,20 +46,16 @@
         <article><h1>FluxEx</h1><p>An extended Flux implement to build isomorphic javascript React app.</p>
 <p><a href="https://www.npmjs.org/package/fluxex"><img src="https://img.shields.io/npm/v/fluxex.svg" alt="npm version"></a> <a href="https://david-dm.org/zordius/fluxex"><img src="https://david-dm.org/zordius/fluxex.png" alt="Dependency Status"></a>  <a href="https://travis-ci.org/zordius/fluxex"><img src="https://travis-ci.org/zordius/fluxex.svg?branch=master" alt="Build Status"></a> <a href="https://codeclimate.com/github/zordius/fluxex"><img src="https://codeclimate.com/github/zordius/fluxex/badges/coverage.svg" alt="Test Coverage"></a> <a href="https://codeclimate.com/github/zordius/fluxex"><img src="https://codeclimate.com/github/zordius/fluxex/badges/gpa.svg" alt="Code Climate"></a> <a href="LICENSE.txt"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License"></a></p>
 <h2>Features</h2><ul>
-<li>[CORE] Super lightweight, less than 300 lines of code.</li>
+<li>[CORE] Super lightweight, less than 250 lines of code.</li>
 <li>[CORE] Context based flux system.</li>
 <li>[CORE] React Server side rendering + client mount.</li>
-<li>[CORE] render HTML as top level react component, do not need container.</li>
+<li>[CORE] HTML as top level react component, no need container.</li>
 <li>[EXTRA] express middleware helper functions.</li>
 <li>[EXTRA] full integrated gulp task for development.</li>
 <li>[EXTRA] pjax support.</li>
 </ul>
-<h2>See the Fluxex Magic</h2><p>Check <a href="examples">example projects</a> you can see how fluxex do server side rendering + context deliver + Full HTML react rendering!</p>
-<p>So far we do not include these in the example, but ....coming soon!</p>
-<ul>
-<li>extra for service middleware.</li>
-<li>example to cache the service.</li>
-<li>example to cancel previous service call.</li>
+<h2>See the Fluxex Magic</h2><ul>
+<li>Check <a href="https://github.com/zordius/fluxex/tree/master/examples">example projects</a> you can see how fluxex do server side rendering + context deliver + Full HTML react rendering!</li>
 </ul>
 <h2>Difference with Flux</h2><p>Fluxex is context based flux implemention. Server side react rendering can be done easy when the flux is scoped under a request based context. Store and dispatcher are singletons in <a href="https://github.com/facebook/flux">Facebook flux</a>, but in fluxex they are not.</p>
 <p><strong>Fluxex</strong></p>
@@ -84,103 +82,15 @@
 <li>Store naming and prototype information are provided by the <code>.stores</code> property of Fluxex instance.</li>
 <li>Use <code>.getStore(name)</code> to get the store by name from an Fluxex instance.</li>
 </ul>
-<h2>Quick Start!</h2><p><strong>Prepare the project</strong></p>
-<pre class="prettyprint source"><code>npm init
-npm install fluxex react node-jsx express browserify watchify reactify uglifyify jshint-stylish nodemon browser-sync gulp gulp-jshint gulp-react gulp-cached gulp-util vinyl-source-stream
-mkdir actions
-mkdir components
-mkdir stores</code></pre><p><strong>Create Action</strong></p>
-<p>[actions/page.js] Define an action.</p>
-<pre class="prettyprint source lang-javascript"><code>module.exports = function () {
-    return this.dispatch('UPDATE_PRODUCT', {
-        title: 'sample product',
-        price: 12345,
-        sold: 0
-    });
-};</code></pre><p><strong>Create Store</strong></p>
-<p>[stores/product.js] Define your store API and handle the action.</p>
-<pre class="prettyprint source lang-javascript"><code>module.exports = {
-    handle_UPDATE_PRODUCT: function (payload) {
-        this.set('data', payload, true);
-        this.emitChange();
-    },
-    getData: function () {
-        return this.get('data');
-    }
-};</code></pre><p><strong>Create HTML</strong></p>
-<p>[components/Html.jsx] Define your page as react component.</p>
-<pre class="prettyprint source lang-jsx"><code>'use strict';
-
-var React = require('react'),
-    Fluxex = require('fluxex'),
-
-Html = React.createClass({
-    mixins: [
-        Fluxex.mixin,
-        require('fluxex/extra/storechange'),
-        {listenStores: ['product']}
-    ],
-
-    getStateFromStores: function () {
-        return this.getStore('product').getData();
-    },
-
-    handleClick: function () {
-        var product = this.state;
-        product.sold++;
-        this.executeAction(function () {
-            return this.dispatch('UPDATE_PRODUCT', product);
-        });
-    },
-
-    render: function () {
-        return (
-        &lt;html>
-         &lt;head>
-          &lt;meta charSet=&quot;utf-8&quot; />
-         &lt;/head>
-         &lt;body onClick={this.handleClick}>
-          &lt;ul>
-           &lt;li>Product: {this.state.title}&lt;/li>
-           &lt;li>Price: {this.state.price}&lt;/li>
-           &lt;li>Sold: {this.state.sold}&lt;/li>
-          &lt;/ul>
-         &lt;script src=&quot;/static/js/main.js&quot;>&lt;/script>
-         &lt;script dangerouslySetInnerHTML={{__html: this.getInitScript()}}>&lt;/script>
-         &lt;/body>
-        &lt;/html>
-        );
-    }
-});
-
-module.exports = Html;</code></pre><p><strong>Create Your App</strong></p>
-<p>[fluxexapp.js] Provide store <code>{name: implementation}</code> pairs and Html.jsx.</p>
-<pre class="prettyprint source lang-javascript"><code>'use strict';
-
-module.exports = require('fluxex').createApp({
-    product: require('./stores/product')
-}, process.cwd() + '/components/Html.jsx');</code></pre><p><strong>The Server</strong></p>
-<p>[index.js] Create an express server.</p>
-<pre class="prettyprint source lang-javascript"><code>'use strict';
-
-var express = require('express'),
-    fluxexapp = require('./fluxexapp'),
-    pageAction = require('./actions/page'),
-    fluxexServerExtra = require('fluxex/extra/server'),
-    app = express();
-
-// Provide /static/js/main.js
-fluxexServerExtra.initStatic(app);
-
-// Mount test page at /test
-app.use('/test', fluxexServerExtra.middleware(fluxexapp, pageAction));
-
-// Start server
-app.listen(3000);
-console.log('Fluxex started on port 3000');</code></pre><p><strong>Create gulp task</strong></p>
-<p>[gulpfile.js] Use the fluxex gulpfile extra.</p>
-<pre class="prettyprint source lang-javascript"><code>require('fluxex/extra/gulpfile');</code></pre><p><strong>Start the server</strong></p>
-<p><code>gulp develop</code> then browse http://localhost:3001/test , click on the page to see React rendering!</p></article>
+<h2>Start from Scratch</h2><p>Read <a href="https://github.com/zordius/fluxex/blob/master/SCRATCH.md">Start from Scratch</a> to know how to create a fluxex application!</p>
+<h2>Quick Start</h2><p><strong>Prepare your project</strong></p>
+<pre class="prettyprint source lang-sh"><code>npm init
+npm install fluxex</code></pre><p><strong>Use the Starter template</strong></p>
+<pre class="prettyprint source lang-sh"><code>node_modules/.bin/fluxex_starter</code></pre><p><strong>Start the Server</strong></p>
+<pre class="prettyprint source lang-sh"><code>node_modules/.bin/gulp develop</code></pre><ul>
+<li>Connect to http://localhost:3001/search?q=pizza</li>
+<li>You can start your development now, gulp handled everything (lint, bundle, restart, browsersync).</li>
+</ul></article>
     </section>
 
 
@@ -191,30 +101,16 @@ console.log('Fluxex started on port 3000');</code></pre><p><strong>Create gulp t
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-fluxex.html">fluxex</a></li></ul><h3>class</h3><ul><li><a href="Fluxex.html">Fluxex</a></li><li><a href="FluxexObject.html">FluxexObject</a></li><li><a href="FluxexStore.html">FluxexStore</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-fluxex.html">fluxex</a></li></ul><h3>Classes</h3><ul><li><a href="Fluxex.html">Fluxex</a></li><li><a href="FluxexObject.html">FluxexObject</a></li><li><a href="FluxexStore.html">FluxexStore</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha11</a> 
-    using <a href="https://github.com/allenhwkim/angular-jsdoc">Angular-JSDoc template </a> 
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha11</a> on Tue Dec 16 2014 14:19:15 GMT+0800 (CST)
 </footer>
 
 <script> prettyPrint(); </script>
 <script src="scripts/linenumber.js"> </script>
-<script>
-  // scroll to the current document navigation
-  var href=window.location.href.match(/\/([^\/]+$)/)[1];
-  if (currentNav = document.querySelector("nav a[href='"+href+"']"))
-    currentNav.scrollIntoView(true);
-  // scroll to the top of the document
-  if (window.location.hash == "")
-    document.querySelector("body").scrollIntoView(true);
-  // adjust the width of main section by navigation width
-  var navWidth = document.querySelector('nav').getBoundingClientRect().width;
-  var mainWidth = document.querySelector('#main').getBoundingClientRect().width;
-  document.querySelector('#main').style.width = (mainWidth - navWidth)+'px';
-</script>
 </body>
 </html>

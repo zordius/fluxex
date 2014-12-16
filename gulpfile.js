@@ -14,4 +14,4 @@ gulp.task('watch_document', ['build_document'], function () {
     return gulp.watch(['index.js', 'lib/*.js'], ['build_document']);
 });
 
-gulp.task('build_document', shell.task('jsdoc -t node_modules/angular-jsdoc/template -c node_modules/angular-jsdoc/conf.json README.md -p -d documents index.js lib/*.js'));
+gulp.task('build_document', shell.task('jsdoc -p README.md index.js lib/*.js -d documents'));

@@ -57,8 +57,7 @@ git commit -m "Auto deployed to Github Pages from branch ${TRAVIS_BRANCH} @${TRA
 git push --force --quiet "https://${GHTK}@github.com/zordius/fluxex.git" master:gh-pages > /dev/null 2>&1
 
 # back to project directory
-cd /
-cd $PWD
+cd "$PWD"
 pwd
 
 # Bump npm version and push back to git
