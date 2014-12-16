@@ -14,4 +14,4 @@ app.use('/test', fluxexServerExtra.middleware(fluxexapp, pageAction));
 
 // Start server
 app.listen(3000);
-console.log('Fluxex started on port 3000');
+console.log('Fluxex started! Go http://localhost:3001/test');

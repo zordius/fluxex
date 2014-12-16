@@ -5,7 +5,8 @@ var other_actions = require('./sample'),
 server_actions = {
     samplePageWithQuery: function (req) {
         // Dark magic, set query direct to store
-        this.getStore('page').set('query', req.query, true);
+        // this.dispatch() is correct way to do this
+        this.getStore('page').set('query', req.query);
         return this.executeAction(server_actions.samplePage);
     },
     samplePage: function () {

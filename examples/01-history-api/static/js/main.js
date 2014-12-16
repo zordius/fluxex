@@ -10590,7 +10590,7 @@ define(function (require) {
 })(typeof define === 'function' && define.amd ? define : function (factory) { module.exports = factory(require); });
 
 },{"./lib/Promise":19,"./lib/TimeoutError":21,"./lib/apply":22,"./lib/decorators/array":23,"./lib/decorators/flow":24,"./lib/decorators/fold":25,"./lib/decorators/inspect":26,"./lib/decorators/iterate":27,"./lib/decorators/progress":28,"./lib/decorators/timed":29,"./lib/decorators/unhandledRejection":30,"./lib/decorators/with":31}],36:[function(require,module,exports){
-"use strict";module.exports={handle_UPDATE_PRODUCT:function(t){this.set("data",t,!0),this.emitChange()}};
+"use strict";module.exports={handle_UPDATE_PRODUCT:function(t){this.set("data",t),this.emitChange()}};
 },{}],37:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.

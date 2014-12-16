@@ -41174,7 +41174,7 @@ module.exports = Router
 });
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],217:[function(require,module,exports){
-"use strict";module.exports={handle_UPDATE_SEARCH_RESULT:function(t){this.get("data.keyword")!==t.keyword?this.set("data",t,!0):this.set("data.videos",function(e){return Array.prototype.concat.call(e,t.videos)}),this.emitChange()}};
+"use strict";module.exports={handle_UPDATE_SEARCH_RESULT:function(t){this.get("data.keyword")!==t.keyword?this.set("data",t):this.set("data.videos",function(e){return Array.prototype.concat.call(e,t.videos)}),this.emitChange()}};
 },{}],218:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.

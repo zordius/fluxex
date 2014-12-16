@@ -10343,11 +10343,11 @@ define(function (require) {
 })(typeof define === 'function' && define.amd ? define : function (factory) { module.exports = factory(require); });
 
 },{"./lib/Promise":14,"./lib/TimeoutError":16,"./lib/apply":17,"./lib/decorators/array":18,"./lib/decorators/flow":19,"./lib/decorators/fold":20,"./lib/decorators/inspect":21,"./lib/decorators/iterate":22,"./lib/decorators/progress":23,"./lib/decorators/timed":24,"./lib/decorators/unhandledRejection":25,"./lib/decorators/with":26}],31:[function(require,module,exports){
-"use strict";module.exports={handle_UPDATE_TITLE:function(t){this.get("title")?document.getElementsByTagName("title")[0].innerHTML=t:this.set("title",t,!0)}};
+"use strict";module.exports={handle_UPDATE_TITLE:function(t){this.get("title")?document.getElementsByTagName("title")[0].innerHTML=t:this.set("title",t)}};
 },{}],32:[function(require,module,exports){
-"use strict";module.exports={handle_UPDATE_PRODUCT:function(t){this.set("data",t,!0),this.emitChange()}};
+"use strict";module.exports={handle_UPDATE_PRODUCT:function(t){this.set("data",t),this.emitChange()}};
 },{}],33:[function(require,module,exports){
-"use strict";module.exports={handle_UPDATE_SAMPLE:function(t){this.set("c",t,!0),this.emitChange()}};
+"use strict";module.exports={handle_UPDATE_SAMPLE:function(t){this.set("c",t),this.emitChange()}};
 },{}],34:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.

@@ -41098,7 +41098,7 @@ module.exports = Router
 },{"request":195,"when":380}],216:[function(require,module,exports){
 "use strict";var fetch=require("./fetch");module.exports=function(e){if(!e)throw new Error("call yql without yql statement!");return fetch("yql",{qs:{q:e,format:"json"},json:!0}).then(function(e){if(e.body&&e.body.query&&e.body.query.hasOwnProperty("results"))return e.body.query.results;throw new Error({message:"no query.results in response",request:e})})};
 },{"./fetch":215}],217:[function(require,module,exports){
-"use strict";module.exports={handle_UPDATE_SEARCH_RESULT:function(t){this.set("data",t,!0),this.emitChange()}};
+"use strict";module.exports={handle_UPDATE_SEARCH_RESULT:function(t){this.set("data",t),this.emitChange()}};
 },{}],218:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.

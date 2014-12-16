@@ -10356,7 +10356,7 @@ define(function (require) {
 })(typeof define === 'function' && define.amd ? define : function (factory) { module.exports = factory(require); });
 
 },{"./lib/Promise":13,"./lib/TimeoutError":15,"./lib/apply":16,"./lib/decorators/array":17,"./lib/decorators/flow":18,"./lib/decorators/fold":19,"./lib/decorators/inspect":20,"./lib/decorators/iterate":21,"./lib/decorators/progress":22,"./lib/decorators/timed":23,"./lib/decorators/unhandledRejection":24,"./lib/decorators/with":25}],30:[function(require,module,exports){
-"use strict";module.exports={handle_UPDATE_PRODUCT:function(t){this.set("data",t,!0),this.emitChange()},getData:function(){return this.get("data")}};
+"use strict";module.exports={handle_UPDATE_PRODUCT:function(t){this.set("data",t),this.emitChange()},getData:function(){return this.get("data")}};
 },{}],31:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.

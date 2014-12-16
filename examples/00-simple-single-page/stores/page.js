@@ -8,7 +8,7 @@ module.exports = {
             /*global document*/
             document.getElementsByTagName('title')[0].innerHTML = title;
         } else {
-            this.set('title', title, true);
+            this.set('title', title);
         }
     }
 };

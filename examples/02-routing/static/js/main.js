@@ -10855,7 +10855,7 @@ module.exports = Router
 });
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],42:[function(require,module,exports){
-"use strict";module.exports={handle_UPDATE_PRODUCT:function(t){this.set("data",t,!0),this.emitChange()},handle_UPDATE_TOP_FIVE_PRODUCTS:function(t){this.set("top5",t,!0),this.emitChange()}};
+"use strict";module.exports={handle_UPDATE_PRODUCT:function(t){this.set("data",t),this.emitChange()},handle_UPDATE_TOP_FIVE_PRODUCTS:function(t){this.set("top5",t),this.emitChange()}};
 },{}],43:[function(require,module,exports){
 /**
  * Copyright 2013-2014, Facebook, Inc.

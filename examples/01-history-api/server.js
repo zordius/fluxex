@@ -14,4 +14,4 @@ app.use('/product', fluxexServerExtra.middleware(fluxexapp, serverAction.sampleP
 
 // Start server
 app.listen(3000);
-console.log('Fluxex started on port 3000');
+console.log('Fluxex started! Go http://localhost:3001/product?id=124');
