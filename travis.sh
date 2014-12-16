@@ -27,12 +27,19 @@ git config --global user.name "Travis-CI"
 git config --global user.email "zordius@yahoo-inc.com"
 
 # Bump npm version and push back to git
-npm version prerelease -m "Auto commit for npm publish version %s [ci skip]"
-git push "https://${GHTK}@github.com/zordius/fluxex.git" --tags > /dev/null 2>&1
+TODAY=`date +"%Y-%m-%d"`
+RELEASED=`npm info fluxex |grep $TODAY`
 
-# Deploy to npm
-gem install dpl
-dpl --provider=npm --email='zordius@yahoo-inc.com' --api-key=${NPM_API_KEY} > /dev/null 2>&1
+if [ "${RELEASED}" == "" ]; then
+  npm version prerelease -m "Auto commit for npm publish version %s [ci skip]"
+  git push "https://${GHTK}@github.com/zordius/fluxex.git" --tags > /dev/null 2>&1
+
+  # Deploy to npm
+  gem install dpl
+  dpl --provider=npm --email='zordius@yahoo-inc.com' --api-key=${NPM_API_KEY} > /dev/null 2>&1
+else
+  echo One day on pre-release, $TODAY already released so skip.
+fi
 
 # build examples
 npm run-script build_example
