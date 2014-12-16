@@ -26,6 +26,14 @@ fi
 git config --global user.name "Travis-CI"
 git config --global user.email "zordius@yahoo-inc.com"
 
+# Bump npm version and push back to git
+npm version prerelease -m "Auto commit for npm publish version %s [ci skip]"
+git push "https://${GHTK}@github.com/zordius/fluxex.git" --tags > /dev/null 2>&1
+
+# Deploy to npm
+gem install dpl
+dpl --provider=npm --email='zordius@yahoo-inc.com' --api-key=${NPM_API_KEY} > /dev/null 2>&1
+
 # build examples
 npm run-script build_example
 git commit -m "Auto generated example bundle from Travis [ci skip]" examples
@@ -51,15 +59,3 @@ fi
 # push document
 git commit -m "Auto deployed to Github Pages from branch ${TRAVIS_BRANCH} @${TRAVIS_COMMIT} [ci skip]"
 git push --force --quiet "https://${GHTK}@github.com/zordius/fluxex.git" master:gh-pages > /dev/null 2>&1
-
-# back to project
-cd ..
-cd fluxex
-
-# Bump npm version and push back to git
-npm version prerelease -m "Auto commit for npm publish version %s [ci skip]"
-git push "https://${GHTK}@github.com/zordius/fluxex.git" --tags > /dev/null 2>&1
-
-# Deploy to npm
-gem install dpl
-dpl --provider=npm --email='zordius@yahoo-inc.com' --api-key=${NPM_API_KEY} > /dev/null 2>&1
