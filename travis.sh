@@ -57,8 +57,9 @@ git commit -m "Auto deployed to Github Pages from branch ${TRAVIS_BRANCH} @${TRA
 git push --force --quiet "https://${GHTK}@github.com/zordius/fluxex.git" master:gh-pages > /dev/null 2>&1
 
 # back to project directory
-cd "$PWD"
-pwd
+if [ "${PWD}" != `pwd` ]; then
+  cd ..
+fi
 
 # Bump npm version and push back to git
 npm version prerelease -m "Auto commit for npm publish version %s [ci skip]"
