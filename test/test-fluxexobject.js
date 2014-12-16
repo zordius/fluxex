@@ -77,15 +77,15 @@ describe('FluxexObject', function () {
     });
 
     describe('.set()', function () {
-        it('do not set on undefined key by default', function (done) {
+        it('can auto create undefined key when no 3rd param', function (done) {
             var F = new fluxexobj({a: {b: 3}});
 
             F.set('c', 4);
-            assert.equal(undefined, F.get('c'));
+            assert.equal(4, F.get('c'));
             done();
         });
 
-        it('can auto create undefined key', function (done) {
+        it('can auto create undefined key when 3rd param is true', function (done) {
             var F = new fluxexobj({a: {b: 3}});
 
             F.set('c', 4, true);

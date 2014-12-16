@@ -46,11 +46,11 @@ describe('fluxex', function () {
     });
 
     describe('.set()', function () {
-        it('do not set on undefined key by default', function (done) {
+        it('can set property by path', function (done) {
             var F = new fluxex({a: {b: 3}});
 
             F.set('c', 4);
-            assert.equal(undefined, F.get('c'));
+            assert.equal(4, F.get('c'));
             done();
         });
     });
