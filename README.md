@@ -25,7 +25,7 @@ Features
 * [EXTRA] pjax support.
 * [EXTRA] request and wrapped request service support.
 
-See the Fluxex Magic
+See the FluxEx Magic
 --------------------
 
 * Check <a href="https://github.com/zordius/fluxex/tree/master/examples">example projects</a> you can see how fluxex do server side rendering + context deliver + Full HTML react rendering!
@@ -69,7 +69,7 @@ node_modules/.bin/gulp develop
 Difference with Flux
 --------------------
 
-Fluxex is context based flux implemention. Server side react rendering can be done easy when the flux is scoped under a request based context. Store and dispatcher are singletons in <a href="https://github.com/facebook/flux">Facebook flux</a>, but in fluxex they are not.
+FluxEx is context based flux implemention. Server side react rendering can be done easy when the flux is scoped under a request based context. Store and dispatcher are singletons in <a href="https://github.com/facebook/flux">Facebook flux</a>, but in fluxex they are not.
 
 <hr/>
 **Fluxex**
