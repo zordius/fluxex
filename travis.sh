@@ -28,9 +28,9 @@ git config --global user.email "zordius@yahoo-inc.com"
 
 # Bump npm version and push back to git
 TODAY=`date +"%Y-%m-%d"`
-RELEASED=`npm info fluxex |grep $TODAY`
+RELEASED=`npm info fluxex |grep $TODAY | wc -l`
 
-if [ "${RELEASED}" == "" ]; then
+if [ "${RELEASED}" == "0" ]; then
   npm version prerelease -m "Auto commit for npm publish version %s [ci skip]"
   git push "https://${GHTK}@github.com/zordius/fluxex.git" --tags > /dev/null 2>&1
 

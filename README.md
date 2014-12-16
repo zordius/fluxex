@@ -67,6 +67,13 @@ Fluxex is context based flux implemention. Server side react rendering can be do
 **Fluxex**
 * Fluxex is an instance, it is constructed by provided context.
 * Fluxex can be serialized by `.toString()` and reconstructed by the serialized string. All server side store status can be transfered to client side by this way.
+* use the static `.createApp()` to create a Fluxex application.
+
+```javascript
+var myApp = require('fluxex').createApp({
+    product: require('./stores/product')
+}, process.cwd() + '/components/Html.jsx');
+```
 
 **Action**
 * An action creator should return a promise.
