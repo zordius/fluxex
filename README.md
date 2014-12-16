@@ -8,6 +8,12 @@ An extended Flux implement to build isomorphic javascript React app.
 Features
 --------
 
+**All in one starter**
+<img src="gulp_starter.jpg" />
+
+**Start from Html.jsx**
+<img src="start_from_html.jpg" />
+
 * [CORE] Super lightweight, less than 250 lines of code.
 * [CORE] Context based flux system.
 * [CORE] React Server side rendering + client mount.
