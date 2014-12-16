@@ -1,7 +1,7 @@
 How to try this
 ===============
 
-This is final result of <a href="https://github.com/zordius/fluxex/SCRATCH.md">Start from Scratch</a>.
+This is final result of <a href="https://github.com/zordius/fluxex/blob/master/SCRATCH.md">Start from Scratch</a>.
 
 1. npm install ../..
 2. npm install

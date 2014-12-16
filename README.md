@@ -49,4 +49,4 @@ Fluxex is context based flux implemention. Server side react rendering can be do
 Start from Scratch
 ------------------
 
-Read <a href="https://github.com/zordius/fluxex/SCRATCH.md">Start from Scratch</a> to know how to create a fluxex application!
+Read <a href="https://github.com/zordius/fluxex/blob/master/SCRATCH.md">Start from Scratch</a> to know how to create a fluxex application!
