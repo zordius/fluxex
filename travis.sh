@@ -31,10 +31,6 @@ npm run-script build_example
 git commit -m "Auto generated example bundle from Travis [ci skip]" examples
 git push "https://${GHTK}@github.com/zordius/fluxex.git" HEAD:${TRAVIS_BRANCH} > /dev/null 2>&1
 
-# Save pwd
-PWD=`pwd`
-echo Current directory: $PWD
-
 # build document
 npm run-script build_doc
 cd documents
@@ -56,10 +52,9 @@ fi
 git commit -m "Auto deployed to Github Pages from branch ${TRAVIS_BRANCH} @${TRAVIS_COMMIT} [ci skip]"
 git push --force --quiet "https://${GHTK}@github.com/zordius/fluxex.git" master:gh-pages > /dev/null 2>&1
 
-# back to project directory
-if [ "${TRAVIS_BRANCH}" == "master" ]; then
-  cd ..
-fi
+# back to project
+cd ..
+cd fluxex
 
 # Bump npm version and push back to git
 npm version prerelease -m "Auto commit for npm publish version %s [ci skip]"
