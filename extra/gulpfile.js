@@ -1,7 +1,6 @@
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
     react = require('gulp-react'),
-    cache = require('gulp-cached'),
     jshint = require('gulp-jshint'),
     buffer = require('vinyl-buffer'),
     source = require('vinyl-source-stream'),
