@@ -1,6 +1,6 @@
 {
   "name": "fluxex",
-  "version": "0.1.10-3",
+  "version": "0.1.10-4",
   "description": "An extended Flux implement to build isomorphic javascript React app.",
   "author": "Zordius <zordius@yahoo-inc.com>",
   "contributors": [
