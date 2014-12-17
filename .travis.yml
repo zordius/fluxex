@@ -8,6 +8,8 @@ script:
 cache:
   directories:
     - node_modules
+addons:
+  sauce_connect: true
 env:
   global:
     - secure: "P2gJ13WKny0dIRdfMYxUeKN4t8m7TZYOJnW1AXla2Q064emFWOH+LW5AZK4RA6Lfu/gMhiBSJGZFrkowd+DrPLx1NJNR0yN1thable0iZbSfgGzbcJHO51kG3qprfcbcN5ZpsprkSuRXar5ard3LpSIS5TYpHd2SVGXPYxg1P9g="
