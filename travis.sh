@@ -22,6 +22,13 @@ if [ "${TRAVIS_BRANCH}" != "master" ]; then
   exit 0
 fi
 
+# Do browser tests
+cd test_browser
+npm install ..
+npm install
+npm test
+cd ..
+
 # Setup git
 git config --global user.name "Travis-CI"
 git config --global user.email "zordius@yahoo-inc.com"
