@@ -3,10 +3,11 @@ var gulp = require('gulp'),
     react = require('gulp-react'),
     cache = require('gulp-cached'),
     jshint = require('gulp-jshint'),
+    buffer = require('vinyl-buffer'),
     source = require('vinyl-source-stream'),
     browserify = require('browserify'),
     watchify = require('watchify'),
-    uglifyify = require("uglifyify"),
+    uglify = require('gulp-uglify'),
     nodemon = require('nodemon'),
     browserSync = require('browser-sync'),
     serverStarted = false,
@@ -64,15 +65,16 @@ buildApp = function (watch) {
             gutil.log('[browserify] ' + F[0] + ' updated');
             bundleAll(b);
         });
-    } else {
-        b.transform(uglifyify);
     }
 
     return bundleAll(b);
 };
 
 gulp.task('build_app', function () {
-    return buildApp(false);
+    return buildApp(false)
+        .pipe(buffer())
+        .pipe(uglify())
+        .pipe(gulp.dest(configs.static_dir + 'js/'));
 });
 
 gulp.task('watch_app', function () {
