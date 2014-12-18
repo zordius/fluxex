@@ -16,12 +16,9 @@ gulp.task('test_server', ['buildall'], function () {
     });
 });
 
-gulp.task('test_run_protractor', function () {
-    return shell.task('protractor testconf.js')
-    .on('error', function () {
-        // ignore error
-    });
-});
+gulp.task('test_run_protractor', shell.task('protractor testconf.js', {
+    ignoreErrors: true
+}));
 
 gulp.task('test_end_protractor', ['test_run_protractor'], function () {
     nodemon.emit('quit');
