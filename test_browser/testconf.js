@@ -1,6 +1,12 @@
-exports.config = {
+var config = {
   sauceUser: process.env.SAUCE_USERNAME,
   sauceKey: process.env.SAUCE_ACCESS_KEY,
+
+  capabilities: {
+    name: 'Browser Test for FluxEx',
+    public: 'public',
+    tags: [process.env.TRAVIS_JOB_ID, process.env.TRAVIS_COMMIT, 'fluxex']
+  },
 
   multiCapabilities: [
     {browserName: 'chrome'},
@@ -35,3 +41,5 @@ exports.config = {
     defaultTimeoutInterval: 30000
   }
 };
+
+module.exports.config = config;
