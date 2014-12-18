@@ -8,19 +8,19 @@
     "test": "gulp test_server;node badge.js > badge.json;badge-render badge.json badge.html --png ../badge.png --scale 0.7 -width 420 -height 60"
   },
   "dependencies": {
-    "badge-render": "0.0.2",
     "express": "4.10.4",
-    "fluxex": "*",
-    "gulp-shell": "^0.2.11",
-    "protractor": "1.5.0"
+    "fluxex": "*"
   },
   "devDependencies": {
+    "protractor": "1.5.0",
+    "badge-render": "0.0.2",
     "browserify": "6.3.3",
     "watchify": "2.1.1",
     "reactify": "0.14.0",
     "jshint-stylish": "1.0.0",
     "nodemon": "1.2.1",
     "browser-sync": "1.7.1",
+    "gulp-shell": "^0.2.11",
     "gulp": "3.8.9",
     "gulp-jshint": "1.8.6",
     "gulp-react": "2.0.0",
