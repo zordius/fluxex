@@ -35,7 +35,7 @@ var config = {
 
 config.multiCapabilities = config.browsers.map(function (cfg) {
   cfg.build = process.env.TRAVIS_BUILD_NUMBER;
-  cfg['tunnel-identifier'] = process.env.TRAVIS_BUILD_NUMBER;
+  cfg['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER;
   cfg.name = 'Browser Test for FluxEx';
   cfg.public = 'public';
   cfg.tags = [process.env.TRAVIS_JOB_ID, process.env.TRAVIS_COMMIT, 'fluxex'];
