@@ -3,13 +3,7 @@ var config = {
   sauceUser: process.env.SAUCE_USERNAME,
   sauceKey: process.env.SAUCE_ACCESS_KEY,
 
-  capabilities: {
-    name: 'Browser Test for FluxEx',
-    public: 'public',
-    tags: [process.env.TRAVIS_JOB_ID, process.env.TRAVIS_COMMIT, 'fluxex']
-  },
-
-  multiCapabilities: [
+  browsers: [
     {browserName: 'chrome'},
     {browserName: 'firefox'},
     {browserName: 'safari', version: 7, platform: 'OS X 10.9'},
@@ -38,5 +32,14 @@ var config = {
     defaultTimeoutInterval: 30000
   }
 };
+
+config.multiCapabilities = config.browsers.map(function (cfg) {
+  cfg.build = process.env.TRAVIS_BUILD_NUMBER;
+  cfg['tunnel-identifier'] = process.env.TRAVIS_BUILD_NUMBER;
+  cfg.name = 'Browser Test for FluxEx';
+  cfg.public = 'public';
+  cfg.tags = [process.env.TRAVIS_JOB_ID, process.env.TRAVIS_COMMIT, 'fluxex'];
+  return cfg;
+});
 
 module.exports.config = config;
