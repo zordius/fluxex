@@ -1,4 +1,5 @@
 var config = {
+  sauceSeleniumAddress: 'localhost:4445/wd/hub',
   sauceUser: process.env.SAUCE_USERNAME,
   sauceKey: process.env.SAUCE_ACCESS_KEY,
 
