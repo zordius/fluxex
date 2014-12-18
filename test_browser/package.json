@@ -5,9 +5,10 @@
   "author": "Zordius <zordius@yahoo-inc.com>",
   "main": "server.js",
   "scripts": {
-    "test": "gulp test_server"
+    "test": "gulp test_server;node badge.js > badge.json;badge-render badge.json badge.html --png ../badge.png --scale 0.7 -width 420 -height 60"
   },
   "dependencies": {
+    "badge-render": "0.0.2",
     "express": "4.10.4",
     "fluxex": "*",
     "gulp-shell": "^0.2.11",
