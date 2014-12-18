@@ -11,9 +11,9 @@ gulp.task('test_server', ['buildall'], function () {
         ext: 'do_not_watch'
     }).on('start', function () {
         setTimeout(function () {
-            gulp.start(['test_start_protractor']);
+            gulp.start(['test_run_protractor']);
         }, 1000);
     });
 });
 
-gulp.task('test_start_protractor', shell.task('protractor testconf.js'));
+gulp.task('test_run_protractor', shell.task('protractor testconf.js'));
