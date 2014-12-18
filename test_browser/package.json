@@ -12,6 +12,7 @@
     "fluxex": "*"
   },
   "devDependencies": {
+    "request": "2.51.0",
     "protractor": "1.5.0",
     "badge-render": "0.0.2",
     "browserify": "6.3.3",
