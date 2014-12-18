@@ -21,7 +21,7 @@ gulp.task('test_run_protractor', function () {
     .on('error', function () {
         // ignore error
     });
-);
+});
 
 gulp.task('test_end_protractor', ['test_run_protractor'], function () {
     nodemon.emit('quit');
