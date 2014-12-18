@@ -23,6 +23,7 @@ if [ "${TRAVIS_BRANCH}" != "master" ]; then
 fi
 
 # Do browser tests
+export PHANTOMJS_CDNURL=http://cnpmjs.org/downloads
 cd test_browser
 npm install ..
 npm install
