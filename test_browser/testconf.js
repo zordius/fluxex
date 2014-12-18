@@ -28,12 +28,8 @@ var config = {
 
   // This enable testing on none angular pages without test code change.
   onPrepare: function () {
-    return augmentBrowser(browser, config).then(function(newBrowser) {
-      browser = newBrowser;
-      element = browser.element;
-      browser.ignoreSynchronization = true;
-      return true;
-    });
+    element = browser.element;
+    browser.ignoreSynchronization = true;
   },
 
   jasmineNodeOpts: {
