@@ -6,7 +6,7 @@ describe('React server side rendering', function () {
 
     it('sold should be 0', function () {
         browser.get('');
-        expect(element(by.css('ul')).getInnerhtml()).toMatch(/Sold: 0/);
+        expect(element(by.css('ul')).getInnerHtml()).toMatch(/Sold: 0/);
     });
 });
 
@@ -14,7 +14,7 @@ describe('React client side binding', function () {
     it('should handle click', function () {
         browser.get('');
         element(by.css('ul')).click().then(function () {
-            expect(element(by.css('ul')).getInnerhtml()).toMatch(/Sold: 1/);
+            expect(element(by.css('ul')).getInnerHtml()).toMatch(/Sold: 1/);
         });
     });
 });
