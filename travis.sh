@@ -33,6 +33,10 @@ cd ..
 git config --global user.name "Travis-CI"
 git config --global user.email "zordius@yahoo-inc.com"
 
+# Add browser test badge
+git add badge.png
+git commit -m "Auto commit browser badge for ${TRAVIS_COMMIT} [ci skip]"
+
 # Bump npm version and push back to git
 TODAY=`date +"%Y-%m-%d"`
 RELEASED=`npm info fluxex |grep $TODAY | wc -l`
