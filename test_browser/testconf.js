@@ -21,6 +21,7 @@ var config = {
 
   specs: ['spec.js'],
 
+  baseUrl: 'http://localhost:3000/test'
   // This enable testing on none angular pages without test code change.
   onPrepare: function () {
     element = browser.element;
