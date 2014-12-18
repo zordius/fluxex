@@ -22,4 +22,5 @@ gulp.task('test_run_protractor', shell.task('protractor testconf.js', {
 
 gulp.task('test_end_protractor', ['test_run_protractor'], function () {
     nodemon.emit('quit');
+    process.exit();
 });
