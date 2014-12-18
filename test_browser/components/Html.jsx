@@ -30,9 +30,9 @@ Html = React.createClass({
          </head>
          <body onClick={this.handleClick}>
           <ul>
-           <li>Product: {this.state.title}</li>
-           <li>Price: {this.state.price}</li>
-           <li>Sold: {this.state.sold}</li>
+           <li>{'Product: ' + this.state.title}</li>
+           <li>{'Price: ' + this.state.price}</li>
+           <li>{'Sold: ' + this.state.sold}</li>
           </ul>
          <script src="/static/js/main.js"></script>
          <script dangerouslySetInnerHTML={{__html: this.getInitScript()}}></script>
