@@ -129,6 +129,7 @@ var myStore = {
     // handle this.dispatch('UPDATE_SOMETHING', ....)
     handle_UPDATE_SOMETHING: function (payload) {
         this.set('data', payload); // There are .get() and .set() in all stores
+        this.emitChange();
     }
 }
 ```
