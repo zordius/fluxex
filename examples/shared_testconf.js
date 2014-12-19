@@ -21,7 +21,7 @@ var config = {
     {browserName: 'ipad', version:'6.1', platform: 'OS X 10.8'}
   ],
 
-  specs: ['spec.js'],
+  specs: [process.cwd() + '/spec.js'],
 
   baseUrl: 'http://localhost:3000/',
 
