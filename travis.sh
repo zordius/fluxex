@@ -29,7 +29,6 @@ npm install
 npm test
 node_modules/.bin/badge-saucelabs-results > badge.json
 node_modules/.bin/badge-render badge.json badge.html --png ../badge.png --scale 0.7 -width 420 -height 60
-
 cd ..
 
 # Setup git
@@ -37,8 +36,9 @@ git config --global user.name "Travis-CI"
 git config --global user.email "zordius@yahoo-inc.com"
 
 # Add browser test badge
+git add test_browser
 git add badge.png
-git commit -m "Auto commit browser badge for ${TRAVIS_COMMIT} [ci skip]"
+git commit -m "Auto commit browser tests and badge for ${TRAVIS_COMMIT} [ci skip]"
 
 # Bump npm version and push back to git
 TODAY=`date +"%Y-%m-%d"`
