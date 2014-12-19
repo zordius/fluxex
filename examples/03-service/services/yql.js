@@ -12,6 +12,7 @@ module.exports = function (yql) {
             q: yql,
             format: 'json'
         },
+        rejectUnauthorized : false,
         json: true
     }).then(function (O) {
         if (O.body && O.body.query && O.body.query.hasOwnProperty('results')) {
