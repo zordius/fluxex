@@ -56,7 +56,7 @@ else
 fi
 
 # build examples
-npm run-script build_example
+npm run-script browser_tests
 git commit -m "Auto generated example bundle from Travis [ci skip]" examples
 git push "https://${GHTK}@github.com/zordius/fluxex.git" HEAD:${TRAVIS_BRANCH} > /dev/null 2>&1
 

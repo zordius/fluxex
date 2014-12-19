@@ -3,10 +3,10 @@
 var gulp = require('gulp'),
     shell = require('gulp-shell');
 
-gulp.task('build_example', function () {
+gulp.task('browser_tests', function () {
     return gulp.src('examples/*-*/')
     .pipe(
-        shell(['cd <%=file.path %>;npm install ../..;npm prune;cp -R ../../node_modules .;npm install;npm run-script build'])
+        shell(['cd <%=file.path %>;npm install ../..;npm prune;cp -R ../../node_modules node_modules;npm install;npm test'])
     );
 });
 
