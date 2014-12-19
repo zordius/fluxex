@@ -15,7 +15,7 @@
     "lodash": "^2.4.1",
     "request": "2.51.0",
     "protractor": "1.5.0",
-    "badge-render": "0.0.6",
+    "badge-render": "0.0.7",
     "browserify": "6.3.3",
     "watchify": "2.1.1",
     "reactify": "0.14.0",
