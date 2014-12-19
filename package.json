@@ -48,7 +48,6 @@
     "escape-regexp": "0.0.1",
     "chai": "1.10.0",
     "istanbul": "0.3.5",
-    "jsdom": "1.5.0",
     "jshint": "2.5.10",
     "mocha": "2.0.1",
     "node-jsx": "0.12.4",
