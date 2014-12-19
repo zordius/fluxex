@@ -8,7 +8,7 @@ Product = React.createClass({
     ],
 
     getStateFromStores: function () {
-        return this.getStore('sampleStore').get();
+        return this.getStore('sampleStore').get('.');
     },
 
     getInitialState: function () {
@@ -32,7 +32,7 @@ Product = React.createClass({
     render: function () {
         return (
         <div>
-         Dump sample data: {this.state}
+         <div>{'Dump sample data: ' + this.state.c}</div>
          <hr/>
          <button onClick={this.UpdateSampleToOne}>Set to 1</button>
          <button onClick={this.UpdateSampleToTen}>Set to 10</button>

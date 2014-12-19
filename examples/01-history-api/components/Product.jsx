@@ -17,10 +17,10 @@ Product = React.createClass({
         <div>
          <h3>{this.state.title}</h3>
          <p>{this.state.description}</p>
-         <span>Price:{this.state.price}</span>
+         <span>{'Price:'+this.state.price}</span>
          <ul>
-          <li>data generated time:{this.state.time}</li>
-          <li>Serial(random):{this.state.serial}</li>
+          <li>{'data generated time:'+this.state.time}</li>
+          <li>{'Serial(random):'+this.state.serial}</li>
          </ul>
          <h4>Related products</h4>
          <ul>
