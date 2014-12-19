@@ -1,4 +1,4 @@
-All fluxex examples
+All FluxEx Examples
 ===================
 
 <img src="00-hello/badge.png" />
