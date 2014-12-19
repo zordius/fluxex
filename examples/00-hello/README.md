@@ -1,3 +1,5 @@
+<img src="badge.png" />
+
 How to try this
 ===============
 
