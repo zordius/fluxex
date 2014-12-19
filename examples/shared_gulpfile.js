@@ -19,7 +19,7 @@ gulp.task('test_server', ['buildall'], function () {
 
 gulp.task('test_run_protractor', shell.task(
 [
-    'protractor testconf.js',
+    'protractor ../shared_testconf.js',
     'badge-saucelabs-results ' + testcfg.config.job_basename + ' > badge.json',
     'badge-render badge.json badge.html --png badge.png --scale 0.7 -width 420 -height 60'
 ],

@@ -1,5 +1,5 @@
 var config = {
-  job_basename: require('path').basename(process.cwd()) + + '_' + process.env.TRAVIS_JOB_ID,
+  job_basename: require('path').basename(process.cwd()) + '_' + process.env.TRAVIS_JOB_ID,
 
   sauceSeleniumAddress: 'localhost:4445/wd/hub',
   sauceUser: process.env.SAUCE_USERNAME,
@@ -40,7 +40,7 @@ var config = {
 config.multiCapabilities = config.browsers.map(function (cfg) {
   cfg.build = config.job_basename;
   cfg['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER;
-  cfg.name = 'FluxEx browser test for example:' + basename;
+  cfg.name = 'FluxEx browser test for example: ' + config.job_basename;
   cfg.public = 'public';
   cfg.tags = [process.env.TRAVIS_JOB_ID, process.env.TRAVIS_COMMIT, 'fluxex'];
   return cfg;
