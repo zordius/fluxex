@@ -2,7 +2,8 @@
 // To do Sauce Lab tests
 var gulp = require(process.cwd() + '/node_modules/gulp'),
     nodemon = require(process.cwd() + '/node_modules/nodemon'),
-    shell = require(process.cwd() + '/node_modules/gulp-shell');
+    shell = require(process.cwd() + '/node_modules/gulp-shell'),
+    testcfg = require('./shared_testconf.js');
 
 gulp.task('test_server', ['buildall'], function () {
     nodemon({
@@ -16,9 +17,16 @@ gulp.task('test_server', ['buildall'], function () {
     });
 });
 
-gulp.task('test_run_protractor', shell.task('protractor testconf.js', {
+gulp.task('test_run_protractor', shell.task(
+[
+    'protractor testconf.js',
+    'badge-saucelabs-results ' + testcfg.config.job_basename + ' > badge.json',
+    'badge-render badge.json badge.html --png badge.png --scale 0.7 -width 420 -height 60'
+],
+{
     ignoreErrors: true
 }));
+
 
 gulp.task('test_end_protractor', ['test_run_protractor'], function () {
     nodemon.emit('quit');
