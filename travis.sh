@@ -22,23 +22,17 @@ if [ "${TRAVIS_BRANCH}" != "master" ]; then
   exit 0
 fi
 
-# Do browser tests
-cd test_browser
-npm install ..
-npm install
-npm test
-node_modules/.bin/badge-saucelabs-results test_browser_$TRAVIS_JOB_ID > badge.json
-node_modules/.bin/badge-render badge.json badge.html --png ../badge.png --scale 0.7 -width 420 -height 60
-cd ..
-
 # Setup git
 git config --global user.name "Travis-CI"
 git config --global user.email "zordius@yahoo-inc.com"
 
+# Do browser tests on all examples
+npm run-script browser_tests
+
 # Add browser test badge
-git add test_browser
-git add badge.png
+git add examples
 git commit -m "Auto commit browser tests and badge for ${TRAVIS_COMMIT} [ci skip]"
+git push "https://${GHTK}@github.com/zordius/fluxex.git" HEAD:${TRAVIS_BRANCH} > /dev/null 2>&1
 
 # Bump npm version and push back to git
 TODAY=`date +"%Y-%m-%d"`
@@ -54,11 +48,6 @@ if [ ${RELEASED} -eq 0 ]; then
 else
   echo One day on pre-release, $TODAY already released so skip.
 fi
-
-# build examples
-npm run-script browser_tests
-git commit -m "Auto generated example bundle from Travis [ci skip]" examples
-git push "https://${GHTK}@github.com/zordius/fluxex.git" HEAD:${TRAVIS_BRANCH} > /dev/null 2>&1
 
 # build document
 npm run-script build_doc
