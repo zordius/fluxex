@@ -5,7 +5,7 @@ All fluxex examples
 * <a href="00-hello">00-hello</a>: A quick start demo works just like <a href="https://github.com/zordius/fluxex/blob/master/SCRATCH.md">Start from Scratch</a> steps.
 <hr />
 
-<img src="00-simple-single-page" />
+<img src="00-simple-single-page/badge.png" />
 * <a href="00-simple-single-page">00-simple-single-page</a>: a single page demo shows react server side rendering and client side re-render.
 <hr />
 
