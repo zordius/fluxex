@@ -6,6 +6,7 @@
   "main": "server.js",
   "scripts": {
     "build": "gulp",
+    "disc": "gulp disc_app",
     "test": "gulp test_server",
     "start": "gulp develop"
   },

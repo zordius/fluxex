@@ -6,7 +6,7 @@ var gulp = require('gulp'),
 gulp.task('browser_tests', function () {
     return gulp.src('examples/*-*/')
     .pipe(
-        shell(['cd <%=file.path %>;npm install ../..;npm prune;cp -R ../../node_modules node_modules;npm install;npm test'])
+        shell(['cd <%=file.path %>;npm install ../..;npm prune;cp -R ../../node_modules node_modules;npm install;npm run-script disc;npm test'])
     );
 });
 
