@@ -62,8 +62,6 @@ buildApp = function (watch, fullpath, nosave) {
         packageCache: {},
         require: (fullpath ? process.cwd() : '.') + '/components/Html.jsx',
         standalone: 'Fluxex',
-        insertGlobals: false,
-        detectGlobals: false,
         fullPaths: fullpath ? true: false,
         debug: watch
     });
