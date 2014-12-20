@@ -84,7 +84,8 @@ buildApp = function (watch, fullpath, nosave) {
 
 
 gulp.task('build_app', function () {
-    return buildApp(false)
+    return buildApp(false, false, true)
+        .pipe(source('main.js'))
         .pipe(buffer())
         .pipe(uglify())
         .pipe(gulp.dest(configs.static_dir + 'js/'));
