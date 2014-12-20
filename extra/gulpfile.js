@@ -4,8 +4,8 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     buffer = require('vinyl-buffer'),
     source = require('vinyl-source-stream'),
+    aliasify = require('aliasify'),
     browserify = require('browserify'),
-    watchify = require('watchify'),
     uglify = require('gulp-uglify'),
     nodemon = require('nodemon'),
     browserSync = require('browser-sync'),
@@ -22,7 +22,13 @@ configs = {
     nodemon_delay: 2000,
     gulp_watch: {debounceDelay: 500},
     watchify: {debug: true, delay: 500},
-    jshint_jsx: {quotmark: false}
+    jshint_jsx: {quotmark: false},
+    aliasify: {
+        aliases: {
+            when: 'browser-request'
+        },
+        verbose: true
+    }
 },
 
 build_files = {
@@ -36,44 +42,65 @@ restart_nodemon = function () {
     }, configs.nodemon_restart_delay);
 },
 
-bundleAll = function (b) {
-    return b.bundle()
+bundleAll = function (b, noSave) {
+    var B = b.bundle()
     .on('error', function (E) {
         gutil.log('[browserify ERROR]', gutil.colors.red(E));
-    })
-    .pipe(source('main.js'))
-    .pipe(gulp.dest(configs.static_dir + 'js/'))
-    .on('end', restart_nodemon);
+    });
+
+    if (!noSave) {
+        B.pipe(source('main.js'))
+        .pipe(gulp.dest(configs.static_dir + 'js/'))
+        .on('end', restart_nodemon);
+    }
+
+    return B;
 },
 
-buildApp = function (watch) {
+buildApp = function (watch, fullpath) {
     var b = browserify(configs.appjs, {
         cache: {},
         packageCache: {},
         require: './components/Html.jsx',
         standalone: 'Fluxex',
-        fullPaths: watch,
+        insertGlobals: false,
+        detectGlobals: false,
+        fullPaths: fullpath ? true: false,
         debug: watch
     });
 
     b.transform('reactify');
+    b.transform(aliasify.configure(configs.aliasify), {global: true});
 
     if (watch) {
-        b = watchify(b, configs.watchify);
+        b = require('watchify')(b, configs.watchify);
         b.on('update', function (F) {
             gutil.log('[browserify] ' + F[0] + ' updated');
             bundleAll(b);
         });
     }
 
-    return bundleAll(b);
+    return bundleAll(b, fullpath);
 };
+
 
 gulp.task('build_app', function () {
     return buildApp(false)
         .pipe(buffer())
         .pipe(uglify())
         .pipe(gulp.dest(configs.static_dir + 'js/'));
+});
+
+gulp.task('disc_app', function () {
+    return buildApp(false, true)
+        .pipe(source('disc.js'))
+        .pipe(gulp.dest(configs.static_dir));
+/*
+    .pipe(buffer())
+    .pipe(require('disc')())
+    .pipe(gulp.src('disc.html'))
+    .pipe(gulp.dest(configs.static_dir));
+*/
 });
 
 gulp.task('watch_app', function () {
