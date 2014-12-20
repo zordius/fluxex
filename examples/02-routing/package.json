@@ -15,9 +15,12 @@
     "express": "4.10.4"
   },
   "devDependencies": {
+    "browser-request": "0.3.3",
     "protractor": "1.5.0",
     "badge-render": "0.0.8",
+    "aliasify": "1.5.0",
     "browserify": "6.3.3",
+    "disc": "1.3.0",
     "watchify": "2.1.1",
     "reactify": "0.14.0",
     "jshint-stylish": "1.0.0",
