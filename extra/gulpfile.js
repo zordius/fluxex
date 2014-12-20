@@ -25,9 +25,8 @@ configs = {
     jshint_jsx: {quotmark: false},
     aliasify: {
         aliases: {
-            when: 'browser-request'
-        },
-        verbose: true
+            request: 'browser-request'
+        }
     }
 },
 
@@ -57,7 +56,7 @@ bundleAll = function (b, noSave) {
     return B;
 },
 
-buildApp = function (watch, fullpath) {
+buildApp = function (watch, fullpath, nosave) {
     var b = browserify(configs.appjs, {
         cache: {},
         packageCache: {},
@@ -80,7 +79,7 @@ buildApp = function (watch, fullpath) {
         });
     }
 
-    return bundleAll(b, fullpath);
+    return bundleAll(b, nosave);
 };
 
 
@@ -92,17 +91,13 @@ gulp.task('build_app', function () {
 });
 
 gulp.task('disc_app', function () {
-    return buildApp(false, true)
+    return buildApp(false, true, true)
         .pipe(require('disc')())
-        .pipe(gulp.src('disc.html'))
-        .pipe(gulp.dest(configs.static_dir));
-/*
-    .pipe(buffer())
-*/
+        .pipe(require('fs').createWriteStream(configs.static_dir + 'disc.html'));
 });
 
 gulp.task('watch_app', function () {
-    return buildApp(true);
+    return buildApp(true, true);
 });
 
 gulp.task('watch_flux_js', ['lint_flux_js'], function () {
