@@ -61,7 +61,7 @@ buildApp = function (watch, fullpath) {
     var b = browserify(configs.appjs, {
         cache: {},
         packageCache: {},
-        require: './components/Html.jsx',
+        require: (fullpath ? process.cwd() : '.') + '/components/Html.jsx',
         standalone: 'Fluxex',
         insertGlobals: false,
         detectGlobals: false,
@@ -93,13 +93,11 @@ gulp.task('build_app', function () {
 
 gulp.task('disc_app', function () {
     return buildApp(false, true)
-        .pipe(source('disc.js'))
+        .pipe(require('disc')())
+        .pipe(gulp.src('disc.html'))
         .pipe(gulp.dest(configs.static_dir));
 /*
     .pipe(buffer())
-    .pipe(require('disc')())
-    .pipe(gulp.src('disc.html'))
-    .pipe(gulp.dest(configs.static_dir));
 */
 });
 
