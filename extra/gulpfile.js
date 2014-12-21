@@ -60,7 +60,7 @@ buildApp = function (watch, fullpath, nosave) {
     var b = browserify(configs.appjs, {
         cache: {},
         packageCache: {},
-        require: (fullpath ? process.cwd() : '.') + '/components/Html.jsx',
+        require: (nosave ? process.cwd() : '.') + '/components/Html.jsx',
         standalone: 'Fluxex',
         fullPaths: fullpath ? true: false,
         debug: watch
