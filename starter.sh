@@ -1,6 +1,6 @@
 #!/bin/sh
 npm install --save react node-jsx express routes request
-npm install --save-dev browserify watchify reactify jshint-stylish nodemon browser-sync gulp gulp-jshint gulp-react gulp-util gulp-uglify vinyl-source-stream vinyl-buffer
+npm install --save-dev browser-request aliasify browserify watchify reactify jshint-stylish nodemon browser-sync gulp gulp-jshint gulp-react gulp-util gulp-uglify vinyl-source-stream vinyl-buffer
 mkdir actions
 mkdir components
 mkdir stores
@@ -10,7 +10,7 @@ cp $BASE/components/* components
 cp $BASE/stores/* stores
 cp $BASE/server.js index.js
 cp $BASE/fluxexapp.js fluxexapp.js
-cp $BASE/gulpfile.js gulpfile.js
+echo "require('fluxex/extra/gulpfile');" > gulpfile.js
 cp $BASE/.jshintrc .
 
 echo '==================== THE STARTER PROJECT IS READY ===================='
