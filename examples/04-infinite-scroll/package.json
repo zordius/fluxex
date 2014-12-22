@@ -14,7 +14,7 @@
     "fluxex": "*",
     "routes": "2.0.0",
     "express": "4.10.4",
-    "request": "2.40.0"
+    "request": "2.44.0"
   },
   "devDependencies": {
     "browser-request": "0.3.3",
