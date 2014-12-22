@@ -12,7 +12,7 @@ ServerExtra = {
     middleware: function (fluxexapp, action) {
         return function (req, res, next) {
             (new fluxexapp()).renderHtml(action, req).then(function (HTML) {
-                res.send(HTML);
+                res.send('<!DOCTYPE html>' + HTML);
             }).catch(function (E) {
                 if (E) {
                     if (E.redirect) {
