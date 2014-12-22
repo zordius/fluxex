@@ -56,11 +56,11 @@ bundleAll = function (b, noSave) {
     return B;
 },
 
-buildApp = function (watch, fullpath, nosave) {
+buildApp = function (watch, fullpath, nosave, disc) {
     var b = browserify(configs.appjs, {
         cache: {},
         packageCache: {},
-        require: (nosave ? process.cwd() : '.') + '/components/Html.jsx',
+        require: (disc ? process.cwd() : '.') + '/components/Html.jsx',
         standalone: 'Fluxex',
         fullPaths: fullpath ? true: false,
         debug: watch
@@ -90,7 +90,7 @@ gulp.task('build_app', function () {
 });
 
 gulp.task('disc_app', function () {
-    return buildApp(false, true, true)
+    return buildApp(false, true, true, true)
         .pipe(require('disc')())
         .pipe(require('fs').createWriteStream(configs.static_dir + 'disc.html'));
 });
