@@ -39,7 +39,7 @@ TODAY=`date +"%Y-%m-%d"`
 RELEASED=`npm info fluxex |grep $TODAY | wc -l`
 
 if [ ${RELEASED} -eq 0 ]; then
-  npm version prerelease -m "Auto commit for npm publish version %s [ci skip]"
+  npm version prerelease -m "[NIGHTLY RELEASE] Auto commit for npm publish version %s [ci skip]"
   git push "https://${GHTK}@github.com/zordius/fluxex.git" --tags > /dev/null 2>&1
 
   # Deploy to npm
