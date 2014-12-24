@@ -34,7 +34,7 @@ Fluxex.createApp = function (stores, HtmlJsx) {
     App.prototype = new Fluxex();
 
     if (arguments.length > 2) {
-        Object.assign.apply(App.prototype, Array.prototype.slice.call(arguments, 2));
+        Object.assign.apply(null, [App.prototype].concat(Array.prototype.slice.call(arguments, 2)));
     }
 
     App.prototype.constructor = App;
