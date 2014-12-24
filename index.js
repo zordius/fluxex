@@ -9,14 +9,14 @@ var Fluxex = require('./lib/fluxex');
  * Create an fluxex application by provided defintion.
  * @param {Object} stores - Store defination as {storeName: implement} pairs
  * @param {React} HtmlJsx - The Html element defined as a React component
- * @param {Object} prototype - Extra methods/properties want to be merged into application prototype
+ * @param {Object} mixins - Extra methods/properties want to be merged into application prototype
  * @returns {Object} The created fluxex application instance
  * @example
 var myApp = require('fluxex').createApp({
     product: require('./stores/product')      // Define a 'product' store
 }, process.cwd() + '/components/Html.jsx');   // Your Html.jsx
  */
-Fluxex.createApp = function (stores, HtmlJsx, prototype) {
+Fluxex.createApp = function (stores, HtmlJsx) {
     var App = function FluxexApp() {
         this.stores = stores;
         this.HtmlJsx = HtmlJsx;
@@ -32,7 +32,11 @@ Fluxex.createApp = function (stores, HtmlJsx, prototype) {
     }
 
     App.prototype = new Fluxex();
-    Object.assign(App.prototype, prototype);
+
+    if (arguments.length > 2) {
+        Object.assign.apply(App.prototype, Array.prototype.slice.call(arguments, 2));
+    }
+
     App.prototype.constructor = App;
 
     return App;
