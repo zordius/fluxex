@@ -1,7 +1,7 @@
 HISTORY
 =======
 
-0.1.10 https://github.com/zordius/fluxex/releases/tag/v0.1.0
+0.1.10 https://github.com/zordius/fluxex/releases/tag/v0.1.10
    * [CORE] Add standard doctype to support IE9
    * [EXTRA] Enhanced gulp tasks: `disc_app` to analyze bundle file size
    * [EXTRA] Better `fluxex_starter` message
