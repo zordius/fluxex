@@ -1,0 +1,40 @@
+{
+  "name": "fluxex-example",
+  "version": "0.0.1",
+  "description": "A demo project for fluxex",
+  "author": "Zordius <zordius@yahoo-inc.com>",
+  "main": "server.js",
+  "scripts": {
+    "build": "gulp",
+    "disc": "gulp disc_app",
+    "test": "gulp test_server",
+    "start": "gulp develop"
+  },
+  "dependencies": {
+    "fluxex": "*",
+    "routr": "0.1.0",
+    "express": "4.10.4",
+    "request": "2.44.0"
+  },
+  "devDependencies": {
+    "browser-request": "0.3.3",
+    "protractor": "1.5.0",
+    "badge-render": "0.0.8",
+    "aliasify": "1.5.0",
+    "browserify": "6.3.3",
+    "disc": "1.3.0",
+    "watchify": "2.1.1",
+    "reactify": "0.14.0",
+    "jshint-stylish": "1.0.0",
+    "nodemon": "1.2.1",
+    "browser-sync": "1.7.1",
+    "gulp": "3.8.9",
+    "gulp-jshint": "1.8.6",
+    "gulp-react": "2.0.0",
+    "gulp-shell": "0.2.11",
+    "gulp-uglify": "1.0.2",
+    "gulp-util": "3.0.1",
+    "vinyl-buffer": "1.0.0",
+    "vinyl-source-stream": "1.0.0"
+  }
+}
