@@ -8,7 +8,7 @@ Prepare the project
 
 ```
 npm init
-npm install fluxex react node-jsx express browserify watchify reactify jshint-stylish nodemon browser-sync gulp gulp-jshint gulp-react gulp-util gulp-uglify vinyl-source-stream vinyl-buffer
+npm install fluxex react node-jsx express browser-request aliasify browserify watchify reactify jshint-stylish nodemon browser-sync gulp gulp-jshint gulp-react gulp-util gulp-uglify vinyl-source-stream vinyl-buffer
 mkdir actions
 mkdir components
 mkdir stores
