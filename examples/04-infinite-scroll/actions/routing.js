@@ -1,23 +1,34 @@
 'use strict';
 
 var page = require('./page'),
-    router = require('routes')();
+    Router = require('routr'),
 
-router.addRoute('/search', ['search', page.search]);
+router = new Router({
+    search: {
+        path: '/search',
+        method: 'get',
+        action: page.search
+    },
+    error: {
+        path: '/error',
+        method: 'get',
+        action: page.error
+    }
+});
 
 // The single routing action can be used at both server/client side.
 module.exports = function () {
     var path = this.getStore('page').get('url.pathname'),
-        match = router.match(path);
+        route = router.getRoute(path);
 
-    if (!match) {
+    if (!route) {
         return this.rejectPromise('no matched route');
     }
 
     this.dispatch('UPDATE_ROUTING', {
-        name: match.fn[0],
-        params: match.params
+        name: route.name,
+        params: route.params
     });
 
-    return this.executeAction(match.fn[1]);
+    return this.executeAction(route.config.action);
 };
