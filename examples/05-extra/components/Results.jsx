@@ -6,6 +6,7 @@ Results = React.createClass({
     mixins: [
         Fluxex.mixin,
         require('fluxex/extra/storechange'),
+        require('fluxex/extra/routing').mixin,
         {listenStores: ['search']}
     ],
 
@@ -41,9 +42,8 @@ Results = React.createClass({
     },
 
     render: function () {
-        var videos = [], I, V,
-            all = this.state.videos ? this.state.videos.length : 0,
-            attr;
+        var videos = [], I, V, url,
+            all = this.state.videos ? this.state.videos.length : 0;
 
         if (!all) {
             return (
@@ -53,15 +53,12 @@ Results = React.createClass({
 
         for (I in this.state.videos) {
             V = this.state.videos[I];
-            attr = {key: V.id};
-            if (I == all - 5) {
-                attr.ref = 'scrollTrigger';
-                attr.className = 'trigger';
-            }
+            url = this.getURL('video', {id: V.id});
+
             videos.push(
-            <li {...attr}>
-             <h5><a href={V.url}>{V.title}</a></h5>
-             <a href={V.url}><img src={V.thumbnails.thumbnail[0].content}/>{V.duration+' seconds'}</a>
+            <li key={V.id}>
+             <h5><a href={url}>{V.title}</a></h5>
+             <a href={url}><img src={V.thumbnails.thumbnail[0].content}/>{V.duration+' seconds'}</a>
             </li>
             );
         }

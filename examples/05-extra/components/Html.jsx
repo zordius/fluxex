@@ -3,12 +3,14 @@
 var React = require('react'),
     Fluxex = require('fluxex'),
     Results = require('./Results.jsx'),
+    Video = require('./Video.jsx'),
     SearchBox = require('./SearchBox.jsx'),
 
 Html = React.createClass({
     mixins: [
         Fluxex.mixin,
-        require('fluxex/extra/pjax')
+        require('fluxex/extra/pjax'),
+        require('fluxex/extra/routing').mixin
     ],
 
     getInitialState: function () {
@@ -16,6 +18,17 @@ Html = React.createClass({
     },
 
     render: function () {
+        var Body;
+
+        switch (this.getStore('page').get('routing.name')) {
+        case 'search':
+            Body = <Results />;
+            break;
+        case 'video':
+            Body = <Video id={this.getStore('page').get('routing.params.id')} />;
+            break;
+        }
+
         return (
         <html>
          <head>
@@ -27,11 +40,11 @@ Html = React.createClass({
           <SearchBox />
           Sample Search:
           <ul>
-           <li><a href="/search?q=apple">Apple</a></li>
-           <li><a href="/search?q=banana">Banana</a></li>
-           <li><a href="/search?q=orange">Orange</a></li>
+           <li><a href={this.getURL('search', {}, {q:'apple'})}>Apple</a></li>
+           <li><a href={this.getURL('search', {}, {q:'banana'})}>Banana</a></li>
+           <li><a href={this.getURL('search', {}, {q:'orange'})}>Orange</a></li>
           </ul>
-          <Results />
+          <div>{Body}</div>
           <script src="/static/js/main.js"></script>
           <script dangerouslySetInnerHTML={{__html: this.getInitScript()}}></script>
          </body>
