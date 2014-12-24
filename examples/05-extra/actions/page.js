@@ -9,6 +9,9 @@ pages = {
     search: function () {
         this.dispatch('UPDATE_TITLE', 'Search:' + this.getStore('page').get('url.query.q'));
         return this.executeAction(apis.search, this.getStore('page').get('url.query'));
+    },
+    video: function () {
+        return this.dispatch('UPDATE_TITLE', 'Watch Video ID:' + this.getStore('page').get('routing.params.id'));
     }
 };
 
