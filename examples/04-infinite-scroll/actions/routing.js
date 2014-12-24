@@ -35,6 +35,6 @@ module.exports = function () {
 };
 
 module.exports.getURL = function (name, param, query) {
-    qs = querystring.encode(query);
+    var qs = querystring.encode(query);
     return router.makePath(name, param) + (qs ? '?' + qs : '');
 };
