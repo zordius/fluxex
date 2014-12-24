@@ -9,23 +9,25 @@ var React = require('react'),
 Html = React.createClass({
     mixins: [
         Fluxex.mixin,
+        require('fluxex/extra/storechange'),
         require('fluxex/extra/pjax'),
-        require('fluxex/extra/routing').mixin
+        require('fluxex/extra/routing').mixin,
+        {listenStores: ['page']}
     ],
 
-    getInitialState: function () {
-        return {};
+    getStateFromStores: function () {
+        return this.getStore('page').get('routing');
     },
 
     render: function () {
         var Body;
 
-        switch (this.getStore('page').get('routing.name')) {
+        switch (this.state.name) {
         case 'search':
             Body = <Results />;
             break;
         case 'video':
-            Body = <Video id={this.getStore('page').get('routing.params.id')} />;
+            Body = <Video id={this.state.params.id} />;
             break;
         }
 
