@@ -35,7 +35,7 @@
   },
   "main": "index.js",
   "dependencies": {
-    "object-assign": "2.0.0",
+    "object.assign": "1.1.1",
     "eventemitter2": "0.4.14",
     "json-path-processor": "0.2.1",
     "when": "3.6.4"

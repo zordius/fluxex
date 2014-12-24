@@ -1,8 +1,9 @@
 'use strict';
 
-var objectAssign = require('object-assign'),
+require('object.assign').shim();
+
 /** @lends Fluxex */
-    Fluxex = require('./lib/fluxex');
+var Fluxex = require('./lib/fluxex');
 
 /**
  * Create an fluxex application by provided defintion.
@@ -31,7 +32,7 @@ Fluxex.createApp = function (stores, HtmlJsx, prototype) {
     }
 
     App.prototype = new Fluxex();
-    objectAssign(App.prototype, prototype);
+    Object.assign(App.prototype, prototype);
     App.prototype.constructor = App;
 
     return App;
