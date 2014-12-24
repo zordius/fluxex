@@ -1,7 +1,8 @@
 'use strict';
 
-// Fluxex extra method
-// Should be used on your fluxexapp and you should attach a routing action
+// Fluxex extra action
+// you should attach a `routing()` action creator on your fluxexapp
+// See routing.js for more info
 module.exports = function (url) {
     // Try to route
     this.dispatch('UPDATE_URL', url).then(function () {
