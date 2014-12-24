@@ -2,6 +2,7 @@
 
 var page = require('./page'),
     Router = require('routr'),
+    querystring = require('querystring'),
 
 router = new Router({
     search: {
@@ -31,4 +32,9 @@ module.exports = function () {
     });
 
     return this.executeAction(route.config.action);
+};
+
+module.exports.getURL = function (name, param, query) {
+    qs = querystring.encode(query);
+    return router.makePath(name, param) + (qs ? '?' + qs : '');
 };

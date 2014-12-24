@@ -38,7 +38,7 @@ module.exports = {
                 query: querystring.decode(search.substring(1)) || {}
             }, true);
         },
-        getUrl: function (query) {
+        getURL: function (query) {
             var url = this.get('url'),
                 mixedSearch = querystring.encode(objectAssign(url.query, query));
 

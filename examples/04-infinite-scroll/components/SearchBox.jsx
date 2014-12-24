@@ -14,7 +14,7 @@ SearchBox = React.createClass({
 
     handleChange: function (E) {
         this.setState({keyword: E.target.value});
-        this._getContext().routeToURL(this.getStore('page').getUrl({q: E.target.value}));
+        this._getContext().routeToURL(this.getStore('page').getURL({q: E.target.value}));
     },
 
     render: function () {
