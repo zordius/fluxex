@@ -22,8 +22,14 @@ routingAction = function () {
 },
 
 getURL = function (name, param, query) {
-    var qs = querystring.encode(query);
-    return router.makePath(name, param) + (qs ? '?' + qs : '');
+    var qs = querystring.encode(query),
+        path = router.makePath(name, param);
+
+    if (!path) {
+        throw new Error('Can not generate URL by route name: \'' + name + '\' !');
+    }
+
+    return path + (qs ? '?' + qs : '');
 };
 
 module.exports = function (config) {
