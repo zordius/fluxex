@@ -38,7 +38,7 @@
     "object.assign": "1.1.1",
     "eventemitter2": "0.4.14",
     "json-path-processor": "0.2.1",
-    "when": "3.6.4"
+    "es6-promise": "2.0.1"
   },
   "devDependencies": {
     "gulp": "3.8.10",

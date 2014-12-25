@@ -1,6 +1,8 @@
 'use strict';
 
+// Apply all polyfills
 require('object.assign').shim();
+require('es6-promise').polyfill();
 
 /** @lends Fluxex */
 var Fluxex = require('./lib/fluxex');
