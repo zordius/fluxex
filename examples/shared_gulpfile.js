@@ -21,7 +21,7 @@ gulp.task('test_run_protractor', shell.task(
 [
     'protractor ../shared_testconf.js',
     'badge-saucelabs-results ' + testcfg.config.job_basename + ' > badge.json',
-    'badge-render badge.json badge.html --png badge.png --scale 0.7 -width 420 -height 60'
+    'badge-render badge.json badge.html --png badge.png --scale 0.7 -width 490 -height 60'
 ],
 {
     ignoreErrors: true

@@ -18,7 +18,7 @@
   "devDependencies": {
     "browser-request": "0.3.3",
     "protractor": "1.5.0",
-    "badge-render": "0.0.8",
+    "badge-render": "0.0.10",
     "aliasify": "1.5.0",
     "browserify": "6.3.3",
     "disc": "1.3.0",
