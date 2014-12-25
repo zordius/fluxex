@@ -13,7 +13,7 @@ describe('React server side rendering', function () {
 describe('React client side binding', function () {
     it('should handle button click', function () {
         browser.get('test?id=123');
-        element(by.css('button')).click().then(function () {
+        element.all(by.css('button')).get(0).click().then(function () {
             expect(element(by.css('div div')).getInnerHtml()).toMatch(/data: 1/);
         });
     });
