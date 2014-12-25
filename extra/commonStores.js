@@ -1,7 +1,6 @@
 'use strict';
 
-var objectAssign = require('object-assign'),
-    querystring = require('querystring');
+var querystring = require('querystring');
 
 module.exports = {
     // All current page and location related things stay here.
@@ -40,7 +39,7 @@ module.exports = {
         },
         getURL: function (query) {
             var url = this.get('url'),
-                mixedSearch = querystring.encode(objectAssign(url.query, query));
+                mixedSearch = querystring.encode(Object.assign(url.query, query));
 
             /*global location*/
             return location.protocol + '//' + location.host + location.pathname + (mixedSearch ? '?' : '') + mixedSearch + location.hash;
