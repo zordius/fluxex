@@ -149,18 +149,10 @@ describe('a fluxex app', function () {
         });
 
         it('should throw when dispatch in dispatch', function (done) {
-            var D = require('domain').create();
-
-            D.on('error', function (E) {
-                D.exit();
+            var App = new app();
+            App.dispatch('dispatch', App).catch(function (E) {
                 assert.equal('Can not dispatch "more_dispatch" action when previous "dispatch" action is not done!', E.message);
-                D.dispose();
                 done();
-            });
-
-            D.run(function () {
-                var App = new app();
-                App.dispatch('dispatch', App);
             });
         });
 

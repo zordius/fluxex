@@ -5,7 +5,7 @@ module.exports = {
         return 'OK';
     },
     handle_dispatch: function (payload) {
-        payload.dispatch('more_dispatch').done();
+        return payload.dispatch('more_dispatch');
     },
     handle_SAMPLE: function (payload) {
         this.set('c', payload, true);
