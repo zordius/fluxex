@@ -2,7 +2,8 @@
 
 // Apply all polyfills
 require('object.assign').shim();
-require('es6-promise').polyfill();
+global.Promise = require('bluebird');
+Promise.longStackTraces();
 
 /** @lends Fluxex */
 var Fluxex = require('./lib/fluxex');
