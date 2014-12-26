@@ -52,7 +52,6 @@
     "jshint": "2.5.10",
     "mocha": "2.0.1",
     "node-jsx": "0.12.4",
-    "precommit-hook": "1.0.7",
     "react": "0.12.2",
     "sinon": "1.12.1"
   },
