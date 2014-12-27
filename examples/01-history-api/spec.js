@@ -14,11 +14,10 @@ describe('React client side binding', function () {
     it('should handle button click', function () {
         browser.get('product?id=124');
         browser.driver.executeScript('window.test=1');
-        element(by.css('ul li a')).click().then(function () {
-            console.log('OK!');
-            browser.driver.getCurrentUrl().then(function (url) {
-                console.log('URL--------:' + url);
-            });
+        element(by.css('ul li a')).click();
+        browser.sleep(4);
+        browser.driver.getCurrentUrl().then(function (url) {
+            console.log('URL--------:' + url);
         });
     });
 });
