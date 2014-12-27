@@ -23,3 +23,7 @@ All FluxEx Examples
 
 <img src="04-infinite-scroll/badge.png" />
 * <a href="04-infinite-scroll">04-infinite-scroll</a>: an youtube search demo support pjax and infinite scroll.
+<hr />
+
+<img src="05-extra/badge.png" />
+* <a href="05-extra">05-extra</a>: an youtube search site powered by all fluxex extra modules.
