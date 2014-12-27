@@ -50,15 +50,23 @@ fetch = function (name, cfg) {
 
 module.exports = fetch;
 
-module.exports.createServices = function (app, cfg, base) {
-    if (!cfg) {
-        throw new Error('fetch.createServices require service config as second parameter!');
+module.exports.createServices = function (app, serviceCfg, opts) {
+    if (!serviceCfg) {
+        throw new Error('fetch.createServices() require service config as second parameter!');
     }
 
-    config = cfg;
+    if (!opts) {
+        opts = {};
+    }
 
-    if (base) {
-        if (!base.match || !base.match(/^\/[^:]\/$/)) {
+    if (opts.dupeHeaders && !opts.dupeHeaders.map) {
+        throw new Error('opts.dupeHeaders for fetch.createServices() should be an Array!');
+    }
+
+    config = serviceCfg;
+
+    if (opts.base) {
+        if (!opts.base.match || !opts.base.match(/^\/[^:]\/$/)) {
             throw new Error('baseURL should in \'/foobar/\' format!');
         }
         baseURL = base;
@@ -66,7 +74,21 @@ module.exports.createServices = function (app, cfg, base) {
 
     // Provide fetch services
     app.use(baseURL + ':name', function (req, res) {
-        fetch(req.params.name, {qs: req.query}).then(function (O) {
+        var reqCfg = {
+            qs: req.query
+        };
+
+        if (opts.dupeHeaders) {
+            reqCfg.headers = {};
+            opts.dupeHeaders.map(function (V) {
+                var H = req.header(V);
+                if (H !== undefined) {
+                    reqCfg.headers[V] = H;
+                }
+            });
+        }
+
+        fetch(req.params.name, reqCfg).then(function (O) {
             res.send(O.body);
         }).catch(function (E) {
             res.status(500).send(E.stack || E);
