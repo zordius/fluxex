@@ -18,7 +18,7 @@ Features
 
 <a href="https://github.com/zordius/fluxex/blob/master/examples/04-infinite-scroll/components/Html.jsx"><img src="https://github.com/zordius/fluxex/raw/master/start_from_html.jpg" /></a>
 
-**4 Minimal context APIs**
+**Minimal context APIs**
 
 To understand Flux, you only need to learn these APIs: `this.executeAction()`, `this.getStore()`, `this.dispatch()` !
 
