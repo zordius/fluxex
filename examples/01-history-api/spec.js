@@ -13,7 +13,7 @@ describe('React server side rendering', function () {
 describe('React client side binding', function () {
     it('should handle button click', function () {
         browser.get('product?id=124');
-        browser.driver.executeScript('window.test=1');
+        browser.driver.executeScript('return window.test=1');
         element.all(by.css('ul li a')).get(0).click();
         browser.wait(function () {
             return browser.driver.getCurrentUrl().then(function (url) {
@@ -21,7 +21,7 @@ describe('React client side binding', function () {
             });
         });
         expect(element(by.css('div span')).getInnerHtml()).toMatch(/12300/);
-        browser.driver.executeScript('window.test').then(function (value) {
+        browser.driver.executeScript('return window.test').then(function (value) {
             expect(value).toBe(1);
         });
     });
