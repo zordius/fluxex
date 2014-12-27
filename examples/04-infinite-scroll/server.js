@@ -12,6 +12,8 @@ fluxexServerExtra.initStatic(app);
 // Setup fetch services
 fetch.createServices(app, {
     yql: 'https://query.yahooapis.com/v1/public/yql'
+}, {
+    dupeHeaders: ['Cookie', 'Referer']
 });
 
 // Mount fluxexapp , it will handle routing itself
