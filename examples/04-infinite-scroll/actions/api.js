@@ -17,7 +17,7 @@ api = {
             return self.dispatch('UPDATE_SEARCH_RESULT', {
                 keyword: keyword,
                 offset: start,
-                videos: O.video
+                videos: (O && O.video) ? O.video : null
             });
         });
     },
