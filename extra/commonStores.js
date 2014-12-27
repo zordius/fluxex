@@ -4,7 +4,7 @@ var querystring = require('querystring');
 
 module.exports = {
     // All current page and location related things stay here.
-    // We do not emitChange() in this store because this store should not trigger re-rendering.
+    // We do not emitChange() in this store because this store should not trigger re-rendering directly.
     page: {
         handle_UPDATE_TITLE: function (title) {
             // Play DOM update here because title beyonds body
@@ -43,6 +43,17 @@ module.exports = {
 
             /*global location*/
             return location.protocol + '//' + location.host + location.pathname + (mixedSearch ? '?' : '') + mixedSearch + location.hash;
+        }
+    },
+
+    // All header > meta related things stay here.
+    // We do not emitChange() in this store because this store should not trigger re-rendering directly.
+    meta: {
+        handle_UPDATE_META: function (meta) {
+            this.set('meta', meta);
+        },
+        getMeta: function () {
+            this.get('meta');
         }
     }
 };
