@@ -18,6 +18,16 @@ Features
 
 <a href="https://github.com/zordius/fluxex/blob/master/examples/04-infinite-scroll/components/Html.jsx"><img src="https://github.com/zordius/fluxex/raw/master/start_from_html.jpg" /></a>
 
+**4 Minimal context APIs**
+
+To understand Flux, you only need to learn these APIs: `this.executeAction()`, `this.getStore()`, `this.dispatch()` !
+
+* `this.executeAction()` or `this.getStore(name)` in components.
+* `this.dispatch()` or `this.executeAction()` or `this.getStore(name)` in actions.
+* `this.emitChange()` or `this.get()` or `this.set()` in stores.
+
+<hr/>
+
 * [CORE] Super lightweight, less than 250 lines of code.
 * [CORE] Context based flux system.
 * [CORE] React Server side rendering + client mount.
