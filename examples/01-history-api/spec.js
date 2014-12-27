@@ -21,5 +21,8 @@ describe('React client side binding', function () {
             });
         });
         expect(element(by.css('div span')).getInnerHtml()).toMatch(/12300/);
+        browser.driver.executeScript('window.test').then(function (value) {
+            expect(value).toBe(1);
+        });
     });
 });
