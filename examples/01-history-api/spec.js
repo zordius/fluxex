@@ -14,7 +14,7 @@ describe('React client side binding', function () {
     it('should handle button click', function () {
         browser.get('product?id=124');
         browser.driver.executeScript('window.test=1');
-        element(by.css('ul li a')).click();
+        element.all(by.css('ul li a')).get(0).click();
         browser.wait(function () {
             return browser.driver.getCurrentUrl().then(function (url) {
                 return url.match(/id=123/);
