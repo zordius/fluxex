@@ -65,13 +65,6 @@ module.exports.createServices = function (app, serviceCfg, opts) {
 
     config = serviceCfg;
 
-    if (opts.base) {
-        if (!opts.base.match || !opts.base.match(/^\/[^:]\/$/)) {
-            throw new Error('baseURL should in \'/foobar/\' format!');
-        }
-        baseURL = base;
-    }
-
     // Provide fetch services
     app.use(baseURL + ':name', function (req, res) {
         var reqCfg = {
