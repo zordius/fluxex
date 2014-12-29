@@ -173,7 +173,7 @@ gulp.task('test_app', function (cb) {
     .pipe(istanbul())
     .pipe(istanbul.hookRequire())
     .on('finish', function () {
-        return gulp.src(['test/*.js', 'test/components/*.js*'])
+        return gulp.src(['test/**/*.js', 'test/components/*.js*'])
         .pipe(jsx())
         .pipe(mocha())
         .pipe(istanbul.writeReports())
