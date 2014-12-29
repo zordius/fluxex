@@ -2,6 +2,7 @@ var gulp = require('gulp'),
     gutil = require('gulp-util'),
     react = require('gulp-react'),
     jshint = require('gulp-jshint'),
+    fs = require('fs'),
     buffer = require('vinyl-buffer'),
     source = require('vinyl-source-stream'),
     aliasify = require('aliasify'),
@@ -15,6 +16,7 @@ var gulp = require('gulp'),
 // You can :set nowritebackup in vim to prevent this
 // Reference: https://github.com/joyent/node/issues/3172
 configs = {
+    test_tmp_dir: 'test_tmp/',
     static_dir: 'static/',
     mainjs: require(process.cwd() + '/package.json').main,
     appjs: process.cwd() + '/fluxexapp.js',
@@ -39,6 +41,26 @@ restart_nodemon = function () {
     setTimeout(function () {
         nodemon.emit('restart');
     }, configs.nodemon_restart_delay);
+},
+
+// Never use node-jsx or other transform in your code!
+initIstanbulHookHack = function () {
+    var React = require('react-tools'),
+        Module = require('module');
+
+    Module._extensions['.js'] = function (module, filename) {
+        var src = fs.readFileSync(filename, {encoding: 'utf8'}),
+            React = require('react-tools');
+
+        if (filename.match(/\.jsx/)) {
+            try {
+                src = React.transform(src);
+            } catch (e) {
+                throw new Error('Error when transform ' + filename + ': ' + e.toString());
+            }
+        }
+        module._compile(src, filename);
+    };
 },
 
 bundleAll = function (b, noSave) {
@@ -92,7 +114,7 @@ gulp.task('build_app', function () {
 gulp.task('disc_app', function () {
     return buildApp(false, true, true, true)
         .pipe(require('disc')())
-        .pipe(require('fs').createWriteStream(configs.static_dir + 'disc.html'));
+        .pipe(fs.createWriteStream(configs.static_dir + 'disc.html'));
 });
 
 gulp.task('watch_app', function () {
@@ -115,7 +137,9 @@ gulp.task('watch_jsx', ['lint_jsx'], function () {
 
 gulp.task('lint_jsx', function () {
     return gulp.src(build_files.jsx)
-    .pipe(react())
+    .pipe(react({
+        sourceMap: true
+    }))
     .on('error', function (E) {
         gutil.log('[jsx ERROR]', gutil.colors.red(E.fileName));
         gutil.log('[jsx ERROR]', gutil.colors.red(E.message));
@@ -164,17 +188,18 @@ gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app', 'watch_s
 });
 
 gulp.task('test_app', function (cb) {
-    var istanbul = require('gulp-istanbul'),
-        jsx = require('gulp-jsxtransform'),
+    var istanbul = initIstanbulHookHack() || require('gulp-istanbul'),
+        hook = require('istanbul').hook,
         mocha = require('gulp-mocha');
 
     gulp.src(build_files.jsx.concat(build_files.js))
-    .pipe(jsx())
-    .pipe(istanbul())
+    .pipe(react({keepExt: true}))
+    .pipe(istanbul({includeUntested: true}))
     .pipe(istanbul.hookRequire())
     .on('finish', function () {
         return gulp.src(['test/**/*.js', 'test/components/*.js*'])
-        .pipe(jsx())
+//        .pipe(react())
+//        .pipe(react({keepExt: true}))
         .pipe(mocha())
         .pipe(istanbul.writeReports())
         .on('end', cb);
