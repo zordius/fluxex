@@ -163,7 +163,7 @@ gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app', 'watch_s
     });
 });
 
-gulp.task('test_app', function () {
+gulp.task('test_app', function (cb) {
     var istanbul = require('gulp-istanbul'),
         jsx = require('gulp-jsxtransform'),
         mocha = require('gulp-mocha');
@@ -177,6 +177,7 @@ gulp.task('test_app', function () {
         .pipe(jsx())
         .pipe(mocha())
         .pipe(istanbul.writeReports())
+        .on('end', cb);
     });
 });
 
