@@ -165,13 +165,16 @@ gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app', 'watch_s
 
 gulp.task('test_app', function () {
     var istanbul = require('gulp-istanbul'),
+        jsx = require('gulp-jsxtransform'),
         mocha = require('gulp-mocha');
 
-    gulp.src([build_files.jsx, build_files.js])
+    gulp.src(build_files.jsx.concat(build_files.js))
+    .pipe(jsx())
     .pipe(istanbul())
     .pipe(istanbul.hookRequire())
     .on('finish', function () {
-        gulp.src(['test/*.js', 'test/components/*.js?'])
+        return gulp.src(['test/*.js', 'test/components/*.js*'])
+        .pipe(jsx())
         .pipe(mocha())
         .pipe(istanbul.writeReports())
     });
