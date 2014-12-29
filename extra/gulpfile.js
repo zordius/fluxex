@@ -137,7 +137,7 @@ gulp.task('lint_server', function () {
     .pipe(jshint.reporter('jshint-stylish'))
 });
 
-gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app', 'watch_server'], function() {
+gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app', 'watch_server'], function () {
     nodemon({
         ignore: '*',
         script: configs.mainjs,
@@ -160,6 +160,20 @@ gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app', 'watch_s
 
             serverStarted = true;
         }
+    });
+});
+
+gulp.task('test_app', function () {
+    var istanbul = require('gulp-istanbul'),
+        mocha = require('gulp-mocha');
+
+    gulp.src([build_files.jsx, build_files.js])
+    .pipe(istanbul())
+    .pipe(istanbul.hookRequire())
+    .on('finish', function () {
+        gulp.src(['test/*.js', 'test/components/*.js?'])
+        .pipe(mocha())
+        .pipe(istanbul.writeReports())
     });
 });
 
