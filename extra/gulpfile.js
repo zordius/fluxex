@@ -198,10 +198,10 @@ gulp.task('test_app', function (cb) {
     .pipe(istanbul.hookRequire())
     .on('finish', function () {
         return gulp.src(['test/**/*.js', 'test/components/*.js*'])
-//        .pipe(react())
-//        .pipe(react({keepExt: true}))
         .pipe(mocha())
-        .pipe(istanbul.writeReports())
+        .pipe(istanbul.writeReports({
+            reporters: [ 'lcov', 'json', 'text', 'text-summary' ]
+        }))
         .on('end', cb);
     });
 });
