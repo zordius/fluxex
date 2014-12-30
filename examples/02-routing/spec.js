@@ -17,7 +17,7 @@ describe('React client side binding', function () {
         element.all(by.css('ul li a')).get(0).click();
         browser.wait(function () {
             return browser.driver.getCurrentUrl().then(function (url) {
-                return url.match(/id=123/);
+                return url.match(/product\/123/);
             });
         });
         expect(element(by.css('div span')).getInnerHtml()).toMatch(/12300/);
