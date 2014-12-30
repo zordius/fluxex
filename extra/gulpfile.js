@@ -2,7 +2,7 @@ var gulp = require('gulp'),
     gutil = require('gulp-util'),
     jshint = require('gulp-jshint'),
     fs = require('fs'),
-    React = require('react-tools')
+    React = require('react-tools'),
     through = require('through2'),
     buffer = require('vinyl-buffer'),
     source = require('vinyl-source-stream'),
@@ -227,7 +227,7 @@ gulp.task('watch_server', ['lint_server'], function () {
 gulp.task('lint_server', function () {
     return gulp.src(configs.mainjs)
     .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app', 'watch_server'], function () {
