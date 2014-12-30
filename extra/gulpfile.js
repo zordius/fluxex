@@ -44,9 +44,11 @@ restart_nodemon = function () {
     }, configs.nodemon_restart_delay);
 },
 
-// Never use node-jsx or other transform in your code!
-initIstanbulHookHack = function () {
-    var Module = require('module');
+// Never use node-jsx or other transform in your testing code!
+initIstanbulHookHack = function (options) {
+    var Module = require('module'),
+        istanbul = require('istanbul'),
+        instrumenter = new istanbul.Instrumenter(options);
 
     Module._extensions['.js'] = function (module, filename) {
         var src = fs.readFileSync(filename, {encoding: 'utf8'});
@@ -58,6 +60,11 @@ initIstanbulHookHack = function () {
                 throw new Error('Error when transform ' + filename + ': ' + e.toString());
             }
         }
+
+        if (!filename.match(options.skip)) {
+            src = instrumenter.instrumentSync(src, filename);
+        }
+
         module._compile(src, filename);
     };
 },
@@ -73,20 +80,18 @@ react_compiler = function (options) {
 
 // Do testing tasks
 get_testing_task = function (options) {
-    return function (cb) {
-        var istanbul = initIstanbulHookHack() || require('gulp-istanbul'),
-            hook = require('istanbul').hook,
+    return function () {
+        var istanbul = initIstanbulHookHack(options.istanbul) || require('istanbul'),
+            Collector = istanbul.Collector,
             mocha = require('gulp-mocha');
 
-        gulp.src(build_files.jsx.concat(build_files.js))
-        .pipe(react_compiler())
-        .pipe(istanbul({includeUntested: true}))
-        .pipe(istanbul.hookRequire())
-        .on('finish', function () {
-            return gulp.src(['test/**/*.js', 'test/components/*.js*'])
-            .pipe(mocha(options.mocha))
-            .pipe(istanbul.writeReports(options.istanbulReports))
-            .on('end', cb);
+        return gulp.src(['test/**/*.js', 'test/components/*.js*'])
+        .pipe(mocha(options.mocha))
+        .on('end', function () {
+            var collector = new Collector();
+            options.istanbulReports.reporters.forEach(function (R) {
+                istanbul.Report.create(R, {dir: options.istanbulReports.directory}).writeReport(collector, true);
+            });
         });
     };
 },
@@ -214,16 +219,20 @@ gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app', 'watch_s
 });
 
 gulp.task('test_app', get_testing_task({
+    istanbul: {skip: /node_modules/},
     istanbulReports: {
+        directory: 'coverage',
         reporters: ['text-summary']
     }
 }));
 
 gulp.task('save_test_app', get_testing_task({
+    istanbul: {skip: /node_modules/},
     mocha: {
         reporter: 'tap'
     },
     istanbulReports: {
+        directory: 'coverage',
         reporters: ['lcov', 'json']
     }
 }));
