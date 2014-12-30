@@ -63,6 +63,26 @@ initIstanbulHookHack = function () {
     };
 },
 
+// Do testing tasks
+get_testing_task = function (options) {
+    return function (cb) {
+        var istanbul = initIstanbulHookHack() || require('gulp-istanbul'),
+            hook = require('istanbul').hook,
+            mocha = require('gulp-mocha');
+
+        gulp.src(build_files.jsx.concat(build_files.js))
+        .pipe(react({keepExt: true}))
+        .pipe(istanbul({includeUntested: true}))
+        .pipe(istanbul.hookRequire())
+        .on('finish', function () {
+            return gulp.src(['test/**/*.js', 'test/components/*.js*'])
+            .pipe(mocha(options.mocha))
+            .pipe(istanbul.writeReports(options.istanbulReports))
+            .on('end', cb);
+        });
+    };
+},
+
 bundleAll = function (b, noSave) {
     var B = b.bundle()
     .on('error', function (E) {
@@ -187,24 +207,20 @@ gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app', 'watch_s
     });
 });
 
-gulp.task('test_app', function (cb) {
-    var istanbul = initIstanbulHookHack() || require('gulp-istanbul'),
-        hook = require('istanbul').hook,
-        mocha = require('gulp-mocha');
+gulp.task('test_app', get_testing_task({
+    istanbulReports: {
+        reporters: ['text-summary']
+    }
+}));
 
-    gulp.src(build_files.jsx.concat(build_files.js))
-    .pipe(react({keepExt: true}))
-    .pipe(istanbul({includeUntested: true}))
-    .pipe(istanbul.hookRequire())
-    .on('finish', function () {
-        return gulp.src(['test/**/*.js', 'test/components/*.js*'])
-        .pipe(mocha())
-        .pipe(istanbul.writeReports({
-            reporters: [ 'lcov', 'json', 'text', 'text-summary' ]
-        }))
-        .on('end', cb);
-    });
-});
+gulp.task('save_test_app', get_testing_task({
+    mocha: {
+        reporter: 'tap'
+    },
+    istanbulReports: {
+        reporters: ['lcov', 'json']
+    }
+}));
 
 gulp.task('develop', ['nodemon_server']);
 gulp.task('lint_all', ['lint_server', 'lint_flux_js', 'lint_jsx']);
