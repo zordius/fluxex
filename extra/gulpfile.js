@@ -1,8 +1,9 @@
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
-    react = require('gulp-react'),
     jshint = require('gulp-jshint'),
     fs = require('fs'),
+    React = require('react-tools')
+    through = require('through2'),
     buffer = require('vinyl-buffer'),
     source = require('vinyl-source-stream'),
     aliasify = require('aliasify'),
@@ -45,12 +46,10 @@ restart_nodemon = function () {
 
 // Never use node-jsx or other transform in your code!
 initIstanbulHookHack = function () {
-    var React = require('react-tools'),
-        Module = require('module');
+    var Module = require('module');
 
     Module._extensions['.js'] = function (module, filename) {
-        var src = fs.readFileSync(filename, {encoding: 'utf8'}),
-            React = require('react-tools');
+        var src = fs.readFileSync(filename, {encoding: 'utf8'});
 
         if (filename.match(/\.jsx/)) {
             try {
@@ -63,6 +62,15 @@ initIstanbulHookHack = function () {
     };
 },
 
+// Stop using gulp-react because it do not keep original file name
+react_compiler = function (options) {
+    return through.obj(function (file, enc, callback) {
+        file.contents = new Buffer(React.transform(file.contents.toString(), options));
+        this.push(file);
+        callback();
+    });
+},
+
 // Do testing tasks
 get_testing_task = function (options) {
     return function (cb) {
@@ -71,7 +79,7 @@ get_testing_task = function (options) {
             mocha = require('gulp-mocha');
 
         gulp.src(build_files.jsx.concat(build_files.js))
-        .pipe(react({keepExt: true}))
+        .pipe(react_compiler())
         .pipe(istanbul({includeUntested: true}))
         .pipe(istanbul.hookRequire())
         .on('finish', function () {
@@ -157,9 +165,7 @@ gulp.task('watch_jsx', ['lint_jsx'], function () {
 
 gulp.task('lint_jsx', function () {
     return gulp.src(build_files.jsx)
-    .pipe(react({
-        sourceMap: true
-    }))
+    .pipe(react_compiler({sourceMap: true}))
     .on('error', function (E) {
         gutil.log('[jsx ERROR]', gutil.colors.red(E.fileName));
         gutil.log('[jsx ERROR]', gutil.colors.red(E.message));
