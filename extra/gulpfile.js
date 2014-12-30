@@ -26,6 +26,7 @@ configs = {
     gulp_watch: {debounceDelay: 500},
     watchify: {debug: true, delay: 500},
     jshint_jsx: {quotmark: false},
+    jslint_fail: false,
     aliasify: {
         aliases: {
             request: 'browser-request'
@@ -42,6 +43,16 @@ restart_nodemon = function () {
     setTimeout(function () {
         nodemon.emit('restart');
     }, configs.nodemon_restart_delay);
+},
+
+lint_chain = function (task) {
+    task = task.pipe(jshint.reporter('jshint-stylish'));
+
+    if (configs.jslint_fail) {
+        task = task.pipe(jshint.reporter('fail'));
+    }
+
+    return task;
 },
 
 // Never use node-jsx or other transform in your testing code!
@@ -164,9 +175,10 @@ gulp.task('watch_flux_js', ['lint_flux_js'], function () {
 });
 
 gulp.task('lint_flux_js', function () {
-    return gulp.src(build_files.js)
-    .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'));
+    return lint_chain(
+        gulp.src(build_files.js)
+        .pipe(jshint())
+    );
 });
 
 gulp.task('watch_jsx', ['lint_jsx'], function () {
@@ -174,10 +186,11 @@ gulp.task('watch_jsx', ['lint_jsx'], function () {
 });
 
 gulp.task('lint_jsx', function () {
-    return gulp.src(build_files.jsx)
-    .pipe(react_compiler({sourceMap: true}))
-    .pipe(jshint(configs.jshint_jsx))
-    .pipe(jshint.reporter('jshint-stylish'));
+    return lint_chain(
+        gulp.src(build_files.jsx)
+        .pipe(react_compiler({sourceMap: true}))
+        .pipe(jshint(configs.jshint_jsx))
+    );
 });
 
 gulp.task('watch_server', ['lint_server'], function () {
@@ -242,3 +255,5 @@ gulp.task('develop', ['nodemon_server']);
 gulp.task('lint_all', ['lint_server', 'lint_flux_js', 'lint_jsx']);
 gulp.task('buildall', ['lint_all', 'build_app']);
 gulp.task('default',['buildall']);
+
+module.exports = configs;
