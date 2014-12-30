@@ -36,7 +36,7 @@
   },
   "main": "index.js",
   "dependencies": {
-    "bluebird": "2.4.2",
+    "bluebird": "2.5.2",
     "object.assign": "1.1.1",
     "eventemitter2": "0.4.14",
     "json-path-processor": "0.2.2",
