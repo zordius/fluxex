@@ -72,8 +72,13 @@ initIstanbulHookHack = function (options) {
 // Stop using gulp-react because it do not keep original file name
 react_compiler = function (options) {
     return through.obj(function (file, enc, callback) {
-        file.contents = new Buffer(React.transform(file.contents.toString(), options));
-        this.push(file);
+        try {
+            file.contents = new Buffer(React.transform(file.contents.toString(), options));
+            this.push(file);
+        } catch (E) {
+            gutil.log('[jsx ERROR]', gutil.colors.red(file.path));
+            gutil.log('[jsx ERROR]', gutil.colors.red(E.message));
+        }
         callback();
     });
 },
@@ -171,10 +176,6 @@ gulp.task('watch_jsx', ['lint_jsx'], function () {
 gulp.task('lint_jsx', function () {
     return gulp.src(build_files.jsx)
     .pipe(react_compiler({sourceMap: true}))
-    .on('error', function (E) {
-        gutil.log('[jsx ERROR]', gutil.colors.red(E.fileName));
-        gutil.log('[jsx ERROR]', gutil.colors.red(E.message));
-    })
     .pipe(jshint(configs.jshint_jsx))
     .pipe(jshint.reporter('jshint-stylish'));
 });
