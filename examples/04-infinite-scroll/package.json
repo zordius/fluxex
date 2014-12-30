@@ -17,6 +17,8 @@
     "request": "2.44.0"
   },
   "devDependencies": {
+    "through2": "0.6.3",
+    "react-tools": "0.12.2",
     "browser-request": "0.3.3",
     "protractor": "1.5.0",
     "badge-render": "0.0.10",
@@ -30,7 +32,6 @@
     "browser-sync": "1.7.1",
     "gulp": "3.8.9",
     "gulp-jshint": "1.8.6",
-    "gulp-react": "2.0.0",
     "gulp-shell": "0.2.11",
     "gulp-uglify": "1.0.2",
     "gulp-util": "3.0.1",
