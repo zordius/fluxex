@@ -1,8 +1,8 @@
 All FluxEx Examples
 ===================
 
-<img src="00-hello/badge.png" />
-* <a href="00-hello">00-hello</a>: A quick start demo works just like <a href="https://github.com/zordius/fluxex/blob/master/SCRATCH.md">Start from Scratch</a> steps.
+<img src="00hello/badge.png" />
+* <a href="00hello">00hello</a>: A quick start demo works just like <a href="https://github.com/zordius/fluxex/blob/master/SCRATCH.md">Start from Scratch</a> steps.
 <hr />
 
 <img src="00-simple-single-page/badge.png" />

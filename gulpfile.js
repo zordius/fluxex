@@ -1,13 +1,22 @@
 'use strict';
 
 var gulp = require('gulp'),
-    shell = require('gulp-shell');
+    shell = require('gulp-shell'),
+    testCommands = ['cd <%=file.path %>;npm install ../..;npm prune;cp -R ../../node_modules node_modules;npm install;npm run-script disc;npm test'];
+
+gulp.task('smoke_test', function () {
+    return gulp.src('examples/00hello/')
+    .pipe(shell(testCommands));
+});
 
 gulp.task('browser_tests', function () {
     return gulp.src('examples/*-*/')
-    .pipe(
-        shell(['cd <%=file.path %>;npm install ../..;npm prune;cp -R ../../node_modules node_modules;npm install;npm run-script disc;npm test'])
-    );
+    .pipe(shell(testCommands));
+});
+
+gulp.task('starter_tests', function () {
+    return gulp.src('examples/starter/')
+    .pipe(shell(testCommands));
 });
 
 gulp.task('watch_document', ['build_document'], function () {

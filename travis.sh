@@ -27,7 +27,7 @@ git config --global user.name "Travis-CI"
 git config --global user.email "zordius@yahoo-inc.com"
 
 # Do browser tests on all examples
-npm run-script browser_tests
+npm run-script starter_tests
 
 # Add browser test badge
 git add examples
