@@ -9,13 +9,8 @@ gulp.task('smoke_test', function () {
     .pipe(shell(testCommands));
 });
 
-gulp.task('browser_tests', function () {
+gulp.task('example_tests', function () {
     return gulp.src('examples/*-*/')
-    .pipe(shell(testCommands));
-});
-
-gulp.task('starter_tests', function () {
-    return gulp.src('examples/starter/')
     .pipe(shell(testCommands));
 });
 

@@ -25,8 +25,7 @@
   "scripts": {
     "test": "mocha",
     "smoke_test": "gulp smoke_test",
-    "browser_tests": "gulp browser_tests",
-    "starter_tests": "gulp starter_tests",
+    "example_tests": "gulp example_tests",
     "build_doc": "gulp build_document",
     "watch_doc": "gulp watch_document",
     "coverage": "istanbul cover -- _mocha",
