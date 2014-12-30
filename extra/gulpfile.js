@@ -35,7 +35,7 @@ configs = {
         istanbul: {
             coverageVariable: '__FLUXEX_COVERAGE__',
             directory: 'coverage',
-            skip: /node_modules/
+            skip: /node_modules\/|test\//
         },
         console: {
             istanbulReports: {
