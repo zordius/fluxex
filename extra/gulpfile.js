@@ -17,7 +17,6 @@ var gulp = require('gulp'),
 // You can :set nowritebackup in vim to prevent this
 // Reference: https://github.com/joyent/node/issues/3172
 configs = {
-    test_tmp_dir: 'test_tmp/',
     static_dir: 'static/',
     mainjs: require(process.cwd() + '/package.json').main,
     appjs: process.cwd() + '/fluxexapp.js',
@@ -30,6 +29,26 @@ configs = {
     aliasify: {
         aliases: {
             request: 'browser-request'
+        }
+    },
+    test_coverage: {
+        istanbul: {
+            coverageVariable: '__FLUXEX_COVERAGE__',
+            directory: 'coverage',
+            skip: /node_modules/
+        },
+        console: {
+            istanbulReports: {
+                reporters: ['text-summary']
+            }
+        },
+        report: {
+            mocha: {
+                reporter: 'tap'
+            },
+            istanbulReports: {
+                reporters: ['lcov', 'json']
+            }
         }
     }
 },
@@ -59,7 +78,9 @@ lint_chain = function (task) {
 initIstanbulHookHack = function (options) {
     var Module = require('module'),
         istanbul = require('istanbul'),
-        instrumenter = new istanbul.Instrumenter(options);
+        instrumenter = new istanbul.Instrumenter(configs.test_coverage.istanbul);
+
+    global[configs.test_coverage.istanbul.coverageVariable] = {};
 
     Module._extensions['.js'] = function (module, filename) {
         var src = fs.readFileSync(filename, {encoding: 'utf8'});
@@ -72,7 +93,7 @@ initIstanbulHookHack = function (options) {
             }
         }
 
-        if (!filename.match(options.skip)) {
+        if (!filename.match(configs.test_coverage.istanbul.skip)) {
             src = instrumenter.instrumentSync(src, filename);
         }
 
@@ -105,8 +126,11 @@ get_testing_task = function (options) {
         .pipe(mocha(options.mocha))
         .on('end', function () {
             var collector = new Collector();
+
+            collector.add(global[configs.test_coverage.istanbul.coverageVariable]);
+
             options.istanbulReports.reporters.forEach(function (R) {
-                istanbul.Report.create(R, {dir: options.istanbulReports.directory}).writeReport(collector, true);
+                istanbul.Report.create(R, {dir: configs.test_coverage.istanbul.directory}).writeReport(collector, true);
             });
         });
     };
@@ -232,25 +256,8 @@ gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app', 'watch_s
     });
 });
 
-gulp.task('test_app', get_testing_task({
-    istanbul: {skip: /node_modules/},
-    istanbulReports: {
-        directory: 'coverage',
-        reporters: ['text-summary']
-    }
-}));
-
-gulp.task('save_test_app', get_testing_task({
-    istanbul: {skip: /node_modules/},
-    mocha: {
-        reporter: 'tap'
-    },
-    istanbulReports: {
-        directory: 'coverage',
-        reporters: ['lcov', 'json']
-    }
-}));
-
+gulp.task('test_app', get_testing_task(configs.test_coverage.console));
+gulp.task('save_test_app', get_testing_task(configs.test_coverage.report));
 gulp.task('develop', ['nodemon_server']);
 gulp.task('lint_all', ['lint_server', 'lint_flux_js', 'lint_jsx']);
 gulp.task('buildall', ['lint_all', 'build_app']);
