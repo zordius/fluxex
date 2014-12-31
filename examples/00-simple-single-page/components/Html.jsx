@@ -24,9 +24,10 @@ Html = React.createClass({
           <div>Test...OK??.</div>
           <Product />
           <Sample />
+          <script src="http://cdn.jsdelivr.net/polyfills/polyfill.js"></script>
+          <script src="/static/js/main.js"></script>
+          <script dangerouslySetInnerHTML={{__html: this._getInitScript()}}></script>
          </body>
-         <script src="/static/js/main.js"></script>
-         <script dangerouslySetInnerHTML={{__html: this._getInitScript()}}></script>
         </html> 
         );
     }
