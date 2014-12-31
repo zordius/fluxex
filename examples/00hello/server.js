@@ -1,5 +1,13 @@
 'use strict';
 
+// Apply all polyfills
+require('object.assign').shim();
+global.Promise = require('bluebird');
+Promise.longStackTraces();
+
+// Init .jsx require()
+require('node-jsx').install({extension: '.jsx'});
+
 var express = require('express'),
     fluxexapp = require('./fluxexapp'),
     pageAction = require('./actions/page'),
