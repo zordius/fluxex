@@ -34,7 +34,7 @@ Html = React.createClass({
            <li>Price: {this.state.price}</li>
            <li>{'Sold: ' + this.state.sold}</li>
           </ul>
-         <script src="http://qa.polyfill.io/v1/polyfill.min.js"></script>
+         <script src="http://cdn.jsdelivr.net/polyfills/polyfill.js"></script>
          <script src="/static/js/main.js"></script>
          <script dangerouslySetInnerHTML={{__html: this.getInitScript()}}></script>
          </body>
