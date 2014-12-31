@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
     jshint = require('gulp-jshint'),
+    coverage = require('gulp-jsx-coverage'),
     fs = require('fs'),
     React = require('react-tools'),
     through = require('through2'),
@@ -32,22 +33,37 @@ configs = {
         }
     },
     test_coverage: {
-        istanbul: {
-            coverageVariable: '__FLUXEX_COVERAGE__',
-            directory: 'coverage',
-            skip: /node_modules\/|test\//
+        default: {
+            src: ['test/**/*.js', 'test/components/*.js*'],
+            istanbul: {
+                coverageVariable: '__FLUXEX_COVERAGE__',
+                skip: /node_modules\/|test\//
+            },
+            coverage: {
+                directory: 'coverage'
+            },
+            mocha: {},
+            react: {
+                sourceMap: true
+            },
+            coffee: {
+                sourceMap: true
+            }
         },
         console: {
-            istanbulReports: {
+            coverage: {
                 reporters: ['text-summary']
+            },
+            mocha: {
+                reporter: 'spec'
             }
         },
         report: {
+            coverage: {
+                reporters: ['lcov', 'json']
+            },
             mocha: {
                 reporter: 'tap'
-            },
-            istanbulReports: {
-                reporters: ['lcov', 'json']
             }
         }
     }
@@ -74,33 +90,6 @@ lint_chain = function (task) {
     return task;
 },
 
-// Never use node-jsx or other transform in your testing code!
-initIstanbulHookHack = function (options) {
-    var Module = require('module'),
-        istanbul = require('istanbul'),
-        instrumenter = new istanbul.Instrumenter(configs.test_coverage.istanbul);
-
-    global[configs.test_coverage.istanbul.coverageVariable] = {};
-
-    Module._extensions['.js'] = function (module, filename) {
-        var src = fs.readFileSync(filename, {encoding: 'utf8'});
-
-        if (filename.match(/\.jsx/)) {
-            try {
-                src = React.transform(src);
-            } catch (e) {
-                throw new Error('Error when transform ' + filename + ': ' + e.toString());
-            }
-        }
-
-        if (!filename.match(configs.test_coverage.istanbul.skip)) {
-            src = instrumenter.instrumentSync(src, filename);
-        }
-
-        module._compile(src, filename);
-    };
-},
-
 // Stop using gulp-react because it do not keep original file name
 react_compiler = function (options) {
     return through.obj(function (file, enc, callback) {
@@ -117,23 +106,12 @@ react_compiler = function (options) {
 
 // Do testing tasks
 get_testing_task = function (options) {
-    return function () {
-        var istanbul = initIstanbulHookHack(options.istanbul) || require('istanbul'),
-            Collector = istanbul.Collector,
-            mocha = require('gulp-mocha');
+    var cfg = configs.test_coverage.default;
 
-        return gulp.src(['test/**/*.js', 'test/components/*.js*'])
-        .pipe(mocha(options.mocha))
-        .on('end', function () {
-            var collector = new Collector();
+    cfg.mocha.reporter = options.mocha.reporter;
+    cfg.coverage.reports = options.coverage.reports;
 
-            collector.add(global[configs.test_coverage.istanbul.coverageVariable]);
-
-            options.istanbulReports.reporters.forEach(function (R) {
-                istanbul.Report.create(R, {dir: configs.test_coverage.istanbul.directory}).writeReport(collector, true);
-            });
-        });
-    };
+    return coverage(cfg);
 },
 
 bundleAll = function (b, noSave) {
