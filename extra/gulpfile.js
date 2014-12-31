@@ -37,7 +37,7 @@ configs = {
             src: ['test/**/*.js', 'test/components/*.js*'],
             istanbul: {
                 coverageVariable: '__FLUXEX_COVERAGE__',
-                skip: /node_modules\/|test\//
+                exclude: /node_modules\/|test\//
             },
             coverage: {
                 directory: 'coverage'
@@ -106,7 +106,7 @@ react_compiler = function (options) {
 
 // Do testing tasks
 get_testing_task = function (options) {
-    var cfg = Object.assign({}, configs.test_coverage.default);
+    var cfg = JSON.parse(JSON.stringify(configs.test_coverage.default));
 
     cfg.coverage.reporters = options.coverage.reporters;
     cfg.mocha = options.mocha;
