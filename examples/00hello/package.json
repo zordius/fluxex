@@ -29,6 +29,7 @@
     "nodemon": "1.2.1",
     "browser-sync": "1.7.1",
     "gulp": "3.8.9",
+    "gulp-jsx-coverage": "0.0.4",
     "gulp-jshint": "1.8.6",
     "gulp-shell": "0.2.11",
     "gulp-uglify": "1.0.2",
