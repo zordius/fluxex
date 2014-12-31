@@ -111,7 +111,7 @@ get_testing_task = function (options) {
     cfg.mocha.reporter = options.mocha.reporter;
     cfg.coverage.reports = options.coverage.reports;
 
-    return coverage(cfg);
+    return coverage.createTask(cfg);
 },
 
 bundleAll = function (b, noSave) {
