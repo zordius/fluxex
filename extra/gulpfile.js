@@ -106,10 +106,10 @@ react_compiler = function (options) {
 
 // Do testing tasks
 get_testing_task = function (options) {
-    var cfg = configs.test_coverage.default;
+    var cfg = Object.assign({}, configs.test_coverage.default);
 
-    cfg.mocha.reporter = options.mocha.reporter;
-    cfg.coverage.reports = options.coverage.reports;
+    cfg.coverage.reporters = options.coverage.reporters;
+    cfg.mocha = options.mocha;
 
     return coverage.createTask(cfg);
 },
