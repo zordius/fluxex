@@ -1,7 +1,5 @@
 'use strict';                                                 
 
-require('node-jsx').install({extension: '.jsx'});
-
 var react = require('react'),
 
 ServerExtra = {
