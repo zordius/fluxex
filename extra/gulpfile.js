@@ -108,6 +108,7 @@ react_compiler = function (options) {
 get_testing_task = function (options) {
     var cfg = JSON.parse(JSON.stringify(configs.test_coverage.default));
 
+    cfg.istanbul.exclude = configs.test_coverage.default.istanbul.exclude;
     cfg.coverage.reporters = options.coverage.reporters;
     cfg.mocha = options.mocha;
 
