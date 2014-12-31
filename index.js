@@ -1,10 +1,5 @@
 'use strict';
 
-// Apply all polyfills
-require('object.assign').shim();
-global.Promise = require('bluebird');
-Promise.longStackTraces();
-
 /** @lends Fluxex */
 var Fluxex = require('./lib/fluxex');
 
