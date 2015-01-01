@@ -31,7 +31,7 @@ npm run-script smoke_test
 
 # Add browser test badge
 git add examples
-git commit -m "Auto commit browser tests and badge for ${TRAVIS_COMMIT} [ci skip]"
+git commit -m "Auto commit smoke test results for ${TRAVIS_COMMIT} [ci skip]"
 git push "https://${GHTK}@github.com/zordius/fluxex.git" HEAD:${TRAVIS_BRANCH} > /dev/null 2>&1
 
 # Bump npm version and push back to git
@@ -49,6 +49,15 @@ if [ ${RELEASED} -eq 0 ]; then
 else
   echo One day on pre-release, $TODAY already released so skip.
 fi
+
+# trigger example builds (push to fluxex-examples)
+cd examples
+git init
+echo ${TRAVIS_COMMIT} > fluxex
+git add .
+git commit -m "Auto push new examples from zordius/fluxex@${TRAVIS_COMMIT}"
+git push --force --quiet "https://${GHTK}@github.com/zordius/fluxex-examples.git" master > /dev/null 2>&1
+cd ..
 
 # build document
 npm run-script build_doc
