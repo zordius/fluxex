@@ -7,3 +7,4 @@ addons:
   sauce_connect: true
 env:
   global:
+    - secure: "j5nS2L0kqACrfpB1Xjg9KipHHsrUs70arI/Hn8RCAaoM9TPNMedUii13CgxcI8DDjTzY/r0xOLPf71BhN30a2Su5lY1NIkE/WAi9FFJrWabnjjXf8EGxKu1D99wRnEYGPyIqJbdgsL1ihUk5dwOmUfnXgMKszvMgkLhVBsl1NgU="
