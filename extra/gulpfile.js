@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
     jshint = require('gulp-jshint'),
+    cached = require('gulp-cached'),
     coverage = require('gulp-jsx-coverage'),
     fs = require('fs'),
     React = require('react-tools'),
@@ -180,6 +181,7 @@ gulp.task('watch_flux_js', ['lint_flux_js'], function () {
 gulp.task('lint_flux_js', function () {
     return lint_chain(
         gulp.src(build_files.js)
+        .pipe(cached('jshint'))
         .pipe(jshint())
     );
 });
@@ -191,6 +193,7 @@ gulp.task('watch_jsx', ['lint_jsx'], function () {
 gulp.task('lint_jsx', function () {
     return lint_chain(
         gulp.src(build_files.jsx)
+        .pipe(cached('jshint'))
         .pipe(react_compiler({sourceMap: true}))
         .pipe(jshint(configs.jshint_jsx))
     );
