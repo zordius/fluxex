@@ -53,7 +53,7 @@ fi
 # trigger example builds (push to fluxex-examples)
 cd examples
 git init
-git pull --quiet "https://${GHTK}@github.com/zordius/fluxex-examples.git" master:master > /dev/null 2>&1
+git pull --rebase --quiet "https://${GHTK}@github.com/zordius/fluxex-examples.git" master:master > /dev/null 2>&1
 echo ${TRAVIS_COMMIT} > fluxex
 git add . > /dev/null
 git commit -m "Auto push new examples from zordius/fluxex@${TRAVIS_COMMIT}" > /dev/null
