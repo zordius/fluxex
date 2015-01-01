@@ -1,0 +1,17 @@
+{
+  "name": "fluxex-example",
+  "version": "0.0.1",
+  "description": "Demo projects for fluxex",
+  "author": "Zordius <zordius@yahoo-inc.com>",
+  "main": "gulpfile.js",
+  "scripts": {
+    "build": "gulp"
+  },
+  "dependencies": {
+    "fluxex": "*"
+  },
+  "devDependencies": {
+    "gulp": "3.8.9",
+    "gulp-shell": "0.2.11"
+  }
+}
