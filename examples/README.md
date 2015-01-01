@@ -1,7 +1,7 @@
 All FluxEx Examples
 ===================
 
-** https://github.com/zordius/fluxex is source of truth, all issues/pull requests should be filed there.**
+[![Build Status](https://travis-ci.org/zordius/fluxex-examples.svg?branch=master)](https://travis-ci.org/zordius/fluxex-examples) ** https://github.com/zordius/fluxex is source of truth, all issues/pull requests should be filed there.**
 
 <hr />
 
