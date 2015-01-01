@@ -55,7 +55,7 @@ cd examples
 git init
 echo ${TRAVIS_COMMIT} > fluxex
 git add . > /dev/null
-git commit -m "Auto push new examples from zordius/fluxex@${TRAVIS_COMMIT}"
+git commit -m "Auto push new examples from zordius/fluxex@${TRAVIS_COMMIT}" > /dev/null
 git push --force --quiet "https://${GHTK}@github.com/zordius/fluxex-examples.git" master > /dev/null 2>&1
 cd ..
 
