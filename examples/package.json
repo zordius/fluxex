@@ -5,7 +5,7 @@
   "author": "Zordius <zordius@yahoo-inc.com>",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "gulp"
+    "test": "gulp example_tests"
   },
   "dependencies": {
     "fluxex": "*"
