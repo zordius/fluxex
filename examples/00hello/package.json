@@ -11,6 +11,7 @@
     "start": "gulp develop"
   },
   "dependencies": {
+    "react": "0.12.2",
     "bluebird": "2.5.2",
     "object.assign": "1.1.1",
     "node-jsx": "0.12.4",
