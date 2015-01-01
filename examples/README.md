@@ -1,6 +1,10 @@
 All FluxEx Examples
 ===================
 
+** https://github.com/zordius/fluxex is source of truth, all issues/pull requests should be filed there.**
+
+<hr />
+
 <img src="00hello/badge.png" />
 * <a href="00hello">00hello</a>: A quick start demo works just like <a href="https://github.com/zordius/fluxex/blob/master/SCRATCH.md">Start from Scratch</a> steps.
 <hr />
