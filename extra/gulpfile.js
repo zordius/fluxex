@@ -84,12 +84,12 @@ restart_nodemon = function () {
 lint_chain = function (task) {
     task = task.pipe(jshint.reporter('jshint-stylish'));
 
-    if (configs.jslint_fail) {
-        task = task.pipe(jshint.reporter('fail'));
-    }
-
     if (configs.github) {
         task = task.pipe(require('gulp-github')(configs.github));
+    }
+
+    if (configs.jslint_fail) {
+        task = task.pipe(jshint.reporter('fail'));
     }
 
     return task;
