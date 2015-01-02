@@ -88,6 +88,10 @@ lint_chain = function (task) {
         task = task.pipe(jshint.reporter('fail'));
     }
 
+    if (configs.github) {
+        task = task.pipe(require('gulp-github')(configs.github));
+    }
+
     return task;
 },
 
