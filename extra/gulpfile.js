@@ -89,6 +89,7 @@ lint_chain = function (task) {
     }
 
     if (configs.jslint_fail) {
+        console.log('I will report jshint fail');
         task = task.pipe(jshint.reporter('fail'));
     }
 
