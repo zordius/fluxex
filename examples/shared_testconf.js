@@ -19,7 +19,7 @@ var config = {
     {browserName: 'iphone', deviceName: 'iPhone Simulator', version:'8.1', platform: 'OS X 10.9'},
     {browserName: 'iphone', deviceName: 'iPhone Simulator', version:'8.0', platform: 'OS X 10.9'},
     {browserName: 'iphone', deviceName: 'iPhone Simulator', version:'7.1', platform: 'OS X 10.9'},
-    {browserName: 'iphone', deviceName: 'Phone Simulator', version:'6.1', platform: 'OS X 10.8'},
+    {browserName: 'iphone', deviceName: 'iPhone Simulator', version:'6.1', platform: 'OS X 10.8'},
     {browserName: 'ipad', version:'8.1', platform: 'OS X 10.9'},
     {browserName: 'ipad', version:'8.0', platform: 'OS X 10.9'},
     {browserName: 'ipad', version:'7.1', platform: 'OS X 10.9'},
