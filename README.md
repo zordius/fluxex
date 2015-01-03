@@ -5,7 +5,7 @@ An extended Flux implement to build isomorphic javascript React app.
 
 [![npm version](https://img.shields.io/npm/v/fluxex.svg)](https://www.npmjs.org/package/fluxex) [![npm download](https://img.shields.io/npm/dm/fluxex.svg)](https://www.npmjs.org/package/fluxex) [![Dependency Status](https://david-dm.org/zordius/fluxex.svg)](https://david-dm.org/zordius/fluxex) [![Build Status](https://travis-ci.org/zordius/fluxex.svg?branch=master)](https://travis-ci.org/zordius/fluxex) [![Test Coverage](https://codeclimate.com/github/zordius/fluxex/badges/coverage.svg)](https://codeclimate.com/github/zordius/fluxex) [![Code Climate](https://codeclimate.com/github/zordius/fluxex/badges/gpa.svg)](https://codeclimate.com/github/zordius/fluxex) [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE.txt)
 
-[!npm](https://nodei.co/npm/fluxex.png?downloads=true)](https://www.npmjs.org/package/fluxex)
+[![npm](https://nodei.co/npm/fluxex.png?downloads=true)](https://www.npmjs.org/package/fluxex)
 
 <img src="https://github.com/zordius/fluxex/raw/master/examples/00hello/badge.png" />
 
