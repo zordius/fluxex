@@ -29,6 +29,7 @@ configs = {
     watchify: {debug: true, delay: 500},
     jshint_jsx: {quotmark: false},
     jslint_fail: false,
+    jscs_fail: false,
     aliasify: {
         aliases: {
             request: 'browser-request'
@@ -90,7 +91,6 @@ lint_chain = function (task) {
     }
 
     if (configs.jslint_fail) {
-        console.log('I will report jshint fail');
         task = task.pipe(jshint.reporter('fail'));
     }
 
@@ -120,6 +120,18 @@ get_testing_task = function (options) {
     cfg.mocha = options.mocha;
 
     return coverage.createTask(cfg);
+},
+
+handleJSCSError = function (E) {
+    if (!configs.jscs_fail) {
+        return;
+    }
+
+    if ('function' === typeof configs.jscs_fail) {
+        return configs.jscs_fail(E);
+    }
+
+    this.emit('error', E);
 },
 
 bundleAll = function (b, noSave) {
@@ -188,7 +200,7 @@ gulp.task('lint_flux_js', function () {
     return lint_chain(
         gulp.src(build_files.js)
         .pipe(cached('jshint'))
-        .pipe(jscs())
+        .pipe(jscs()).on('error', handleJSCSError)
         .pipe(jshint())
     );
 });
@@ -200,7 +212,7 @@ gulp.task('watch_jsx', ['lint_jsx'], function () {
 gulp.task('lint_jsx', function () {
     return lint_chain(
         gulp.src(build_files.jsx)
-        .pipe(jscs())
+        .pipe(jscs()).on('error', handleJSCSError)
         .pipe(cached('jshint'))
         .pipe(react_compiler({sourceMap: true}))
         .pipe(jshint(configs.jshint_jsx))

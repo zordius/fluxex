@@ -3,6 +3,7 @@
 /** @lends Fluxex */
 var Fluxex = require('./lib/fluxex');
 
+// jscs:disable checkRedundantParams
 /**
  * Create an fluxex application by provided defintion.
  * @param {Object} stores - Store defination as {storeName: implement} pairs
@@ -14,6 +15,7 @@ var myApp = require('fluxex').createApp({
     product: require('./stores/product')      // Define a 'product' store
 }, process.cwd() + '/components/Html.jsx');   // Your Html.jsx
  */
+// jscs:enable
 Fluxex.createApp = function (stores, HtmlJsx) {
     var App = function FluxexApp() {
         this.stores = stores;
