@@ -28,6 +28,7 @@ To understand Flux, you only need to learn these APIs: `this.executeAction()`, `
 * `this.dispatch()` or `this.executeAction()` or `this.getStore(name)` in actions.
 * `this.emitChange()` or `this.get()` or `this.set()` in stores.
 
+<img src="fluxex-api.jpg" />
 <hr/>
 
 * [CORE] Super lightweight, less than 250 lines of code.
