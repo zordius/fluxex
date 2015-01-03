@@ -29,6 +29,7 @@ configs = {
     watchify: {debug: true, delay: 500},
     jshint_jsx: {quotmark: false},
     jslint_fail: false,
+    jscs_fail: false,
     aliasify: {
         aliases: {
             request: 'browser-request'
@@ -85,12 +86,12 @@ restart_nodemon = function () {
 lint_chain = function (task) {
     task = task.pipe(jshint.reporter('jshint-stylish'));
 
-    if (configs.jslint_fail) {
-        task = task.pipe(jshint.reporter('fail'));
-    }
-
     if (configs.github) {
         task = task.pipe(require('gulp-github')(configs.github));
+    }
+
+    if (configs.jslint_fail) {
+        task = task.pipe(jshint.reporter('fail'));
     }
 
     return task;
@@ -119,6 +120,18 @@ get_testing_task = function (options) {
     cfg.mocha = options.mocha;
 
     return coverage.createTask(cfg);
+},
+
+handleJSCSError = function (E) {
+    if (!configs.jscs_fail) {
+        return;
+    }
+
+    if ('function' === typeof configs.jscs_fail) {
+        return configs.jscs_fail(E);
+    }
+
+    this.emit('error', E);
 },
 
 bundleAll = function (b, noSave) {
@@ -187,7 +200,7 @@ gulp.task('lint_flux_js', function () {
     return lint_chain(
         gulp.src(build_files.js)
         .pipe(cached('jshint'))
-        .pipe(jscs())
+        .pipe(jscs()).on('error', handleJSCSError)
         .pipe(jshint())
     );
 });
@@ -201,7 +214,7 @@ gulp.task('lint_jsx', function () {
         gulp.src(build_files.jsx)
         .pipe(cached('jshint'))
         .pipe(react_compiler({sourceMap: true}))
-        .pipe(jscs())
+        .pipe(jscs()).on('error', handleJSCSError)
         .pipe(jshint(configs.jshint_jsx))
     );
 });
