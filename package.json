@@ -1,6 +1,6 @@
 {
   "name": "fluxex",
-  "version": "0.1.11-7",
+  "version": "0.1.11-8",
   "description": "An extended Flux implement to build isomorphic javascript React app.",
   "author": "Zordius <zordius@yahoo-inc.com>",
   "contributors": [
@@ -29,7 +29,7 @@
     "build_doc": "gulp build_document",
     "watch_doc": "gulp watch_document",
     "coverage": "istanbul cover -- _mocha",
-    "lint": "jshint"
+    "lint": "gulp jscs;jshint"
   },
   "bin": {
     "fluxex_starter": "./starter.sh"
@@ -44,6 +44,7 @@
     "bluebird": "2.5.2",
     "object.assign": "1.1.1",
     "gulp": "3.8.10",
+    "gulp-jscs": "1.3.1",
     "gulp-shell": "0.2.11",
     "jsdoc": "3.3.0-alpha11",
     "semver": "4.1.0",
