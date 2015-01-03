@@ -7,7 +7,7 @@ var Fluxex = require('./lib/fluxex');
  * Create an fluxex application by provided defintion.
  * @param {Object} stores - Store defination as {storeName: implement} pairs
  * @param {React} HtmlJsx - The Html element defined as a React component
- * @param {Object} mixins - Extra methods/properties want to be merged into application prototype
+ * @param {Object=} mixins - Extra methods/properties want to be merged into application prototype
  * @returns {Object} The created fluxex application instance
  * @example
 var myApp = require('fluxex').createApp({

@@ -6,7 +6,6 @@
     "disallowPaddingNewlinesInBlocks": true,
     "disallowSpaceAfterObjectKeys": true,
     "disallowTrailingComma": true,
-    "disallowMultipleVarDecl": true,
 
     "requireBlocksOnNewline": true,
     "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
