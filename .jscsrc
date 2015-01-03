@@ -45,8 +45,8 @@
     "validateIndentation": 4,
     "validateJSDoc": {
         "checkParamNames": true,
-        "checkRedundantParams": true,
-        "requireParamTypes": true
+        "requireParamTypes": true,
+        "checkTypes": true
     },
     "validateQuoteMarks": { "mark": "'", "escape": true }
 }
