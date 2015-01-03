@@ -199,9 +199,9 @@ gulp.task('watch_jsx', ['lint_jsx'], function () {
 gulp.task('lint_jsx', function () {
     return lint_chain(
         gulp.src(build_files.jsx)
-        .pipe(jscs())
         .pipe(cached('jshint'))
         .pipe(react_compiler({sourceMap: true}))
+        .pipe(jscs())
         .pipe(jshint(configs.jshint_jsx))
     );
 });
