@@ -91,7 +91,7 @@ lint_chain = function (task) {
     }
 
     if (configs.jshint_fail) {
-        task = task.pipe(('function' === typeof configs.jshint_fail) ? configs.jshint_fail : jshint.reporter('fail'));
+        task = task.pipe(('object' === typeof configs.jshint_fail) ? configs.jshint_fail : jshint.reporter('fail'));
     }
 
     return task;
