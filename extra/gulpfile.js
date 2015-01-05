@@ -28,7 +28,7 @@ configs = {
     gulp_watch: {debounceDelay: 500},
     watchify: {debug: true, delay: 500},
     jshint_jsx: {quotmark: false},
-    jslint_fail: false,
+    jshint_fail: false,
     jscs_fail: false,
     aliasify: {
         aliases: {
@@ -90,8 +90,8 @@ lint_chain = function (task) {
         task = task.pipe(require('gulp-github')(configs.github));
     }
 
-    if (configs.jslint_fail) {
-        task = task.pipe(jshint.reporter('fail'));
+    if (configs.jshint_fail) {
+        task = task.pipe(('function' === typeof configs.jshint_fail) ? configs.jshint_fail : jshint.reporter('fail'));
     }
 
     return task;
