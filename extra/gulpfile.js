@@ -267,7 +267,7 @@ gulp.task('watch_tests', ['test_app'], function () {
     ], ['test_app']);
 });
 gulp.task('test_app', function (cb) {
-    return get_testing_task(configs.test_coverage.console)(cb).on('error', function (E) {
+    get_testing_task(configs.test_coverage.console)(cb).on('error', function (E) {
         // skip error
     }).pipe(buffer()); // pipe as nop to eat gulp error
 });
