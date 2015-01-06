@@ -37,7 +37,7 @@ configs = {
     },
     test_coverage: {
         default: {
-            src: ['test/**/*.js', 'test/components/*.js*'],
+            src: ['test/**/*.js', 'test/components/*.jsx', 'test/components/*.js'],
             istanbul: {
                 coverageVariable: '__FLUXEX_COVERAGE__',
                 exclude: /node_modules\/|test\//
@@ -118,6 +118,7 @@ get_testing_task = function (options) {
     cfg.istanbul.exclude = configs.test_coverage.default.istanbul.exclude;
     cfg.coverage.reporters = options.coverage.reporters;
     cfg.mocha = options.mocha;
+    cfg.cleanup = configs.test_coverage.default.cleanup;
 
     return coverage.createTask(cfg);
 },
@@ -258,8 +259,15 @@ gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app', 'watch_s
     });
 });
 
-gulp.task('test_app', get_testing_task(configs.test_coverage.console));
-gulp.task('save_test_app', get_testing_task(configs.test_coverage.report));
+gulp.task('watch_tests', function () {
+    gulp.watch(configs.test_coverage.default.src, ['test_app']);
+});
+gulp.task('test_app', function () {
+    return get_testing_task(configs.test_coverage.console)();
+});
+gulp.task('save_test_app', function () {
+    return get_testing_task(configs.test_coverage.report)();
+});
 gulp.task('develop', ['nodemon_server']);
 gulp.task('lint_all', ['lint_server', 'lint_flux_js', 'lint_jsx']);
 gulp.task('buildall', ['lint_all', 'build_app']);
