@@ -266,8 +266,8 @@ gulp.task('watch_tests', ['test_app'], function () {
         build_files.jsx
     ], ['test_app']);
 });
-gulp.task('test_app', function () {
-    return get_testing_task(configs.test_coverage.console)().on('error', function (E) {
+gulp.task('test_app', function (cb) {
+    return get_testing_task(configs.test_coverage.console)(cb).on('error', function (E) {
         // skip error
     }).pipe(buffer()); // pipe as nop to eat gulp error
 });
