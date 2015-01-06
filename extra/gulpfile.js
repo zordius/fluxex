@@ -260,7 +260,11 @@ gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app', 'watch_s
 });
 
 gulp.task('watch_tests', ['test_app'], function () {
-    gulp.watch(configs.test_coverage.default.src, ['test_app']);
+    gulp.watch([
+        configs.test_coverage.default.src,
+        build_files.js,
+        build_files.jsx
+    ], ['test_app']);
 });
 gulp.task('test_app', function () {
     return get_testing_task(configs.test_coverage.console)();
