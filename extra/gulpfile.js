@@ -259,7 +259,7 @@ gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app', 'watch_s
     });
 });
 
-gulp.task('watch_tests', function () {
+gulp.task('watch_tests', ['test_app'], function () {
     gulp.watch(configs.test_coverage.default.src, ['test_app']);
 });
 gulp.task('test_app', function () {
