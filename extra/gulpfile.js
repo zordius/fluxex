@@ -20,7 +20,7 @@ var gulp = require('gulp'),
 // You can :set nowritebackup in vim to prevent this
 // Reference: https://github.com/joyent/node/issues/3172
 configs = {
-    build_files = {
+    build_files: {
         js: ['actions/*.js', 'stores/*.js'],
         jsx: ['components/*.jsx']
     },
