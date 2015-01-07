@@ -20,6 +20,11 @@ var gulp = require('gulp'),
 // You can :set nowritebackup in vim to prevent this
 // Reference: https://github.com/joyent/node/issues/3172
 configs = {
+    build_files = {
+        js: ['actions/*.js', 'stores/*.js'],
+        jsx: ['components/*.jsx']
+    },
+
     static_dir: 'static/',
     mainjs: require(process.cwd() + '/package.json').main,
     appjs: process.cwd() + '/fluxexapp.js',
@@ -70,11 +75,6 @@ configs = {
             }
         }
     }
-},
-
-build_files = {
-    js: ['actions/*.js', 'stores/*.js'],
-    jsx: ['components/*.jsx']
 },
 
 restart_nodemon = function () {
@@ -194,12 +194,12 @@ gulp.task('watch_app', function () {
 });
 
 gulp.task('watch_flux_js', ['lint_flux_js'], function () {
-    gulp.watch(build_files.js, configs.gulp_watch, ['lint_flux_js']);
+    gulp.watch(configs.build_files.js, configs.gulp_watch, ['lint_flux_js']);
 });
 
 gulp.task('lint_flux_js', function () {
     return lint_chain(
-        gulp.src(build_files.js)
+        gulp.src(configs.build_files.js)
         .pipe(cached('jshint'))
         .pipe(jscs()).on('error', handleJSCSError)
         .pipe(jshint())
@@ -207,12 +207,12 @@ gulp.task('lint_flux_js', function () {
 });
 
 gulp.task('watch_jsx', ['lint_jsx'], function () {
-    gulp.watch(build_files.jsx, configs.gulp_watch, ['lint_jsx']);
+    gulp.watch(configs.build_files.jsx, configs.gulp_watch, ['lint_jsx']);
 });
 
 gulp.task('lint_jsx', function () {
     return lint_chain(
-        gulp.src(build_files.jsx)
+        gulp.src(configs.build_files.jsx)
         .pipe(cached('jshint'))
         .pipe(react_compiler({sourceMap: true}))
         .pipe(jscs()).on('error', handleJSCSError)
@@ -262,8 +262,8 @@ gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app', 'watch_s
 gulp.task('watch_tests', ['test_app'], function () {
     gulp.watch([
         configs.test_coverage.default.src,
-        build_files.js,
-        build_files.jsx
+        configs.build_files.js,
+        configs.build_files.jsx
     ], ['test_app']);
 });
 gulp.task('test_app', function (cb) {
