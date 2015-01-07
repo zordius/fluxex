@@ -81,6 +81,10 @@ module.exports.createServices = function (app, serviceCfg, opts) {
             });
         }
 
+        if ('function' === (typeof opts.preRequest)) {
+            reqCfg = opts.preRequest(reqCfg, req);
+        }
+
         fetch(req.params.name, reqCfg).then(function (O) {
             res.send(O.body);
         }).catch(function (E) {
