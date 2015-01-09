@@ -269,9 +269,9 @@ gulp.task('watch_tests', ['test_app'], function () {
 gulp.task('test_app', function (cb) {
     get_testing_task(configs.test_coverage.console)(cb).on('error', function (E) {
         if (E.stack || E.showStack) {
-            console.log(E.stack);
+            console.warn(E.stack);
         } else {
-            console.log(E);
+            console.warn(E);
         }
     }).on('end', function () {
         cb(); // prevent failed ending
