@@ -1,6 +1,15 @@
 HISTORY
 =======
 
+0.1.11 https://github.com/zordius/fluxex/releases/tag/v0.1.11
+   * [CORE] Extended executeAction() API to pass all arguments into action creator
+   * [CORE] Remove all polyfill related depdency
+   * [CORE] Depend on with-promise to keep context API can be accessed in all .then()
+   * [CORE] dispatch() now returns all return values from handlers as promise
+   * [EXTRA] Extended fetch.createServices() to handle preRequest logic
+   * [EXTRA] New gulp tasks for jscs, test and coverage
+   * [EXTRA] New routing mixin and helper functions
+
 0.1.10 https://github.com/zordius/fluxex/releases/tag/v0.1.10
    * [CORE] Add standard doctype to support IE9
    * [EXTRA] Enhanced gulp tasks: `disc_app` to analyze bundle file size
