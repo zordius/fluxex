@@ -10,7 +10,7 @@ api = {
             self = this;
 
         if (!keyword) {
-            return this.resolvePromise({});
+            return Promise.resolve({});
         }
 
         return yql('select * from youtube.search where query="' + keyword + '" and start_index=' + (start + 1) + ' and max_results=' + count).then(function (O) {

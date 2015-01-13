@@ -23,7 +23,7 @@ module.exports = function () {
         route = router.getRoute(path);
 
     if (!route) {
-        return this.rejectPromise('no matched route');
+        return Promise.reject(new Error('no matched route'));
     }
 
     this.dispatch('UPDATE_ROUTING', {
