@@ -31,6 +31,10 @@ fetch = function (name, cfg) {
 
     cfg.url = getURL(name);
 
+    if (!cfg.url) {
+        return Promise.reject(new Error('Can not find URL for service: ' + name));
+    }
+
     return new Promise(function (resolve, reject) {
         request(cfg, function (error, response, body) {
             var O = {
