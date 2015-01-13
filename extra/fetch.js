@@ -92,9 +92,3 @@ module.exports.createServices = function (app, serviceCfg, opts) {
         });
     });
 };
-
-module.exports.appMixin = {
-    fetch: function () {
-        return this.resolvePromise(fetch.apply(this, arguments));
-    }
-}
