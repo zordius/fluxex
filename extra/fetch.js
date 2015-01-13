@@ -92,6 +92,7 @@ module.exports.createServices = function (app, serviceCfg, opts) {
         fetch(req.params.name, reqCfg).then(function (O) {
             res.send(O.body);
         }).catch(function (E) {
+            console.warn(E.stack);
             res.status(500).send(E.stack || E);
         });
     });
