@@ -12,7 +12,7 @@ server_actions = {
     samplePage: function () {
         return this.executeAction(other_actions.updateStoreByApi).then(function () {
             this.dispatch('UPDATE_TITLE', this.getStore('productStore').get('data.title'));
-        });
+        }.bind(this));
     }
 };
 

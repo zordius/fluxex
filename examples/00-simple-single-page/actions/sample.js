@@ -5,9 +5,9 @@ module.exports = {
         return this.dispatch('UPDATE_SAMPLE', {c: payload});
     },
     updateStoreByApi: function () {
-        return this.createPromise(function (resolve) {
-            var self = this,
-                S = this.getStore('page'),
+        var self = this;
+        return new Promise(function (resolve) {
+            var S = self.getStore('page'),
                 id = S.get('query.id');
 
             if (id) {
