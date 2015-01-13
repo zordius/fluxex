@@ -68,7 +68,7 @@ Html = React.createClass({
         // Go to the url
         this._getContext().dispatch('UPDATE_URL', HREF).then(function () {
             // Run action to update page stores
-            return this.executeAction(sampleActions.updateProductPage);
+            return self.executeAction(sampleActions.updateProductPage);
         }).then(function () {
             // Success, update url to history
             /*global history*/
@@ -86,7 +86,10 @@ Html = React.createClass({
           <title>{this.getStore('page').get('title')}</title>
          </head>
          <body onClick={this.handleClickLink}>
-          <Product />
+          <div>
+           <Product />
+          </div>
+          <script src="http://cdn.jsdelivr.net/polyfills/polyfill.js"></script>
           <script src="/static/js/main.js"></script>
           <script dangerouslySetInnerHTML={{__html: this.getInitScript()}}></script>
          </body>
