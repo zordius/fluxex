@@ -1,7 +1,7 @@
 HISTORY
 =======
 
-0.2.0
+0.2.0 https://github.com/zordius/fluxex/releases/tag/v0.2.0
    * [CORE] remove all with-promise related API, use .bind() instead
 
 0.1.11 https://github.com/zordius/fluxex/releases/tag/v0.1.11
