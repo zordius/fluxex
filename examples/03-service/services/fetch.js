@@ -1,7 +1,6 @@
 'use strict';
 
 var request = require('request'),
-    when = require('when'),
 
 getConfig = function (name) {
     var module = './service_config',
@@ -23,7 +22,7 @@ getConfig = function (name) {
 
 module.exports = function (name, cfg) {
     if (!name) {
-        return when.reject(new Error('service name required!'));
+        return Promise.reject(new Error('service name required!'));
     }
 
     if (!cfg) {
@@ -32,7 +31,7 @@ module.exports = function (name, cfg) {
 
     cfg.url = getConfig(name);
 
-    return when.promise(function (resolve, reject) {
+    return new Promise(function (resolve, reject) {
         request(cfg, function (error, response, body) {
             var O = {
                 error: error,

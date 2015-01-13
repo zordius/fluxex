@@ -20,5 +20,5 @@ module.exports = function () {
         params: match.params
     });
 
-    return this.executeAction(match.fn[1].bind(this));
+    return this.executeAction(match.fn[1]);
 };

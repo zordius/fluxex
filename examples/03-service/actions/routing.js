@@ -11,7 +11,7 @@ module.exports = function () {
         match = router.match(path);
 
     if (!match) {
-        return this.rejectPromise('no matched route');
+        return Promise.reject(new Error('no matched route'));
     }
 
     this.dispatch('UPDATE_ROUTING', {
