@@ -2,9 +2,9 @@
 
 module.exports = {
     sampleAction: function (payload) {
-        return this.createPromise(function (resolve) {
+        return new Promise(function (resolve) {
             this.dispatch('SAMPLE', payload);
             resolve();
-        });
+        }.bind(this));
     }
 };
