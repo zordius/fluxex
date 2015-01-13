@@ -1,6 +1,9 @@
 HISTORY
 =======
 
+0.2.0
+   * [CORE] remove all with-promise related API, use .bind() instead
+
 0.1.11 https://github.com/zordius/fluxex/releases/tag/v0.1.11
    * [CORE] Extended executeAction() API to pass all arguments into action creator
    * [CORE] Remove all polyfill related depdency
