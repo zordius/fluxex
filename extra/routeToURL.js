@@ -8,14 +8,14 @@ module.exports = function (url) {
     this.dispatch('UPDATE_URL', url).then(function () {
         // Run action to update page stores
         return this.executeAction(this.routing);
-    }).then(function () {
+    }.bind(this)).then(function () {
         // Success, trigger page refresh
         this.getStore('page').emitChange();
 
         // update url to history
         /*global history*/
         history.pushState(this.toString(), undefined, url);
-    }).catch(function (E) {
+    }.bind(this)).catch(function (E) {
         console.log('Pjax failed! Failback to page loading....');
         console.log(E.stack || E);
         // pjax failed, go to url...

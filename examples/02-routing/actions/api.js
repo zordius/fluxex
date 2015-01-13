@@ -11,9 +11,8 @@ module.exports = {
         ]);
     },
     getProductById: function (id) {
-        return this.createPromise(function (resolve, reject) {
-            var self = this;
-
+        var self = this;
+        return new Promise(function (resolve, reject) {
             if (id) {
                 // simulate api call here...
                 setTimeout(function () {

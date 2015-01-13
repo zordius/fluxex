@@ -29,7 +29,7 @@ ServerExtra = {
         return ServerExtra.middleware(fluxexapp, function (req) {
             return this.dispatch('UPDATE_URL', req.url).then(function () {
                 return this.executeAction(this.routing);
-            });
+            }.bind(this));
         });
     }
 }

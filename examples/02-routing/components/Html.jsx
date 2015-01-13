@@ -39,6 +39,7 @@ Html = React.createClass({
           </div>
           <hr />
           <a href="/main">Go to Main...</a>
+          <script src="http://cdn.jsdelivr.net/polyfills/polyfill.js"></script>
           <script src="/static/js/main.js"></script>
           <script dangerouslySetInnerHTML={{__html: this.getInitScript()}}></script>
          </body>

@@ -21,7 +21,7 @@ fluxexServerExtra.initStatic(app);
 app.use(fluxexServerExtra.middleware(fluxexapp, function (req) {
     return this.dispatch('UPDATE_URL', req.url).then(function () {
         return this.executeAction(routing);
-    });
+    }.bind(this));
 }));
 
 // Start server
