@@ -19,8 +19,9 @@
     "context",
     "fluxible",
     "isomorphic",
-    "lighweight",
-    "starter"
+    "lightweight",
+    "starter",
+    "starter kit"
   ],
   "scripts": {
     "test": "mocha",
