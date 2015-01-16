@@ -68,10 +68,10 @@ describe('FluxexObject', function () {
     });
 
     describe('.get()', function () {
-        it('can get property by path', function (done) {
+        it('can get property by key name', function (done) {
             var F = new fluxexobj({a: {b: 3}});
 
-            assert.equal(3, F.get('a.b'));
+            assert.deepEqual({b: 3}, F.get('a'));
             done();
         });
     });
@@ -104,40 +104,32 @@ describe('FluxexObject', function () {
         it('can set into ._context', function (done) {
             var F = new fluxexobj({a: {b: 3}});
 
-            F.set('c.d.e', 9, true);
-            assert.equal(9, F._context.c.d.e);
+            F.set('a', 9);
+            assert.equal(9, F._context.a);
             done();
         });
 
         it('can set to undefined', function (done) {
             var F = new fluxexobj({a: {b: 3}});
 
-            F.set('a.b', undefined);
-            assert.deepEqual({a: {b: undefined}}, F._context);
+            F.set('a', undefined);
+            assert.deepEqual({a: undefined}, F._context);
             done();
         });
 
         it('can set to null', function (done) {
             var F = new fluxexobj({a: {b: 3}});
 
-            F.set('a.b', null);
-            assert.deepEqual(F._context, {a: {b: null}});
+            F.set('a', null);
+            assert.deepEqual(F._context, {a: null});
             done();
         });
 
         it('can create undefined', function (done) {
             var F = new fluxexobj({a: {b: 3}});
 
-            F.set('c.d', null);
-            assert.deepEqual(F._context, {a: {b: 3}, c: {d: null}});
-            done();
-        });
-
-        it('can create undefined', function (done) {
-            var F = new fluxexobj({a: {b: 3}});
-
-            F.set('c.d.e', undefined, true);
-            assert.deepEqual({a: {b: 3}, c: {d: {e: undefined}}}, F._context);
+            F.set('b', undefined);
+            assert.deepEqual(F._context, {a: {b: 3}, b: undefined});
             done();
         });
     });

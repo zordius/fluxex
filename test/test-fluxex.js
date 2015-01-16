@@ -37,16 +37,16 @@ describe('fluxex', function () {
     });
 
     describe('.get()', function () {
-        it('can get property by path', function (done) {
+        it('can get property by name', function (done) {
             var F = new fluxex({a: {b: 3}});
 
-            assert.equal(3, F.get('a.b'));
+            assert.deepEqual({b: 3}, F.get('a'));
             done();
         });
     });
 
     describe('.set()', function () {
-        it('can set property by path', function (done) {
+        it('can set property by name', function (done) {
             var F = new fluxex({a: {b: 3}});
 
             F.set('c', 4);

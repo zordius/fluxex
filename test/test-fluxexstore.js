@@ -38,7 +38,7 @@ describe('FluxexStore', function () {
     it('.get() can get property by path', function (done) {
         var F = new fluxstore({a: {b: 3}});
 
-        assert.equal(3, F.get('a.b'));
+        assert.deepEqual({b: 3}, F.get('a'));
         done();
     });
 
