@@ -1,6 +1,11 @@
 HISTORY
 =======
 
+0.3.0 https://github.com/zordius/fluxex/releases/tag/v0.3.0
+   * [CORE] remove json path support of .set() and .get()
+   * [EXTRA] remove fetch.appMixin
+   * [EXTRA] refine some gulp setting naming
+
 0.2.0 https://github.com/zordius/fluxex/releases/tag/v0.2.0
    * [CORE] remove all with-promise related API, use .bind() instead
 
