@@ -108,6 +108,38 @@ describe('FluxexObject', function () {
             assert.equal(9, F._context.c.d.e);
             done();
         });
+
+        it('can set to undefined', function (done) {
+            var F = new fluxexobj({a: {b: 3}});
+
+            F.set('a.b', undefined);
+            assert.deepEqual({a: {b: undefined}}, F._context);
+            done();
+        });
+
+        it('can set to null', function (done) {
+            var F = new fluxexobj({a: {b: 3}});
+
+            F.set('a.b', null);
+            assert.deepEqual(F._context, {a: {b: null}});
+            done();
+        });
+
+        it('can create undefined', function (done) {
+            var F = new fluxexobj({a: {b: 3}});
+
+            F.set('c.d', null);
+            assert.deepEqual(F._context, {a: {b: 3}, c: {d: null}});
+            done();
+        });
+
+        it('can create undefined', function (done) {
+            var F = new fluxexobj({a: {b: 3}});
+
+            F.set('c.d.e', undefined, true);
+            assert.deepEqual({a: {b: 3}, c: {d: {e: undefined}}}, F._context);
+            done();
+        });
     });
 
     describe('.toString()', function () {
