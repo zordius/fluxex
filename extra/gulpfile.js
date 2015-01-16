@@ -20,7 +20,7 @@ var gulp = require('gulp'),
 // You can :set nowritebackup in vim to prevent this
 // Reference: https://github.com/joyent/node/issues/3172
 configs = {
-    build_files: {
+    lint_files: {
         js: ['actions/*.js', 'stores/*.js'],
         jsx: ['components/*.jsx']
     },
@@ -194,12 +194,12 @@ gulp.task('watch_app', function () {
 });
 
 gulp.task('watch_flux_js', ['lint_flux_js'], function () {
-    gulp.watch(configs.build_files.js, configs.gulp_watch, ['lint_flux_js']);
+    gulp.watch(configs.lint_files.js, configs.gulp_watch, ['lint_flux_js']);
 });
 
 gulp.task('lint_flux_js', function () {
     return lint_chain(
-        gulp.src(configs.build_files.js)
+        gulp.src(configs.lint_files.js)
         .pipe(cached('jshint'))
         .pipe(jscs()).on('error', handleJSCSError)
         .pipe(jshint())
@@ -207,12 +207,12 @@ gulp.task('lint_flux_js', function () {
 });
 
 gulp.task('watch_jsx', ['lint_jsx'], function () {
-    gulp.watch(configs.build_files.jsx, configs.gulp_watch, ['lint_jsx']);
+    gulp.watch(configs.lint_files.jsx, configs.gulp_watch, ['lint_jsx']);
 });
 
 gulp.task('lint_jsx', function () {
     return lint_chain(
-        gulp.src(configs.build_files.jsx)
+        gulp.src(configs.lint_files.jsx)
         .pipe(cached('jshint'))
         .pipe(react_compiler({sourceMap: true}))
         .pipe(jscs()).on('error', handleJSCSError)
@@ -262,8 +262,8 @@ gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app', 'watch_s
 gulp.task('watch_tests', ['test_app'], function () {
     gulp.watch([
         configs.test_coverage.default.src,
-        configs.build_files.js,
-        configs.build_files.jsx
+        configs.lint_files.js,
+        configs.lint_files.jsx
     ], ['test_app']);
 });
 gulp.task('test_app', function (cb) {
