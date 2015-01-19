@@ -15,7 +15,7 @@ Html = React.createClass({
 
     getStateFromStores: function () {
         return {
-            route_name: this.getStore('page').get('routing.name')
+            route_name: this.getStore('page').get('routing').name
         };
     },
 
