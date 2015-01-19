@@ -10,7 +10,7 @@ routingAction = function () {
         route = router.getRoute(path);
 
     if (!route) {
-        return this.rejectPromise('no matched route');
+        return Promise.reject('no matched route');
     }
 
     this.dispatch('UPDATE_ROUTING', {

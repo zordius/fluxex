@@ -45,7 +45,7 @@ module.exports = {
                 this.restore(state);
                 this.dispatch('UPDATE_TITLE');
                 this.dispatch('**UPDATEALL**');
-                return this.resolvePromise(true);
+                return Promise.resolve(true);
             });
         });
     },
