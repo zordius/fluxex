@@ -3,14 +3,14 @@
 var samples = {
     updateProductPage: function () {
         return this.executeAction(samples.updateStoreByApi).then(function () {
-            return this.dispatch('UPDATE_TITLE', this.getStore('productStore').get('data.title'));
+            return this.dispatch('UPDATE_TITLE', this.getStore('productStore').get('data').title);
         }.bind(this));
     },
     updateStoreByApi: function () {
         var self = this;
-        return new Promise(function (resolve) {
+        return new Promise(function (resolve, reject) {
             var S = self.getStore('page'),
-                id = S.get('url.query.id');
+                id = S.get('url').query.id;
 
             if (id) {
                 setTimeout(function () {
@@ -25,7 +25,7 @@ var samples = {
                     resolve();
                 });
             } else {
-                resolve();
+                reject(new Error('can not update product because no id'));
             }
         });
     }
