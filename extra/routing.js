@@ -6,11 +6,12 @@ var Router = require('routr'),
 
 // The single routing action can be used at both server/client side.
 routingAction = function () {
-    var path = this.getStore('page').get('url.pathname'),
-        route = router.getRoute(path);
+    var url = this.getStore('page').get('url'),
+        path = url ? url.pathname : undefined,
+        route = url ? router.getRoute(path) : undefined;
 
     if (!route) {
-        return Promise.reject('no matched route');
+        return Promise.reject('no matched route for path: ' + path);
     }
 
     this.dispatch('UPDATE_ROUTING', {
