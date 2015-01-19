@@ -7,8 +7,8 @@ var apis = require('./api'),
 // and update the page title.
 pages = {
     search: function () {
-        this.dispatch('UPDATE_TITLE', 'Search:' + this.getStore('page').get('url.query.q'));
-        return this.executeAction(apis.search, this.getStore('page').get('url.query'));
+        this.dispatch('UPDATE_TITLE', 'Search:' + this.getStore('page').get('url').query.q);
+        return this.executeAction(apis.search, this.getStore('page').get('url').query);
     }
 };
 
