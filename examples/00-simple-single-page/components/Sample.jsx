@@ -1,14 +1,14 @@
 var React = require('react'),
     Fluxex = require('fluxex'),
 
-Product = React.createClass({
+Sample = React.createClass({
     mixins: [
         Fluxex.mixin,
         {listenStores: ['sampleStore']}
     ],
 
     getStateFromStores: function () {
-        return this.getStore('sampleStore').get('.');
+        return {c: this.getStore('sampleStore').get('c')};
     },
 
     getInitialState: function () {
@@ -41,4 +41,4 @@ Product = React.createClass({
     }
 });
 
-module.exports = Product;
+module.exports = Sample;

@@ -6,22 +6,24 @@ module.exports = {
     },
     updateStoreByApi: function () {
         var self = this;
-        return new Promise(function (resolve) {
+        return new Promise(function (resolve, reject) {
             var S = self.getStore('page'),
-                id = S.get('query.id');
+                query = S.get('query'),
+                id = query ? query.id : undefined;
 
             if (id) {
                 setTimeout(function () {
                     // simulate api call here...
-                    self.dispatch('UPDATE_PRODUCT', {
+                    var result = {
                         title: 'this is sample title (' + id + ')',
                         description: 'this is sample description (id=' + id + ')',
                         price: 100 * id
-                    });
-                    resolve();
+                    };
+                    self.dispatch('UPDATE_PRODUCT', result);
+                    resolve(result);
                 });
             } else {
-                resolve();
+                reject(new Error('try to get product but no ID!'));
             }
         });
     }
