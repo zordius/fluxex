@@ -6,6 +6,13 @@ module.exports = {
     // All current page and location related things stay here.
     // We do not emitChange() in this store because this store should not trigger re-rendering directly.
     page: {
+        initialize: function () {
+            this.set('routing', {});
+            this.set('body', {});
+            this.set('url', {});
+        },
+
+        // Title functions
         handle_UPDATE_TITLE: function (title) {
             // Play DOM update here because title beyonds body
             if (this.get('title')) {
@@ -14,12 +21,30 @@ module.exports = {
             }
 
             if (title) {
-                this.set('title', title, true);
+                this.set('title', title);
             }
         },
-        handle_UPDATE_ROUTING: function (routing) {
-            this.set('routing', routing, true);
+        getTitle: function () {
+            return this.get('title');
         },
+
+        // Routing functions
+        handle_UPDATE_ROUTING: function (routing) {
+            this.set('routing', routing);
+        },
+        getRoutingParam: function () {
+            return this.get('routing').params || {};
+        },
+
+        // Post body functions
+        handle_UPDATE_BODY: function (body) {
+            this.set('body', body);
+        },
+        getBody: function () {
+            return this.get('body');
+        },
+
+        // URL functions
         handle_UPDATE_URL: function (url) {
             var M = url.match(/^(?:(https?:)\/\/(([^:/]+)(:[^\/]+)?))?([^#?]*)(\\?[^#]*)?(#.*)?$/),
                 search = M[6] || '',
@@ -35,7 +60,10 @@ module.exports = {
                 search: search,
                 hash: hash,
                 query: querystring.decode(search.substring(1)) || {}
-            }, true);
+            });
+        },
+        getQuery: function () {
+            return this.get('url').query;
         },
         getURL: function (query) {
             var url = this.get('url'),
@@ -43,6 +71,9 @@ module.exports = {
 
             /*global location*/
             return location.protocol + '//' + location.host + location.pathname + (mixedSearch ? '?' : '') + mixedSearch + location.hash;
+        },
+        getParam: function (name) {
+            return Object.assign({}, this.getRoutingParam(), this.getBody(), this.getQuery());
         }
     },
 
