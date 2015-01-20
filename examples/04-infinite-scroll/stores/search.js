@@ -2,12 +2,13 @@
 
 module.exports = {
     handle_UPDATE_SEARCH_RESULT: function (data) {
-        if (this.get('data.keyword') !== data.keyword) {
+        var old_data = this.get('data');
+
+        if (!old_data || (old_data.keyword !== data.keyword)) {
             this.set('data', data);
         } else {
-            this.set('data.videos', function (D) {
-                return Array.prototype.concat.call(D, data.videos);
-            });
+            old_data.videos = old_data.videos.concat(data.videos);
+            this.set('data', old_data);
         }
         this.emitChange();
     }
