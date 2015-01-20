@@ -32,6 +32,9 @@ module.exports = {
         handle_UPDATE_ROUTING: function (routing) {
             this.set('routing', routing);
         },
+        getRouteName: function () {
+            return this.get('routing').name;
+        },
         getRoutingParam: function () {
             return this.get('routing').params || {};
         },

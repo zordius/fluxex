@@ -15,7 +15,7 @@ Html = React.createClass({
 
     getStateFromStores: function () {
         return {
-            route_name: this.getStore('page').get('routing').name
+            route_name: this.getStore('page').getRouteName()
         };
     },
 
@@ -31,7 +31,7 @@ Html = React.createClass({
          <head>
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, user-scalable=no" />
-          <title>{this.getStore('page').get('title')}</title>
+          <title>{this.getStore('page').getTitle()}</title>
          </head>
          <body onClick={this.handleClickLink}>
           <div>
