@@ -83,7 +83,7 @@ Html = React.createClass({
           <meta charSet="utf-8" />
           <meta name="format-detection" content="telephone=no" />
           <meta name="viewport" content="width=device-width, user-scalable=no" />
-          <title>{this.getStore('page').get('title')}</title>
+          <title>{this.getStore('page').getTitle()}</title>
          </head>
          <body onClick={this.handleClickLink}>
           <div>
