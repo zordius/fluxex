@@ -16,18 +16,21 @@ Html = React.createClass({
     ],
 
     getStateFromStores: function () {
-        return this.getStore('page').get('routing');
+        return {
+            route_name: this.getStore('page').getRouteName(),
+            id: this.getStore('page').getQuery().id
+        };
     },
 
     render: function () {
         var Body;
 
-        switch (this.state.name) {
+        switch (this.state.route_name) {
         case 'search':
             Body = <Results />;
             break;
         case 'video':
-            Body = <Video id={this.state.params.id} />;
+            Body = <Video id={this.state.id} />;
             break;
         }
 
@@ -36,7 +39,7 @@ Html = React.createClass({
          <head>
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, user-scalable=no" />
-          <title>{this.getStore('page').get('title')}</title>
+          <title>{this.getStore('page').getTitle()}</title>
          </head>
          <body onClick={this.handleClickLink}>
           <SearchBox />
