@@ -26,14 +26,14 @@ describe('a fluxex app', function () {
     it('creates stores automatically when be constructed', function (done) {
         var F = new app({stores: {sampleStore: {a: 1}}});
 
-        assert.equal(1, F.getStore('sampleStore').get('a'));
+        assert.equal(1, F.getStore('sampleStore')._get('a'));
         done();
     });
 
     it('the store will be initialized by the initalize()', function (done) {
         var F = new app();
 
-        assert.equal('OK!', F.getStore('sampleStore').get('q'));
+        assert.equal('OK!', F.getStore('sampleStore')._get('q'));
         done();
     });
 
@@ -100,22 +100,22 @@ describe('a fluxex app', function () {
         done();
     });
 
-    it('can .get() and .set()', function (done) {
+    it('can ._get() and ._set()', function (done) {
         var App = new app({a: 2});
 
-        App.set('a', 3);
-        assert.equal(3, App.get('a'));
+        App._set('a', 3);
+        assert.equal(3, App._get('a'));
         done();
     });
 
-    describe('.restore()', function () {
+    describe('._restore()', function () {
         it('will update stores context', function (done) {
             var F = new app({stores: {sampleStore: {a: 1}}});
 
-            assert.equal(1, F.getStore('sampleStore').get('a'));
-            F.restore({stores: {sampleStore: {b: 2}}});
-            assert.equal(undefined, F.getStore('sampleStore').get('a'));
-            assert.equal(2, F.getStore('sampleStore').get('b'));
+            assert.equal(1, F.getStore('sampleStore')._get('a'));
+            F._restore({stores: {sampleStore: {b: 2}}});
+            assert.equal(undefined, F.getStore('sampleStore')._get('a'));
+            assert.equal(2, F.getStore('sampleStore')._get('b'));
             done();
         });
     });
@@ -167,9 +167,9 @@ describe('a fluxex app', function () {
             var App = new app();
 
             App.dispatch('SAMPLE', 3);
-            assert.equal(3, App.getStore('sampleStore').get('c'));
+            assert.equal(3, App.getStore('sampleStore')._get('c'));
             App.dispatch('SAMPLE', 40);
-            assert.equal(40, App.getStore('sampleStore').get('c'));
+            assert.equal(40, App.getStore('sampleStore')._get('c'));
             done();
         });
     });

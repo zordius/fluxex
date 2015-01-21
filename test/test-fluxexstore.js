@@ -22,8 +22,8 @@ describe('FluxexStore', function () {
     it('can be constructed by an object', function (done) {
         var F = new fluxstore({a: 1, b: 2});
 
-        assert.equal(1, F.get('a'));
-        assert.equal(2, F.get('b'));
+        assert.equal(1, F._get('a'));
+        assert.equal(2, F._get('b'));
         done();
     });
 
@@ -35,18 +35,18 @@ describe('FluxexStore', function () {
         done();
     });
 
-    it('.get() can get property by path', function (done) {
+    it('._get() can get property by name', function (done) {
         var F = new fluxstore({a: {b: 3}});
 
-        assert.deepEqual({b: 3}, F.get('a'));
+        assert.deepEqual({b: 3}, F._get('a'));
         done();
     });
 
-    it('.set() can set on undefined key', function (done) {
+    it('._set() can set on undefined key', function (done) {
         var F = new fluxstore({a: {b: 3}});
 
-        F.set('c', 4, true);
-        assert.equal(4, F.get('c'));
+        F._set('c', 4, true);
+        assert.equal(4, F._get('c'));
         done();
     });
 

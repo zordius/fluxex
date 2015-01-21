@@ -6,7 +6,7 @@ var Router = require('routr'),
 
 // The single routing action can be used at both server/client side.
 routingAction = function () {
-    var url = this.getStore('page').get('url'),
+    var url = this.getStore('page').getUrl(),
         path = url ? url.pathname : undefined,
         route = url ? router.getRoute(path) : undefined;
 

@@ -7,44 +7,44 @@ module.exports = {
     // We do not emitChange() in this store because this store should not trigger re-rendering directly.
     page: {
         initialize: function () {
-            this.set('routing', {});
-            this.set('body', {});
-            this.set('url', {});
+            this._set('routing', {});
+            this._set('body', {});
+            this._set('url', {});
         },
 
         // Title functions
         handle_UPDATE_TITLE: function (title) {
             // Play DOM update here because title beyonds body
-            if (this.get('title')) {
+            if (this._get('title')) {
                 /*global document*/
-                document.getElementsByTagName('title')[0].innerHTML = title || this.get('title');
+                document.getElementsByTagName('title')[0].innerHTML = title || this._get('title');
             }
 
             if (title) {
-                this.set('title', title);
+                this._set('title', title);
             }
         },
         getTitle: function () {
-            return this.get('title');
+            return this._get('title');
         },
 
         // Routing functions
         handle_UPDATE_ROUTING: function (routing) {
-            this.set('routing', routing);
+            this._set('routing', routing);
         },
         getRouteName: function () {
-            return this.get('routing').name;
+            return this._get('routing').name;
         },
         getRoutingParam: function () {
-            return this.get('routing').params || {};
+            return this._get('routing').params || {};
         },
 
         // Post body functions
         handle_UPDATE_BODY: function (body) {
-            this.set('body', body);
+            this._set('body', body);
         },
         getBody: function () {
-            return this.get('body');
+            return this._get('body');
         },
 
         // URL functions
@@ -53,7 +53,7 @@ module.exports = {
                 search = M[6] || '',
                 hash = M[7] || '';
 
-            this.set('url', {
+            this._set('url', {
                 href: M[5] + search + hash,
                 protocol:  M[1],
                 host: M[2],
@@ -66,10 +66,10 @@ module.exports = {
             });
         },
         getQuery: function () {
-            return this.get('url').query;
+            return this._get('url').query;
         },
         getURL: function (query) {
-            var url = this.get('url'),
+            var url = this._get('url'),
                 mixedSearch = querystring.encode(Object.assign(url.query, query));
 
             /*global location*/
@@ -84,10 +84,10 @@ module.exports = {
     // We do not emitChange() in this store because this store should not trigger re-rendering directly.
     meta: {
         handle_UPDATE_META: function (meta) {
-            this.set('meta', meta);
+            this._set('meta', meta);
         },
         getMeta: function () {
-            this.get('meta');
+            this._get('meta');
         }
     }
 };

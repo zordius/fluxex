@@ -22,8 +22,8 @@ describe('FluxexObject', function () {
     it('can be constructed by an object', function (done) {
         var F = new fluxexobj({a: 1, b: 2});
 
-        assert.equal(1, F.get('a'));
-        assert.equal(2, F.get('b'));
+        assert.equal(1, F._get('a'));
+        assert.equal(2, F._get('b'));
         done();
     });
 
@@ -31,9 +31,9 @@ describe('FluxexObject', function () {
         var data = {a: 1, b: 2},
             F = new fluxexobj(data);
 
-        assert.equal(2, F.get('b'));
+        assert.equal(2, F._get('b'));
         data.c = 3;
-        assert.equal(3, F.get('c'));
+        assert.equal(3, F._get('c'));
         done();
     });
 
@@ -45,14 +45,14 @@ describe('FluxexObject', function () {
         done();
     });
 
-    describe('.restore() ', function () {
+    describe('._restore() ', function () {
         it('will replace whole context', function (done) {
             var data = {a: 1, b: 2},
                 F = new fluxexobj(data);
 
-            F.restore({a: 1, c: 4});
-            assert.equal(undefined, F.get('b'));
-            assert.equal(4, F.get('c'));
+            F._restore({a: 1, c: 4});
+            assert.equal(undefined, F._get('b'));
+            assert.equal(4, F._get('c'));
             done();
         });
 
@@ -60,51 +60,35 @@ describe('FluxexObject', function () {
             var data = {a: 1, b: 2},
                 F = new fluxexobj(data);
 
-            F.restore({a: 1, b: 2});
+            F._restore({a: 1, b: 2});
             data.c = 3;
-            assert.equal(undefined, F.get('c'));
+            assert.equal(undefined, F._get('c'));
             done();
         });
     });
 
-    describe('.get()', function () {
+    describe('._get()', function () {
         it('can get property by key name', function (done) {
             var F = new fluxexobj({a: {b: 3}});
 
-            assert.deepEqual({b: 3}, F.get('a'));
+            assert.deepEqual({b: 3}, F._get('a'));
             done();
         });
     });
 
-    describe('.set()', function () {
-        it('can auto create undefined key when no 3rd param', function (done) {
+    describe('._set()', function () {
+        it('can auto create undefined key', function (done) {
             var F = new fluxexobj({a: {b: 3}});
 
-            F.set('c', 4);
-            assert.equal(4, F.get('c'));
-            done();
-        });
-
-        it('can auto create undefined key when 3rd param is true', function (done) {
-            var F = new fluxexobj({a: {b: 3}});
-
-            F.set('c', 4, true);
-            assert.equal(4, F.get('c'));
-            done();
-        });
-
-        it('can auto create undefined key deeply', function (done) {
-            var F = new fluxexobj({a: {b: 3}});
-
-            F.set('c.d.e', 9, true);
-            assert.equal(9, F.get('c.d.e'));
+            F._set('c', 4);
+            assert.equal(4, F._get('c'));
             done();
         });
 
         it('can set into ._context', function (done) {
             var F = new fluxexobj({a: {b: 3}});
 
-            F.set('a', 9);
+            F._set('a', 9);
             assert.equal(9, F._context.a);
             done();
         });
@@ -112,7 +96,7 @@ describe('FluxexObject', function () {
         it('can set to undefined', function (done) {
             var F = new fluxexobj({a: {b: 3}});
 
-            F.set('a', undefined);
+            F._set('a', undefined);
             assert.deepEqual({a: undefined}, F._context);
             done();
         });
@@ -120,7 +104,7 @@ describe('FluxexObject', function () {
         it('can set to null', function (done) {
             var F = new fluxexobj({a: {b: 3}});
 
-            F.set('a', null);
+            F._set('a', null);
             assert.deepEqual(F._context, {a: null});
             done();
         });
@@ -128,7 +112,7 @@ describe('FluxexObject', function () {
         it('can create undefined', function (done) {
             var F = new fluxexobj({a: {b: 3}});
 
-            F.set('b', undefined);
+            F._set('b', undefined);
             assert.deepEqual(F._context, {a: {b: 3}, b: undefined});
             done();
         });

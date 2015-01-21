@@ -2,7 +2,7 @@
 
 module.exports = {
     initialize: function () {
-        this.set('q', 'OK!');
+        this._set('q', 'OK!');
     },
     handle_test: function (payload) {
         return 'OK';
@@ -11,10 +11,10 @@ module.exports = {
         return payload.dispatch('more_dispatch');
     },
     handle_SAMPLE: function (payload) {
-        this.set('c', payload, true);
+        this._set('c', payload);
         this.emitChange();
     },
     getList: function () {
-        return this.get('list');
+        return this._get('list');
     }
 };
