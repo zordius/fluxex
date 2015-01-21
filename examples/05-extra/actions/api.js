@@ -23,8 +23,8 @@ api = {
     },
     load_more: function () {
         return this.executeAction(api.search, {
-            q: this.getStore('page').get('url').query.q,
-            p: this.getStore('search').get('data').videos.length
+            q: this.getStore('page').getQuery().q,
+            p: this.getStore('search').getSearchData().videos.length
         });
     }
 };
