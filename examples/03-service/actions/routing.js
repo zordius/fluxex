@@ -7,7 +7,7 @@ router.addRoute('/search', ['search', page.search]);
 
 // The single routing action can be used at both server/client side.
 module.exports = function () {
-    var path = this.getStore('page').get('url').pathname,
+    var path = this.getStore('page')._get('url').pathname,
         match = router.match(path);
 
     if (!match) {

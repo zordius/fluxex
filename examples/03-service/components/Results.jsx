@@ -9,7 +9,7 @@ Results = React.createClass({
     ],
 
     getStateFromStores: function () {
-        return this.getStore('search').get('data');
+        return this.getStore('search').getResult();
     },
 
     render: function () {
