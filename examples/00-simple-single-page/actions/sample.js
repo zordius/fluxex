@@ -8,7 +8,7 @@ module.exports = {
         var self = this;
         return new Promise(function (resolve, reject) {
             var S = self.getStore('page'),
-                query = S.get('query'),
+                query = S._get('query'),
                 id = query ? query.id : undefined;
 
             if (id) {

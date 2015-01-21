@@ -8,7 +8,7 @@ Sample = React.createClass({
     ],
 
     getStateFromStores: function () {
-        return {c: this.getStore('sampleStore').get('c')};
+        return {c: this.getStore('sampleStore')._get('c')};
     },
 
     getInitialState: function () {

@@ -8,7 +8,7 @@ Product = React.createClass({
     ],
 
     getStateFromStores: function () {
-        return this.getStore('productStore').get('data');
+        return this.getStore('productStore')._get('data');
     },
 
     getInitialState: function () {
