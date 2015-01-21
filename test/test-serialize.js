@@ -8,7 +8,7 @@ describe('app serialization', function () {
         var App = new app();
 
         App.getStore('sampleStore').set('a', 9, true);
-        assert.equal('{"stores":{"sampleStore":{"a":9}}}', App.toString());
+        assert.equal('{"stores":{"sampleStore":{"q":"OK!","a":9}}}', App.toString());
         done();
     });
 

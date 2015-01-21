@@ -30,6 +30,13 @@ describe('a fluxex app', function () {
         done();
     });
 
+    it('the store will be initialized by the initalize()', function (done) {
+        var F = new app();
+
+        assert.equal('OK!', F.getStore('sampleStore').get('q'));
+        done();
+    });
+
     it('will throw when no this.stores defined', function (done) {
         assert.throws(function () {
             var App = function () {
@@ -212,7 +219,7 @@ describe('a fluxex app', function () {
             sinon.spy(react, 'withContext');
 
             App.renderHtml(actions.sampleAction, 3).then(function (html) {
-                assert.equal('{"stores":{"sampleStore":{"c":3}}}', react.withContext.getCall(0).args[0].fluxex.toString());
+                assert.equal('{"stores":{"sampleStore":{"q":"OK!","c":3}}}', react.withContext.getCall(0).args[0].fluxex.toString());
                 react.withContext.restore();
                 done();
             });

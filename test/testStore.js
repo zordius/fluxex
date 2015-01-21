@@ -1,6 +1,9 @@
 'use strict';
 
 module.exports = {
+    initialize: function () {
+        this.set('q', 'OK!');
+    },
     handle_test: function (payload) {
         return 'OK';
     },
