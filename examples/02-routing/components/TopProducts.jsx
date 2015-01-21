@@ -9,7 +9,7 @@ TopProducts = React.createClass({
     ],
 
     getStateFromStores: function () {
-        return {list: this.getStore('productStore').get('top5')};
+        return {list: this.getStore('productStore').getTop5()};
     },
 
     render: function () {
