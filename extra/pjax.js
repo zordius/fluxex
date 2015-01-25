@@ -8,8 +8,7 @@ module.exports = {
         /*global window,document*/
         var blockDoublePop = (document.readyState != 'complete'),
             initState = this._getContext().toString(),
-            initUrl = window.location.href,
-            self = this;
+            initUrl = window.location.href;
 
         if (!window.addEventListener) {
             return;
@@ -41,18 +40,17 @@ module.exports = {
             }
 
             // Ya, trigger page restore by an anonymous action
-            self.executeAction(function () {
-                this.restore(state);
+            this.executeAction(function () {
+                this._restore(state);
                 this.dispatch('UPDATE_TITLE');
                 this.dispatch('**UPDATEALL**');
                 return Promise.resolve(true);
-            });
-        });
+            }.bind(this._getContext()));
+        }.bind(this));
     },
 
     handleClickLink: function (E) {
-        var HREF = E.target.href,
-            self = this;
+        var HREF = E.target.href;
 
         if (!HREF || HREF.match(/#/)) {
             return;
