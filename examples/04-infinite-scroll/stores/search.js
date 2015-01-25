@@ -16,7 +16,14 @@ module.exports = {
         this.emitChange();
     },
 
+    handle_UPDATE_APPENDING: function (bool) {
+        this._set('appending', bool);
+        this.emitChange();
+    },
+
     getSearchData: function () {
-        return this._get('data');
+        var data = this._get('data');
+        data.appending = this._get('appending');
+        return data;
     }
 };
