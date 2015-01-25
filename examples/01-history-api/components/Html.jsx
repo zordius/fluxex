@@ -20,8 +20,7 @@ Html = React.createClass({
         /*global window,document*/
         var blockDoublePop = (document.readyState != 'complete'),
             initState = this._getContext().toString(),
-            initUrl = window.location.href,
-            self = this;
+            initUrl = window.location.href;
 
         if (!window.addEventListener) {
             return;
@@ -45,18 +44,17 @@ Html = React.createClass({
             }
 
             // Ya, trigger page restore by an anonymous action
-            self.executeAction(function () {
-                    this.restore(JSON.parse(state));
-                    this.dispatch('UPDATE_TITLE');
-                    this.getStore('productStore').emitChange();
-                    return this.resolvePromise(true);
-            });
-        });
+            this.executeAction(function () {
+                this._restore(JSON.parse(state));
+                this.dispatch('UPDATE_TITLE');
+                this.getStore('productStore').emitChange();
+            }.bind(this._getContext()));
+        }.bind(this));
     },
 
     handleClickLink: function (E) {
         var HREF = E.target.href,
-            self = this;
+            CX = this._getContext();
 
         if (!HREF || HREF.match(/#/)) {
             return;
@@ -66,14 +64,14 @@ Html = React.createClass({
         E.stopPropagation();
 
         // Go to the url
-        this._getContext().dispatch('UPDATE_URL', HREF).then(function () {
+        CX.dispatch('UPDATE_URL', HREF).then(function () {
             // Run action to update page stores
-            return self.executeAction(sampleActions.updateProductPage);
-        }).then(function () {
+            return this.executeAction(sampleActions.updateProductPage);
+        }.bind(CX)).then(function () {
             // Success, update url to history
             /*global history*/
-            history.pushState(self._getContext().toString(), undefined, HREF);
-        });
+            history.pushState(CX.toString(), undefined, HREF);
+        }.bind(CX));
     },
 
     render: function () {
