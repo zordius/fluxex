@@ -24,20 +24,12 @@ Results = React.createClass({
     },
 
     handleScroll: function () {
-        var self = this;
-        if (this.appending) {
+        if (this.state.appending) {
             return;
         }
+
         if (window.pageYOffset + window.innerHeight * 3 > document.body.offsetHeight) {
-            this.appending = true;
-            this.executeAction(apis.load_more).then(function () {
-                console.log('load more ok');
-                self.appending = false;
-            }).catch(function (E) {
-                console.log('load more failed');
-                console.log(E);
-                self.appending = false;
-            });
+            this.executeAction(apis.load_more);
         }
     },
 
