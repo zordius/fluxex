@@ -9,4 +9,11 @@ describe('waitFor', function () {
         assert.deepEqual(A._actions.TEST1, ['storeD', 'storeC', 'storeB', 'storeA']);
         done();
     });
+
+    it('causes error when circular dependency', function (done) {
+        assert.throws(function () {
+            new (require('./testApp2'))();
+        }, 'Circular waitFor dependency detected on store `storeC` (storeA->storeB->storeC->storeA) !');
+        done();
+    });
 });
