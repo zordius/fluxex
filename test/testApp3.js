@@ -17,7 +17,7 @@ module.exports = fluxex.createApp({
     },
     storeC: {
         waitFor: {
-            TEST1: ['storeD', 'storeA']
+            TEST1: ['storeD', 'storeE']
         },
         handle_TEST1: function () {}
     },
