@@ -114,7 +114,7 @@ onStoreChange: function () {
     return this.getStore('myStore').getSomething();
 },
 handleClick: function () {
-    this.executeAction(myAction, payload);  // this returns a promise
+    this.executeAction(myAction);
 }
 ```
 
@@ -136,11 +136,17 @@ var myAction = function (payload) {
 * Store is an instance, it is constructed by serialized status.
 * Store is created by a Fluxex.
 * Use `.getStore(name)` to get the store by name.
-* You can `.get()` and `.set()` by simple json path. Ex: `this.set('a.b.c', 123)`
+* You can `.get()` and `.set()` by property name. Ex: `this.set('data', 123)`
 * Everything you `.set()` can be serialized by `.toString()` and be tracked by your Fluxex application.
+* You can use `waitFor` property to refine dispatch depdency for specific action.
 
 ```javascript
 var myStore = {
+    // the dispatch will happened after these stores be dispatched
+    waitFor: {
+        UPDATE_SOMETHING: ['oneStore', 'anotherStore']
+    },
+
     // handle this.dispatch('UPDATE_SOMETHING', ....)
     handle_UPDATE_SOMETHING: function (payload) {
         this.set('data', payload); // There are .get() and .set() in all stores

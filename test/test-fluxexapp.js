@@ -157,10 +157,10 @@ describe('a fluxex app', function () {
 
         it('should throw when dispatch in dispatch', function (done) {
             var App = new app();
-            App.dispatch('dispatch', App).catch(function (E) {
-                assert.equal('Can not dispatch "more_dispatch" action when previous "dispatch" action is not done!', E.message);
-                done();
-            });
+            assert.throws(function () {
+                App.dispatch('dispatch', App);
+            }, 'Can not dispatch "more_dispatch" action when previous "dispatch" action is not done!');
+            done();
         });
 
         it('should dispatch 2 actions one by one well', function (done) {
