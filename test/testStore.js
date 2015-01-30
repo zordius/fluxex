@@ -10,6 +10,8 @@ module.exports = {
     handle_dispatch: function (payload) {
         return payload.dispatch('more_dispatch');
     },
+    handle_more_dispatch: function () {
+    },
     handle_SAMPLE: function (payload) {
         this._set('c', payload);
         this.emitChange();
