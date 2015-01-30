@@ -61,11 +61,11 @@ describe('a fluxex app', function () {
         done();
     });
 
-    it('will throw when .initStore() be called externally', function (done) {
+    it('will throw when ._initStore() be called externally', function (done) {
         assert.throws(function () {
             var App = new app();
-            App.initStore();
-        }, Error, '.initStore() should not be called externally!');
+            App._initStore();
+        }, Error, '._initStore() should not be called externally!');
         done();
     });
 

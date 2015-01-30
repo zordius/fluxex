@@ -55,10 +55,10 @@ describe('fluxex', function () {
         });
     });
 
-    describe('.createStore()', function () {
+    describe('._createStore()', function () {
         it('will return a store instance', function (done) {
             var F = new fluxex(),
-                S = F.createStore(testStore, {a: 3});
+                S = F._createStore(testStore, {a: 3});
 
             assert.equal('FluxexStore', S.constructor.name);
             assert.equal('function', typeof S.getList);
