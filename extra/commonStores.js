@@ -87,7 +87,7 @@ module.exports = {
             this._set('meta', meta);
         },
         getMeta: function () {
-            this._get('meta');
+            return this._get('meta');
         }
     }
 };
