@@ -20,11 +20,12 @@ describe('app serialization', function () {
     });
 
     it('circular depdency can be detected', function (done) {
-        var test = {a: {b: 'OK'}};
+        var test = {a: {b: 'O\'K"'}};
         test.b = test;
+        test.c = [test];
 
-        var App = new app({stores: {sample: test}});
-        console.log(App.toString());
+        var App = new app({stores: {sampleStore: test}});
+        assert.equal('{"stores":{"sampleStore":{"a":{"b":"O\'K\\""},"b":"[CIRCULAR!]","c":["[CIRCULAR!]"],"q":"OK!"}}}', App.toString());
         done();
     });
 });
