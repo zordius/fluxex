@@ -18,4 +18,13 @@ describe('app serialization', function () {
         assert.equal(99, App.getStore('sampleStore')._get('a'));
         done();
     });
+
+    it('circular depdency can be detected', function (done) {
+        var test = {a: {b: 'OK'}};
+        test.b = test;
+
+        var App = new app({stores: {sample: test}});
+        console.log(App.toString());
+        done();
+    });
 });
