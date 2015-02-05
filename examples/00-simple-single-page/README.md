@@ -1,4 +1,4 @@
-<img src="badge.png" />
+<img src="https://github.com/zordius/fluxex-examples/blob/master/00-simple-single-page/badge.png" />
 
 How to try this
 ===============
