@@ -8,5 +8,5 @@ addons:
 env:
   global:
     - secure: "j5nS2L0kqACrfpB1Xjg9KipHHsrUs70arI/Hn8RCAaoM9TPNMedUii13CgxcI8DDjTzY/r0xOLPf71BhN30a2Su5lY1NIkE/WAi9FFJrWabnjjXf8EGxKu1D99wRnEYGPyIqJbdgsL1ihUk5dwOmUfnXgMKszvMgkLhVBsl1NgU="
-    - secure: "G6peuUSizUL4OQ29xryOGcKCE6AN/j5RpmTTTkW44IyZKAmaq/7w5phbfTk6MjJ8nQUq/IFuNY6+RWKYCUO5jAiErddrERZ6hJ+6H4ud4HHwcjlg+iIO7PbgGTKSMQKlO/n2QaiT4emI6J/ue5iT0WT6nkutOs7ImDvg8ndKevY="
-    - secure: "Kr6rIFyw6FtoLsk3VeWd6p1cWVKPg7xsLRdoPmChDL1SpvSVDh4vsh82wDN1Rn4MDu47P9J2/b39GdS/frHE4Q6LQT6E5JL3Eqp1FmDve58OikXUHb8Q/aXse/rIxXeSBvYG5t+2P7daPTKcW6+UIba1bjC4Ukg2kOrzZoVswbs="
+    - secure: "QTQJflR00Btdl8qJDWdrLxJ3h8tF9B8thWGHRTl6bhscIn6SyeT3xV7lDApE7neyBU3QDTEjSKZPLDVSqUcG0lue37z9NRt9nccFUTYt46zcHB4TcmvWKkI1eci9nNC5tXTtEtvnOB3o5Wu5Ok2vRJGgjQpLqnhbGFGxWPY7awU="
+    - secure: "awq+0AKUxuheErIqfEU3fRcQKuTehofEM5eF88p37+c9GgjqFAp7xOg2iBH5GcQovg7+ySIUokmzG5tkAfdQpAWYvqnVOuJdqU4N5doWgDJcQ9736noTJSO/X1k0ClnuDu2p+mUU12VAXnyXsdJmB9p+JRfauUwQV5AzmFplAUM="
