@@ -71,7 +71,7 @@ configs = {
                 reporters: ['lcov', 'json']
             },
             mocha: {
-                reporter: 'tap'
+                reporter: 'mocha-jenkins-reporter'
             }
         }
     }
