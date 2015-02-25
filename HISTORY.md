@@ -1,6 +1,17 @@
 HISTORY
 =======
 
+0.4.0
+   * [CORE] rename store methods: ._get(), ._set()
+   * [CORE] support .initialize() for stores
+   * [CORE] refine serialize function to keep null and undefined
+   * [CORE] .executeAction() for components now do not return promise
+   * [CORE] support waitFor for stores
+   * [EXTRA] use mocha-jenkins-reporter for better output when CI build
+   * [EXTRA] refine common stores getter functions
+   * [EXTRA] big API changes for fetch related functions
+   * [EXTRA] better error messages for routing
+
 0.3.0 https://github.com/zordius/fluxex/releases/tag/v0.3.0
    * [CORE] remove json path support of .set() and .get()
    * [EXTRA] remove fetch.appMixin
