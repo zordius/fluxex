@@ -7,6 +7,7 @@ HISTORY
    * [CORE] refine serialize function to keep null and undefined
    * [CORE] .executeAction() for components now do not return promise
    * [CORE] support waitFor for stores
+   * [CORE] new context API: ._getHeader()
    * [EXTRA] use mocha-jenkins-reporter for better output when CI build
    * [EXTRA] refine common stores getter functions
    * [EXTRA] big API changes for fetch related functions
