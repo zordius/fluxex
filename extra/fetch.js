@@ -50,9 +50,28 @@ fetch = function (name, cfg) {
             resolve(O);
         });
     });
+},
+
+handleRequestCfg = function (req, opts, reqCfg) {
+    if (opts.dupeHeaders) {
+        reqCfg.headers = {};
+        opts.dupeHeaders.map(function (V) {
+            var H = req.header(V);
+            if (H !== undefined) {
+                reqCfg.headers[V] = H;
+            }
+        });
+    }
+
+    if ('function' === (typeof opts.preRequest)) {
+        reqCfg = opts.preRequest(reqCfg, req);
+    }
+
+    return reqCfg;
 };
 
 module.exports = fetch;
+module.exports.handleRequestCfg = handleRequestCfg;
 
 module.exports.createServices = function (app, serviceCfg, opts) {
     if (!serviceCfg) {
@@ -71,25 +90,9 @@ module.exports.createServices = function (app, serviceCfg, opts) {
 
     // Provide fetch services
     app.use(baseURL + ':name', function (req, res) {
-        var reqCfg = {
+        fetch(req.params.name, handleRequestCfg(req, opts, {
             qs: req.query
-        };
-
-        if (opts.dupeHeaders) {
-            reqCfg.headers = {};
-            opts.dupeHeaders.map(function (V) {
-                var H = req.header(V);
-                if (H !== undefined) {
-                    reqCfg.headers[V] = H;
-                }
-            });
-        }
-
-        if ('function' === (typeof opts.preRequest)) {
-            reqCfg = opts.preRequest(reqCfg, req);
-        }
-
-        fetch(req.params.name, reqCfg).then(function (O) {
+        })).then(function (O) {
             res.send(O.body);
         }).catch(function (E) {
             console.warn(E.stack);

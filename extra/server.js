@@ -31,6 +31,10 @@ ServerExtra = {
                 return this.executeAction(this.routing);
             }.bind(this));
         });
+    },
+
+    // Using this when your fluxexapp provide .routing() and require fetch features
+    middlewareRoutingFetch: function (fluxexapp) {
     }
 }
 
