@@ -9,7 +9,10 @@ ServerExtra = {
     
     middleware: function (fluxexapp, action) {
         return function (req, res, next) {
-            (new fluxexapp()).renderHtml(action, req).then(function (HTML) {
+            var app = new fluxexapp();
+            app._headers = Object.assign({}, req.headers);
+
+            app.renderHtml(action, req).then(function (HTML) {
                 res.send('<!DOCTYPE html>' + HTML);
             }).catch(function (E) {
                 if (E) {
@@ -38,8 +41,13 @@ ServerExtra = {
 
     // Using this for total solution
     initServer: function (app, fluxexapp, fetchOpt, extraAction) {
+        var fetch;
         ServerExtra.initStatic(app);
-        require('./fetch').createServices(app, fetchOpt.services, fetchOpt.options);
+        if (fetchOpt && fetchOpt.services) {
+            fetch = require('./fetch');
+            fluxexapp.prototype.fetch = fetch.wrapFetch;
+            fetch.createServices(app, fetchOpt.services, fetchOpt.options);
+        }
         app.use(ServerExtra.middlewareRouting(fluxexapp, extraAction));
     }
 }
