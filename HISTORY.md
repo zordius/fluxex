@@ -1,7 +1,7 @@
 HISTORY
 =======
 
-0.4.0
+0.4.0 https://github.com/zordius/fluxex/releases/tag/v0.4.0
    * [CORE] rename store methods: ._get(), ._set()
    * [CORE] support .initialize() for stores
    * [CORE] refine serialize function to keep null and undefined
