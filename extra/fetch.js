@@ -2,41 +2,45 @@
 
 var request = require('request'),
     baseURL = '/_fetch_/',
+    requestConfig,
     config = {},
 
-getURL = function (name) {
-    var location;
-
+isClient = function () {
     /*global window*/
     try {
-        location = window.location;
-        if (location) {
-            return location.protocol + '//' + location.host + baseURL + name;
-        }
+        return window;
     } catch (E) {
         // do nothing...
     }
-
-    return config[name];
+    return false;
 },
 
 fetch = function (name, cfg) {
+    var win = isClient();
+    var loc = win ? win.location : undefined;
+    var opt = loc ? {} : cfg;
+
     if (!name) {
         return Promise.reject(new Error('service name required!'));
     }
 
-    if (!cfg) {
-        cfg = {};
+    if (loc) {
+        opt.url = loc.protocol + '//' + loc.host + baseURL + name;
+        opt.method = 'PUT';
+        opt.body = JSON.stringify(cfg);
+        opt.headers = {
+            'content-type': 'application/json'
+        };
+    } else {
+        opt.url = config[name];
     }
 
-    cfg.url = getURL(name);
-
-    if (!cfg.url) {
+    if (!opt.url) {
         return Promise.reject(new Error('Can not find URL for service: ' + name));
     }
 
     return new Promise(function (resolve, reject) {
-        request(cfg, function (error, response, body) {
+        request(opt, function (error, response, body) {
             var O = {
                 error: error,
                 response: response,
@@ -52,51 +56,43 @@ fetch = function (name, cfg) {
     });
 },
 
-handleRequestCfg = function (req, opts, reqCfg) {
-    if (opts.dupeHeaders) {
-        reqCfg.headers = {};
-        opts.dupeHeaders.map(function (V) {
-            var H = req.header(V);
-            if (H !== undefined) {
-                reqCfg.headers[V] = H;
+handleRequestCfg = function (name, headers, body) {
+    var reqCfg = body || {};
+
+    // Dupe headers from request headers
+    if (reqCfg.headers) {
+        Object.keys(reqCfg.headers).forEach(function (K) {
+            if (reqCfg.headers[K] === undefined) {
+                reqCfg.headers[K] = headers[K];
             }
         });
     }
 
-    if ('function' === (typeof opts.preRequest)) {
-        reqCfg = opts.preRequest(reqCfg, req);
+    if ('function' === (typeof requestConfig.preRequest)) {
+        reqCfg = requestConfig.preRequest(reqCfg, name, headers);
     }
 
     return reqCfg;
 };
 
 module.exports = fetch;
-module.exports.handleRequestCfg = handleRequestCfg;
 
 module.exports.createServices = function (app, serviceCfg, opts) {
     if (!serviceCfg) {
         throw new Error('fetch.createServices() require service config as second parameter!');
     }
 
-    if (!opts) {
-        opts = {};
-    }
-
-    if (opts.dupeHeaders && !opts.dupeHeaders.map) {
-        throw new Error('opts.dupeHeaders for fetch.createServices() should be an Array!');
-    }
-
+    requestConfig = opts ? opts : {};
     config = serviceCfg;
 
     // Provide fetch services
-    app.use(baseURL + ':name', function (req, res) {
-        fetch(req.params.name, handleRequestCfg(req, opts, {
-            qs: req.query
-        })).then(function (O) {
+    app.put(baseURL + ':name', require('body-parser').json(), function (req, res) {
+        fetch(req.params.name, handleRequestCfg(req.params.name, req.headers, req.body)
+        ).then(function (O) {
             res.send(O.body);
         }).catch(function (E) {
             console.warn(E.stack);
-            res.status(500).send(E.stack || E);
+            res.status(500).send(('production' !== process.env.NODE_ENV) ? (E.stack || E) : '[Fluxex] Internal Server Error');
         });
     });
 };
