@@ -18,6 +18,7 @@
     "fluxex": "*",
     "routr": "0.1.0",
     "express": "4.10.4",
+    "body-parser": "1.12.0",
     "request": "2.44.0"
   },
   "devDependencies": {
