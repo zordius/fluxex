@@ -127,10 +127,15 @@ describe('FluxexObject', function () {
         });
 
         it('will dump full context', function (done) {
-            var data = {a: 1, b: 2, c: 3},
+            var data = {a: 1, b: '2', c: true, d: undefined, e: null},
                 F = new fluxexobj(data);
 
-            assert.deepEqual(data, JSON.parse(F.toString()));
+            assert.equal('{"a":1,"b":"2","c":true,"d":undefined,"e":null}', F.toString());
+            done();
+        });
+
+        it('can handle array', function (done) {
+            assert.deepEqual('{"a":["ok",undefined,null]}', (new fluxexobj({a: ['ok', undefined, null]})).toString());
             done();
         });
     });
