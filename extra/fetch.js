@@ -31,6 +31,9 @@ fetch = function (name, cfg) {
         opt.headers = {
             'content-type': 'application/json'
         };
+        if (cfg && cfg.json) {
+            opt.json = (cfg && cfg.json) ? true : false;
+        }
     } else {
         opt.url = config[name];
     }
