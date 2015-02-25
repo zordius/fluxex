@@ -25,16 +25,22 @@ ServerExtra = {
     },
 
     // Using this when your fluxexapp provide .routing() action
-    middlewareRouting: function (fluxexapp) {
+    middlewareRouting: function (fluxexapp, extraAction) {
         return ServerExtra.middleware(fluxexapp, function (req) {
+            if (extraAction) {
+                this.executeAction(extraAction, req);
+            }
             return this.dispatch('UPDATE_URL', req.url).then(function () {
                 return this.executeAction(this.routing);
             }.bind(this));
         });
     },
 
-    // Using this when your fluxexapp provide .routing() and require fetch features
-    middlewareRoutingFetch: function (fluxexapp) {
+    // Using this for total solution
+    initServer: function (app, fluxexapp, fetchOpt, extraAction) {
+        ServerExtra.initStatic(app);
+        require('./fetch').createServices(app, fetchOpt.services, fetchOpt.options);
+        app.use(ServerExtra.middlewareRouting(fluxexapp, extraAction));
     }
 }
 
