@@ -8,7 +8,8 @@ Prepare the project
 
 ```
 npm init
-npm install fluxex react node-jsx express browser-request aliasify browserify watchify reactify jshint-stylish nodemon browser-sync gulp gulp-jshint gulp-react gulp-util gulp-uglify vinyl-source-stream vinyl-buffer
+npm install --save fluxex react babel express routr request body-parser
+npm install --save-dev browser-request aliasify browserify watchify babelify jshint-stylish nodemon browser-sync gulp gulp-cached gulp-jsx-coverage gulp-jscs gulp-jshint gulp-util gulp-uglify vinyl-source-stream vinyl-buffer through2 react-tools
 mkdir actions
 mkdir components
 mkdir stores
@@ -120,6 +121,11 @@ edit `index.js` - Create an express server.
 ```javascript
 'use strict';
 
+// Init ES6 + jsx environments for .require()
+require('babel/register')({
+    extensions: ['.jsx']
+});
+
 var express = require('express'),
     fluxexapp = require('./fluxexapp'),
     pageAction = require('./actions/page'),
@@ -143,6 +149,13 @@ edit `gulpfile.js` - Use the fluxex gulpfile extra.
 
 ```javascript
 require('fluxex/extra/gulpfile');
+```
+
+copy a default jscs/jshint configs from fluxex.
+
+```sh
+cp node_modules/fluxex/.jscsrc .
+cp node_modules/fluxex/.jshintrc .
 ```
 
 **Start the server**
