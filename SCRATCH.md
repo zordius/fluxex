@@ -40,11 +40,11 @@ edit `stores/product.js` - Define your store interface and handle the action.
 
 module.exports = {
     handle_UPDATE_PRODUCT: function (payload) {
-        this.set('data', payload);
+        this._set('data', payload);
         this.emitChange();
     },
     getData: function () {
-        return this.get('data');
+        return this._get('data');
     }
 };
 ```
