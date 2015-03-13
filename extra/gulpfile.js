@@ -160,7 +160,7 @@ buildApp = function (watch, fullpath, nosave, disc) {
         debug: watch
     });
 
-    b.transform('reactify');
+    b.transform('babelify');
     b.transform(aliasify.configure(configs.aliasify), {global: true});
 
     if (watch) {
