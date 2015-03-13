@@ -1,12 +1,9 @@
 'use strict';
 
-// Apply all polyfills
-require('object.assign').shim();
-global.Promise = require('bluebird');
-Promise.longStackTraces();
-
-// Init .jsx require()
-require('node-jsx').install({extension: '.jsx'});
+// Init ES6 + jsx environments for .require()
+require('babel/register')({
+    extensions: ['.jsx']
+});
 
 var express = require('express'),
     fluxexapp = require('./fluxexapp'),
