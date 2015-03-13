@@ -1,4 +1,7 @@
 var config = {
+  allScriptsTimeout: 30000,
+  getPageTimeout: 30000,
+
   job_basename: require('path').basename(process.cwd()) + '_' + process.env.TRAVIS_JOB_ID,
 
   sauceSeleniumAddress: 'localhost:4445/wd/hub',
