@@ -10,6 +10,7 @@ var gulp = require('gulp'),
     buffer = require('vinyl-buffer'),
     source = require('vinyl-source-stream'),
     aliasify = require('aliasify'),
+    babelify = require('babelify'),
     browserify = require('browserify'),
     uglify = require('gulp-uglify'),
     nodemon = require('nodemon'),
@@ -160,7 +161,9 @@ buildApp = function (watch, fullpath, nosave, disc) {
         debug: watch
     });
 
-    b.transform('babelify');
+    b.transform(babelify.configure({
+        extensions: ['.js', '.jsx']
+    }), {global: true});
     b.transform(aliasify.configure(configs.aliasify), {global: true});
 
     if (watch) {
