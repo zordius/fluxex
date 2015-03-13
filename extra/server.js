@@ -33,7 +33,7 @@ ServerExtra = {
             if (extraAction) {
                 this.executeAction(extraAction, req);
             }
-            return this.dispatch('UPDATE_URL', req.url).then(function () {
+            return this.dispatch('UPDATE_URL', {url: req.url, host: req.header('Host')}).then(function () {
                 return this.executeAction(this.routing);
             }.bind(this));
         });

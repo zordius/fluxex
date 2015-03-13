@@ -48,17 +48,21 @@ module.exports = {
         },
 
         // URL functions
-        handle_UPDATE_URL: function (url) {
-            var M = url.match(/^(?:(https?:)\/\/(([^:/]+)(:[^\/]+)?))?([^#?]*)(\\?[^#]*)?(#.*)?$/),
+        handle_UPDATE_URL: function (payload) {
+            var isPayloadString = ('string' == typeof payload),
+                url = isPayloadString ? payload : payload.url,
+                host = isPayloadString ? undefined : payload.host,
+                M = url.match(/^(?:(https?:)\/\/(([^:/]+)(:[^\/]+)?))?([^#?]*)(\\?[^#]*)?(#.*)?$/),
+                N = host ? host.match(/^(.+):(.+)$/) : [],
                 search = M[6] || '',
                 hash = M[7] || '';
 
             this._set('url', {
                 href: M[5] + search + hash,
                 protocol:  M[1] || '',
-                host: M[2] || '',
-                hostname: M[3] || '',
-                port: M[4] || '',
+                host: M[2] || host || '',
+                hostname: M[3] || N[1] || '',
+                port: M[4] || N[2] || '',
                 pathname: M[5] || '',
                 search: search,
                 hash: hash,
