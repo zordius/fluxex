@@ -12,6 +12,7 @@ var gulp = require('gulp'),
     aliasify = require('aliasify'),
     babelify = require('babelify'),
     browserify = require('browserify'),
+    babel = require('gulp-babel'),
     uglify = require('gulp-uglify'),
     nodemon = require('nodemon'),
     browserSync = require('browser-sync'),
@@ -100,20 +101,6 @@ lint_chain = function (task) {
     }
 
     return task;
-},
-
-// Stop using gulp-react because it do not keep original file name
-react_compiler = function (options) {
-    return through.obj(function (file, enc, callback) {
-        try {
-            file.contents = new Buffer(React.transform(file.contents.toString(), options));
-            this.push(file);
-        } catch (E) {
-            gutil.log('[jsx ERROR]', gutil.colors.red(file.path));
-            gutil.log('[jsx ERROR]', gutil.colors.red(E.message));
-        }
-        callback();
-    });
 },
 
 // Do testing tasks
@@ -219,7 +206,7 @@ gulp.task('lint_jsx', function () {
     return lint_chain(
         gulp.src(configs.lint_files.jsx)
         .pipe(cached('jshint'))
-        .pipe(react_compiler({sourceMap: true}))
+        .pipe(babel({sourceMap: true}))
         .pipe(jscs()).on('error', handleJSCSError)
         .pipe(jshint(configs.jshint_jsx))
     );
