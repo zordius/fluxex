@@ -41,6 +41,10 @@ configs = {
             request: 'browser-request'
         }
     },
+    babelify: {
+        ignore: /node_modules/,
+        extensions: ['.js', '.jsx']
+    },
     test_coverage: {
         default: {
             src: ['test/**/*.js', 'test/components/*.jsx', 'test/components/*.js'],
@@ -161,9 +165,7 @@ buildApp = function (watch, fullpath, nosave, disc) {
         debug: watch
     });
 
-    b.transform(babelify.configure({
-        extensions: ['.js', '.jsx']
-    }), {global: true});
+    b.transform(babelify.configure(configs.babelify), {global: true});
     b.transform(aliasify.configure(configs.aliasify), {global: true});
 
     if (watch) {
