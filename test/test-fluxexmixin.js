@@ -13,6 +13,7 @@ getMixedComponent = function () {
 
     ctx.prototype = mixin;
     ctx.prototype.context = {fluxex: App};
+    ctx.prototype.props = {};
 
     return new ctx();
 };

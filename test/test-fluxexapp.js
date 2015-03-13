@@ -80,21 +80,16 @@ describe('a fluxex app', function () {
     it('.initClient() will react.render() with self', function (done) {
         var App = new app({c: 3});
 
-        sinon.stub(react, 'withContext', function (obj, cb) {
-            global.document = {body: {parentNode: {parentNode: 0}}};
-            cb();
-        });
+        global.document = {body: {parentNode: {parentNode: 0}}};
 
         sinon.stub(App, 'getHtmlJsx').returns('123');
         sinon.stub(react, 'render');
 
         App.initClient();
 
-        assert.strictEqual(App, react.withContext.getCall(0).args[0].fluxex);
         assert.equal('123', react.render.getCall(0).args[0]);
         delete global.document;
 
-        react.withContext.restore();
         react.render.restore();
 
         done();
@@ -124,7 +119,6 @@ describe('a fluxex app', function () {
             var App = new app({a: 2}),
                 Store = App.getStore('sampleStore');
 
-            console.log(Store.prototype);
             assert.equal('function', typeof Store.emitChange);
             done();
         });
@@ -216,11 +210,8 @@ describe('a fluxex app', function () {
                 element = react.createElement('div', {className: 'test'});
 
             sinon.stub(App, 'getHtmlJsx').returns(element);
-            sinon.spy(react, 'withContext');
 
             App.renderHtml(actions.sampleAction, 3).then(function (html) {
-                assert.equal('{"stores":{"sampleStore":{"q":"OK!","c":3}}}', react.withContext.getCall(0).args[0].fluxex.toString());
-                react.withContext.restore();
                 done();
             });
         });
