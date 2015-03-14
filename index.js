@@ -43,6 +43,5 @@ Fluxex.createApp = function (stores, HtmlJsx) {
 };
 
 Fluxex.mixin = require('./lib/fluxmixin');
-Fluxex.context = require('./lib/fluxcontext');
 
 module.exports = Fluxex;

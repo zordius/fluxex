@@ -6,7 +6,6 @@ var React = require('react'),
 Html = React.createClass({
     mixins: [
         Fluxex.mixin,
-        Fluxex.context,
         require('fluxex/extra/storechange'),
         {listenStores: ['product']}
     ],

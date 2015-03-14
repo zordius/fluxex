@@ -9,7 +9,6 @@ var React = require('react'),
 Html = React.createClass({
     mixins: [
         Fluxex.mixin,
-        Fluxex.context,
         require('fluxex/extra/storechange'),
         require('fluxex/extra/pjax'),
         require('fluxex/extra/routing').mixin,

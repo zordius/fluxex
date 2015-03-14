@@ -6,7 +6,7 @@ var React = require('react'),
     Sample = require('./Sample.jsx'),
 
 Html = React.createClass({
-    mixins: [Fluxex.mixin, Fluxex.context],
+    mixins: [Fluxex.mixin],
 
     shouldComponentUpdate: function () {
         return false;
