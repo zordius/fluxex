@@ -43,6 +43,7 @@ configs = {
         }
     },
     babelify: {
+        optional: ['runtime'],
         ignore: /node_modules/,
         extensions: ['.js', '.jsx']
     },
