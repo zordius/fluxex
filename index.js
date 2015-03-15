@@ -48,7 +48,7 @@ Fluxex.InitScript = React.createClass({
     mixins: [Fluxex.mixin],
     render: function () {
         var initScript = this._getContext().inited ? undefined : this._getInitScript();
-        return initScript ? React.DOM.script({dangerouslySetInnerHTML: {__html: initScript}}) : React.DOM.div({className: this.prop.className || 'fluxex_hidden'});
+        return initScript ? React.DOM.script({dangerouslySetInnerHTML: {__html: initScript}}) : React.DOM.div({className: this.props.className || 'fluxex_hidden'});
     }
 });
 
