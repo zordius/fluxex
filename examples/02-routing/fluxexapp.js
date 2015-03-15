@@ -1,5 +1,7 @@
 'use strict';
 
+require('fluxex/extra/polyfill');
+
 var commonStores = require('fluxex/extra/commonStores');
 
 module.exports = require('fluxex').createApp({
