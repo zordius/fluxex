@@ -207,7 +207,7 @@ gulp.task('lint_jsx', function () {
     return lint_chain(
         gulp.src(configs.lint_files.jsx)
         .pipe(cached('jshint'))
-        .pipe(babel({sourceMap: true}))
+        .pipe(babel(Object.assign({sourceMap: true}, configs.babelify)))
         .pipe(jscs()).on('error', handleJSCSError)
         .pipe(jshint(configs.jshint_jsx))
     );
