@@ -53,7 +53,7 @@ module.exports = {
                 url = isPayloadString ? payload : payload.url,
                 host = isPayloadString ? undefined : payload.host,
                 M = url.match(/^(?:(https?:)\/\/(([^:/]+)(:[^\/]+)?))?([^#?]*)(\\?[^#]*)?(#.*)?$/),
-                N = host ? host.match(/^(.+):(.+)$/) : [],
+                N = host ? host.match(/^(.+)(:(.+))?$/) : [],
                 search = M[6] || '',
                 hash = M[7] || '';
 
@@ -62,7 +62,7 @@ module.exports = {
                 protocol:  M[1] || '',
                 host: M[2] || host || '',
                 hostname: M[3] || N[1] || '',
-                port: M[4] || N[2] || '',
+                port: M[4] || N[3] || '',
                 pathname: M[5] || '',
                 search: search,
                 hash: hash,
