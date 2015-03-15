@@ -2,6 +2,7 @@
 
 var React = require('react'),
     Fluxex = require('fluxex'),
+    InitScript = Fluxex.InitScript,
     Product = require('./Product.jsx'),
     sampleActions = require('../actions/sample'),
 
@@ -87,9 +88,7 @@ Html = React.createClass({
           <div>
            <Product />
           </div>
-          <script src="http://cdn.jsdelivr.net/polyfills/polyfill.js"></script>
-          <script src="/static/js/main.js"></script>
-          <script dangerouslySetInnerHTML={{__html: this.getInitScript()}}></script>
+          <InitScript />
          </body>
         </html> 
         );

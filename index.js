@@ -2,6 +2,7 @@
 
 /** @lends Fluxex */
 var Fluxex = require('./lib/fluxex');
+var React = require('react');
 
 // jscs:disable checkRedundantParams
 /**
@@ -43,5 +44,16 @@ Fluxex.createApp = function (stores, HtmlJsx) {
 };
 
 Fluxex.mixin = require('./lib/fluxmixin');
+Fluxex.InitScript = React.createClass({
+    mixins: [Fluxex.mixin],
+    render: function () {
+        var initScript = this._getContext().inited ? undefined : this._getInitScript();
+        return React.DOM.div(
+            {className: this.props.className || 'fluxex_hidden'},
+            React.DOM.script({src: this.props.src || '/static/js/main.js'}),
+            initScript ? React.DOM.script({dangerouslySetInnerHTML: {__html: initScript}}) : undefined
+        );
+    }
+});
 
 module.exports = Fluxex;

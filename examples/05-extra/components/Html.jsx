@@ -2,6 +2,7 @@
 
 var React = require('react'),
     Fluxex = require('fluxex'),
+    InitScript = Fluxex.InitScript,
     Results = require('./Results.jsx'),
     Video = require('./Video.jsx'),
     SearchBox = require('./SearchBox.jsx'),
@@ -50,9 +51,7 @@ Html = React.createClass({
            <li><a href={this.getURL('search', {}, {q:'orange'})}>Orange</a></li>
           </ul>
           <div>{Body}</div>
-          <script src="http://cdn.jsdelivr.net/polyfills/polyfill.js"></script>
-          <script src="/static/js/main.js"></script>
-          <script dangerouslySetInnerHTML={{__html: this.getInitScript()}}></script>
+          <InitScript />
          </body>
         </html> 
         );

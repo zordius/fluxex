@@ -19,6 +19,7 @@
     "request": "2.44.0"
   },
   "devDependencies": {
+    "babel-runtime": "4.7.12",
     "through2": "0.6.3",
     "react-tools": "0.12.2",
     "browser-request": "0.3.3",

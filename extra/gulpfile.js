@@ -39,7 +39,9 @@ configs = {
     jscs_fail: false,
     aliasify: {
         aliases: {
-            request: 'browser-request'
+            request: 'browser-request',
+            'fluxex/extra/polyfill': 'babelify/polyfill',
+            'core-js/shim': 'core-js/client/shim'
         }
     },
     babelify: {
