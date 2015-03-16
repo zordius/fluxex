@@ -47,11 +47,6 @@ See the FluxEx Magic
 * No more index.html. Start with <a href="https://github.com/strongloop/express">npm:express</a> and your Html.jsx!
 * No more AJAX, all http request by <a href="https://github.com/request/request">npm:request</a>!
 
-```html
-// This is the magic in the Html.jsx !!
-<script dangerouslySetInnerHTML={{__html: this.getInitScript()}}></script>
-```
-
 Start from Scratch
 ------------------
 
