@@ -93,7 +93,7 @@ module.exports.createServices = function (app, serviceCfg, opts) {
         fetch(req.params.name, handleRequestCfg(req.params.name, req.headers, req.body)
         ).then(function (O) {
             res.send(O.body);
-        }).catch(function (E) {
+        })['catch'](function (E) {
             console.warn(E.stack);
             res.status(500).send(('production' !== process.env.NODE_ENV) ? (E.stack || E) : '[Fluxex] Internal Server Error');
         });

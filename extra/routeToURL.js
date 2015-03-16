@@ -15,9 +15,11 @@ module.exports = function (url) {
         // update url to history
         /*global history*/
         history.pushState(this.toString(), undefined, url);
-    }.bind(this)).catch(function (E) {
-        console.log('Pjax failed! Failback to page loading....');
-        console.log(E.stack || E);
+    }.bind(this))['catch'](function (E) {
+        if (console.log) {
+            console.log('Pjax failed! Failback to page loading....');
+            console.log(E.stack || E);
+        }
         // pjax failed, go to url...
         location.href = url;
     });

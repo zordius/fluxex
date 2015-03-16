@@ -10,6 +10,10 @@ module.exports = {
             initState = this._getContext().toString(),
             initUrl = window.location.href;
 
+        if (!window.history.pushState) {
+            return;
+        }
+
         if (!window.addEventListener) {
             return;
         }
@@ -51,6 +55,10 @@ module.exports = {
 
     handleClickLink: function (E) {
         var HREF = E.target.href;
+
+        if (!window.history.pushState) {
+            return;
+        }
 
         if (!HREF || HREF.match(/#/)) {
             return;
