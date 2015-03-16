@@ -41,7 +41,7 @@ configs = {
         aliases: {
             request: 'browser-request',
             'fluxex/extra/polyfill': 'babelify/polyfill',
-            'fluxex/extra/polyfill-ie8': 'ie8',
+            'fluxex/extra/polyfill-ie8': 'fluxex/extra/polyfill-ie8-client',
             'core-js/shim': 'core-js/client/shim',
             'body-parser': 'fluxex/extra/dummy'
         }
