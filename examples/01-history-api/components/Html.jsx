@@ -27,6 +27,10 @@ Html = React.createClass({
             return;
         }
 
+        if (!window.history.pushState) {
+            return;
+        }
+
         window.addEventListener('load', function() {
             setTimeout(function () {
                 blockDoublePop = false;
@@ -56,6 +60,10 @@ Html = React.createClass({
     handleClickLink: function (E) {
         var HREF = E.target.href,
             CX = this._getContext();
+
+        if (!window.history.pushState) {
+            return;
+        }
 
         if (!HREF || HREF.match(/#/)) {
             return;
