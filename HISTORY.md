@@ -1,7 +1,7 @@
 HISTORY
 =======
 0.5.0 https://github.com/zordius/fluxex/releases/tag/v0.5.0
-   * [CORE] fix .dispatch magic **UPDATEALL**
+   * [CORE] fix .dispatch() magic **UPDATEALL**
    * [CORE] refresh depdency, move to react 0.13.0
    * [CORE] support new react context
    * [CORE] use babel as default jsx transcoder
