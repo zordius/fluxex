@@ -1,5 +1,15 @@
 HISTORY
 =======
+0.5.0 https://github.com/zordius/fluxex/releases/tag/v0.5.0
+   * [CORE] fix .dispatch magic **UPDATEALL**
+   * [CORE] refresh depdency, move to react 0.13.0
+   * [CORE] support new react context
+   * [CORE] use babel as default jsx transcoder
+   * [CORE] support es6 features in jsx
+   * [CORE] IE8 fix (tweak constructor matching logic)
+   * [CORE] remove .getInitScript() from mixin
+   * [CORE] new fluxex.InitScript component to handle initialize and fix IE8
+   * [EXTRA] extre/gulpfile: new configs for babel
 
 0.4.0 https://github.com/zordius/fluxex/releases/tag/v0.4.0
    * [CORE] rename store methods: ._get(), ._set()
