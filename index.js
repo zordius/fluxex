@@ -56,4 +56,29 @@ Fluxex.InitScript = React.createClass({
     }
 });
 
+Fluxex.Title = React.createClass({
+    mixins: [
+        Fluxex.mixin,
+        require('./extra/storechange'),
+        {listenStores: ['page']}
+    ],
+
+    getStateFromStores: function () {
+        return {
+            title: this.getStore('page').getTitle()
+        };
+    },
+
+    render: function () {
+        // prevent IE8 title.innerHTML update bug
+        if (this.title == undefined) {
+            this.title = this.state.title;
+        } else {
+            document.title = this.state.title;
+        }
+        return React.createElement('title', null, this.title);
+    }
+});
+
+
 module.exports = Fluxex;

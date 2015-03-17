@@ -14,24 +14,9 @@ module.exports = {
 
         // Title functions
         handle_UPDATE_TITLE: function (title) {
-            // update document.title here because title beyonds body
-            if (this._get('title')) {
-                /*global document*/
-                try {
-                    document.getElementsByTagName('title')[0].innerHTML = title || this._get('title');
-                } catch (E) {
-                    // dirty fix for IE8 bug.
-                    if (title !== undefined) {
-                        document.title = title;
-                    }
-                    return;
-                }
-            }
-
-            if (title) {
-                this._set('title', title);
-            }
+            this._set('title', title);
         },
+
         getTitle: function () {
             return this._get('title');
         },
