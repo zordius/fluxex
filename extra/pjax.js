@@ -44,7 +44,6 @@ module.exports = {
             // Ya, trigger page restore by an anonymous action
             this.executeAction(function () {
                 this._restore(state);
-                this.dispatch('UPDATE_TITLE');
                 this.dispatch('**UPDATEALL**');
                 return Promise.resolve(true);
             }.bind(this._getContext()));
