@@ -2,6 +2,15 @@
 
 var yql = require('./yql'),
 
+log = function () {
+    try {
+        console.log.apply(console, arguments);
+    } catch (E) {
+        // do nothing
+        alert(arguments[0]);
+    }
+},
+
 api = {
     search: function (payload) {
         var start = payload.p * 1 || 0,
@@ -22,16 +31,16 @@ api = {
         });
     },
     load_more: function () {
-        console.log('load more start!');
+        log('load more start!');
         this.dispatch('UPDATE_APPENDING', true);
         return this.executeAction(api.search, {
             q: this.getStore('page').getQuery().q,
             p: this.getStore('search').getSearchData().videos.length
         }).then(function () {
-            console.log('load more successed~');
+            log('load more successed~');
             this.dispatch('UPDATE_APPENDING', false);
         }.bind(this), function () {
-            console.log('load more failed.');
+            log('load more failed.');
             this.dispatch('UPDATE_APPENDING', false);
         }.bind(this));
     }

@@ -23,11 +23,17 @@ Results = React.createClass({
     },
 
     handleScroll: function () {
+        var ie8;
+
         if (this.state.appending) {
             return;
         }
 
-        if (window.pageYOffset + window.innerHeight * 3 > document.body.offsetHeight) {
+        if (window.pageYOffset === undefined) {
+            ie8 = window.document.documentElement;
+        }
+
+        if ((ie8 ? ie8.scrollTop : window.pageYOffset) + (ie8 ? ie8.clientHeight : window.innerHeight) * 3 > document.body.offsetHeight) {
             this.executeAction(apis.load_more);
         }
     },
