@@ -12,7 +12,7 @@ module.exports = function () {
         match = router.match(path);
 
     if (!match) {
-        return Promise.reject(new Error('no matched route'));
+        return Promise.reject(new Error('no matched route for url: ' + path));
     }
 
     this.dispatch('UPDATE_ROUTING', {
