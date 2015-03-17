@@ -14,10 +14,18 @@ module.exports = {
 
         // Title functions
         handle_UPDATE_TITLE: function (title) {
-            // Play DOM update here because title beyonds body
+            // update document.title here because title beyonds body
             if (this._get('title')) {
                 /*global document*/
-                document.getElementsByTagName('title')[0].innerHTML = title || this._get('title');
+                try {
+                    document.getElementsByTagName('title')[0].innerHTML = title || this._get('title');
+                } catch (E) {
+                    // dirty fix for IE8 bug.
+                    if (title !== undefined) {
+                        document.title = title;
+                    }
+                    return;
+                }
             }
 
             if (title) {

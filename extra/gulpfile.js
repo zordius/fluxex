@@ -40,6 +40,7 @@ configs = {
     aliasify: {
         aliases: {
             request: 'browser-request',
+            'fluxex/extra/history': 'html5-history-api',
             'fluxex/extra/polyfill': 'babelify/polyfill',
             'fluxex/extra/polyfill-ie8': 'fluxex/extra/polyfill-ie8-client',
             'core-js/shim': 'core-js/client/shim',

@@ -3,20 +3,18 @@
 // Use this mixin at HTML/BODY level to enable pjax behavior
 // Your fluxexapp should provide routeToURL() for this mixin
 // See routeToURL.js for more info
+//
+// To support IE8,
+// You will need to npm install html5-history-api,
+// then add require('fluxex/extra/history'); in your fluxexapp.js
+
 module.exports = {
     componentDidMount: function () {
         /*global window,document*/
         var blockDoublePop = (document.readyState != 'complete'),
             initState = this._getContext().toString(),
-            initUrl = window.location.href;
-
-        if (!window.history.pushState) {
-            return;
-        }
-
-        if (!window.addEventListener) {
-            return;
-        }
+            location = window.history.location || window.location,
+            initUrl = location.href;
 
         window.addEventListener('load', function() {
             setTimeout(function () {
@@ -25,7 +23,7 @@ module.exports = {
         });
 
         window.addEventListener('popstate', function (E) {
-            var state = E.state || ((window.location.href === initUrl) ? initState : undefined);
+            var state = E.state || ((location.href === initUrl) ? initState : undefined);
 
             if (blockDoublePop && (document.readyState === 'complete')) {
                 return;
@@ -55,10 +53,6 @@ module.exports = {
 
     handleClickLink: function (E) {
         var HREF = E.target.href;
-
-        if (!window.history.pushState) {
-            return;
-        }
 
         if (!HREF || HREF.match(/#/)) {
             return;
