@@ -26,7 +26,7 @@ To understand Flux, you only need to learn these APIs: `this.executeAction()`, `
 
 * `this.executeAction()` or `this.getStore(name)` in components.
 * `this.dispatch()` or `this.executeAction()` or `this.getStore(name)` in actions.
-* `this.emitChange()` or `this.get()` or `this.set()` in stores.
+* `this.emitChange()` or `this._get()` or `this._set()` in stores.
 
 <img src="https://github.com/zordius/fluxex/raw/master/fluxex-api.jpg" />
 <hr/>
@@ -131,8 +131,8 @@ var myAction = function (payload) {
 * Store is an instance, it is constructed by serialized status.
 * Store is created by a Fluxex.
 * Use `.getStore(name)` to get the store by name.
-* You can `.get()` and `.set()` by property name. Ex: `this.set('data', 123)`
-* Everything you `.set()` can be serialized by `.toString()` and be tracked by your Fluxex application.
+* You can `._get()` and `._set()` by property name. Ex: `this._set('data', 123)`
+* Everything you `._set()` can be serialized by `.toString()` and be tracked by your Fluxex application.
 * You can use `waitFor` property to refine dispatch depdency for specific action.
 
 ```javascript
@@ -144,7 +144,7 @@ var myStore = {
 
     // handle this.dispatch('UPDATE_SOMETHING', ....)
     handle_UPDATE_SOMETHING: function (payload) {
-        this.set('data', payload); // There are .get() and .set() in all stores
+        this._set('data', payload); // There are ._get() and ._set() in all stores
         this.emitChange();
     }
 }
