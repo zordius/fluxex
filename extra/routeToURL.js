@@ -16,7 +16,7 @@ module.exports = function (url) {
         /*global history*/
         history.pushState(this.toString(), undefined, url);
     }.bind(this))['catch'](function (E) {
-        if (console.log) {
+        if (console && console.log) {
             console.log('Pjax failed! Failback to page loading....');
             console.log(E.stack || E);
         }
