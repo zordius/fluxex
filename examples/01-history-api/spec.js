@@ -11,7 +11,16 @@ describe('React server side rendering', function () {
 });
 
 describe('React client side binding', function () {
-    it('should handle button click', function () {
+    var agent, isIE;
+
+    try {
+        agent = window.navigator.userAgent;
+        isIE = agent.match(/MSIE (\d+)/);
+    } catch (E) {
+        // DO NOTHING
+    }
+
+    ((isIE && isIE[1] < 9) ? it.skip : it)('should handle button click', function () {
         browser.get('product?id=124');
         browser.driver.executeScript('return window.test=1');
         element.all(by.css('ul li a')).get(0).click();
