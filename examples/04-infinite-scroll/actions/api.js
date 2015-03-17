@@ -7,7 +7,6 @@ log = function () {
         console.log.apply(console, arguments);
     } catch (E) {
         // do nothing
-        alert(arguments[0]);
     }
 },
 

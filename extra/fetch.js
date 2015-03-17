@@ -89,11 +89,7 @@ module.exports.createServices = function (app, serviceCfg, opts) {
     config = serviceCfg;
 
     // Provide fetch services
-    app.put(baseURL + ':name', require('body-parser').json({
-        type: function () {
-            return true;
-        }
-    }), function (req, res) {
+    app.put(baseURL + ':name', require('body-parser').json(), function (req, res) {
         fetch(req.params.name, handleRequestCfg(req.params.name, req.headers, req.body)
         ).then(function (O) {
             res.send(O.body);

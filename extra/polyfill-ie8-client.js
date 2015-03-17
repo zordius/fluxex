@@ -1,6 +1,14 @@
+// IE8 XMLHttpRequest consts polyfill for browser-request
+if (XMLHttpRequest && !XMLHttpRequest.OPENED) {
+    XMLHttpRequest.UNSENT = 4;
+    XMLHttpRequest.OPENED = 1;
+    XMLHttpRequest.HEADERS_RECEIVED = 2;
+    XMLHttpRequest.LOADING = 3;
+    XMLHttpRequest.DONE = 4;
+}
+
 // From https://github.com/jonathantneal/EventListener
 // CC0-1.0 License
-
 // EventListener | CC0 | github.com/jonathantneal/EventListener
 window.Element && Element.prototype.attachEvent && !Element.prototype.addEventListener && (function () {
 	function addToPrototype(name, method) {

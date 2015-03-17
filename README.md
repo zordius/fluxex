@@ -153,7 +153,7 @@ var myStore = {
 Notes for IE8 support
 ---------------------
 
-* You should add `require('fluxex/extra/polyfill-ie8');` in your `fluxexapp.js` to polyfill EventListener methods for IE8.
+* You should add `require('fluxex/extra/polyfill-ie8');` in your `fluxexapp.js` to polyfill EventListener methods and XMLHttpRequest consts for IE8.
 * `catch` is reserved keyword in IE8, you need to replace `somePromise.catch(...)` with `somePromise['catch'](...)`
 * `for (... in ...)` will loop beyond properties in IE8, you need to replace `for (I in myArray)` with `myArray.forEach(function (V, I) { ...}`
 
