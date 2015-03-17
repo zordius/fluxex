@@ -51,8 +51,8 @@ Html = React.createClass({
             // Ya, trigger page restore by an anonymous action
             this.executeAction(function () {
                 this._restore(JSON.parse(state));
-                this.dispatch('UPDATE_TITLE');
                 this.getStore('productStore').emitChange();
+                return this.dispatch('UPDATE_TITLE');
             }.bind(this._getContext()));
         }.bind(this));
     },
