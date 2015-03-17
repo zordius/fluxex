@@ -11,11 +11,10 @@ describe('React server side rendering', function () {
 });
 
 describe('React client side binding', function () {
-    var agent, isIE;
+    var isIE;
 
     try {
-        agent = window.navigator.userAgent;
-        isIE = agent.match(/MSIE (\d+)/);
+        isIE = window.navigator.userAgent.agent.match(/MSIE (\d+)/);
     } catch (E) {
         // DO NOTHING
     }
