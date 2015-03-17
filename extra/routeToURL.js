@@ -12,7 +12,7 @@ module.exports = function (url) {
     // Try to route
     this.dispatch('UPDATE_URL', url).then(function () {
         // Run action to update page stores
-        this.executeAction(this.routing);
+        return this.executeAction(this.routing);
     }.bind(this)).then(function () {
         // Success, trigger page refresh
         this.getStore('page').emitChange();
