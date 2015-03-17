@@ -162,3 +162,4 @@ Notes for IE8 support
 * window.history.pushState
 * set innerHTML of script node
 * compare prototype.constructor with another function
+* console and console.log
