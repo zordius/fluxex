@@ -76,7 +76,7 @@ Fluxex.Title = React.createClass({
         } else {
             document.title = this.state.title;
         }
-        return React.createElement('title', null, this.title);
+        return React.DOM.title(null, this.title);
     }
 });
 
