@@ -2,7 +2,6 @@
 
 var React = require('react'),
     Fluxex = require('fluxex'),
-    InitScript = Fluxex.InitScript,
     Results = require('./Results.jsx'),
     SearchBox = require('./SearchBox.jsx'),
 
@@ -22,7 +21,7 @@ Html = React.createClass({
          <head>
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, user-scalable=no" />
-          <title>{this.getStore('page').getTitle()}</title>
+          <Fluxex.Title />
          </head>
          <body onClick={this.handleClickLink}>
           <SearchBox />
@@ -33,7 +32,7 @@ Html = React.createClass({
            <li><a href="/search?q=orange">Orange</a></li>
           </ul>
           <Results />
-          <InitScript />
+          <Fluxex.InitScript />
          </body>
         </html> 
         );
