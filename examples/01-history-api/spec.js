@@ -11,14 +11,6 @@ describe('React server side rendering', function () {
 });
 
 describe('React client side binding', function () {
-    var isIE;
-
-    try {
-        isIE = window.navigator.userAgent.agent.match(/MSIE (\d+)/);
-    } catch (E) {
-        // DO NOTHING
-    }
-
     it('should handle button click', function () {
         browser.get('product?id=124');
         browser.driver.executeScript('return window.test=1');
@@ -30,11 +22,6 @@ describe('React client side binding', function () {
         });
 
         expect(element(by.css('div span')).getInnerHtml()).toMatch(/12300/);
-
-        // Do not test IE < 10 which do not support history.pushState
-        if (isIE && isIE[1] < 10) {
-            return;
-        }
 
         browser.driver.executeScript('return window.test').then(function (value) {
             expect(value).toBe(1);
