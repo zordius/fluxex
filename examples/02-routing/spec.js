@@ -39,7 +39,7 @@ describe('React client side binding', function () {
         });
     });
 
-    it('should change title correctly after page changed', funciton () {
+    it('should change title correctly after page changed', function () {
         browser.driver.executeScript('return document.title').then(function (value) {
             expect(value).toMatch(/123/);
         });
@@ -62,7 +62,7 @@ describe('React client side binding', function () {
         });
     });
 
-    it('should change title correctly after page back', funciton () {
+    it('should change title correctly after page back', function () {
         browser.driver.executeScript('return document.title').then(function (value) {
             expect(value).toBe('Main Page');
         });
