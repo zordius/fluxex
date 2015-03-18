@@ -2,8 +2,6 @@
 
 var React = require('react'),
     Fluxex = require('fluxex'),
-    FluxexTitle = Fluxex.Title,
-    FluxexInitScript = Fluxex.InitScript,
     Product = require('./Product.jsx'),
     sampleActions = require('../actions/sample'),
 
@@ -86,13 +84,13 @@ Html = React.createClass({
           <meta charSet="utf-8" />
           <meta name="format-detection" content="telephone=no" />
           <meta name="viewport" content="width=device-width, user-scalable=no" />
-          <FluxexTitle />
+          <Fluxex.Title />
          </head>
          <body onClick={this.handleClickLink}>
           <div>
            <Product />
           </div>
-          <FluxexInitScript />
+          <Fluxex.InitScript />
          </body>
         </html> 
         );
