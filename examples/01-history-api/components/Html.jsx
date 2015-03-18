@@ -2,20 +2,15 @@
 
 var React = require('react'),
     Fluxex = require('fluxex'),
-    InitScript = Fluxex.InitScript,
+    FluxexTitle = Fluxex.Title,
+    FluxexInitScript = Fluxex.InitScript,
     Product = require('./Product.jsx'),
     sampleActions = require('../actions/sample'),
 
 Html = React.createClass({
     mixins: [
-        Fluxex.mixin,
-        require('fluxex/extra/storechange'),
-        {listenStores: ['page']}
+        Fluxex.mixin
     ],
-
-    getStateFromStores: function () {
-        return {};
-    },
 
     componentDidMount: function () {
         /*global window,document*/
@@ -52,7 +47,8 @@ Html = React.createClass({
             this.executeAction(function () {
                 this._restore(JSON.parse(state));
                 this.getStore('productStore').emitChange();
-                return this.dispatch('UPDATE_TITLE');
+                this.getStore('page').emitChange();
+                return Promise.resolve(true);
             }.bind(this._getContext()));
         }.bind(this));
     },
@@ -90,13 +86,13 @@ Html = React.createClass({
           <meta charSet="utf-8" />
           <meta name="format-detection" content="telephone=no" />
           <meta name="viewport" content="width=device-width, user-scalable=no" />
-          <title>{this.getStore('page').getTitle()}</title>
+          <FluxexTitle />
          </head>
          <body onClick={this.handleClickLink}>
           <div>
            <Product />
           </div>
-          <InitScript />
+          <FluxexInitScript />
          </body>
         </html> 
         );

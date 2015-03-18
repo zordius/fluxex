@@ -17,6 +17,7 @@
     "express": "4.10.4"
   },
   "devDependencies": {
+    "html5-history-api": "4.2.0",
     "babel-runtime": "4.7.12",
     "through2": "0.6.3",
     "react-tools": "0.12.2",
