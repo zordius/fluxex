@@ -4,9 +4,13 @@ require('fluxex/extra/polyfill-ie8');
 require('fluxex/extra/polyfill');
 
 var commonStores = require('fluxex/extra/commonStores'),
+    fluxex = require('fluxex'),
     page = require('./actions/page');
 
-module.exports = require('fluxex').createApp({
+fluxex.port = '3001';
+fluxex.protocol = 'http';
+
+module.exports = fluxex.createApp({
     page: commonStores.page,
     search: require('./stores/search')
 }, process.cwd() + '/components/Html.jsx',

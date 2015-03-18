@@ -1,10 +1,13 @@
 'use strict';
 
 var querystring = require('querystring');
+var fluxex = require('../index');
 
 module.exports = {
     // All current page and location related things stay here.
     // We do not emitChange() in this store because this store should not trigger re-rendering directly.
+    // set fluxex.protocol to override default url.protocol
+    // set fluxex.port to override default url.port
     page: {
         initialize: function () {
             this._set('routing', {});
@@ -46,21 +49,23 @@ module.exports = {
                 url = isPayloadString ? payload : payload.url,
                 host = isPayloadString ? undefined : payload.host,
                 M = url.match(/^(?:(https?:)\/\/(([^:/]+)(:[^\/]+)?))?([^#?]*)(\\?[^#]*)?(#.*)?$/),
-                N = host ? host.match(/^(.+):(.+)$/) : [],
+                N = host ? host.match(/^([^:]+)(:(.+))?$/) : [],
                 search = M[6] || '',
-                hash = M[7] || '';
+                hash = M[7] || '',
+                URL = {
+                    href: M[5] + search + hash,
+                    protocol: fluxex.protocol || M[1] || '',
+                    hostname: M[3] || N[1] || '',
+                    port: fluxex.port || M[4] || N[3] || '',
+                    pathname: M[5] || '',
+                    search: search,
+                    hash: hash,
+                    query: querystring.decode(search.substring(1)) || {}
+                };
 
-            this._set('url', {
-                href: M[5] + search + hash,
-                protocol:  M[1] || '',
-                host: M[2] || host || '',
-                hostname: M[3] || N[1] || '',
-                port: M[4] || N[2] || '',
-                pathname: M[5] || '',
-                search: search,
-                hash: hash,
-                query: querystring.decode(search.substring(1)) || {}
-            });
+            URL.host = URL.hostname + ((URL.port !== '') ? (':' + URL.port) : '');
+
+            this._set('url', URL);
         },
         getQuery: function () {
             return this._get('url').query;
@@ -69,8 +74,7 @@ module.exports = {
             var url = this._get('url'),
                 mixedSearch = querystring.encode(Object.assign(url.query, query));
 
-            /*global location*/
-            return location.protocol + '//' + location.host + location.pathname + (mixedSearch ? '?' : '') + mixedSearch + location.hash;
+            return url.protocol + '//' + url.host + url.pathname + (mixedSearch ? '?' : '') + mixedSearch + url.hash;
         },
         getParam: function (name) {
             return Object.assign({}, this.getRoutingParam(), this.getBody(), this.getQuery());

@@ -80,5 +80,4 @@ Fluxex.Title = React.createClass({
     }
 });
 
-
 module.exports = Fluxex;
