@@ -21,8 +21,40 @@ describe('React client side binding', function () {
             });
         });
         expect(element(by.css('div span')).getInnerHtml()).toMatch(/12300/);
+    });
+
+    it('should block page loading and use history.pushState', function () {
         browser.driver.executeScript('return window.test').then(function (value) {
             expect(value).toBe(1);
+        });
+    });
+
+    it('should change title correctly after page changed', funciton () {
+        browser.driver.executeScript('return document.title').then(function (value) {
+            expect(value).toMatch(/123/);
+        });
+    });
+
+    it('should handle browser back button', function () {
+        browser.driver.executeScript('return window.test=2');
+        browser.navigate().back();
+        browser.wait(function () {
+            return browser.driver.getCurrentUrl().then(function (url) {
+                return url.match(/main/);
+            });
+        });
+        expect(element(by.css('div h1')).getInnerHtml()).toMatch(/Main/);
+    });
+
+    it('should not cause page changed when back', function () {
+        browser.driver.executeScript('return window.test').then(function (value) {
+            expect(value).toBe(2);
+        });
+    });
+
+    it('should change title correctly after page back', funciton () {
+        browser.driver.executeScript('return document.title').then(function (value) {
+            expect(value).toBe('Main Page');
         });
     });
 });
