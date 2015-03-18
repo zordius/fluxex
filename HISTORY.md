@@ -1,5 +1,11 @@
 HISTORY
 =======
+0.5.1 https://github.com/zordius/fluxex/releases/tag/v0.5.1
+   * [CORE] new Fluxex.Title component
+   * [EXTRA] new fluxex/extra/history to enable html5-history-api
+   * [EXTRA] new fluxex/extra/polyfill-ie8 to enable IE8 polyfills
+   * [EXTRA] refine pjax and routeToURL to support IE8 by html5-history-api
+
 0.5.0 https://github.com/zordius/fluxex/releases/tag/v0.5.0
    * [CORE] fix .dispatch() magic **UPDATEALL**
    * [CORE] refresh depdency, move to react 0.13.0
