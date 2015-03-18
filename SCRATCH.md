@@ -58,7 +58,6 @@ edit `components/Html.jsx` - Define your page as react component.
 
 var React = require('react'),
     Fluxex = require('fluxex'),
-    InitScript = Fluxex.InitScript,
 
 Html = React.createClass({
     mixins: [
@@ -91,7 +90,7 @@ Html = React.createClass({
            <li>Price: {this.state.price}</li>
            <li>Sold: {this.state.sold}</li>
           </ul>
-         <InitScript />
+         <Fluxex.InitScript />
          </body>
         </html>
         );
