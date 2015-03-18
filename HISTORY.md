@@ -1,7 +1,7 @@
 HISTORY
 =======
 0.5.1 https://github.com/zordius/fluxex/releases/tag/v0.5.1
-   * [CORE] new Fluxex.Title component
+   * [CORE] new Fluxex.Title component to handle title change and fix IE8
    * [EXTRA] new fluxex/extra/history to enable html5-history-api
    * [EXTRA] new fluxex/extra/polyfill-ie8 to enable IE8 polyfills
    * [EXTRA] refine pjax and routeToURL to support IE8 by html5-history-api
@@ -14,7 +14,7 @@ HISTORY
    * [CORE] support es6 features in jsx
    * [CORE] IE8 fix (tweak constructor matching logic)
    * [CORE] remove .getInitScript() from mixin
-   * [CORE] new fluxex.InitScript component to handle initialize and fix IE8
+   * [CORE] new Fluxex.InitScript component to handle initialize and fix IE8
    * [EXTRA] extre/gulpfile: new configs for babel
 
 0.4.0 https://github.com/zordius/fluxex/releases/tag/v0.4.0
