@@ -7,6 +7,7 @@ module.exports = {
     // All current page and location related things stay here.
     // We do not emitChange() in this store because this store should not trigger re-rendering directly.
     // set fluxex.protocol to override default url.protocol
+    // set fluxex.hostname to override default url.hostname
     // set fluxex.port to override default url.port
     page: {
         initialize: function () {
@@ -55,7 +56,7 @@ module.exports = {
                 URL = {
                     href: M[5] + search + hash,
                     protocol: fluxex.protocol || M[1] || '',
-                    hostname: M[3] || N[1] || '',
+                    hostname: fluxex.hostname || M[3] || N[1] || '',
                     port: fluxex.port || M[4] || N[3] || '',
                     pathname: M[5] || '',
                     search: search,
