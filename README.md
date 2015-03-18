@@ -26,7 +26,7 @@ To understand Flux, you only need to learn these APIs: `this.executeAction()`, `
 
 * `this.executeAction()` or `this.getStore(name)` in components.
 * `this.dispatch()` or `this.executeAction()` or `this.getStore(name)` in actions.
-* `this.emitChange()` or `this.get()` or `this.set()` in stores.
+* `this.emitChange()` or `this._get()` or `this._set()` in stores.
 
 <img src="https://github.com/zordius/fluxex/raw/master/fluxex-api.jpg" />
 <hr/>
@@ -46,11 +46,6 @@ See the FluxEx Magic
 * Check <a href="https://github.com/zordius/fluxex/tree/master/examples">example projects</a> you can see how fluxex do server side rendering + context deliver + Full HTML react rendering!
 * No more index.html. Start with <a href="https://github.com/strongloop/express">npm:express</a> and your Html.jsx!
 * No more AJAX, all http request by <a href="https://github.com/request/request">npm:request</a>!
-
-```html
-// This is the magic in the Html.jsx !!
-<script dangerouslySetInnerHTML={{__html: this.getInitScript()}}></script>
-```
 
 Start from Scratch
 ------------------
@@ -136,8 +131,8 @@ var myAction = function (payload) {
 * Store is an instance, it is constructed by serialized status.
 * Store is created by a Fluxex.
 * Use `.getStore(name)` to get the store by name.
-* You can `.get()` and `.set()` by property name. Ex: `this.set('data', 123)`
-* Everything you `.set()` can be serialized by `.toString()` and be tracked by your Fluxex application.
+* You can `._get()` and `._set()` by property name. Ex: `this._set('data', 123)`
+* Everything you `._set()` can be serialized by `.toString()` and be tracked by your Fluxex application.
 * You can use `waitFor` property to refine dispatch depdency for specific action.
 
 ```javascript
@@ -149,8 +144,22 @@ var myStore = {
 
     // handle this.dispatch('UPDATE_SOMETHING', ....)
     handle_UPDATE_SOMETHING: function (payload) {
-        this.set('data', payload); // There are .get() and .set() in all stores
+        this._set('data', payload); // There are ._get() and ._set() in all stores
         this.emitChange();
     }
 }
 ```
+
+Notes for IE8 support
+---------------------
+
+* You should add `require('fluxex/extra/polyfill-ie8');` in your `fluxexapp.js` to polyfill EventListener methods and XMLHttpRequest consts for IE8.
+* `catch` is reserved keyword in IE8, you need to replace `somePromise.catch(...)` with `somePromise['catch'](...)`
+* `for (... in ...)` will loop beyond properties in IE8, you need to replace `for (I in myArray)` with `myArray.forEach(function (V, I) { ...}`
+
+**IE8 Unsupported features**
+
+* window.history.pushState
+* set innerHTML of script node
+* compare prototype.constructor with another function
+* console and console.log

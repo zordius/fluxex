@@ -14,16 +14,9 @@ module.exports = {
 
         // Title functions
         handle_UPDATE_TITLE: function (title) {
-            // Play DOM update here because title beyonds body
-            if (this._get('title')) {
-                /*global document*/
-                document.getElementsByTagName('title')[0].innerHTML = title || this._get('title');
-            }
-
-            if (title) {
-                this._set('title', title);
-            }
+            this._set('title', title);
         },
+
         getTitle: function () {
             return this._get('title');
         },

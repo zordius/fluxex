@@ -2,20 +2,15 @@
 
 var React = require('react'),
     Fluxex = require('fluxex'),
-    InitScript = Fluxex.InitScript,
+    FluxexTitle = Fluxex.Title,
+    FluxexInitScript = Fluxex.InitScript,
     Product = require('./Product.jsx'),
     sampleActions = require('../actions/sample'),
 
 Html = React.createClass({
     mixins: [
-        Fluxex.mixin,
-        require('fluxex/extra/storechange'),
-        {listenStores: ['page']}
+        Fluxex.mixin
     ],
-
-    getStateFromStores: function () {
-        return {};
-    },
 
     componentDidMount: function () {
         /*global window,document*/
@@ -24,6 +19,10 @@ Html = React.createClass({
             initUrl = window.location.href;
 
         if (!window.addEventListener) {
+            return;
+        }
+
+        if (!window.history.pushState) {
             return;
         }
 
@@ -47,8 +46,9 @@ Html = React.createClass({
             // Ya, trigger page restore by an anonymous action
             this.executeAction(function () {
                 this._restore(JSON.parse(state));
-                this.dispatch('UPDATE_TITLE');
                 this.getStore('productStore').emitChange();
+                this.getStore('page').emitChange();
+                return Promise.resolve(true);
             }.bind(this._getContext()));
         }.bind(this));
     },
@@ -56,6 +56,10 @@ Html = React.createClass({
     handleClickLink: function (E) {
         var HREF = E.target.href,
             CX = this._getContext();
+
+        if (!window.history.pushState) {
+            return;
+        }
 
         if (!HREF || HREF.match(/#/)) {
             return;
@@ -82,13 +86,13 @@ Html = React.createClass({
           <meta charSet="utf-8" />
           <meta name="format-detection" content="telephone=no" />
           <meta name="viewport" content="width=device-width, user-scalable=no" />
-          <title>{this.getStore('page').getTitle()}</title>
+          <FluxexTitle />
          </head>
          <body onClick={this.handleClickLink}>
           <div>
            <Product />
           </div>
-          <InitScript />
+          <FluxexInitScript />
          </body>
         </html> 
         );

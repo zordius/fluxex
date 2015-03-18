@@ -3,6 +3,7 @@
 var React = require('react'),
     Fluxex = require('fluxex'),
     InitScript = Fluxex.InitScript,
+    FluxexTitle = Fluxex.Title,
     Product = require('./Product.jsx'),
     TopProducts = require('./TopProducts.jsx'),
 
@@ -32,7 +33,7 @@ Html = React.createClass({
          <head>
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width, user-scalable=no" />
-          <title>{this.getStore('page').getTitle()}</title>
+          <FluxexTitle />
          </head>
          <body onClick={this.handleClickLink}>
           <div>

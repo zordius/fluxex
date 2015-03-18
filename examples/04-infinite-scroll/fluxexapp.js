@@ -1,5 +1,6 @@
 'use strict';
 
+require('fluxex/extra/polyfill-ie8');
 require('fluxex/extra/polyfill');
 
 var commonStores = require('fluxex/extra/commonStores');

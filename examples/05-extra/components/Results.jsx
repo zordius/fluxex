@@ -34,7 +34,7 @@ Results = React.createClass({
     },
 
     render: function () {
-        var videos = [], I, V, url,
+        var videos,
             all = this.state.videos ? this.state.videos.length : 0;
 
         if (!all) {
@@ -43,17 +43,16 @@ Results = React.createClass({
             );
         }
 
-        for (I in this.state.videos) {
-            V = this.state.videos[I];
-            url = this.getURL('video', {id: V.id});
+        videos = this.state.videos.map(function (V) {
+            var url = this.getURL('video', {id: V.id});
 
-            videos.push(
+            return (
             <li key={V.id}>
              <h5><a href={url}>{V.title}</a></h5>
              <a href={url}><img src={V.thumbnails.thumbnail[0].content}/>{V.duration+' seconds'}</a>
             </li>
             );
-        }
+        }.bind(this));
 
         return (
         <div>

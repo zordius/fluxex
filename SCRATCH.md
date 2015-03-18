@@ -58,6 +58,7 @@ edit `components/Html.jsx` - Define your page as react component.
 
 var React = require('react'),
     Fluxex = require('fluxex'),
+    InitScript = Fluxex.InitScript,
 
 Html = React.createClass({
     mixins: [
@@ -90,9 +91,7 @@ Html = React.createClass({
            <li>Price: {this.state.price}</li>
            <li>Sold: {this.state.sold}</li>
           </ul>
-         <script src="http://cdn.jsdelivr.net/polyfills/polyfill.js"></script>
-         <script src="/static/js/main.js"></script>
-         <script dangerouslySetInnerHTML={{__html: this.getInitScript()}}></script>
+         <InitScript />
          </body>
         </html>
         );

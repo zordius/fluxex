@@ -3,6 +3,11 @@
 // Fluxex extra action
 // you should attach a `routing()` action creator on your fluxexapp
 // See routing.js for more info
+//
+// To support IE8,
+// You will need to npm install html5-history-api,
+// then add require('fluxex/extra/history'); in your fluxexapp.js
+
 module.exports = function (url) {
     // Try to route
     this.dispatch('UPDATE_URL', url).then(function () {
@@ -13,12 +18,15 @@ module.exports = function (url) {
         this.getStore('page').emitChange();
 
         // update url to history
-        /*global history*/
-        history.pushState(this.toString(), undefined, url);
-    }.bind(this)).catch(function (E) {
-        console.log('Pjax failed! Failback to page loading....');
-        console.log(E.stack || E);
+        /*global window*/
+        window.history.pushState(this.toString(), undefined, url);
+    }.bind(this))['catch'](function (E) {
+        if (console && console.log) {
+            console.log('Pjax failed! Failback to page loading....');
+            console.log(E.stack || E);
+        }
+
         // pjax failed, go to url...
-        location.href = url;
+        window.location.href = url;
     });
 };

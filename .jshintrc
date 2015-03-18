@@ -1,5 +1,6 @@
 {
   "node": true,
+  "predef": [ "Promise" ],
 
   "curly": true,
   "latedef": true,

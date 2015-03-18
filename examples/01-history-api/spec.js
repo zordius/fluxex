@@ -20,7 +20,9 @@ describe('React client side binding', function () {
                 return url.match(/id=123/);
             });
         });
+
         expect(element(by.css('div span')).getInnerHtml()).toMatch(/12300/);
+
         browser.driver.executeScript('return window.test').then(function (value) {
             expect(value).toBe(1);
         });
