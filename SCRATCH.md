@@ -109,7 +109,7 @@ edit `fluxexapp.js` - Provide store `{name: implementation}` pairs and Html.jsx.
 
 module.exports = require('fluxex').createApp({
     product: require('./stores/product')
-}, process.cwd() + '/components/Html.jsx');
+}, require('./components/Html.jsx'));
 ```
 
 The Server

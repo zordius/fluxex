@@ -13,7 +13,7 @@ fluxex.protocol = 'http';
 module.exports = fluxex.createApp({
     page: commonStores.page,
     search: require('./stores/search')
-}, process.cwd() + '/components/Html.jsx',
+}, require('./components/Html.jsx'),
 require('fluxex/extra/routing')({
     search: {
         path: '/search',
