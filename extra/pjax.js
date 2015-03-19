@@ -12,7 +12,7 @@ module.exports = {
     componentDidMount: function () {
         /*global window,document*/
         var blockDoublePop = (document.readyState != 'complete'),
-            initState = this._getContext().toString(),
+            initState = this._getContext()._context,
             location = window.history.location || window.location,
             initUrl = location.href;
 
@@ -27,12 +27,6 @@ module.exports = {
 
             if (blockDoublePop && (document.readyState === 'complete')) {
                 return;
-            }
-
-            try {
-                state = JSON.parse(state);
-            } catch (E) {
-                state = 0;
             }
 
             if (!state) {
