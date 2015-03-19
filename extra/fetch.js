@@ -1,41 +1,16 @@
 'use strict';
 
 var request = require('request'),
+    Fetch = require('./fetch-server'),
     baseURL = '/_fetch_/',
     requestConfig,
-    config = {},
-
-isClient = function () {
-    /*global window*/
-    try {
-        return window;
-    } catch (E) {
-        // do nothing...
-    }
-    return false;
-},
+    mainConfig = {},
 
 fetch = function (name, cfg) {
-    var win = isClient();
-    var loc = win ? win.location : undefined;
-    var opt = loc ? {} : cfg;
+    var opt = Fetch.getRequestConfig(name, cfg, mainConfig, baseURL);
 
     if (!name) {
         return Promise.reject(new Error('service name required!'));
-    }
-
-    if (loc) {
-        opt.url = loc.protocol + '//' + loc.host + baseURL + name;
-        opt.method = 'PUT';
-        opt.body = JSON.stringify(cfg);
-        opt.headers = {
-            'content-type': 'application/json'
-        };
-        if (cfg && cfg.json) {
-            opt.json = (cfg && cfg.json) ? true : false;
-        }
-    } else {
-        opt.url = config[name];
     }
 
     if (!opt.url) {
@@ -86,7 +61,7 @@ module.exports.createServices = function (app, serviceCfg, opts) {
     }
 
     requestConfig = opts ? opts : {};
-    config = serviceCfg;
+    mainConfig = serviceCfg;
 
     // Provide fetch services
     app.put(baseURL + ':name', require('body-parser').json(), function (req, res) {
