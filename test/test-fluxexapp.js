@@ -69,20 +69,13 @@ describe('a fluxex app', function () {
         done();
     });
 
-    it('will throw when .getHtmlJsx() with wrong module name', function (done) {
-        assert.throws(function () {
-            var App = new app();
-            App.getHtmlJsx();
-        }, Error, 'Cannot find module \'noneed_htmlJsx\'');
-        done();
-    });
-
     it('.initClient() will react.render() with self', function (done) {
         var App = new app({c: 3});
 
         global.document = {body: {parentNode: {parentNode: 0}}};
 
-        sinon.stub(App, 'getHtmlJsx').returns('123');
+        Object.assign(App, require('../lib/fluxex-client'));
+        sinon.stub(App, 'getContextedHtml').returns('123');
         sinon.stub(react, 'render');
 
         App.initClient();
@@ -107,6 +100,7 @@ describe('a fluxex app', function () {
         it('will update stores context', function (done) {
             var F = new app({stores: {sampleStore: {a: 1}}});
 
+            Object.assign(F, require('../lib/fluxex-client'));
             assert.equal(1, F.getStore('sampleStore')._get('a'));
             F._restore({stores: {sampleStore: {b: 2}}});
             assert.equal(undefined, F.getStore('sampleStore')._get('a'));
@@ -209,7 +203,8 @@ describe('a fluxex app', function () {
             var App = new app(),
                 element = react.createElement('div', {className: 'test'});
 
-            sinon.stub(App, 'getHtmlJsx').returns(element);
+            Object.assign(App, require('../lib/fluxex-client'));
+            sinon.stub(App, 'getContextedHtml').returns(element);
 
             App.renderHtml(actions.sampleAction, 3).then(function (html) {
                 done();
