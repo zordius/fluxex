@@ -24,11 +24,6 @@ describe('fluxex.mixin', function () {
         done();
     });
 
-    it('._getInitScript() will return string', function (done) {
-        assert.equal('string', typeof getMixedComponent()._getInitScript());
-        done();
-    });
-
     it('.componentDidMount() will do nothing when no listenStores defined', function (done) {
         getMixedComponent().componentDidMount();
         done();
