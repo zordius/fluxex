@@ -40,6 +40,7 @@ configs = {
     aliasify: {
         aliases: {
             request: 'browser-request',
+            './fluxex-server': 'fluxex/lib/fluxex-client',
             './fetch-server': 'fluxex/extra/fetch-client',
             'fluxex/extra/history': 'html5-history-api',
             'fluxex/extra/polyfill': 'babelify/polyfill',
