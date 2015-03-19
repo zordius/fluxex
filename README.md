@@ -160,6 +160,6 @@ Notes for IE8 support
 **IE8 Unsupported features**
 
 * window.history.pushState
-* set innerHTML of script node
+* set innerHTML of script or title node
 * compare prototype.constructor with another function
-* console and console.log
+* console and console.log when developer tool not opened
