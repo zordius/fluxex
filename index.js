@@ -44,40 +44,7 @@ Fluxex.createApp = function (stores, HtmlJsx) {
 };
 
 Fluxex.mixin = require('./lib/fluxmixin');
-Fluxex.InitScript = React.createClass({
-    mixins: [Fluxex.mixin],
-    render: function () {
-        var initScript = this._getContext().inited ? undefined : this._getInitScript();
-        return React.DOM.div(
-            {className: this.props.className || 'fluxex_hidden'},
-            React.DOM.script({src: this.props.src || '/static/js/main.js'}),
-            initScript ? React.DOM.script({dangerouslySetInnerHTML: {__html: initScript}}) : undefined
-        );
-    }
-});
-
-Fluxex.Title = React.createClass({
-    mixins: [
-        Fluxex.mixin,
-        require('./extra/storechange'),
-        {listenStores: ['page']}
-    ],
-
-    getStateFromStores: function () {
-        return {
-            title: this.getStore('page').getTitle()
-        };
-    },
-
-    render: function () {
-        // prevent IE8 title.innerHTML update bug
-        if (this.title == undefined) {
-            this.title = this.state.title;
-        } else {
-            document.title = this.state.title;
-        }
-        return React.DOM.title(null, this.title);
-    }
-});
+Fluxex.InitScript = require('./lib/fluxscript');
+Fluxex.Title = require('./lib/fluxtitle');
 
 module.exports = Fluxex;
