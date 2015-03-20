@@ -47,6 +47,7 @@ describe('React client side binding', function () {
 
     it('should handle browser back button', function () {
         // http://stackoverflow.com/questions/27240969/unknown-error-on-safari-history-navigation-using-protractor-webdrivers
+        browser.driver.executeScript('return window.test=2');
         browser.navigate().back();
 
         browser.wait(function () {
