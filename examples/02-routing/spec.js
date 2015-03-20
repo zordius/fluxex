@@ -48,7 +48,7 @@ describe('React client side binding', function () {
     it('should handle browser back button', function () {
         // prevent safari issue by javascript history.go(-1)
         // http://stackoverflow.com/questions/27240969/unknown-error-on-safari-history-navigation-using-protractor-webdrivers
-        browser.driver.executeScript('return (window.test=2) && (history.go(-1))');
+        browser.driver.executeScript('return (window.test=2) + (history.back())');
 
         browser.wait(function () {
             return browser.driver.getCurrentUrl().then(function (url) {
