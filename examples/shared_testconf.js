@@ -32,7 +32,7 @@ var config = {
 
   specs: [process.cwd() + '/spec.js'],
 
-  baseUrl: 'http://localhost:3000/',
+  baseUrl: 'http://localhost:' + (process.env.TESTPORT || 3000) + '/',
 
   // This enable testing on none angular pages without test code change.
   onPrepare: function () {

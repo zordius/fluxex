@@ -12,6 +12,6 @@
   },
   "devDependencies": {
     "gulp": "3.8.9",
-    "gulp-shell": "0.2.11"
+    "gulp-exec": "2.1.1"
   }
 }

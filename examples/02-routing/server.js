@@ -22,5 +22,5 @@ app.use(fluxexServerExtra.middleware(fluxexapp, function (req) {
 }));
 
 // Start server
-app.listen(3000);
+app.listen(process.env.TESTPORT || 3000);
 console.log('Fluxex started! Go http://localhost:3001/main');

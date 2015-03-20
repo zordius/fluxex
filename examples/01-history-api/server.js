@@ -18,5 +18,5 @@ fluxexServerExtra.initStatic(app);
 app.use('/product', fluxexServerExtra.middleware(fluxexapp, serverAction.samplePage));
 
 // Start server
-app.listen(3000);
+app.listen(process.env.TESTPORT || 3000);
 console.log('Fluxex started! Go http://localhost:3001/product?id=124');

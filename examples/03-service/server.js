@@ -28,5 +28,5 @@ app.use('/services/:name', function (req, res, next) {
 app.use(fluxexServerExtra.middlewareRouting(fluxexapp));
 
 // Start server
-app.listen(3000);
+app.listen(process.env.TESTPORT || 3000);
 console.log('Fluxex started! Go http://localhost:3001/search?q=apple');

@@ -7,7 +7,7 @@
   "scripts": {
     "build": "gulp",
     "disc": "gulp disc_app",
-    "test": "gulp test_server",
+    "test": "export TESTPORT=3004;gulp test_server",
     "start": "gulp develop"
   },
   "dependencies": {
