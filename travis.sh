@@ -1,4 +1,10 @@
 #!/bin/sh
+
+if [ "${TRAVIS_PULL_REQUEST}" != "false" ]; then
+  echo "This is a PR, skip deploy."
+  exit 0
+fi
+
 echo "DEBUG ENV: ${TRAVIS_JOB_NUMBER} ${TRAVIS_BUILD_NUMBER} ..."
 
 if [ "${TRAVIS_BUILD_NUMBER}.1" != "${TRAVIS_JOB_NUMBER}" ]; then
