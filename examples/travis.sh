@@ -1,4 +1,11 @@
 #!/bin/sh
+
+# Skip build when not master
+if [ "${TRAVIS_BRANCH}" != "master" ]; then
+  echo skip deploy because now in branch ${TRAVIS_BRANCH}
+  exit 0
+fi
+
 ORIGIN_COMMIT=`cat fluxex`
 export ORIGIN_COMMIT
 echo Original commit is https://github.com/zordius/fluxex/tree/${ORIGIN_COMMIT} ...
