@@ -1,0 +1,29 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/travis/.nvm/v0.10.37/bin/node',
+1 verbose cli   '/home/travis/.nvm/v0.10.37/bin/npm',
+1 verbose cli   'run-script',
+1 verbose cli   'disc' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.37
+4 verbose run-script [ 'predisc', 'disc', 'postdisc' ]
+5 info predisc fluxex-example@0.0.1
+6 info disc fluxex-example@0.0.1
+7 verbose unsafe-perm in lifecycle true
+8 info fluxex-example@0.0.1 Failed to exec disc script
+9 error fluxex-example@0.0.1 disc: `gulp disc_app`
+9 error Exit status 8
+10 error Failed at the fluxex-example@0.0.1 disc script.
+10 error This is most likely a problem with the fluxex-example package,
+10 error not with npm itself.
+10 error Tell the author that this fails on your system:
+10 error     gulp disc_app
+10 error You can get their info via:
+10 error     npm owner ls fluxex-example
+10 error There is likely additional logging output above.
+11 error System Linux 2.6.32-042stab090.5
+12 error command "/home/travis/.nvm/v0.10.37/bin/node" "/home/travis/.nvm/v0.10.37/bin/npm" "run-script" "disc"
+13 error cwd /home/travis/build/zordius/fluxex/examples/00hello
+14 error node -v v0.10.37
+15 error npm -v 1.4.28
+16 error code ELIFECYCLE
+17 verbose exit [ 1, true ]
