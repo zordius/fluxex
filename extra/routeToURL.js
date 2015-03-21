@@ -19,7 +19,7 @@ module.exports = function (url) {
 
         // update url to history
         /*global window*/
-        window.history.pushState(this._context, undefined, url);
+        window.history.pushState(JSON.stringify(this._context), undefined, url);
     }.bind(this))['catch'](function (E) {
         if (console && console.log) {
             console.log('Pjax failed! Failback to page loading....');
