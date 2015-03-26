@@ -154,7 +154,6 @@ buildApp = function (watch, fullpath, nosave, disc) {
     var b = browserify(configs.appjs, {
         cache: {},
         packageCache: {},
-        require: (disc ? process.cwd() : '.') + '/components/Html.jsx',
         standalone: 'Fluxex',
         fullPaths: fullpath ? true: false,
         debug: watch
