@@ -150,7 +150,7 @@ bundleAll = function (b, noSave) {
     return B;
 },
 
-buildApp = function (watch, fullpath, nosave, disc) {
+buildApp = function (watch, fullpath, nosave) {
     var b = browserify(configs.appjs, {
         cache: {},
         packageCache: {},
@@ -183,7 +183,7 @@ gulp.task('build_app', function () {
 });
 
 gulp.task('disc_app', function () {
-    return buildApp(false, true, true, true)
+    return buildApp(false, true, true)
         .pipe(require('disc')())
         .pipe(fs.createWriteStream(configs.static_dir + 'disc.html'));
 });
