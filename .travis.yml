@@ -5,7 +5,7 @@ node_js:
   - '0.12'
   - 'iojs'
 script:
-  - npm test
+  - npm run-script coverage
   - ./travis.sh
 cache:
   directories:
