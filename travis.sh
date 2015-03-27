@@ -19,7 +19,6 @@ fi
 
 # push coverage to codeclimate
 npm install codeclimate-test-reporter
-npm run-script coverage
 node_modules/.bin/codeclimate < coverage/lcov.info
 
 # Skip deploy when not master
