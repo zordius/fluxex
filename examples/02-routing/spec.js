@@ -5,7 +5,6 @@ describe('React server side rendering', function () {
     });
 
     it('body title should be main', function () {
-        browser.get('main');
         expect(element(by.css('div h1')).getInnerHtml()).toMatch(/Main/);
     });
 
