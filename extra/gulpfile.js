@@ -250,7 +250,15 @@ gulp.task('nodemon_server', ['watch_flux_js', 'watch_jsx', 'watch_app', 'watch_s
                 files: [configs.static_dir + 'css/*.css'],
                 port: 3001,
                 online: false,
-                open: false
+                open: false,
+                snippetOptions: {
+                  rule: {
+                    match: /<\/html>$/,
+                    fn: function (s, m) {
+                      return m + s;
+                    }
+                  }
+                }
             });
 
             serverStarted = true;
