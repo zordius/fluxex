@@ -49,7 +49,7 @@ Html = React.createClass({
            <li><a href={this.getURL('search', {}, {q:'banana'})}>Banana</a></li>
            <li><a href={this.getURL('search', {}, {q:'orange'})}>Orange</a></li>
           </ul>
-          <div>{Body}</div>
+          {Body}
           <Fluxex.InitScript />
          </body>
         </html> 
