@@ -18,21 +18,43 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     serverStarted = false,
 
-// If you use vim and watch tasks be triggered 2 times when saving
-// You can :set nowritebackup in vim to prevent this
-// Reference: https://github.com/joyent/node/issues/3172
+// These configs will be exported and you can overrides them
 configs = {
+    // files to jshint and jscs
     lint_files: ['actions/*.js', 'stores/*.js', 'components/*.jsx', 'fluxexapp.js'],
 
+    // All js/css files will be writen here
     static_dir: 'static/',
+
+    // Major script to start your express server and mount fluxex application
     mainjs: require(process.cwd() + '/package.json').main,
+
+    // Your fluxex application defination
     appjs: process.cwd() + '/fluxexapp.js',
+
+    // wait time after your bundle writen then trigger nodemon restart
     nodemon_restart_delay: 200,
+
+    // wait time after your server start then trigger browserSync reload
     nodemon_delay: 2000,
-    gulp_watch: {debounceDelay: 500},
-    watchify: {debug: true, delay: 500},
+
+    // fail the gulp task when jshint issue found
+    // edit your .jshintrc | .jshintignore to refine your jshint settings
     jshint_fail: false,
+
+    // fail the gulp task when jscs issue found
+    // edit your .jscsrc to refine your jshint settings
     jscs_fail: false,
+
+    // If you use vim and watch tasks be triggered 2 times when saving
+    // You can :set nowritebackup in vim to prevent this
+    // Reference: https://github.com/joyent/node/issues/3172
+    gulp_watch: {debounceDelay: 500},
+
+    // watchify config
+    watchify: {debug: true, delay: 500},
+
+    // aliasify config
     aliasify: {
         aliases: {
             request: 'browser-request',
@@ -45,11 +67,14 @@ configs = {
             'body-parser': 'fluxex/extra/dummy'
         }
     },
+
+    // babelify config
     babelify: {
         optional: ['runtime'],
         ignore: /node_modules/,
         extensions: ['.js', '.jsx']
     },
+
     test_coverage: {
         default: {
             src: ['test/**/*.js', 'test/components/*.jsx', 'test/components/*.js'],
