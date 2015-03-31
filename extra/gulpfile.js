@@ -75,7 +75,9 @@ configs = {
         extensions: ['.js', '.jsx']
     },
 
+    // tests + coverage configs
     test_coverage: {
+        // gulp-jsx-coverage config
         default: {
             src: ['test/**/*.js', 'test/components/*.jsx', 'test/components/*.js'],
             istanbul: {
@@ -86,13 +88,15 @@ configs = {
                 directory: 'coverage'
             },
             mocha: {},
-            react: {
-                sourceMap: true
+            babel: {
+                sourceMap: 'inline'
             },
             coffee: {
                 sourceMap: true
             }
         },
+
+        // for manual testing
         console: {
             coverage: {
                 reporters: ['text-summary']
@@ -101,6 +105,8 @@ configs = {
                 reporter: 'spec'
             }
         },
+
+        // for CI testing (save reports to files)
         report: {
             coverage: {
                 reporters: ['lcov', 'json']
@@ -194,7 +200,7 @@ buildApp = function (watch, fullpath, nosave) {
     return bundleAll(b, nosave);
 };
 
-
+// GULP TASK - build minified bundle file
 gulp.task('build_app', function () {
     return buildApp(false, false, true)
         .pipe(source('main.js'))
@@ -203,20 +209,24 @@ gulp.task('build_app', function () {
         .pipe(gulp.dest(configs.static_dir + 'js/'));
 });
 
+// GULP TASK - create disc analyze report file
 gulp.task('disc_app', function () {
     return buildApp(false, true, true)
         .pipe(require('disc')())
         .pipe(fs.createWriteStream(configs.static_dir + 'disc.html'));
 });
 
+// GULP TASK - watch and build bundle file for develop
 gulp.task('watch_app', function () {
     return buildApp(true, true);
 });
 
+// GULP TASK - watch and lint js files for develop
 gulp.task('watch_js', ['lint_js'], function () {
     gulp.watch(configs.lint_files.js, configs.gulp_watch, ['lint_js']);
 });
 
+// GULP TASK - lint js files for develop
 gulp.task('lint_js', function () {
     return lint_chain(
         gulp.src(configs.lint_files)
@@ -227,6 +237,7 @@ gulp.task('lint_js', function () {
     );
 });
 
+// GULP TASK - watch main and app js to lint then restart nodemon
 gulp.task('watch_server', ['lint_server'], function () {
     gulp.watch([configs.mainjs, configs.appjs], configs.gulp_watch, ['lint_server'])
     .on('change', function (E) {
@@ -236,12 +247,14 @@ gulp.task('watch_server', ['lint_server'], function () {
     });
 });
 
+// GULP TASK - lint main and app js files
 gulp.task('lint_server', function () {
     return gulp.src([configs.mainjs, configs.appjs])
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
+// GULP TASK - start nodemon server and browserSync proxy
 gulp.task('nodemon_server', ['watch_js', 'watch_app', 'watch_server'], function () {
     nodemon({
         ignore: '*',
@@ -276,12 +289,15 @@ gulp.task('nodemon_server', ['watch_js', 'watch_app', 'watch_server'], function 
     });
 });
 
+// GULP TASK - watch tests files then execute test
 gulp.task('watch_tests', ['test_app'], function () {
     gulp.watch([
         configs.test_coverage.default.src,
         configs.lint_files,
     ], ['test_app']);
 });
+
+// GULP TASK - execute mocha tests, output to console
 gulp.task('test_app', function (cb) {
     get_testing_task(configs.test_coverage.console)(cb).on('error', function (E) {
         if (E.stack || E.showStack) {
@@ -293,9 +309,13 @@ gulp.task('test_app', function (cb) {
         cb(); // prevent failed ending
     });
 });
+
+// GULP TASK - execute mocha tests, output to file
 gulp.task('save_test_app', function () {
     return get_testing_task(configs.test_coverage.report)();
 });
+
+// GULP TASKS - alias and depdency
 gulp.task('develop', ['nodemon_server']);
 gulp.task('lint_all', ['lint_server', 'lint_js']);
 gulp.task('buildall', ['lint_all', 'build_app']);
