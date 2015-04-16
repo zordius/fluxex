@@ -2,12 +2,11 @@
 
 var request = require('request'),
     Fetch = require('./fetch-server'),
-    baseURL = '/_fetch_/',
     requestConfig,
     mainConfig = {},
 
 fetch = function (name, cfg) {
-    var opt = Fetch.getRequestConfig(name, cfg, mainConfig, baseURL);
+    var opt = Fetch.getRequestConfig(name, cfg, mainConfig, module.exports.baseURL);
 
     if (!name) {
         return Promise.reject(new Error('service name required!'));
@@ -54,6 +53,7 @@ handleRequestCfg = function (name, headers, body) {
 };
 
 module.exports = fetch;
+module.exports.baseURL = '/_fetch_/';
 
 module.exports.createServices = function (app, serviceCfg, opts) {
     if (!serviceCfg) {
@@ -64,7 +64,7 @@ module.exports.createServices = function (app, serviceCfg, opts) {
     mainConfig = serviceCfg;
 
     // Provide fetch services
-    app.put(baseURL + ':name', require('body-parser').json(), function (req, res) {
+    app.put(module.exports.baseURL + ':name', require('body-parser').json(), function (req, res) {
         fetch(req.params.name, handleRequestCfg(req.params.name, req.headers, req.body)
         ).then(function (O) {
             res.send(O.body);

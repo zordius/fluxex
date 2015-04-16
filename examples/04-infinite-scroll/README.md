@@ -14,7 +14,7 @@ What's in this example
 ----------------------
 * <a href="components/Html.jsx">Html.jsx</a> is the top level ract component with fluxex magic.
 * <a href="components/Results.jsx">Results.jsx</a> showed search results, and handle infinite scroll.
-* <a href="fluxexapp.js">fluxexapp.js</a> defined used stores and the top level react component. And, it extends 2 methods for routing.
+* <a href="fluxexapp.js">fluxexapp.js</a> defined used stores and the top level react component. And, it extends 2 methods for routing. Here we also DEMO how to change fetch API URL.
 * <a href="server.js">server.js</a> start an express server and use fluxex middleware to serve sample pages with a routing action. And, it use an extra to handle api requests.
 * <a href="actions/routing.js">routing.js</a> uses the <a href="https://github.com/aaronblohowiak/routes.js">npm:routes.js</a> to pick correct page action. There is only 1 page be defined in this example.
 * <a href="actions/page.js">page.js</a> contains all page actions. There is only 1 page be defined in this example.

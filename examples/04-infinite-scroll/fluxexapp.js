@@ -3,6 +3,8 @@
 require('fluxex/extra/polyfill-ie8');
 require('fluxex/extra/polyfill');
 
+require('fluxex/extra/fetch').baseURL = '/_HOHOHO_/';
+
 var commonStores = require('fluxex/extra/commonStores');
 
 module.exports = require('fluxex').createApp({
