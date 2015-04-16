@@ -31,6 +31,29 @@ getURL = function (name, param, query) {
     }
 
     return path + (qs ? '?' + qs : '');
+},
+
+routeToUrl = function (url) {
+    this.dispatch('UPDATE_URL', url).then(function ()
+        {
+        // Run action to update page stores
+            return this.executeAction(this.routing);
+        }.bind(this)).then(function () {
+            // Success, trigger page refresh
+            this.getStore('page').emitChange();
+
+            // update url to history
+            /*global window*/
+            window.history.pushState(JSON.stringify(this._context), undefined, url);
+        }.bind(this))['catch'](function (E) {
+            if (console && console.log) {
+                console.log('Pjax failed! Failback to page loading....');
+                console.log(E.stack || E);
+            }
+
+            // pjax failed, go to url...
+            window.location.href = url;
+        });
 };
 
 module.exports = function (config) {
@@ -39,7 +62,7 @@ module.exports = function (config) {
     return {
         routing: routingAction,
         getURL: getURL,
-        routeToURL: require('fluxex/extra/routeToURL')
+        routeToURL: routeToURL
     };
 };
 

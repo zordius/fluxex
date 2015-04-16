@@ -11,5 +11,5 @@ module.exports = require('fluxex').createApp({
     productStore: require('./stores/product')
 }, require('./components/Html.jsx'), {
     routing: require('./actions/routing'),
-    routeToURL: require('fluxex/extra/routeToURL')
+    routeToURL: require('./lib/routeToURL')
 });

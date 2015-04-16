@@ -1,8 +1,8 @@
 'use strict';
 
 // Use this mixin at HTML/BODY level to enable pjax behavior
-// Your fluxexapp should provide routeToURL() for this mixin
-// See routeToURL.js for more info
+// Your fluxexapp should add require('fluxex/extra/routing') for this mixin
+// See routing.js for more info
 //
 // To support IE8,
 // You will need to npm install html5-history-api,
