@@ -30,10 +30,15 @@ ServerExtra = {
     // Using this when your fluxexapp provide .routing() action
     middlewareRouting: function (fluxexapp, extraAction) {
         return ServerExtra.middleware(fluxexapp, function (req) {
-            if (extraAction) {
-                this.executeAction(extraAction, req);
-            }
-            return this.dispatch('UPDATE_URL', {url: req.url, host: req.header('Host')}).then(function () {
+            // dispatch URL information to store is a must have
+            // it should be a synchronized operation, so we do not .then()
+            this.dispatch('UPDATE_URL', {url: req.url, host: req.header('Host')}).catch(function (E) {
+                console.log(E.stack || E);
+            });
+
+            // If you wanna pass more data from req to fluxex, use extreAction.
+            return (extraAction ? this.executeAction(extraAction, req) : Promise.resolve()).then(function () {
+                // always execute routing action when no error
                 return this.executeAction(this.routing);
             }.bind(this));
         });
