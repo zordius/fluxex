@@ -196,6 +196,15 @@ describe('a fluxex app', function () {
                 done();
             });
         });
+
+        it('should turn exception inside an action creator to a rejected promise', function (done) {
+            var App = new app();
+            App.executeAction(function () {
+                throw 'oh my';
+            }).catch(function (E) {
+                assert.equal('oh my', E);
+            }).then(done, done.bind());
+        });
     });
 
     describe('.renderHtml()', function () {
