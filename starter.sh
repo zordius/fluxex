@@ -12,6 +12,7 @@ cp $BASE/server.js index.js
 cp $BASE/fluxexapp.js fluxexapp.js
 echo "require('fluxex/extra/gulpfile');" > gulpfile.js
 cp $BASE/.jshintrc .
+cp $BASE/.jscsrc .
 
 echo '==================== THE STARTER PROJECT IS READY ===================='
 echo '= + index.js                    Your Server, add api URL here        ='
