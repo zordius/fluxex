@@ -15,4 +15,4 @@ npm test
 git add .
 git commit -m "Auto commit browser test results for zordius/fluxex@${ORIGIN_COMMIT} [ci skip]"
 git push "https://${GHTK}@github.com/zordius/fluxex-examples.git" HEAD:${TRAVIS_BRANCH} > /dev/null 2>&1
-git push "https://${GHTK}@github.com/zordius/fluxex-examples.git" HEAD:last_result > /dev/null 2>&1
+git push --force "https://${GHTK}@github.com/zordius/fluxex-examples.git" HEAD:last_result > /dev/null 2>&1
