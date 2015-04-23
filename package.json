@@ -47,7 +47,6 @@
     "gulp-shell": "0.2.11",
     "jsdoc": "3.3.0-alpha11",
     "semver": "4.3.2",
-    "escape-regexp": "0.0.1",
     "chai": "1.10.0",
     "istanbul": "0.3.5",
     "jshint": "2.5.10",
