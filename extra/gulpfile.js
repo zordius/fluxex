@@ -52,9 +52,11 @@ configs = {
     gulp_watch: {debounceDelay: 500},
 
     // watchify config
+    // refer to https://github.com/substack/watchify
     watchify: {debug: true, delay: 500},
 
     // aliasify config
+    // refer to https://github.com/benbria/aliasify
     aliasify: {
         aliases: {
             request: 'browser-request',
@@ -68,9 +70,16 @@ configs = {
         }
     },
 
-    // babelify config
+    // babel config
+    // refer to http://babeljs.io/docs/usage/options/
+    babel: {
+        optional: ['runtime']
+    },
+
+    // babelify config, will be merged with babel config
+    // refer to https://github.com/babel/babelify
     babelify: {
-        optional: ['runtime'],
+        // Note: for babelify this is regex, but for babel this is glob
         ignore: /node_modules/,
         extensions: ['.js', '.jsx']
     },
@@ -78,6 +87,7 @@ configs = {
     // tests + coverage configs
     test_coverage: {
         // gulp-jsx-coverage config
+        // refer to https://github.com/zordius/gulp-jsx-coverage
         default: {
             src: ['test/**/*.js', 'test/components/*.jsx', 'test/components/*.js'],
             istanbul: {
@@ -186,7 +196,7 @@ buildApp = function (watch, fullpath, nosave) {
         debug: watch
     });
 
-    b.transform(babelify.configure(configs.babelify), {global: true});
+    b.transform(babelify.configure(Object.assign({}, configs.babel, configs.babelify)), {global: true});
     b.transform(aliasify.configure(configs.aliasify), {global: true});
 
     if (watch) {
@@ -231,7 +241,7 @@ gulp.task('lint_js', function () {
     return lint_chain(
         gulp.src(configs.lint_files)
         .pipe(cached('jshint'))
-        .pipe(babel(Object.assign({sourceMap: true}, configs.babelify)))
+        .pipe(babel(Object.assign({sourceMap: true}, configs.babel)))
         .pipe(jscs()).on('error', handleJSCSError)
         .pipe(jshint())
     );
