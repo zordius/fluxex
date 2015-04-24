@@ -3,7 +3,7 @@
 var gulp = require('gulp'),
     shell = require('gulp-shell'),
     jscs = require('gulp-jscs'),
-    testCommands = ['cd <%=file.path %>;npm install ../..;npm prune;npm install;npm run-script disc;npm test'];
+    testCommands = ['cd <%=file.path %>;npm install ../..;npm prune;npm install;npm run disc;npm test'];
 
 gulp.task('smoke_test', function () {
     return gulp.src('examples/00hello/')

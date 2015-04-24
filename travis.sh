@@ -32,7 +32,7 @@ git config --global user.name "Travis-CI"
 git config --global user.email "zordius@yahoo-inc.com"
 
 # Do smoke test (only test 00hello)
-npm run-script smoke_test
+npm run smoke_test
 
 # Add browser test badge
 git add examples
@@ -66,7 +66,7 @@ git push --force --quiet "https://${GHTK}@github.com/zordius/fluxex-examples.git
 cd ..
 
 # build document
-npm run-script build_doc
+npm run build_doc
 cd documents
 if [ "${TRAVIS_BRANCH}" != "master" ]; then
   echo "Document will be pushed here: http://zordius.github.io/fluxex/${TRAVIS_BRANCH}/"
