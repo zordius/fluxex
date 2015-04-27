@@ -1,4 +1,4 @@
-'use strict';                                                 
+'use strict';
 
 var react = require('react'),
 
@@ -6,7 +6,7 @@ ServerExtra = {
     initStatic: function (app) {
        app.use('/static', require('express').static(process.cwd() + '/static'));
     },
-    
+
     middleware: function (fluxexapp, action) {
         return function (req, res, next) {
             var app = new fluxexapp();
