@@ -6,22 +6,24 @@ var request = require('request'),
     mainConfig = {},
 
 fetch = function (name, cfg) {
-    var opt = Fetch.getRequestConfig(name, cfg, mainConfig, module.exports.baseURL);
 
     if (!name) {
         return Promise.reject(new Error('service name required!'));
     }
 
+    var opt = Fetch.getRequestConfig(name, cfg, mainConfig, module.exports.baseURL);
+
     if (!opt.url) {
         return Promise.reject(new Error('Can not find URL for service: ' + name));
     }
-
     return new Promise(function (resolve, reject) {
         request(opt, function (error, response, body) {
+
             var O = {
                 error: error,
                 response: response,
-                body: body
+                body: body,
+                requestOptions: opt,
             };
 
             if (error) {
@@ -34,22 +36,38 @@ fetch = function (name, cfg) {
 },
 
 handleRequestCfg = function (name, headers, body) {
-    var reqCfg = body || {};
+    return new Promise(function (resolve, reject) {
+        var reqCfg = body || {};
+        reqCfg.headers = reqCfg.headers || {};
 
-    // Dupe headers from request headers
-    if (reqCfg.headers) {
-        Object.keys(reqCfg.headers).forEach(function (K) {
-            if (reqCfg.headers[K] === undefined) {
-                reqCfg.headers[K] = headers[K];
+        // Dupe headers from request headers
+        if (reqCfg.headers) {
+            Object.keys(reqCfg.headers).forEach(function (K) {
+                if (reqCfg.headers[K] === undefined) {
+                    reqCfg.headers[K] = headers[K];
+                }
+            });
+        }
+
+        //hostlevel preRequest
+        if ('function' === (typeof requestConfig.preRequest)) {
+            var res = requestConfig.preRequest(reqCfg, name, headers);
+
+            // To trigger validation error from preRequest:
+            //     1. return false
+            //     2. return {res: false}
+            // For appending error message, return {res: false, msg: "validation error from server side" }
+            // default message is "validation error"
+            if (res === false
+                || (res.res === false)) {
+                reject(new Error(res.msg || 'validation error'));
             }
-        });
-    }
 
-    if ('function' === (typeof requestConfig.preRequest)) {
-        reqCfg = requestConfig.preRequest(reqCfg, name, headers);
-    }
+            reqCfg = res || reqCfg;
+        }
 
-    return reqCfg;
+        resolve(reqCfg);
+    });
 };
 
 module.exports = fetch;
@@ -65,7 +83,11 @@ module.exports.createServices = function (app, serviceCfg, opts) {
 
     // Provide fetch services
     app.put(module.exports.baseURL + ':name', require('body-parser').json(), function (req, res) {
-        fetch(req.params.name, handleRequestCfg(req.params.name, req.headers, req.body)
+        handleRequestCfg(req.params.name, req.headers, req.body)
+        .then(
+            function (reqCfg) {
+                return fetch(req.params.name, reqCfg);
+            }
         ).then(function (O) {
             res.send(O.body);
         })['catch'](function (E) {
