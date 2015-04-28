@@ -53,7 +53,15 @@ module.exports = {
     handleClickLink: function (E) {
         var HREF = E.target.href;
 
-        if (!HREF || HREF.match(/#/)) {
+        if (!HREF || HREF.match(/#/) || (E.target.target == '_blank')) {
+            return;
+        }
+
+        if ((E.target.target == '_top') && (window.top !== window)) {
+            return;
+        }
+
+        if ((E.target.target == '_parent') && (window.parent !== window)) {
             return;
         }
 
