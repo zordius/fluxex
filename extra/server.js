@@ -50,7 +50,6 @@ ServerExtra = {
         ServerExtra.initStatic(app);
         if (fetchOpt && fetchOpt.services) {
             fetch = require('./fetch');
-            fluxexapp.prototype.fetch = fetch.wrapFetch;
             fetch.createServices(app, fetchOpt.services, fetchOpt.options);
         }
         app.use(ServerExtra.middlewareRouting(fluxexapp, extraAction));
