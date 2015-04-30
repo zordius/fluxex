@@ -37,7 +37,7 @@ npm run smoke_test
 # Add browser test badge
 git add examples
 git commit -m "Auto commit smoke test results for ${TRAVIS_COMMIT} [ci skip]"
-git push "https://${GHTK}@github.com/zordius/fluxex.git" HEAD:${TRAVIS_BRANCH} > /dev/null 2>&1
+git push --force --quiet "https://${GHTK}@github.com/zordius/fluxex.git" HEAD:last_result > /dev/null 2>&1
 
 # Bump npm version and push back to git
 TODAY=`date +"%Y-%m-%d"`
