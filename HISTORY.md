@@ -1,5 +1,24 @@
 HISTORY
 =======
+0.5.2 https://github.com/zordius/fluxex/releases/tag/v0.5.2
+   * [CORE] support React owner context now
+   * [CORE] do not require process.cwd() hack on Html.jsx when .createApp() now
+   * [CORE] remove ._getInitScript() from context API
+   * [CORE] turn exception inside an action creator into a rejected Promise now
+   * [EXTRA] support change fetch baseURL
+   * [EXTRA] remove server/client logic from fetch (now done by aliasify)
+   * [EXTRA] refine gulp exported config
+      * remove .lint_files.js and .lint_files.jsx (now .lint_fiels is array)
+      * move babel config from .babelify to .babel
+      * migrate to new gulp-jsx-coverage, rename test_coverage.default.react to test_coverage.default.babel
+   * [EXTRA] refine gulp task names:
+      * remove lint_flux_js and lint_jsx (use lint_js now)
+      * remove watch_flux_js (use watch_js now)
+   * [EXTRA] fix initState bug in pjax.js
+   * [EXTRA] support target!=self click in pjax.js
+   * [EXTRA] scrollTo(0, 0) when routeToURL()
+   * [EXTRA] fix extraAction should after UPDATE_URL issue in server.js
+
 0.5.1 https://github.com/zordius/fluxex/releases/tag/v0.5.1
    * [CORE] new Fluxex.Title component to handle title change and fix IE8
    * [EXTRA] new fluxex/extra/history to enable html5-history-api
