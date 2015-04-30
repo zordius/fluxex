@@ -7,7 +7,7 @@ An extended Flux implement to build isomorphic javascript React app.
 
 [![npm](https://nodei.co/npm/fluxex.png?downloads=true)](https://www.npmjs.org/package/fluxex)
 
-<img src="https://github.com/zordius/fluxex/raw/master/examples/00hello/badge.png" />
+<img src="https://github.com/zordius/fluxex/raw/last_result/examples/00hello/badge.png" />
 
 Features
 --------
