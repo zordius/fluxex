@@ -1,6 +1,6 @@
 var config = {
-  allScriptsTimeout: 30000,
-  getPageTimeout: 30000,
+  allScriptsTimeout: 60000,
+  getPageTimeout: 60000,
 
   job_basename: require('path').basename(process.cwd()) + '_' + process.env.TRAVIS_JOB_ID,
 
