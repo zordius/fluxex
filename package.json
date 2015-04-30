@@ -37,6 +37,7 @@
   },
   "main": "index.js",
   "dependencies": {
+    "iso-call": "0.0.1",
     "eventemitter2": "0.4.14"
   },
   "devDependencies": {
