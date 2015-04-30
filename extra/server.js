@@ -47,6 +47,11 @@ ServerExtra = {
     // Using this for total solution
     initServer: function (app, fluxexapp, fetchOpt, extraAction) {
         var fetch;
+
+        if ('production' !== process.env.NODE_ENV) {
+            console.warn('.initServer() is deprecated! Please use .initStatic() and .middlewareRouting() directly. And migrate your api from extra/fetch to extra/rpc');
+        }
+
         ServerExtra.initStatic(app);
         if (fetchOpt && fetchOpt.services) {
             fetch = require('./fetch');

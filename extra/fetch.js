@@ -1,4 +1,31 @@
 'use strict';
+/* Deprecated */
+/* Please use rpc for better interface and logic */
+/*
+
+Why we drop fetch?
+==================
+
+fetch minic isomorpic request() with an express middleware and preRequest hack, most developers can not understand:
+
+* WHEN and WHERE fetch() be executed
+* HOW fetch() deal with cookie or other headers
+* HOW to deal with server_side_only logic
+
+What should we do?
+==================
+
+Move to extra/rpc . The extra is powered by https://github.com/zordius/iso-call , so we can:
+
+* Keep `this.rpc('name', param)` isomorphic
+* Ensure the RPC function itself be executed on server side only
+* Add more logic before call an API
+* Add more logic after receive the API result
+* Hide specific business logic from user
+
+check extra/rpc.js for more information
+
+*/
 
 var request = require('request'),
     Fetch = require('./fetch-server'),
@@ -6,6 +33,9 @@ var request = require('request'),
     mainConfig = {},
 
 fetch = function (name, cfg) {
+    if ('production' !== process.env.NODE_ENV) {
+        console.warn('fetch is deprecated! please adopt rpc. check fetch.js for more document');
+    }
 
     if (!name) {
         return Promise.reject(new Error('service name required!'));
