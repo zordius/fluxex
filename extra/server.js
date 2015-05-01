@@ -6,7 +6,7 @@ ServerExtra = {
     },
 
     /* Deprecated */
-    // Please stop using middleware() , we will rename it to createMiddlewareByAction()
+    // Please stop using .middleware() , we will rename it to .createMiddlewareByAction()
     middleware: function (fluxexapp, action) {
         if ('production' !== process.env.NODE_ENV) {
             console.warn('.middleware() is deprecated! Please rename to .createMiddlewareByAction()');
@@ -42,8 +42,24 @@ ServerExtra = {
         };
     },
 
-    // Using this when your fluxexapp provide .routing() action
+    /* Deprecated */
+    // Please stop using .middlewareRouting() , we will rename it to .createMiddlewareWithRouting()
     middlewareRouting: function (fluxexapp, extraAction) {
+        if ('production' !== process.env.NODE_ENV) {
+            console.warn('.middlewareRouting() is deprecated! Please rename to .createMiddlewareWithRouting()');
+        }
+
+        return ServerExtra.createMiddlewareWithRouting(fluxexapp, extraAction);
+    },
+
+    // Using this when your fluxexapp provide .routing() action
+    // Check extra/routing for more information about routing.
+    createMiddlewareWithRouting: function (fluxexapp, extraAction) {
+        if ('function' !== (typeof fluxexapp.routing)) {
+            throw new Error('You provided a fluxexapp without .routing() when call .createMiddlewareWithRouting()');
+            return;
+        }
+
         return ServerExtra.createMiddlewareByAction(fluxexapp, function (req) {
             // dispatch URL information to store is a must have
             // it should be a synchronized operation, so we do not .then()
@@ -60,7 +76,7 @@ ServerExtra = {
     },
 
     /* Deprecated */
-    /* Please use .initStatic() and .middlewareRouting() directly */
+    /* Please use .initStatic() and .createMiddlewareByAction() directly */
     initServer: function (app, fluxexapp, fetchOpt, extraAction) {
         var fetch;
 
