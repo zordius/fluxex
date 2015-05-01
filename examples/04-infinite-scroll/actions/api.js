@@ -21,7 +21,7 @@ api = {
             return Promise.resolve({});
         }
 
-        return yql('select * from youtube.search where query="' + keyword + '" and start_index=' + (start + 1) + ' and max_results=' + count).then(function (O) {
+        return this.executeAction(yql, 'select * from youtube.search where query="' + keyword + '" and start_index=' + (start + 1) + ' and max_results=' + count).then(function (O) {
             return self.dispatch('UPDATE_SEARCH_RESULT', {
                 keyword: keyword,
                 offset: start,
@@ -29,6 +29,7 @@ api = {
             });
         });
     },
+
     load_more: function () {
         log('load more start!');
         this.dispatch('UPDATE_APPENDING', true);

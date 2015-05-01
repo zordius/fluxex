@@ -8,19 +8,18 @@ require('babel/register')({
 var express = require('express'),
     fluxexapp = require('./fluxexapp'),
     fluxexServerExtra = require('fluxex/extra/server'),
-    fetch = require('fluxex/extra/fetch'),
     app = express();
 
 // Provide /static/js/main.js
 fluxexServerExtra.initStatic(app);
 
 // Setup fetch services
-fetch.createServices(app, {
+fluxexServerExtra.setupRPC(app, {
     yql: 'https://query.yahooapis.com/v1/public/yql'
 });
 
-// Mount fluxexapp , it will handle routing itself
-app.use(fluxexServerExtra.middlewareRouting(fluxexapp));
+// Mount fluxexapp, it will handle routing itself
+app.use(fluxexServerExtra.createMiddlewareWithRouting(fluxexapp));
 
 // Start server
 app.listen(process.env.TESTPORT || 3000);

@@ -3,7 +3,8 @@
 require('fluxex/extra/polyfill-ie8');
 require('fluxex/extra/polyfill');
 
-require('fluxex/extra/fetch').baseURL = '/_HOHOHO_/';
+// change RPC endpoint
+require('fluxex/extra/rpc-seturl')('/_COOL_YQL_/');
 
 var commonStores = require('fluxex/extra/commonStores');
 
@@ -13,4 +14,4 @@ module.exports = require('fluxex').createApp({
 }, require('./components/Html.jsx'), {
     routing: require('./actions/routing'),
     routeToURL: require('fluxex/extra/routeToURL')
-});
+}, require('fluxex/extra/rpc'));

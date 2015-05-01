@@ -1,13 +1,11 @@
 'use strict';
 
-var fetch = require('fluxex/extra/fetch');
-
 module.exports = function (yql) {
     if (!yql) {
         throw new Error('call yql without yql statement!');
     }
 
-    return fetch('yql', {
+    return this.request('yql', {
         qs: {
             q: yql,
             format: 'json',
