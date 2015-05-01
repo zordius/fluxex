@@ -13,10 +13,10 @@ What's in this example
 ----------------------
 * <a href="components/Html.jsx">Html.jsx</a> is the top level ract component with fluxex magic.
 * <a href="fluxexapp.js">fluxexapp.js</a> defined used stores and the top level react component. And, it extends 2 methods for routing.
-* <a href="server.js">server.js</a> start an express server and use fluxex middleware to serve sample pages with a routing action. And, it add a middleware to handle service request.
+* <a href="server.js">server.js</a> start an express server and use fluxex middleware to serve sample pages with a routing action. And, it using <a href="https://github.com/zordius/iso-call">iso-call</a> to provide API services.
 * <a href="actions/routing.js">routing.js</a> uses the <a href="https://github.com/aaronblohowiak/routes.js">npm:routes.js</a> to pick correct page action. There is only 1 page be defined in this example.
 * <a href="actions/page.js">page.js</a> contains all page actions. There is only 1 page be defined in this example.
-* <a href="services/fetch.js">fetch.js</a> wraps <a href="https://github.com/request/request">npm:request</a> call url, it use a trick to prevent api server name be exposed to client side.
+* <a href="services/config.js">services/config.js</a> defined yql serivce, and <a href="services/yql.js">services/yql.js</a> implements YQL.
 
 Used fluxex extra
 -----------------

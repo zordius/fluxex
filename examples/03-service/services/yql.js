@@ -1,13 +1,13 @@
 'use strict';
 
-var fetch = require('./fetch');
+var isocall = require('iso-call');
 
 module.exports = function (yql) {
     if (!yql) {
         throw new Error('call yql without yql statement!');
     }
 
-    return fetch('yql', {
+    return isocall.request('yql', {
         qs: {
             q: yql,
             format: 'json'

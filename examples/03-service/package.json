@@ -11,12 +11,13 @@
     "start": "gulp develop"
   },
   "dependencies": {
+    "body-parser": "1.12.3",
     "react": "0.13.0",
     "babel": "4.7.8",
     "fluxex": "*",
     "routes": "2.0.0",
     "express": "4.10.4",
-    "request": "2.44.0"
+    "iso-call": "0.0.2"
   },
   "devDependencies": {
     "babel-runtime": "4.7.12",

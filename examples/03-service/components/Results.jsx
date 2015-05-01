@@ -17,7 +17,7 @@ Results = React.createClass({
 
         if (!this.state.hits) {
             return (
-               <h1>Search keyword: '{this.state.keyword}' not found!</h1>
+               <h1>{'Search keyword: \'' + this.state.keyword + '\' not found!'}</h1>
             );
         }
 
@@ -38,7 +38,7 @@ Results = React.createClass({
 
         return (
         <div>
-         <h1>Search keyword: '{this.state.keyword}'</h1>
+         <h1>{'Search keyword: \'' + this.state.keyword + '\''}</h1>
          <ul>{hits}</ul>
         </div>
         );

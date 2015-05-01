@@ -8,24 +8,20 @@ require('babel/register')({
 var express = require('express'),
     fluxexapp = require('./fluxexapp'),
     fluxexServerExtra = require('fluxex/extra/server'),
-    fetch = require('./services/fetch'),
+    isocall = require('iso-call'),
     app = express();
 
 // Provide /static/js/main.js
 fluxexServerExtra.initStatic(app);
 
-// Provide fetch services
-app.use('/services/:name', function (req, res, next) {
-    fetch(req.params.name, {qs: req.query}).then(function (O) {
-        res.send(O.body);
-    }).catch(function (E) {
-        console.log(E.stack || E);
-        next();
-    });
-});
+// Setup services
+isocall.addConfigs(require('./services/config'));
+
+// Setup services middleware
+isocall.setupMiddleware(app);
 
 // Mount fluxexapp , it will handle routing itself
-app.use(fluxexServerExtra.middlewareRouting(fluxexapp));
+app.use(fluxexServerExtra.createMiddlewareWithRouting(fluxexapp));
 
 // Start server
 app.listen(process.env.TESTPORT || 3000);
