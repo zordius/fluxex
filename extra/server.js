@@ -55,7 +55,7 @@ ServerExtra = {
     // Using this when your fluxexapp provide .routing() action
     // Check extra/routing for more information about routing.
     createMiddlewareWithRouting: function (fluxexapp, extraAction) {
-        if ('function' !== (typeof fluxexapp.routing)) {
+        if ('function' !== (typeof fluxexapp.prototype.routing)) {
             throw new Error('You provided a fluxexapp without .routing() when call .createMiddlewareWithRouting()');
             return;
         }
