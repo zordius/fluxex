@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
     getInitialState: function () {
         if (!this.getStateFromStores) {

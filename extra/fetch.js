@@ -1,4 +1,3 @@
-'use strict';
 /* Deprecated */
 /* Please use rpc for better interface and logic */
 /*

@@ -1,5 +1,3 @@
-'use strict';
-
 var Router = require('routr'),
     querystring = require('querystring'),
     router,

@@ -1,5 +1,3 @@
-'use strict';
-
 var querystring = require('querystring');
 var fluxex = require('../index');
 

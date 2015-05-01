@@ -1,7 +1,5 @@
 /* Deprecated */
 /* Please use rpc for better interface and logic */
-'use strict';
-
 module.exports = {
     getRequestConfig: function (name, cfg, mainCfg, baseURL) {
         return Object.assign({}, cfg, {

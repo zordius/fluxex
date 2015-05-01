@@ -1,7 +1,6 @@
-'use strict';
-
 // Fluxex extra action
 // you should attach a `routing()` action creator on your fluxexapp
+// For most case you will not require this file directly
 // See routing.js for more info
 //
 // To support IE8,
