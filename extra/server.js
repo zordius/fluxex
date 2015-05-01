@@ -70,6 +70,9 @@ ServerExtra = {
 
         ServerExtra.initStatic(app);
         if (fetchOpt && fetchOpt.services) {
+            if ('production' !== process.env.NODE_ENV) {
+                console.warn('fetch() is deprecated! Please migrate your api from extra/fetch to extra/rpc');
+            }
             fetch = require('./fetch');
             fetch.createServices(app, fetchOpt.services, fetchOpt.options);
         }
