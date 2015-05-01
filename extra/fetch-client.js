@@ -1,3 +1,5 @@
+/* Deprecated */
+/* Please use rpc for better interface and logic */
 'use strict';
 
 module.exports = {

@@ -33,6 +33,9 @@ getURL = function (name, param, query) {
     return path + (qs ? '?' + qs : '');
 };
 
+// For Fluxex Applications
+// add require('fluxex/extra/routing')(YourRoutingConfig) into fluxex.createApp() , then you have 3 API for your application: .routing() , .getURL() , .routeToURL()
+// check example here: https://github.com/zordius/fluxex/blob/master/examples/05-extra/fluxexapp.js
 module.exports = function (config) {
     router = new Router(config);
 
@@ -43,6 +46,9 @@ module.exports = function (config) {
     };
 };
 
+// For React components
+// add require('fluxex/extra/routing').mixin into mixin
+// then you can this.getURL(name, param, query)
 module.exports.mixin = {
     getURL: function (name, param, query) {
         return this._getContext().getURL(name, param, query);

@@ -10,7 +10,14 @@ ServerExtra = {
     middleware: function (fluxexapp, action) {
         return function (req, res, next) {
             var app = new fluxexapp();
+
+            /* Deprecated */
+            /* we will remove _headers in future */
             app._headers = Object.assign({}, req.headers);
+
+            /* New for contexted iso-call */
+            /* check extra/rpc.js for mor doc */
+            app._req = req;
 
             app.renderHtml(action, req).then(function (HTML) {
                 res.send('<!DOCTYPE html>' + HTML);
@@ -44,7 +51,8 @@ ServerExtra = {
         });
     },
 
-    // Using this for total solution
+    /* Deprecated */
+    /* Please use .initStatic() and .middlewareRouting() directly */
     initServer: function (app, fluxexapp, fetchOpt, extraAction) {
         var fetch;
 
