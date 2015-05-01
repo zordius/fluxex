@@ -62,7 +62,7 @@ ServerExtra = {
     },
 
     // Using this when your fluxexapp provide .routing() action
-    // Check extra/routing for more information about routing.
+    // Check extra/routing.js for more information about routing.
     createMiddlewareWithRouting: function (fluxexapp, extraAction) {
         if ('function' !== (typeof fluxexapp.prototype.routing)) {
             throw new Error('You provided a fluxexapp without .routing() when call .createMiddlewareWithRouting()');
@@ -96,7 +96,7 @@ ServerExtra = {
         ServerExtra.initStatic(app);
         if (fetchOpt && fetchOpt.services) {
             if ('production' !== process.env.NODE_ENV) {
-                console.warn('fetch() is deprecated! Please migrate your api from extra/fetch to extra/rpc');
+                console.warn('fetch() is deprecated! Please migrate your api service from extra/fetch to extra/rpc');
             }
             fetch = require('./fetch');
             fetch.createServices(app, fetchOpt.services, fetchOpt.options);

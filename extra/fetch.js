@@ -14,7 +14,7 @@ fetch minic isomorpic request() with an express middleware and preRequest hack, 
 What should we do?
 ==================
 
-Move to extra/rpc . The extra is powered by https://github.com/zordius/iso-call , so we can:
+Move to `extra/rpc` . The extra is powered by https://github.com/zordius/iso-call , so we can:
 
 * Keep `this.execute('name', param)` and `this.request('name', param)` isomorphic
 * Ensure the RPC function itself be executed on server side only
