@@ -103,6 +103,10 @@ module.exports = fetch;
 module.exports.baseURL = '/_fetch_/';
 
 module.exports.createServices = function (app, serviceCfg, opts) {
+    if ('production' !== process.env.NODE_ENV) {
+        console.warn('fetch is deprecated! please adopt rpc. check fetch.js for more document');
+    }
+
     if (!serviceCfg) {
         throw new Error('fetch.createServices() require service config as second parameter!');
     }
