@@ -16,7 +16,7 @@ What should we do?
 
 Move to extra/rpc . The extra is powered by https://github.com/zordius/iso-call , so we can:
 
-* Keep `this.rpc('name', param)` isomorphic
+* Keep `this.execute('name', param)` and `this.request('name', param)` isomorphic
 * Ensure the RPC function itself be executed on server side only
 * Add more logic before call an API
 * Add more logic after receive the API result
