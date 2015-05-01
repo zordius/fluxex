@@ -1,6 +1,8 @@
 var react = require('react'),
+    isocall = require('iso-call'),
 
 ServerExtra = {
+    // A helper function to serve static files at /static
     initStatic: function (app) {
        app.use('/static', require('express').static(process.cwd() + '/static'));
     },
@@ -15,6 +17,13 @@ ServerExtra = {
         return this.createMiddlewareByAction(fluxexapp, action);
     },
 
+    // A helper function to setup RPC on an express server
+    setupRPC: function (app, rpclist) {
+        isocall.addConfigs(rpclist);
+        isocall.setupMiddleware(app);
+    },
+
+    // A helper function to create middleware to serve fluxex application and action
     createMiddlewareByAction: function (fluxexapp, action) {
         return function (req, res, next) {
             var app = new fluxexapp();
