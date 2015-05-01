@@ -15,7 +15,7 @@ var express = require('express'),
 fluxexServerExtra.initStatic(app);
 
 // Mount test pages with routing action
-app.use(fluxexServerExtra.middleware(fluxexapp, function (req) {
+app.use(fluxexServerExtra.createMiddlewareByAction(fluxexapp, function (req) {
     return this.dispatch('UPDATE_URL', req.url).then(function () {
         return this.executeAction(routing);
     }.bind(this));
