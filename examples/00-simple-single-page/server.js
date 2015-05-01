@@ -15,7 +15,7 @@ var express = require('express'),
 fluxexServerExtra.initStatic(app);
 
 // Mount test page at /test
-app.use('/test', fluxexServerExtra.middleware(fluxexapp, serverAction.samplePageWithQuery));
+app.use('/test', fluxexServerExtra.createMiddlewareByAction(fluxexapp, serverAction.samplePageWithQuery));
 
 // Start server
 app.listen(3000);
