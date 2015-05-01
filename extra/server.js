@@ -5,7 +5,17 @@ ServerExtra = {
        app.use('/static', require('express').static(process.cwd() + '/static'));
     },
 
+    /* Deprecated */
+    // Please stop using middleware() , we will rename it to createMiddlewareByAction()
     middleware: function (fluxexapp, action) {
+        if ('production' !== process.env.NODE_ENV) {
+            console.warn('.middleware() is deprecated! Please rename to .createMiddlewareByAction()');
+        }
+
+        return this.createMiddlewareByAction(fluxexapp, action);
+    },
+
+    createMiddlewareByAction: function (fluxexapp, action) {
         return function (req, res, next) {
             var app = new fluxexapp();
 
@@ -34,7 +44,7 @@ ServerExtra = {
 
     // Using this when your fluxexapp provide .routing() action
     middlewareRouting: function (fluxexapp, extraAction) {
-        return ServerExtra.middleware(fluxexapp, function (req) {
+        return ServerExtra.createMiddlewareByAction(fluxexapp, function (req) {
             // dispatch URL information to store is a must have
             // it should be a synchronized operation, so we do not .then()
             this.dispatch('UPDATE_URL', {url: req.url, host: req.header('Host')}).catch(function (E) {
