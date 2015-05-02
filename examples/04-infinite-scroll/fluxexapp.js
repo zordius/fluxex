@@ -13,5 +13,6 @@ module.exports = require('fluxex').createApp({
     search: require('./stores/search')
 }, require('./components/Html.jsx'), {
     routing: require('./actions/routing'),
-    routeToURL: require('fluxex/extra/routeToURL')
-}, require('fluxex/extra/rpc'));
+    routeToURL: require('fluxex/extra/routeToURL'),
+    request: require('fluxex/extra/rpc').request
+});
