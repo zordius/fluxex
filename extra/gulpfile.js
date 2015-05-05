@@ -70,6 +70,11 @@ configs = {
         }
     },
 
+    // uglify config
+    // refer to https://github.com/mishoo/UglifyJS2
+    uglify: undefined,
+
+
     // babel config
     // refer to http://babeljs.io/docs/usage/options/
     babel: {
@@ -215,7 +220,7 @@ gulp.task('build_app', function () {
     return buildApp(false, false, true)
         .pipe(source('main.js'))
         .pipe(buffer())
-        .pipe(uglify())
+        .pipe(uglify(configs.uglify))
         .pipe(gulp.dest(configs.static_dir + 'js/'));
 });
 
