@@ -33,7 +33,9 @@ var request = require('request'),
 
 fetch = function (name, cfg) {
     if ('production' !== process.env.NODE_ENV) {
-        console.warn('fetch is deprecated! please adopt rpc. check fetch.js for more document');
+        if (console && console.warn) {
+            console.warn('fetch is deprecated! please adopt rpc. check fetch.js for more document');
+        }
     }
 
     if (!name) {
