@@ -1,5 +1,4 @@
-var react = require('react'),
-    isocall = require('iso-call'),
+var isocall = require('iso-call'),
 
 ServerExtra = {
     // A helper function to serve static files at /static
@@ -66,7 +65,6 @@ ServerExtra = {
     createMiddlewareWithRouting: function (fluxexapp, extraAction) {
         if ('function' !== (typeof fluxexapp.prototype.routing)) {
             throw new Error('You provided a fluxexapp without .routing() when call .createMiddlewareWithRouting()');
-            return;
         }
 
         return ServerExtra.createMiddlewareByAction(fluxexapp, function (req) {
@@ -103,6 +101,6 @@ ServerExtra = {
         }
         app.use(ServerExtra.middlewareRouting(fluxexapp, extraAction));
     }
-}
+};
 
 module.exports = ServerExtra;

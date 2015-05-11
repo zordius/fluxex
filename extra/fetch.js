@@ -89,8 +89,7 @@ handleRequestCfg = function (name, headers, body) {
             //     2. return {res: false}
             // For appending error message, return {res: false, msg: "validation error from server side" }
             // default message is "validation error"
-            if (res === false
-                || (res.res === false)) {
+            if (res === false || (res.res === false)) {
                 reject(new Error(res.msg || 'validation error'));
             }
 

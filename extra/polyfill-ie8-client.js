@@ -1,3 +1,4 @@
+/*global XMLHttpRequest, window, document, CustomEvent, Window, HTMLDocument*/
 // IE8 XMLHttpRequest consts polyfill for browser-request
 if (XMLHttpRequest && !XMLHttpRequest.OPENED) {
     XMLHttpRequest.UNSENT = 4;
@@ -10,13 +11,13 @@ if (XMLHttpRequest && !XMLHttpRequest.OPENED) {
 // From https://github.com/jonathantneal/EventListener
 // CC0-1.0 License
 // EventListener | CC0 | github.com/jonathantneal/EventListener
-window.Element && Element.prototype.attachEvent && !Element.prototype.addEventListener && (function () {
+window.Element && window.Element.prototype.attachEvent && !window.Element.prototype.addEventListener && (function () {
 	function addToPrototype(name, method) {
-		Window.prototype[name] = HTMLDocument.prototype[name] = Element.prototype[name] = method;
+		Window.prototype[name] = HTMLDocument.prototype[name] = window.Element.prototype[name] = method;
 	}
 
 	// add
-	addToPrototype("addEventListener", function (type, listener) {
+	addToPrototype('addEventListener', function (type, listener) {
 		var
 		target = this,
 		listeners = target.addEventListener.listeners = target.addEventListener.listeners || {},
@@ -24,19 +25,19 @@ window.Element && Element.prototype.attachEvent && !Element.prototype.addEventLi
 
 		// if no events exist, attach the listener
 		if (!typeListeners.length) {
-			target.attachEvent("on" + type, typeListeners.event = function (event) {
+			target.attachEvent('on' + type, typeListeners.event = function (event) {
 				var documentElement = target.document && target.document.documentElement || target.documentElement || { scrollLeft: 0, scrollTop: 0 };
 
 				// polyfill w3c properties and methods
 				event.currentTarget = target;
 				event.pageX = event.clientX + documentElement.scrollLeft;
 				event.pageY = event.clientY + documentElement.scrollTop;
-				event.preventDefault = function () { event.returnValue = false };
+				event.preventDefault = function () { event.returnValue = false;};
 				event.relatedTarget = event.fromElement || null;
-				event.stopImmediatePropagation = function () { immediatePropagation = false; event.cancelBubble = true };
-				event.stopPropagation = function () { event.cancelBubble = true };
+				event.stopImmediatePropagation = function () { immediatePropagation = false; event.cancelBubble = true;};
+				event.stopPropagation = function () { event.cancelBubble = true;};
 				event.target = event.srcElement || target;
-				event.timeStamp = +new Date;
+				event.timeStamp = +new Date();
 
 				// create an cached list of the master events list (to protect this loop from breaking when an event is removed)
 				for (var i = 0, typeListenersCache = [].concat(typeListeners), typeListenerCache, immediatePropagation = true; immediatePropagation && (typeListenerCache = typeListenersCache[i]); ++i) {
@@ -57,7 +58,7 @@ window.Element && Element.prototype.attachEvent && !Element.prototype.addEventLi
 	});
 
 	// remove
-	addToPrototype("removeEventListener", function (type, listener) {
+	addToPrototype('removeEventListener', function (type, listener) {
 		var
 		target = this,
 		listeners = target.addEventListener.listeners = target.addEventListener.listeners || {},
@@ -74,12 +75,12 @@ window.Element && Element.prototype.attachEvent && !Element.prototype.addEventLi
 
 		// if no events exist, detach the listener
 		if (!typeListeners.length && typeListeners.event) {
-			target.detachEvent("on" + type, typeListeners.event);
+			target.detachEvent('on' + type, typeListeners.event);
 		}
 	});
 
 	// dispatch
-	addToPrototype("dispatchEvent", function (eventObject) {
+	addToPrototype('dispatchEvent', function (eventObject) {
 		var
 		target = this,
 		type = eventObject.type,
@@ -87,7 +88,7 @@ window.Element && Element.prototype.attachEvent && !Element.prototype.addEventLi
 		typeListeners = listeners[type] = listeners[type] || [];
 
 		try {
-			return target.fireEvent("on" + type, eventObject);
+			return target.fireEvent('on' + type, eventObject);
 		} catch (error) {
 			if (typeListeners.event) {
 				typeListeners.event(eventObject);
@@ -98,7 +99,7 @@ window.Element && Element.prototype.attachEvent && !Element.prototype.addEventLi
 	});
 
 	// CustomEvent
-	Object.defineProperty(Window.prototype, "CustomEvent", {
+	Object.defineProperty(Window.prototype, 'CustomEvent', {
 		get: function () {
 			var self = this;
 
@@ -121,17 +122,17 @@ window.Element && Element.prototype.attachEvent && !Element.prototype.addEventLi
 	});
 
 	// ready
-	function ready(event) {
+	function ready() {
 		if (ready.interval && document.body) {
 			ready.interval = clearInterval(ready.interval);
 
-			document.dispatchEvent(new CustomEvent("DOMContentLoaded"));
+			document.dispatchEvent(new CustomEvent('DOMContentLoaded'));
 		}
 	}
 
 	ready.interval = setInterval(ready, 1);
 
-	window.addEventListener("load", ready);
+	window.addEventListener('load', ready);
 })();
 
 !window.CustomEvent && (function() {
