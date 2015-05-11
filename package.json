@@ -30,7 +30,7 @@
     "build_doc": "gulp build_document",
     "watch_doc": "gulp watch_document",
     "coverage": "istanbul cover -- _mocha",
-    "lint": "gulp jscs;jshint"
+    "lint": "gulp jscs;jshint lib extra"
   },
   "bin": {
     "fluxex_starter": "./starter.sh"
