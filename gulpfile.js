@@ -1,5 +1,3 @@
-'use strict';
-
 var gulp = require('gulp'),
     shell = require('gulp-shell'),
     jscs = require('gulp-jscs'),
@@ -22,6 +20,6 @@ gulp.task('watch_document', ['build_document'], function () {
 gulp.task('build_document', shell.task('jsdoc -p README.md index.js lib/*.js extra/*.js -d documents'));
 
 gulp.task('jscs', function () {
-    gulp.src(['index.js', 'gulpfile.js', 'lib/*.js', 'extra/*.js'])
+    return gulp.src(['index.js', 'gulpfile.js', 'lib/*.js', 'extra/*.js'])
     .pipe(jscs());
 });
