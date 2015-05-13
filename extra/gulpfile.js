@@ -131,13 +131,13 @@ configs = {
     }
 },
 
-restart_nodemon = function () {
+restartNodemon = function () {
     setTimeout(function () {
         nodemon.emit('restart');
     }, configs.nodemon_restart_delay);
 },
 
-lint_chain = function (task) {
+buildLintTask = function (task) {
     task = task.pipe(jshint.reporter('jshint-stylish'));
 
     if (configs.github) {
@@ -152,7 +152,7 @@ lint_chain = function (task) {
 },
 
 // Do testing tasks
-get_testing_task = function (options) {
+getTestingTask = function (options) {
     var cfg = JSON.parse(JSON.stringify(configs.test_coverage.default));
 
     cfg.istanbul.exclude = configs.test_coverage.default.istanbul.exclude;
@@ -184,7 +184,7 @@ bundleAll = function (b, noSave) {
     if (!noSave) {
         B.pipe(source('main.js'))
         .pipe(gulp.dest(configs.static_dir + 'js/'))
-        .on('end', restart_nodemon);
+        .on('end', restartNodemon);
     }
 
     return B;
@@ -195,7 +195,7 @@ buildApp = function (watch, fullpath, nosave) {
         cache: {},
         packageCache: {},
         standalone: 'Fluxex',
-        fullPaths: fullpath ? true: false,
+        fullPaths: fullpath ? true : false,
         debug: watch
     });
 
@@ -241,7 +241,7 @@ gulp.task('watch_js', ['lint_js'], function () {
 
 // GULP TASK - lint js files for develop
 gulp.task('lint_js', function () {
-    return lint_chain(
+    return buildLintTask(
         gulp.src(configs.lint_files)
         .pipe(cached('jshint'))
         .pipe(babel(Object.assign({sourceMap: true}, configs.babel)))
@@ -288,12 +288,12 @@ gulp.task('nodemon_server', ['watch_js', 'watch_app', 'watch_server'], function 
                 online: false,
                 open: false,
                 snippetOptions: {
-                  rule: {
-                    match: /<\/html>$/,
-                    fn: function (s, m) {
-                      return m + s;
+                    rule: {
+                        match: /<\/html>$/,
+                        fn: function (s, m) {
+                            return m + s;
+                        }
                     }
-                  }
                 }
             });
 
@@ -306,13 +306,13 @@ gulp.task('nodemon_server', ['watch_js', 'watch_app', 'watch_server'], function 
 gulp.task('watch_tests', ['test_app'], function () {
     gulp.watch([
         configs.test_coverage.default.src,
-        configs.lint_files,
+        configs.lint_files
     ], ['test_app']);
 });
 
 // GULP TASK - execute mocha tests, output to console
 gulp.task('test_app', function (cb) {
-    get_testing_task(configs.test_coverage.console)(cb).on('error', function (E) {
+    getTestingTask(configs.test_coverage.console)(cb).on('error', function (E) {
         if (E.stack || E.showStack) {
             console.warn(E.stack);
         } else {
@@ -325,7 +325,7 @@ gulp.task('test_app', function (cb) {
 
 // GULP TASK - execute mocha tests, output to file
 gulp.task('save_test_app', function () {
-    return get_testing_task(configs.test_coverage.report)();
+    return getTestingTask(configs.test_coverage.report)();
 });
 
 // GULP TASKS - alias and depdency

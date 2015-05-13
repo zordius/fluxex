@@ -3,7 +3,7 @@ var isocall = require('iso-call'),
 ServerExtra = {
     // A helper function to serve static files at /static
     initStatic: function (app) {
-       app.use('/static', require('express').static(process.cwd() + '/static'));
+        app.use('/static', require('express').static(process.cwd() + '/static'));
     },
 
     /* Deprecated */
@@ -23,9 +23,9 @@ ServerExtra = {
     },
 
     // A helper function to create middleware to serve fluxex application and action
-    createMiddlewareByAction: function (fluxexapp, action) {
+    createMiddlewareByAction: function (Fluxexapp, action) {
         return function (req, res, next) {
-            var app = new fluxexapp();
+            var app = new Fluxexapp();
 
             /* Deprecated */
             /* we will remove _headers in future */

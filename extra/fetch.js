@@ -49,12 +49,11 @@ fetch = function (name, cfg) {
     }
     return new Promise(function (resolve, reject) {
         request(opt, function (error, response, body) {
-
             var O = {
                 error: error,
                 response: response,
                 body: body,
-                requestOptions: opt,
+                requestOptions: opt
             };
 
             if (error) {
@@ -80,7 +79,7 @@ handleRequestCfg = function (name, headers, body) {
             });
         }
 
-        //hostlevel preRequest
+        // hostlevel preRequest
         if ('function' === (typeof requestConfig.preRequest)) {
             var res = requestConfig.preRequest(reqCfg, name, headers);
 

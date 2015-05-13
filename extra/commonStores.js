@@ -76,7 +76,8 @@ module.exports = {
             return url.protocol + '//' + url.host + url.pathname + (mixedSearch ? '?' : '') + mixedSearch + url.hash;
         },
         getParam: function () {
-            if ('production' !== process.env.NODE_ENV) {                                             console.warn('pageStore.getParam() is deplicated, plase rename to pageStore.getParams()');
+            if ('production' !== process.env.NODE_ENV) {
+                console.warn('pageStore.getParam() is deplicated, plase rename to pageStore.getParams()');
             }
             return Object.assign({}, this.getRoutingParam(), this.getBody(), this.getQuery());
         },
