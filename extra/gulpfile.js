@@ -138,8 +138,6 @@ restartNodemon = function () {
 },
 
 buildLintTask = function (task) {
-    task = task.pipe(jshint.reporter('jshint-stylish'));
-
     if (configs.github) {
         task = task.pipe(require('gulp-github')(configs.github));
     }
@@ -247,6 +245,7 @@ gulp.task('lint_js', function () {
         .pipe(babel(Object.assign({sourceMap: true}, configs.babel)))
         .pipe(jscs()).on('error', handleJSCSError)
         .pipe(jshint())
+        .pipe(jshint.reporter('jshint-stylish'))
     );
 });
 
