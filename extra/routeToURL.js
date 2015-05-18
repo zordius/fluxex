@@ -18,18 +18,21 @@ module.exports = function (url) {
 
         // update url to history
         /*global window*/
-        window.history.pushState(JSON.stringify(this._context), undefined, url);
+        window.history.pushState(
+            JSON.stringify(this._context),
+            undefined,
+            this.getStore('page').getURL()
+        );
 
         // scroll window to top to simulate non-pjax click
         window.scrollTo( 0, 0);
     }.bind(this))['catch'](function (E) {
-        if (!E.hasHandled) {
-            if (console && console.log) {
-                console.log('Pjax failed! Failback to page loading....');
-                console.log(E.stack || E);
-            }
-            // pjax failed, go to url...
-            window.location.href = url;
+        if (console && console.log) {
+            console.log('Pjax failed! Failback to page loading....');
+            console.log(E.stack || E);
         }
+
+        // pjax failed, go to url...
+        window.location.href = url;
     });
 };
