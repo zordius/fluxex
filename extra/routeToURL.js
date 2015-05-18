@@ -23,12 +23,13 @@ module.exports = function (url) {
         // scroll window to top to simulate non-pjax click
         window.scrollTo( 0, 0);
     }.bind(this))['catch'](function (E) {
-        if (console && console.log) {
-            console.log('Pjax failed! Failback to page loading....');
-            console.log(E.stack || E);
+        if (!E.hasHandled) {
+            if (console && console.log) {
+                console.log('Pjax failed! Failback to page loading....');
+                console.log(E.stack || E);
+            }
+            // pjax failed, go to url...
+            window.location.href = url;
         }
-
-        // pjax failed, go to url...
-        window.location.href = url;
     });
 };
