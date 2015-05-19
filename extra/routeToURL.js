@@ -18,7 +18,11 @@ module.exports = function (url) {
 
         // update url to history
         /*global window*/
-        window.history.pushState(JSON.stringify(this._context), undefined, url);
+        window.history.pushState(
+            JSON.stringify(this._context),
+            undefined,
+            this.getStore('page').getURL()
+        );
 
         // scroll window to top to simulate non-pjax click
         window.scrollTo( 0, 0);
