@@ -45,8 +45,9 @@ configs = {
     jscs_fail: false,
 
     // If you use vim and watch tasks be triggered 2 times when saving
-    // You can :set nowritebackup in vim to prevent this
+    // You can prevent this by adding `set nowritebackup` in your ~/.vimrc
     // Reference: https://github.com/joyent/node/issues/3172
+    // https://github.com/paulmillr/chokidar/issues/35
     gulp_watch: {debounceDelay: 500},
 
     // watchify config
