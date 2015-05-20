@@ -234,7 +234,7 @@ gulp.task('watch_app', function () {
 
 // GULP TASK - watch and lint js files for develop
 gulp.task('watch_js', ['lint_js'], function () {
-    gulp.watch(configs.lint_files.js, configs.gulp_watch, ['lint_js']);
+    gulp.watch(configs.lint_files, configs.gulp_watch, ['lint_js']);
 });
 
 // GULP TASK - lint js files for develop
