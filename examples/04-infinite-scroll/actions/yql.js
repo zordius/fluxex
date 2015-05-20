@@ -8,8 +8,7 @@ module.exports = function (yql) {
     return this.request('yql', {
         qs: {
             q: yql,
-            format: 'json',
-            env: 'store://datatables.org/alltableswithkeys'
+            format: 'json'
         },
         rejectUnauthorized : false,
         json: true

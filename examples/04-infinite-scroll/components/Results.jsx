@@ -39,8 +39,8 @@ Results = React.createClass({
     },
 
     render: function () {
-        var videos = [],
-            all = this.state.videos ? this.state.videos.length : 0;
+        var items = [],
+            all = this.state.items ? this.state.items.length : 0;
 
         if (!all) {
             return (
@@ -48,18 +48,13 @@ Results = React.createClass({
             );
         }
 
-        videos = this.state.videos.map(function (V) {
-            var img,
-                sec = <span key="0">{V.duration+' seconds'}</span>;
-
-            if (V.thumbnails && V.thumbnails.thumbnail && V.thumbnails.thumbnail[0]) {
-                img = <img key="1" src={V.thumbnails.thumbnail[0].content}/>;
-            }
+        items = this.state.items.map(function (V) {
+            var img = V.ec_image ? <img src={V.ec_image} /> : undefined;
 
             return (
-            <li key={V.id}>
-             <h5><a href={V.url}>{V.title}</a></h5>
-             <a href={V.url}>{[img, sec]}</a>
+            <li key={V.ec_productid}>
+             <h5><a href={V.ec_item_url}>{V.ec_title}</a></h5>
+             <a href={V.ec_item_url}>{img}</a>
             </li>
             );
         });
@@ -67,7 +62,7 @@ Results = React.createClass({
         return (
         <div>
          <h1>Search keyword: '{this.state.keyword}'</h1>
-         <ul>{videos}</ul>
+         <ul>{items}</ul>
         </div>
         );
     }

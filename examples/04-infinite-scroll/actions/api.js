@@ -21,11 +21,11 @@ api = {
             return Promise.resolve({});
         }
 
-        return this.executeAction(yql, 'select * from youtube.search where query="' + keyword + '" and start_index=' + (start + 1) + ' and max_results=' + count).then(function (O) {
+        return this.executeAction(yql, 'SELECT * FROM search.ec (' + (start + 1) + ', ' + count + ') WHERE keyword="' + keyword + '" and property="shopping"').then(function (O) {
             return self.dispatch('UPDATE_SEARCH_RESULT', {
                 keyword: keyword,
                 offset: start,
-                videos: (O && O.video) ? O.video : null
+                items: (O && O.result && O.result.hits) ? O.result.hits : null
             });
         });
     },
@@ -35,7 +35,7 @@ api = {
         this.dispatch('UPDATE_APPENDING', true);
         return this.executeAction(api.search, {
             q: this.getStore('page').getQuery().q,
-            p: this.getStore('search').getSearchData().videos.length
+            p: this.getStore('search').getSearchData().items.length
         }).then(function () {
             log('load more successed~');
             this.dispatch('UPDATE_APPENDING', false);

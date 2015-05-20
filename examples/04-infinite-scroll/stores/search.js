@@ -2,7 +2,7 @@
 
 module.exports = {
     initialize: function () {
-        this._set('data', {keyword: undefined, videos: []});
+        this._set('data', {keyword: undefined, items: []});
     },
     handle_UPDATE_SEARCH_RESULT: function (data) {
         var old_data = this._get('data');
@@ -10,7 +10,7 @@ module.exports = {
         if (old_data.keyword !== data.keyword) {
             this._set('data', data);
         } else {
-            old_data.videos = old_data.videos.concat(data.videos);
+            old_data.items = old_data.items.concat(data.items);
         }
 
         this.emitChange();
