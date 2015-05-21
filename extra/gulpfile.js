@@ -57,6 +57,7 @@ configs = {
 
     // aliasify config
     // refer to https://github.com/benbria/aliasify
+    // Deprecated and will be removed, please put your aliasify config into your package.json
     aliasify: Object.assign(require('../package.json').aliasify, packageJSON.aliasify),
 
     // uglify config
