@@ -64,6 +64,8 @@ configs = {
     // refer to https://github.com/mishoo/UglifyJS2
     uglify: undefined,
 
+    // list of modules to be bundled into devcore.js to save js loading time when develop
+    devcore: ['react', 'fluxex', 'babelify/polyfill', 'browser-request'],
 
     // babel config
     // refer to http://babeljs.io/docs/usage/options/
@@ -192,6 +194,10 @@ buildApp = function (watch, fullpath, nosave) {
     b.transform(babelify.configure(Object.assign({}, configs.babel, configs.babelify)), {global: true});
     b.transform(aliasify.configure(configs.aliasify), {global: true});
 
+    if ('production' !== process.env.NODE_ENV) {
+        b.external(configs.devcore);
+    }
+
     if (watch) {
         b = require('watchify')(b, configs.watchify);
         b.on('update', function (F) {
@@ -204,11 +210,18 @@ buildApp = function (watch, fullpath, nosave) {
 };
 
 gulp.task('build_devcore', function () {
-//    return browserify(
+    var b = browserify(configs.devcore, {debug: true});
+
+    b.transform(babelify.configure(Object.assign({}, configs.babel, configs.babelify)), {global: true});
+    return b
+    .bundle()
+    .pipe(source('devcore.js'))
+    .pipe(gulp.dest(configs.static_dir + 'js/'));
 });
 
 // GULP TASK - build minified bundle file
 gulp.task('build_app', function () {
+    process.env.NODE_ENV = 'production';
     return buildApp(false, false, true)
         .pipe(source('main.js'))
         .pipe(buffer())

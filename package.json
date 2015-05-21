@@ -62,6 +62,7 @@
     "url": "https://github.com/zordius/fluxex/issues"
   },
   "browser": {
+    "request": "browser-request",
     "./lib/fluxex-server.js": "./lib/fluxex-client.js",
     "./extra/fetch-server.js": "./extra/fetch-client.js",
     "./extra/polyfill-ie8.js": "./extra/polyfill-ie8-client.js",
