@@ -211,7 +211,7 @@ buildApp = function (watch, fullpath, nosave) {
 
 gulp.task('build_devcore', function () {
     var b = browserify(configs.devcore, {debug: true});
-
+    b.require(configs.devcore);
     b.transform(babelify.configure(Object.assign({}, configs.babel, configs.babelify)), {global: true});
     return b
     .bundle()
