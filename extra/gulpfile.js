@@ -203,6 +203,10 @@ buildApp = function (watch, fullpath, nosave) {
     return bundleAll(b, nosave);
 };
 
+gulp.task('build_devcore', function () {
+//    return browserify(
+});
+
 // GULP TASK - build minified bundle file
 gulp.task('build_app', function () {
     return buildApp(false, false, true)
@@ -259,7 +263,7 @@ gulp.task('lint_server', function () {
 });
 
 // GULP TASK - start nodemon server and browserSync proxy
-gulp.task('nodemon_server', ['watch_js', 'watch_app', 'watch_server'], function () {
+gulp.task('nodemon_server', ['build_devcore', 'watch_js', 'watch_app', 'watch_server'], function () {
     nodemon({
         ignore: '*',
         script: configs.mainjs,

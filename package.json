@@ -64,17 +64,17 @@
   "browser": {
     "./lib/fluxex-server.js": "./lib/fluxex-client.js",
     "./extra/fetch-server.js": "./extra/fetch-client.js",
-    "./extra/polyfill-ie8.js": "./extra/polyfill-ie8-client.js"
+    "./extra/polyfill-ie8.js": "./extra/polyfill-ie8-client.js",
+    "body-parser": "fluxex/extra/dummy"
   },
   "browserify": {
-    "transform": ["aliasify"]
+    "transform": ["aliasify", "envify"]
   },
   "aliasify": {
     "aliases": {
       "fluxex/extra/history": "html5-history-api",
       "fluxex/extra/polyfill": "babelify/polyfill",
-      "core-js/shim": "core-js/client/shim",
-      "body-parser": "fluxex/extra/dummy"
+      "core-js/shim": "core-js/client/shim"
     },
     "global": true
   },
