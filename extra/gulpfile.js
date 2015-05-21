@@ -15,6 +15,7 @@ var gulp = require('gulp'),
     nodemon = require('nodemon'),
     browserSync = require('browser-sync'),
     serverStarted = false,
+    packageJSON = require(process.cwd() + '/package.json'),
 
 // These configs will be exported and you can overrides them
 configs = {
@@ -25,7 +26,7 @@ configs = {
     static_dir: 'static/',
 
     // Major script to start your express server and mount fluxex application
-    mainjs: require(process.cwd() + '/package.json').main,
+    mainjs: packageJSON.main,
 
     // Your fluxex application defination
     appjs: process.cwd() + '/fluxexapp.js',
@@ -56,18 +57,7 @@ configs = {
 
     // aliasify config
     // refer to https://github.com/benbria/aliasify
-    aliasify: {
-        aliases: {
-            request: 'browser-request',
-            './fluxex-server': 'fluxex/lib/fluxex-client',
-            './fetch-server': 'fluxex/extra/fetch-client',
-            'fluxex/extra/history': 'html5-history-api',
-            'fluxex/extra/polyfill': 'babelify/polyfill',
-            'fluxex/extra/polyfill-ie8': 'fluxex/extra/polyfill-ie8-client',
-            'core-js/shim': 'core-js/client/shim',
-            'body-parser': 'fluxex/extra/dummy'
-        }
-    },
+    aliasify: Object.assign(require('../package.json').aliasify, packageJSON.aliasify),
 
     // uglify config
     // refer to https://github.com/mishoo/UglifyJS2
