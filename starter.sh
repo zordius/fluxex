@@ -1,6 +1,6 @@
 #!/bin/sh
 npm install --save react babel express routr request body-parser babel-runtime
-npm install --save-dev browser-request aliasify browserify watchify babelify jshint-stylish nodemon browser-sync gulp gulp-babel gulp-cached gulp-jsx-coverage gulp-jscs gulp-jshint gulp-util gulp-uglify vinyl-source-stream vinyl-buffer
+npm install --save-dev browser-request aliasify browserify watchify babelify envify jshint-stylish nodemon browser-sync gulp gulp-babel gulp-cached gulp-jsx-coverage gulp-jscs gulp-jshint gulp-util gulp-uglify vinyl-source-stream vinyl-buffer
 mkdir actions
 mkdir components
 mkdir stores
