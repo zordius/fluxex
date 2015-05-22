@@ -6,6 +6,16 @@ branches:
     - master
 script:
   - ./travis.sh
+sudo: false
+cache:
+  directories:
+    - node_modules
+    - 00-simple-single-page/node_modules
+    - 01-history-api/node_modules
+    - 02-routing/node_modules
+    - 03-service/node_modules
+    - 04-infinite-scroll/node_modules
+    - 05-extra/node_modules
 addons:
   sauce_connect: true
 env:
