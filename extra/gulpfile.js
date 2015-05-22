@@ -65,7 +65,13 @@ configs = {
     uglify: undefined,
 
     // list of modules to be bundled into devcore.js to save js loading time when develop
-    devcore: ['react', 'fluxex', 'babelify/polyfill', 'browser-request'],
+    devcore: [
+        'react',
+        'fluxex',
+        'browser-request',
+        'babelify/polyfill',
+        'babel-runtime/core-js/promise'
+    ],
 
     // babel config
     // refer to http://babeljs.io/docs/usage/options/
