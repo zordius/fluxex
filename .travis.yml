@@ -8,9 +8,11 @@ script:
   - npm run lint
   - npm run coverage
   - ./travis.sh
+sudo: false
 cache:
   directories:
     - node_modules
+    - examples/00hello/node_modules
 addons:
   sauce_connect: true
 env:
