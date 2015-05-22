@@ -1,5 +1,24 @@
 HISTORY
 =======
+
+current master
+   * [CORE] update package.json to support webpack
+   * [CORE] Fluxex.InitScript supports devcore.js now
+   * [EXTRA] refine gulpfile
+      * will remove configs.aliasify , please use your package.json to store aliasify configs
+      * remove unused react-tools and through2
+      * jshint fixed
+      * new devcore bundle task for develop mode to save main bundle time and file size
+      * support config.uglify
+   * [EXTRA] remove devDepdency of application: through2, react-tools
+   * [EXTRA] add new depdency of application: iso-call
+   * [EXTRA] unlock all locked depdency of example projects
+   * [EXTRA] refine page Store URL parsing logic
+   * [EXTRA] deprecated extra/fetch, migrate to extra/rpc
+   * [EXTRA] polyfill IE8 console in extra/polyfill now (powered by Console-polyfill)
+   * [EXTRA] deprecated .middlewareRouting() and .initServer() in extra/server
+   * [EXTRA] new .createMiddlewareByAction() and .createMiddlewareWithRouting() in extra/server
+
 0.5.2 https://github.com/zordius/fluxex/releases/tag/v0.5.2
    * [CORE] support React owner context now
    * [CORE] do not require process.cwd() hack on Html.jsx when .createApp() now
