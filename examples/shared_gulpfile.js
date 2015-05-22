@@ -28,6 +28,10 @@ gulp.task('test_server', ['buildall'], function () {
         setTimeout(function () {
             gulp.start(['test_end_protractor']);
         }, 1000);
+    }).on('quit', function () {
+        console.log('end process...');
+        process.exit();
+        process.kill(process.pid, 'SIGTERM');
     });
 });
 
@@ -46,7 +50,4 @@ gulp.task('generate_badge_png', ['generate_badge_json'], execTask(
 gulp.task('test_end_protractor', ['generate_badge_png'], function () {
     console.log('stop nodemon....');
     nodemon.emit('quit');
-    console.log('end process...');
-    process.exit();
-    process.kill(process.pid, 'SIGTERM');
 });
