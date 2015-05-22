@@ -43,6 +43,6 @@
     "gulp-uglify": "*",
     "gulp-util": "*",
     "vinyl-buffer": "*",
-    "vinyl-source-stream": "1.0.0"
+    "vinyl-source-stream": "*"
   }
 }

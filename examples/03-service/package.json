@@ -43,7 +43,7 @@
     "gulp-jshint": "*",
     "gulp-uglify": "*",
     "gulp-util": "*",
-    "vinyl-buffer": "1.0.0",
-    "vinyl-source-stream": "1.0.0"
+    "vinyl-buffer": "*",
+    "vinyl-source-stream": "*"
   }
 }
