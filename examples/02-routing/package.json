@@ -32,7 +32,7 @@
     "watchify": "*",
     "babelify": "*",
     "jshint-stylish": "*",
-    "nodemon": "*",
+    "nodemon": "1.2.1",
     "browser-sync": "*",
     "gulp": "*",
     "gulp-babel": "*",
