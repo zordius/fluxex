@@ -12,6 +12,7 @@ current master/nighty releases
       * support config.uglify
    * [EXTRA] remove devDepdency of application: through2, react-tools
    * [EXTRA] add new depdency of application: iso-call
+   * [EXTRA] add new devDepdency of application: envify
    * [EXTRA] unlock all locked depdency of example projects
    * [EXTRA] refine page Store URL parsing logic
    * [EXTRA] deprecated extra/fetch, migrate to extra/rpc
