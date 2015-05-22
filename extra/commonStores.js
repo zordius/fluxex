@@ -1,5 +1,5 @@
 var querystring = require('querystring');
-var fluxex = require('../index');
+var fluxex = require('fluxex');
 
 module.exports = {
     // All current page and location related things stay here.

@@ -69,7 +69,10 @@ configs = {
         'react',
         'fluxex',
         'browser-request',
-        'babelify/polyfill'
+        'babelify/polyfill',
+        'fluxex/extra/commonStores',
+        'fluxex/extra/routing',
+        'fluxex/extra/rpc',
     //    'babel-runtime/core-js/promise'
     ],
 
