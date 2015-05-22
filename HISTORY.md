@@ -1,7 +1,7 @@
 HISTORY
 =======
 
-current master
+current master/nighty releases
    * [CORE] update package.json to support webpack
    * [CORE] Fluxex.InitScript supports devcore.js now
    * [EXTRA] refine gulpfile
