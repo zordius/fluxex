@@ -38,7 +38,7 @@
   "main": "index.js",
   "dependencies": {
     "eventemitter2": "0.4.14",
-    "iso-call": "0.0.2"
+    "iso-call": "0.0.3"
   },
   "devDependencies": {
     "bluebird": "2.9.24",
