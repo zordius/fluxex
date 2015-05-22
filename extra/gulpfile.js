@@ -69,8 +69,8 @@ configs = {
         'react',
         'fluxex',
         'browser-request',
-        'babelify/polyfill',
-        'babel-runtime/core-js/promise'
+        'babelify/polyfill'
+    //    'babel-runtime/core-js/promise'
     ],
 
     // babel config
@@ -216,7 +216,8 @@ buildApp = function (watch, fullpath, nosave) {
 };
 
 gulp.task('build_devcore', function () {
-    var b = browserify('babelify/polyfill', {debug: true});
+    var b = browserify(undefined, {debug: true});
+    //var b = browserify('./node_modules/babelify/polyfill', {debug: true});
     b.require(configs.devcore);
     b.transform(babelify.configure(Object.assign({}, configs.babel, configs.babelify)), {global: true});
     return b
