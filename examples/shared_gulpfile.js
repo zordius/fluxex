@@ -30,8 +30,6 @@ gulp.task('test_server', ['buildall'], function () {
         }, 1000);
     }).on('quit', function () {
         console.log('end process...');
-        process.exit();
-        process.kill(process.pid, 'SIGTERM');
     });
 });
 
