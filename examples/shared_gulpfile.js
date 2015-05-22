@@ -48,5 +48,5 @@ gulp.task('test_end_protractor', ['generate_badge_png'], function () {
     nodemon.emit('quit');
     console.log('end process...');
     process.exit();
-    process.kill(process.pid, 'SIGINT');
+    process.kill(process.pid, 'SIGTERM');
 });
