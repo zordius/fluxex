@@ -64,8 +64,6 @@
   "browser": {
     "request": "browser-request",
     "./lib/fluxex-server.js": "./lib/fluxex-client.js",
-    "./extra/fetch-server.js": "./extra/fetch-client.js",
-    "./extra/polyfill-ie8.js": "./extra/polyfill-ie8-client.js",
     "body-parser": "fluxex/extra/dummy"
   },
   "browserify": {
@@ -78,6 +76,8 @@
     "aliases": {
       "fluxex/extra/history": "html5-history-api",
       "fluxex/extra/polyfill": "babelify/polyfill",
+      "fluxex/extra/fetch-server.js": "fluxex/extra/fetch-client.js",
+      "fluxex/extra/polyfill-ie8.js": "fluxex/extra/polyfill-ie8-client.js",
       "core-js/shim": "core-js/client/shim"
     },
     "global": true
