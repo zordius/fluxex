@@ -76,8 +76,8 @@
     "aliases": {
       "fluxex/extra/history": "html5-history-api",
       "fluxex/extra/polyfill": "babelify/polyfill",
-      "fluxex/extra/fetch-server.js": "fluxex/extra/fetch-client.js",
-      "fluxex/extra/polyfill-ie8.js": "fluxex/extra/polyfill-ie8-client.js",
+      "fluxex/extra/fetch-server": "fluxex/extra/fetch-client",
+      "fluxex/extra/polyfill-ie8": "fluxex/extra/polyfill-ie8-client",
       "core-js/shim": "core-js/client/shim"
     },
     "global": true
