@@ -72,7 +72,8 @@ configs = {
         'babelify/polyfill',
         'fluxex/extra/commonStores',
         'fluxex/extra/routing',
-        'fluxex/extra/rpc'
+        'fluxex/extra/rpc',
+        'fluxex/extra/rpc-seturl'
     //    'babel-runtime/core-js/promise'
     ],
 
