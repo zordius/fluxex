@@ -73,7 +73,7 @@ module.exports = {
             var url = this._get('url'),
                 mixedSearch = querystring.encode(Object.assign(url.query, query));
 
-            return url.protocol + '//' + url.host + url.pathname + (mixedSearch ? '?' : '') + mixedSearch + url.hash;
+            return encodeURIComponent(url.protocol + '//' + url.host + url.pathname + (mixedSearch ? '?' : '') + mixedSearch + url.hash);
         },
         getParam: function () {
             if ('production' !== process.env.NODE_ENV) {
