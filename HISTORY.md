@@ -2,6 +2,9 @@ HISTORY
 =======
 
 current master/nighty releases
+
+
+0.5.3 https://github.com/zordius/fluxex/releases/tag/v0.5.3
    * [CORE] update package.json to support webpack
    * [CORE] Fluxex.InitScript supports devcore.js now
    * [EXTRA] refine gulpfile
