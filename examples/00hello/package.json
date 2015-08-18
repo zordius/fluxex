@@ -11,10 +11,11 @@
     "start": "gulp develop"
   },
   "dependencies": {
-    "react": "*",
     "babel": "*",
+    "express": "*",
     "fluxex": "*",
-    "express": "*"
+    "react": "*",
+    "routr": "*"
   },
   "devDependencies": {
     "babel-runtime": "*",
