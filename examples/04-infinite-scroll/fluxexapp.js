@@ -2,7 +2,6 @@
 
 require('fluxex/extra/polyfill-ie8');
 require('fluxex/extra/polyfill');
-require('fluxex/extra/fetch');
 
 // change RPC endpoint
 require('fluxex/extra/rpc-seturl')('/_COOL_YQL_/');

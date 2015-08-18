@@ -13,7 +13,7 @@ var express = require('express'),
 // Provide /static/js/main.js
 fluxexServerExtra.initStatic(app);
 
-// Setup fetch services
+// Setup RPC request services
 fluxexServerExtra.setupRPC(app, {
     yql: 'https://query.yahooapis.com/v1/public/yql'
 });
