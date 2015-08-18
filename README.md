@@ -31,14 +31,14 @@ To understand Flux, you only need to learn these APIs: `this.executeAction()`, `
 <img src="https://github.com/zordius/fluxex/raw/master/fluxex-api.jpg" />
 <hr/>
 
-* [CORE] Super lightweight, less than 250 lines of code.
+* [CORE] Super **lightweight**, less than 250 lines of code.
 * [CORE] Context based flux system.
 * [CORE] React Server side rendering + client mount.
 * [CORE] HTML as top level react component, no need container.
 * [EXTRA] express middleware to serve the fluxex application.
 * [EXTRA] full integrated gulp task for development.
 * [EXTRA] pjax support.
-* [EXTRA] request and wrapped request service support.
+* [EXTRA] rpc and api call support.
 
 See the FluxEx Magic
 --------------------

@@ -6,16 +6,6 @@ ServerExtra = {
         app.use('/static', require('express').static(process.cwd() + '/static'));
     },
 
-    /* Deprecated */
-    // Please stop using .middleware() , we will rename it to .createMiddlewareByAction()
-    middleware: function (fluxexapp, action) {
-        if ('production' !== process.env.NODE_ENV) {
-            console.warn('.middleware() is deprecated! Please rename to .createMiddlewareByAction()');
-        }
-
-        return this.createMiddlewareByAction(fluxexapp, action);
-    },
-
     // A helper function to setup RPC on an express server
     setupRPC: function (app, rpclist) {
         isocall.addConfigs(rpclist);
@@ -26,10 +16,6 @@ ServerExtra = {
     createMiddlewareByAction: function (Fluxexapp, action) {
         return function (req, res, next) {
             var app = new Fluxexapp();
-
-            /* Deprecated */
-            /* we will remove _headers in future */
-            app._headers = Object.assign({}, req.headers);
 
             /* New for contexted iso-call */
             /* check extra/rpc.js for mor doc */
@@ -48,16 +34,6 @@ ServerExtra = {
                 next();
             });
         };
-    },
-
-    /* Deprecated */
-    // Please stop using .middlewareRouting() , we will rename it to .createMiddlewareWithRouting()
-    middlewareRouting: function (fluxexapp, extraAction) {
-        if ('production' !== process.env.NODE_ENV) {
-            console.warn('.middlewareRouting() is deprecated! Please rename to .createMiddlewareWithRouting()');
-        }
-
-        return ServerExtra.createMiddlewareWithRouting(fluxexapp, extraAction);
     },
 
     // Using this when your fluxexapp provide .routing() action
@@ -80,26 +56,6 @@ ServerExtra = {
                 return this.executeAction(this.routing);
             }.bind(this));
         });
-    },
-
-    /* Deprecated */
-    /* Please use .initStatic() and .createMiddlewareByAction() directly */
-    initServer: function (app, fluxexapp, fetchOpt, extraAction) {
-        var fetch;
-
-        if ('production' !== process.env.NODE_ENV) {
-            console.warn('.initServer() is deprecated! Please use .initStatic() and .middlewareRouting() directly. And migrate your api from extra/fetch to extra/rpc');
-        }
-
-        ServerExtra.initStatic(app);
-        if (fetchOpt && fetchOpt.services) {
-            if ('production' !== process.env.NODE_ENV) {
-                console.warn('fetch() is deprecated! Please migrate your api service from extra/fetch to extra/rpc');
-            }
-            fetch = require('./fetch');
-            fetch.createServices(app, fetchOpt.services, fetchOpt.options);
-        }
-        app.use(ServerExtra.middlewareRouting(fluxexapp, extraAction));
     }
 };
 
