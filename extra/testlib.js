@@ -1,31 +1,30 @@
 var jsdom = require('jsdom').jsdom;
 var sinon = require('sinon');
 var React = require('react');
-var fluxex = require('..');
+var Fluxex = require('..');
 var fluxexhtml = require('../lib/fluxhtml');
-var fluxstore = require('../lib/fluxstore');
+var Fluxstore = require('../lib/fluxstore');
 
 var Testlib = {
     getReactTestUtils: function () {
-         var nodeenv = process.env.NODE_ENV;
-         var TestUtils;
+        var nodeenv = process.env.NODE_ENV;
+        var TestUtils;
 
-         process.env.NODE_ENV = 'testing';
-         TestUtils = require('react/addons').addons.TestUtils;
-         process.env.NODE_ENV = nodeenv;
+        process.env.NODE_ENV = 'testing';
+        TestUtils = require('react/addons').addons.TestUtils;
+        process.env.NODE_ENV = nodeenv;
 
-         return TestUtils;
+        return TestUtils;
     },
 
     simulate: function () {
-         return Testlib.getReactTestUtils().Simulate;
+        return Testlib.getReactTestUtils().Simulate;
     },
 
     getMockedContext: function (mockStores) {
-        var context = new fluxex();
+        var context = new Fluxex();
         var Stores = [];
         var Store;
-        var I;
 
         sinon.stub(context, 'dispatch').returns(Promise.resolve(1));
 
@@ -35,10 +34,10 @@ var Testlib = {
 
         if (mockStores) {
             sinon.stub(context, 'getStore', function (store) {
-                if(Stores[store]){
+                if (Stores[store]) {
                     return Stores[store]; 
                 } else {
-                    Store = new fluxstore();
+                    Store = new Fluxstore();
 
                     sinon.stub(Store, '_get', function (name) {
                         return mockStores[store][name];
@@ -66,13 +65,15 @@ var Testlib = {
     renderJSX: function (jsx, context) {
         return Testlib.renderComponent(React.createClass({
             displayName: 'TestJSX',
-            render: function () {return jsx;}
+            render: function () {
+                return jsx;
+            }
         }), undefined, context);
     },
 
     simulateBrowserEnv: function () {
         global.document = jsdom('<!DOCTYPE html><html><body></body></html>');
-        global.window = document.parentWindow;
+        global.window = golbal.document.parentWindow;
     },
 
     stopBrowserEnv: function () {
