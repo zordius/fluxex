@@ -21,7 +21,7 @@ var Testlib = {
         return Testlib.getReactTestUtils().Simulate;
     },
 
-    getMockedContext: function (mockStores) {
+    getMockedContext: function (mockStores, mockStoreMethods) {
         var context = new Fluxex();
         var Stores = [];
         var Store;
@@ -40,6 +40,8 @@ var Testlib = {
                     sinon.stub(Store, '_get', function (name) {
                         return mockStores[store][name];
                     });
+
+                    Object.assign(Store, mockStoreMethods[store]);
 
                     Stores[store] = Store;
 
