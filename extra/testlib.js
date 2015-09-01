@@ -73,7 +73,7 @@ var Testlib = {
 
     simulateBrowserEnv: function () {
         global.document = jsdom('<!DOCTYPE html><html><body></body></html>');
-        global.window = golbal.document.parentWindow;
+        global.window = global.document.parentWindow;
     },
 
     stopBrowserEnv: function () {
@@ -89,4 +89,6 @@ var Testlib = {
         rendered = Testlib.getReactTestUtils().renderIntoDocument(Testlib.getContextedElement(react, props, context));
         return Testlib.getReactTestUtils().findRenderedComponentWithType(rendered, react);
     }
-}
+};
+
+module.export = Testlib;
