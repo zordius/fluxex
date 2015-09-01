@@ -28,9 +28,7 @@ var Testlib = {
 
         sinon.stub(context, 'dispatch').returns(Promise.resolve(1));
 
-        Object.assign(context, require('fluxex/extra/rpc'));
-        // should be removed after all fetch migrated to rpc
-        Object.assign(context, require('fluxex/extra/fetch').appMixin);
+        Object.assign(context, require('./rpc'));
 
         if (mockStores) {
             sinon.stub(context, 'getStore', function (store) {
