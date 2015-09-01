@@ -89,4 +89,4 @@ var Testlib = {
     }
 };
 
-module.export = Testlib;
+module.exports = Testlib;
