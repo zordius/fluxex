@@ -12,6 +12,10 @@ routingAction = function () {
         return Promise.reject('no matched route for path: ' + path);
     }
 
+    if (!route.config.action || !route.config.action.call) {
+        return Promise.reject('Bad config: no proper action for route "' + route.name + '"!');
+    }
+
     this.dispatch('UPDATE_ROUTING', {
         name: route.name,
         params: route.params
