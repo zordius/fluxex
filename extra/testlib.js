@@ -88,6 +88,10 @@ var Testlib = {
         Testlib.simulateBrowserEnv();
         rendered = Testlib.getReactTestUtils().renderIntoDocument(Testlib.getContextedElement(react, props, context));
         return Testlib.getReactTestUtils().findRenderedComponentWithType(rendered, react);
+    },
+
+    renderComponentToString: function (react, props, context) {
+        return React.renderToString(Testlib.getContextedElement(react, props, context));
     }
 };
 
