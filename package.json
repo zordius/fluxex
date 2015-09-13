@@ -30,7 +30,7 @@
     "build_doc": "gulp build_document",
     "watch_doc": "gulp watch_document",
     "coverage": "istanbul cover -- _mocha",
-    "lint": "gulp jscs;jshint lib extra"
+    "lint": "gulp lint"
   },
   "bin": {
     "fluxex_starter": "./starter.sh"
@@ -42,17 +42,16 @@
   },
   "devDependencies": {
     "bluebird": "2.9.24",
-    "object.assign": "2.0.1",
-    "gulp": "3.8.11",
-    "gulp-jscs": "1.6.0",
-    "gulp-shell": "0.4.1",
-    "jsdoc": "3.3.0-alpha11",
-    "semver": "4.3.3",
     "chai": "2.2.0",
+    "eslint": "1.4.1",
+    "gulp": "3.8.11",
+    "gulp-shell": "0.4.1",
     "istanbul": "0.3.13",
-    "jshint": "2.7.0",
+    "jsdoc": "3.3.0-alpha11",
     "mocha": "2.2.4",
+    "object.assign": "2.0.1",
     "react": "0.13.2",
+    "semver": "4.3.3",
     "sinon": "1.14.1"
   },
   "engines": {
