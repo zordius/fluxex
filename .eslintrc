@@ -1,6 +1,8 @@
 {
   // http://eslint.org/docs/rules/
 
+  "parser": "babel-eslint",
+
   "env": {
     "node": true,         // Node.js global variables and Node.js-specific rules.
     "mocha": true,        // adds all of the Mocha testing global variables.

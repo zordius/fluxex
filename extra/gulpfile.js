@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
-var jscs = require('gulp-jscs');
-var jshint = require('gulp-jshint');
+var eslint = require('gulp-eslint');
 var cached = require('gulp-cached');
 var coverage = require('gulp-jsx-coverage');
 var fs = require('fs');
@@ -19,7 +18,7 @@ var packageJSON = require(process.cwd() + '/package.json');
 
 // These configs will be exported and you can overrides them
 var configs = {
-    // files to jshint and jscs
+    // files to eslint
     lint_files: ['actions/*.js', 'stores/*.js', 'components/*.jsx', 'fluxexapp.js'],
 
     // All js/css files will be writen here
@@ -37,13 +36,9 @@ var configs = {
     // wait time after your server start then trigger browserSync reload
     nodemon_delay: 2000,
 
-    // fail the gulp task when jshint issue found
-    // edit your .jshintrc | .jshintignore to refine your jshint settings
-    jshint_fail: false,
-
-    // fail the gulp task when jscs issue found
-    // edit your .jscsrc to refine your jshint settings
-    jscs_fail: false,
+    // fail the gulp task when eslint issues found
+    // edit your .eslintrc to refine your eslint settings
+    eslint_fail: false,
 
     // If you use vim and watch tasks be triggered 2 times when saving
     // You can prevent this by adding `set nowritebackup` in your ~/.vimrc
@@ -141,13 +136,15 @@ var restartNodemon = function () {
     }, configs.nodemon_restart_delay);
 };
 
-var buildLintTask = function (task) {
+var buildLintTask = function (src) {
+    var task = gulp.src(src).pipe(cached('eslint')).pipe(eslint()).pipe(eslint.formatEach());
+
     if (configs.github) {
         task = task.pipe(require('gulp-github')(configs.github));
     }
 
-    if (configs.jshint_fail) {
-        task = task.pipe(('object' === typeof configs.jshint_fail) ? configs.jshint_fail : jshint.reporter('fail'));
+    if (configs.eshint_fail) {
+        task = task.pipe(('object' === typeof configs.eslint_fail) ? configs.eslint_fail : eslint.failOnError());
     }
 
     return task;
@@ -163,18 +160,6 @@ var getTestingTask = function (options) {
     cfg.cleanup = configs.test_coverage.default.cleanup;
 
     return coverage.createTask(cfg);
-};
-
-var handleJSCSError = function (E) {
-    if (!configs.jscs_fail) {
-        return;
-    }
-
-    if ('function' === typeof configs.jscs_fail) {
-        return configs.jscs_fail(E);
-    }
-
-    this.emit('error', E);
 };
 
 var bundleAll = function (b, noSave) {
@@ -258,14 +243,7 @@ gulp.task('watch_js', ['lint_js'], function () {
 
 // GULP TASK - lint js files for develop
 gulp.task('lint_js', function () {
-    return buildLintTask(
-        gulp.src(configs.lint_files)
-        .pipe(cached('jshint'))
-        .pipe(babel(Object.assign({sourceMap: true}, configs.babel)))
-        .pipe(jscs()).on('error', handleJSCSError)
-        .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'))
-    );
+    return buildLintTask(configs.lint_files);
 });
 
 // GULP TASK - watch main and app js to lint then restart nodemon
@@ -280,9 +258,7 @@ gulp.task('watch_server', ['lint_server'], function () {
 
 // GULP TASK - lint main and app js files
 gulp.task('lint_server', function () {
-    return gulp.src([configs.mainjs, configs.appjs])
-    .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'));
+    return buildLintTask([configs.mainjs, configs.appjs]);
 });
 
 // GULP TASK - start nodemon server and browserSync proxy
@@ -348,7 +324,7 @@ gulp.task('save_test_app', function () {
 
 // GULP TASKS - alias and depdency
 gulp.task('develop', ['nodemon_server']);
-gulp.task('lint_all', ['lint_server', 'lint_js']);
+gulp.task('lint_all', ['eslint']);
 gulp.task('buildall', ['lint_all', 'build_app']);
 gulp.task('default',['buildall']);
 
