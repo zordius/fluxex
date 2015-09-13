@@ -1,12 +1,12 @@
-var Router = require('routr'),
-    querystring = require('querystring'),
-    router,
+var Router = require('routr');
+var querystring = require('querystring');
+var router;
 
 // The single routing action can be used at both server/client side.
-routingAction = function () {
-    var url = this.getStore('page')._get('url'),
-        path = url ? url.pathname : undefined,
-        route = url ? router.getRoute(path) : undefined;
+var routingAction = function () {
+    var url = this.getStore('page')._get('url');
+    var path = url ? url.pathname : undefined;
+    var route = url ? router.getRoute(path) : undefined;
 
     if (!route) {
         return Promise.reject('no matched route for path: ' + path);
@@ -22,9 +22,9 @@ routingAction = function () {
     });
 
     return this.executeAction(route.config.action);
-},
+};
 
-getURL = function (name, param, query) {
+var getURL = function (name, param, query) {
     var qs = querystring.encode(query),
         path = router.makePath(name, param);
 

@@ -20,7 +20,7 @@ gulp.task('watch_document', ['build_document'], function () {
 gulp.task('build_document', shell.task('jsdoc -p README.md index.js lib/*.js extra/*.js -d documents'));
 
 gulp.task('eslint', function () {
-    return gulp.src(['index.js', 'gulpfile.js', 'lib/*.js', 'extra/*.js', 'test/*.js'])
+    return gulp.src(['index.js', 'gulpfile.js', 'lib/*.js', 'extra/*.js', 'test/*.js', '!extra/polyfill-ie8-client.js'])
     .pipe(eslint())
     .pipe(eslint.formatEach())
     .pipe(eslint.failOnError());

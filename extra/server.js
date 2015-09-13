@@ -1,6 +1,6 @@
-var isocall = require('iso-call'),
+var isocall = require('iso-call');
 
-ServerExtra = {
+var ServerExtra = {
     // A helper function to serve static files at /static
     initStatic: function (app) {
         app.use('/static', require('express').static(process.cwd() + '/static'));

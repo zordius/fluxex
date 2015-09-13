@@ -1,13 +1,13 @@
 'use strict';
 
-var assert = require('chai').assert,
-    fluxex = require('..'),
-    app = require('./testApp'),
-    testStore = require('./testStore.js'),
-    mixin = fluxex.mixin,
-    sinon = require('sinon'),
+var assert = require('chai').assert;
+var fluxex = require('..');
+var app = require('./testApp');
+var testStore = require('./testStore.js');
+var mixin = fluxex.mixin;
+var sinon = require('sinon');
 
-getMixedComponent = function () {
+var getMixedComponent = function () {
     var App = new app(),
         ctx = function () {};
 

@@ -41,7 +41,7 @@ describe('a fluxex app', function () {
         assert.throws(function () {
             var App = function () {
                 fluxex.apply(this, arguments);
-            }
+            };
             new App();
         }, Error, 'Your app should define this.stores !!');
         done();
