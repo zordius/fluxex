@@ -1,24 +1,24 @@
-var gulp = require('gulp'),
-    gutil = require('gulp-util'),
-    jscs = require('gulp-jscs'),
-    jshint = require('gulp-jshint'),
-    cached = require('gulp-cached'),
-    coverage = require('gulp-jsx-coverage'),
-    fs = require('fs'),
-    buffer = require('vinyl-buffer'),
-    source = require('vinyl-source-stream'),
-    aliasify = require('aliasify'),
-    babelify = require('babelify'),
-    browserify = require('browserify'),
-    babel = require('gulp-babel'),
-    uglify = require('gulp-uglify'),
-    nodemon = require('nodemon'),
-    browserSync = require('browser-sync'),
-    serverStarted = false,
-    packageJSON = require(process.cwd() + '/package.json'),
+var gulp = require('gulp');
+var gutil = require('gulp-util');
+var jscs = require('gulp-jscs');
+var jshint = require('gulp-jshint');
+var cached = require('gulp-cached');
+var coverage = require('gulp-jsx-coverage');
+var fs = require('fs');
+var buffer = require('vinyl-buffer');
+var source = require('vinyl-source-stream');
+var aliasify = require('aliasify');
+var babelify = require('babelify');
+var browserify = require('browserify');
+var babel = require('gulp-babel');
+var uglify = require('gulp-uglify');
+var nodemon = require('nodemon');
+var browserSync = require('browser-sync');
+var serverStarted = false;
+var packageJSON = require(process.cwd() + '/package.json');
 
 // These configs will be exported and you can overrides them
-configs = {
+var configs = {
     // files to jshint and jscs
     lint_files: ['actions/*.js', 'stores/*.js', 'components/*.jsx', 'fluxexapp.js'],
 
@@ -133,15 +133,15 @@ configs = {
             }
         }
     }
-},
+};
 
-restartNodemon = function () {
+var restartNodemon = function () {
     setTimeout(function () {
         nodemon.emit('restart');
     }, configs.nodemon_restart_delay);
-},
+};
 
-buildLintTask = function (task) {
+var buildLintTask = function (task) {
     if (configs.github) {
         task = task.pipe(require('gulp-github')(configs.github));
     }
@@ -151,10 +151,10 @@ buildLintTask = function (task) {
     }
 
     return task;
-},
+};
 
 // Do testing tasks
-getTestingTask = function (options) {
+var getTestingTask = function (options) {
     var cfg = JSON.parse(JSON.stringify(configs.test_coverage.default));
 
     cfg.istanbul.exclude = configs.test_coverage.default.istanbul.exclude;
@@ -163,9 +163,9 @@ getTestingTask = function (options) {
     cfg.cleanup = configs.test_coverage.default.cleanup;
 
     return coverage.createTask(cfg);
-},
+};
 
-handleJSCSError = function (E) {
+var handleJSCSError = function (E) {
     if (!configs.jscs_fail) {
         return;
     }
@@ -175,9 +175,9 @@ handleJSCSError = function (E) {
     }
 
     this.emit('error', E);
-},
+};
 
-bundleAll = function (b, noSave) {
+var bundleAll = function (b, noSave) {
     var B = b.bundle()
     .on('error', function (E) {
         gutil.log('[browserify ERROR]', gutil.colors.red(E));
@@ -190,9 +190,9 @@ bundleAll = function (b, noSave) {
     }
 
     return B;
-},
+};
 
-buildApp = function (watch, fullpath, nosave) {
+var buildApp = function (watch, fullpath, nosave) {
     var b = browserify(configs.appjs, {
         cache: {},
         packageCache: {},

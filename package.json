@@ -30,7 +30,7 @@
     "build_doc": "gulp build_document",
     "watch_doc": "gulp watch_document",
     "coverage": "istanbul cover -- _mocha",
-    "lint": "gulp lint"
+    "lint": "gulp eslint"
   },
   "bin": {
     "fluxex_starter": "./starter.sh"
@@ -46,6 +46,7 @@
     "eslint": "1.4.1",
     "eslint-plugin-react": "3.3.2",
     "gulp": "3.8.11",
+    "gulp-eslint": "1.0.0",
     "gulp-shell": "0.4.1",
     "istanbul": "0.3.13",
     "jsdoc": "3.3.0-alpha11",
