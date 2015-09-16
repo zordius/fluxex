@@ -9,7 +9,7 @@ Prepare the project
 ```
 npm init
 npm install --save fluxex react babel express routr request body-parser
-npm install --save-dev browser-request aliasify browserify watchify babelify envify jshint-stylish nodemon browser-sync gulp gulp-babel gulp-cached gulp-jsx-coverage gulp-jscs gulp-jshint gulp-util gulp-uglify vinyl-source-stream vinyl-buffer
+npm install --save-dev browser-request aliasify browserify watchify babelify envify eslint eslint-plugin-react babel-eslint nodemon browser-sync gulp gulp-babel gulp-cached gulp-jsx-coverage gulp-eslint gulp-util gulp-uglify vinyl-source-stream vinyl-buffer
 mkdir actions
 mkdir components
 mkdir stores
@@ -151,11 +151,10 @@ edit `gulpfile.js` - Use the fluxex gulpfile extra.
 require('fluxex/extra/gulpfile');
 ```
 
-copy a default jscs/jshint configs from fluxex.
+copy a default eslint configs from fluxex.
 
 ```sh
-cp node_modules/fluxex/.jscsrc .
-cp node_modules/fluxex/.jshintrc .
+cp node_modules/fluxex/.eslintrc .
 ```
 
 **Start the server**
