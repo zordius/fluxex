@@ -20,8 +20,6 @@ Create Action
 edit `actions/page.js` - Define an action.
 
 ```javascript
-'use strict';
-
 module.exports = function () {
     return this.dispatch('UPDATE_PRODUCT', {
         title: 'sample product',
@@ -36,8 +34,6 @@ Create Store
 edit `stores/product.js` - Define your store interface and handle the action.
 
 ```javascript
-'use strict';
-
 module.exports = {
     handle_UPDATE_PRODUCT: function (payload) {
         this._set('data', payload);
@@ -54,12 +50,9 @@ Create HTML
 edit `components/Html.jsx` - Define your page as react component.
 
 ```jsx
-'use strict';
-
-var React = require('react'),
-    Fluxex = require('fluxex'),
-
-Html = React.createClass({
+var React = require('react');
+var Fluxex = require('fluxex');
+var Html = React.createClass({
     mixins: [
         Fluxex.mixin,
         require('fluxex/extra/storechange'),
@@ -105,8 +98,6 @@ Create Your App
 edit `fluxexapp.js` - Provide store `{name: implementation}` pairs and Html.jsx.
 
 ```javascript
-'use strict';
-
 require('fluxex/extra/polyfill');
 
 module.exports = require('fluxex').createApp({
@@ -119,18 +110,16 @@ The Server
 edit `index.js` - Create an express server.
 
 ```javascript
-'use strict';
-
 // Init ES6 + jsx environments for .require()
 require('babel/register')({
     extensions: ['.jsx']
 });
 
-var express = require('express'),
-    fluxexapp = require('./fluxexapp'),
-    pageAction = require('./actions/page'),
-    fluxexServerExtra = require('fluxex/extra/server'),
-    app = express();
+var express = require('express');
+var fluxexapp = require('./fluxexapp');
+var pageAction = require('./actions/page');
+var fluxexServerExtra = require('fluxex/extra/server');
+var app = express();
 
 // Provide /static/js/main.js
 fluxexServerExtra.initStatic(app);
