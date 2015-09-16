@@ -2,7 +2,11 @@ HISTORY
 =======
 
 current master/nighty releases
-
+   * [EXTRA] refine gulpfile
+      * remove devDep: jshint jscs gulp-jshint gulp-jscs gulp-jshint jshint-stylish
+      * add devDep: gulp-eslint eslint eslint-plugin-react babel-eslint
+      * remove config: jshint_fail , jscs_fail
+      * add config: eslint_fail
 
 0.5.3 https://github.com/zordius/fluxex/releases/tag/v0.5.3
    * [CORE] update package.json to support webpack
