@@ -20,6 +20,9 @@
     "iso-call": "*"
   },
   "devDependencies": {
+    "eslint": "*",
+    "eslint-plugin-react": "*",
+    "gulp-eslint": "*",
     "babel-runtime": "*",
     "through2": "*",
     "react-tools": "*",

@@ -18,6 +18,9 @@
     "express": "*"
   },
   "devDependencies": {
+    "eslint": "*",
+    "eslint-plugin-react": "*",
+    "gulp-eslint": "*",
     "html5-history-api": "*",
     "babel-runtime": "*",
     "through2": "*",

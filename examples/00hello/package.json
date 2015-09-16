@@ -18,6 +18,9 @@
     "routr": "*"
   },
   "devDependencies": {
+    "eslint": "*",
+    "eslint-plugin-react": "*",
+    "gulp-eslint": "*",
     "babel-runtime": "*",
     "browser-request": "*",
     "protractor": "*",
