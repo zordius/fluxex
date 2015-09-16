@@ -324,7 +324,7 @@ gulp.task('save_test_app', function () {
 
 // GULP TASKS - alias and depdency
 gulp.task('develop', ['nodemon_server']);
-gulp.task('lint_all', ['eslint']);
+gulp.task('lint_all', ['lint_server', 'lint_js']);
 gulp.task('buildall', ['lint_all', 'build_app']);
 gulp.task('default',['buildall']);
 
