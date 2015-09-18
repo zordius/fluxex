@@ -65,9 +65,10 @@ var Testlib = {
         }), undefined, context);
     },
 
-    simulateBrowserEnv: function () {
+    simulateBrowserEnv: function (mockWindow) {
         global.document = jsdom('<!DOCTYPE html><html><body></body></html>');
         global.window = global.document.parentWindow;
+        Object.assign(global.window, mockWindow);
     },
 
     stopBrowserEnv: function () {
@@ -76,10 +77,10 @@ var Testlib = {
         require('react/lib/ExecutionEnvironment').canUseDOM = false;
     },
 
-    renderComponent: function (react, props, context) {
+    renderComponent: function (react, props, context, mockWindow) {
         var rendered;
 
-        Testlib.simulateBrowserEnv();
+        Testlib.simulateBrowserEnv(mockWindow);
         rendered = Testlib.getReactTestUtils().renderIntoDocument(Testlib.getContextedElement(react, props, context));
         return Testlib.getReactTestUtils().findRenderedComponentWithType(rendered, react);
     },
