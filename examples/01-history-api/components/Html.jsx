@@ -1,11 +1,9 @@
-'use strict';
+var React = require('react');
+var Fluxex = require('fluxex');
+var Product = require('./Product.jsx');
+var sampleActions = require('../actions/sample');
 
-var React = require('react'),
-    Fluxex = require('fluxex'),
-    Product = require('./Product.jsx'),
-    sampleActions = require('../actions/sample'),
-
-Html = React.createClass({
+var Html = React.createClass({
     mixins: [
         Fluxex.mixin
     ],

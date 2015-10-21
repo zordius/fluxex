@@ -1,8 +1,6 @@
-'use strict';
+var other_actions = require('./sample');
 
-var other_actions = require('./sample'),
-
-server_actions = {
+var server_actions = {
     samplePage: function (req) {
         return this.dispatch('UPDATE_URL', req.url).then(function () {
             return this.executeAction(other_actions.updateProductPage);

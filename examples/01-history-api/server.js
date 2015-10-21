@@ -1,15 +1,13 @@
-'use strict';
-
 // Init ES6 + jsx environments for .require()
 require('babel/register')({
     extensions: ['.jsx']
 });
 
-var express = require('express'),
-    fluxexapp = require('./fluxexapp'),
-    serverAction = require('./actions/server'),
-    fluxexServerExtra = require('fluxex/extra/server'),
-    app = express();
+var express = require('express');
+var fluxexapp = require('./fluxexapp');
+var serverAction = require('./actions/server');
+var fluxexServerExtra = require('fluxex/extra/server');
+var app = express();
 
 // Provide /static/js/main.js
 fluxexServerExtra.initStatic(app);
