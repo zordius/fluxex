@@ -1,7 +1,7 @@
-var React = require('react'),
-    Fluxex = require('fluxex'),
+var React = require('react');
+var Fluxex = require('fluxex');
 
-TopProducts = React.createClass({
+var TopProducts = React.createClass({
     mixins: [
         Fluxex.mixin,
         require('fluxex/extra/storechange'),

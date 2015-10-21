@@ -1,11 +1,9 @@
-'use strict';
-
-var apis = require('./api'),
+var apis = require('./api');
 
 // All page actions here.
 // A page action will prepare all required store for a page
 // and update the page title.
-pages = {
+var pages = {
     product: function () {
         return this.executeAction(apis.getProductById, this.getStore('page').getRoutingParam().id).then(function () {
             return this.dispatch('UPDATE_TITLE', this.getStore('productStore').getProduct().title);

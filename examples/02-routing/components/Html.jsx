@@ -1,11 +1,9 @@
-'use strict';
+var React = require('react');
+var Fluxex = require('fluxex');
+var Product = require('./Product.jsx');
+var TopProducts = require('./TopProducts.jsx');
 
-var React = require('react'),
-    Fluxex = require('fluxex'),
-    Product = require('./Product.jsx'),
-    TopProducts = require('./TopProducts.jsx'),
-
-Html = React.createClass({
+var Html = React.createClass({
     mixins: [
         Fluxex.mixin,
         require('fluxex/extra/storechange'),
@@ -23,8 +21,8 @@ Html = React.createClass({
         var Routing = {
             top: <TopProducts />,
             product: <Product />
-        },
-        body = Routing[this.state.route_name];
+        };
+        var body = Routing[this.state.route_name];
 
         return (
         <html>
