@@ -8,7 +8,7 @@
     "test": "gulp example_tests"
   },
   "dependencies": {
-    "fluxex": "*"
+    "fluxex": "~0.5.4-5"
   },
   "devDependencies": {
     "gulp": "3.8.9",
