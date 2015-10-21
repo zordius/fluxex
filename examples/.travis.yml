@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - '0.11'
+  - '0.12'
 branches:
   only:
     - master
@@ -15,7 +15,6 @@ cache:
     - 02-routing/node_modules
     - 03-service/node_modules
     - 04-infinite-scroll/node_modules
-    - 05-extra/node_modules
 addons:
   sauce_connect: true
 env:
