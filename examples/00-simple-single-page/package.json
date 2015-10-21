@@ -17,6 +17,7 @@
     "express": "*"
   },
   "devDependencies": {
+    "routr": "*",
     "babel-eslint": "*",
     "eslint": "*",
     "eslint-plugin-react": "*",

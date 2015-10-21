@@ -69,7 +69,6 @@ var configs = {
         'fluxex/extra/routing',
         'fluxex/extra/rpc',
         'fluxex/extra/rpc-seturl'
-    //    'babel-runtime/core-js/promise'
     ],
 
     // babel config
