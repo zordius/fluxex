@@ -1,7 +1,7 @@
-var React = require('react'),
-    Fluxex = require('fluxex'),
+var React = require('react');
+var Fluxex = require('fluxex');
 
-Sample = React.createClass({
+var Sample = React.createClass({
     mixins: [
         Fluxex.mixin,
         {listenStores: ['sampleStore']}
