@@ -54,6 +54,7 @@
     "mocha": "2.2.4",
     "object.assign": "2.0.1",
     "react": "0.14.0",
+    "react-dom": "0.14.0",
     "semver": "4.3.3",
     "sinon": "1.14.1"
   },
