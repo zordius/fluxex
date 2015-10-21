@@ -1,8 +1,8 @@
-var React = require('react'),
-    Fluxex = require('fluxex'),
-    apis = require('../actions/api'),
+var React = require('react');
+var Fluxex = require('fluxex');
+var apis = require('../actions/api');
 
-Results = React.createClass({
+var Results = React.createClass({
     mixins: [
         Fluxex.mixin,
         require('fluxex/extra/storechange'),

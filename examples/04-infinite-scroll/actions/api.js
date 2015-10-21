@@ -1,16 +1,14 @@
-'use strict';
+var yql = require('./yql');
 
-var yql = require('./yql'),
-
-log = function () {
+var log = function () {
     try {
         console.log.apply(console, arguments);
     } catch (E) {
         // do nothing
     }
-},
+};
 
-api = {
+var api = {
     search: function (payload) {
         var start = payload.p * 1 || 0,
             count = 20,

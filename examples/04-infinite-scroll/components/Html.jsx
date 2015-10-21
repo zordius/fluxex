@@ -1,11 +1,9 @@
-'use strict';
+var React = require('react');
+var Fluxex = require('fluxex');
+var Results = require('./Results.jsx');
+var SearchBox = require('./SearchBox.jsx');
 
-var React = require('react'),
-    Fluxex = require('fluxex'),
-    Results = require('./Results.jsx'),
-    SearchBox = require('./SearchBox.jsx'),
-
-Html = React.createClass({
+var Html = React.createClass({
     mixins: [
         Fluxex.mixin,
         require('fluxex/extra/pjax')
