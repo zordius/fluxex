@@ -4,7 +4,7 @@ HISTORY
 current master/nighty releases
 
 0.5.4 https://github.com/zordius/fluxex/releases/tag/v0.5.4
-   * [CORE] refresh depdency, move to react 0.14.0
+   * [CORE] refresh dependency, move to react 0.14.0
    * [EXTRA] refine gulpfile
       * remove devDep: jshint jscs gulp-jshint gulp-jscs gulp-jshint jshint-stylish
       * add devDep: gulp-eslint eslint eslint-plugin-react babel-eslint
@@ -21,9 +21,9 @@ current master/nighty releases
       * new devcore bundle task for develop mode to save main bundle time and file size
       * support config.uglify
    * [EXTRA] remove devDepdency of application: through2, react-tools
-   * [EXTRA] add new depdency of application: iso-call
+   * [EXTRA] add new dependency of application: iso-call
    * [EXTRA] add new devDepdency of application: envify
-   * [EXTRA] unlock all locked depdency of example projects
+   * [EXTRA] unlock all locked dependency of example projects
    * [EXTRA] refine page Store URL parsing logic
    * [EXTRA] deprecated extra/fetch, migrate to extra/rpc
    * [EXTRA] polyfill IE8 console in extra/polyfill now (powered by Console-polyfill)
@@ -57,7 +57,7 @@ current master/nighty releases
 
 0.5.0 https://github.com/zordius/fluxex/releases/tag/v0.5.0
    * [CORE] fix .dispatch() magic **UPDATEALL**
-   * [CORE] refresh depdency, move to react 0.13.0
+   * [CORE] refresh dependency, move to react 0.13.0
    * [CORE] support new react context
    * [CORE] use babel as default jsx transcoder
    * [CORE] support es6 features in jsx
@@ -88,7 +88,7 @@ current master/nighty releases
 
 0.1.11 https://github.com/zordius/fluxex/releases/tag/v0.1.11
    * [CORE] Extended executeAction() API to pass all arguments into action creator
-   * [CORE] Remove all polyfill related depdency
+   * [CORE] Remove all polyfill related dependency
    * [CORE] Depend on with-promise to keep context API can be accessed in all .then()
    * [CORE] dispatch() now returns all return values from handlers as promise
    * [EXTRA] Extended fetch.createServices() to handle preRequest logic
