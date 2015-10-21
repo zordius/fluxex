@@ -1,9 +1,7 @@
-'use strict';
+var React = require('react');
+var Fluxex = require('fluxex');
 
-var React = require('react'),
-    Fluxex = require('fluxex'),
-
-Html = React.createClass({
+var Html = React.createClass({
     mixins: [
         Fluxex.mixin,
         require('fluxex/extra/storechange'),
