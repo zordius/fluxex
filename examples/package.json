@@ -7,9 +7,6 @@
   "scripts": {
     "test": "gulp example_tests"
   },
-  "dependencies": {
-    "fluxex": "*"
-  },
   "devDependencies": {
     "gulp": "3.8.9",
     "gulp-exec": "2.1.1"
