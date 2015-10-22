@@ -24,6 +24,7 @@
     "starter kit"
   ],
   "scripts": {
+    "clean": "gulp clean",
     "test": "mocha",
     "smoke_test": "gulp smoke_test",
     "example_tests": "gulp example_tests",

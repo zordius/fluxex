@@ -25,3 +25,8 @@ gulp.task('eslint', function () {
     .pipe(eslint.formatEach())
     .pipe(eslint.failOnError());
 });
+
+gulp.taks('clean', function () {
+    return gulp.src('examples/00hello', 'examples/00-*')
+    .pipe(shell('rm -rf <%=file.path %>/node_modules'));
+});
