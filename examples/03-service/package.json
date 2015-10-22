@@ -13,6 +13,7 @@
   "dependencies": {
     "body-parser": "*",
     "react": "*",
+    "react-dom": "*",
     "babel": "*",
     "fluxex": "*",
     "routes": "*",

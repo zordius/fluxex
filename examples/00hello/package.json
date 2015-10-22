@@ -15,6 +15,7 @@
     "express": "*",
     "fluxex": "*",
     "react": "*",
+    "react-dom": "*",
     "routr": "*"
   },
   "devDependencies": {
