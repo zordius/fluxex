@@ -3,8 +3,9 @@ HISTORY
 
 current master/nighty releases
 
-0.5.4 https://github.com/zordius/fluxex/releases/tag/v0.5.4
+0.6.0 https://github.com/zordius/fluxex/releases/tag/v0.6.0
    * [CORE] refresh dependency, move to react 0.14.0
+   * [CORE] new dependency for your project: react-dom
    * [EXTRA] refine gulpfile
       * remove devDep: jshint jscs gulp-jshint gulp-jscs gulp-jshint jshint-stylish
       * add devDep: gulp-eslint eslint eslint-plugin-react babel-eslint
