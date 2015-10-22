@@ -27,6 +27,6 @@ gulp.task('eslint', function () {
 });
 
 gulp.task('clean', function () {
-    return gulp.src('examples/00hello', 'examples/00-*')
-    .pipe(shell('rm -rf <%=file.path %>/node_modules'));
+    return gulp.src('examples/00hello/node_modules', 'examples/*/node_modules')
+    .pipe(shell('rm -rf <%=file.path %>'));
 });
