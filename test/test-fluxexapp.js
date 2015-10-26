@@ -4,6 +4,7 @@ var assert = require('chai').assert,
     sinon = require('sinon'),
     fluxex = require('../'),
     react = require('react'),
+    reactDom = require('react-dom'),
     actions = require('./testAction'),
     app = require('./testApp');
 
@@ -76,14 +77,14 @@ describe('a fluxex app', function () {
 
         Object.assign(App, require('../lib/fluxex-client'));
         sinon.stub(App, 'getContextedHtml').returns('123');
-        sinon.stub(react, 'render');
+        sinon.stub(reactDom, 'render');
 
         App.initClient();
 
-        assert.equal('123', react.render.getCall(0).args[0]);
+        assert.equal('123', reactDom.render.getCall(0).args[0]);
         delete global.document;
 
-        react.render.restore();
+        reactDom.render.restore();
 
         done();
     });
