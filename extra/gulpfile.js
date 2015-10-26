@@ -62,6 +62,7 @@ var configs = {
     // list of modules to be bundled into devcore.js to save js loading time when develop
     devcore: [
         'react',
+        'react-dom',
         'fluxex',
         'browser-request',
         'babelify/polyfill',
