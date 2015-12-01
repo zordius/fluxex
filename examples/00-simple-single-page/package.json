@@ -25,7 +25,6 @@
     "gulp-eslint": "*",
     "babel-runtime": "*",
     "through2": "*",
-    "react-tools": "*",
     "browser-request": "*",
     "protractor": "*",
     "badge-render": "*",
