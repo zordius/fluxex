@@ -1,7 +1,5 @@
-'use strict';
-
+require('babel-polyfill');
 require('fluxex/extra/polyfill-ie8');
-require('fluxex/extra/polyfill');
 
 // change RPC endpoint
 require('fluxex/extra/rpc-seturl')('/_COOL_YQL_/');

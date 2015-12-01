@@ -1,7 +1,5 @@
-// Init ES6 + jsx environments for .require()
-require('babel/register')({
-    extensions: ['.jsx']
-});
+// Init ES2015 + .jsx environments for .require()
+require('babel-register');
 
 var express = require('express');
 var fluxexapp = require('./fluxexapp');

@@ -1,5 +1,3 @@
-'use strict';
-
 // Init ES2015 + .jsx environments for .require()
 require('babel-register');
 

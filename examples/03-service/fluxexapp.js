@@ -1,6 +1,4 @@
-'use strict';
-
-require('fluxex/extra/polyfill');
+require('babel-polyfill');
 
 var commonStores = require('fluxex/extra/commonStores');
 
