@@ -1,6 +1,4 @@
-'use strict';
-
-require('fluxex/extra/polyfill');
+require('babel-polyfill');
 
 module.exports = require('fluxex').createApp({
     product: require('./stores/product')
