@@ -15,9 +15,13 @@ var nodemon = require('nodemon');
 var browserSync = require('browser-sync');
 var serverStarted = false;
 var packageJSON = require(process.cwd() + '/package.json');
+var TPU = require('tcp-port-used');
 
 // These configs will be exported and you can overrides them
 var configs = {
+    port: 3000,
+    BSport: 3001,
+
     // files to eslint
     lint_files: ['actions/*.js', 'stores/*.js', 'components/*.jsx', 'fluxexapp.js'],
 
@@ -32,9 +36,6 @@ var configs = {
 
     // wait time after your bundle writen then trigger nodemon restart
     nodemon_restart_delay: 200,
-
-    // wait time after your server start then trigger browserSync reload
-    nodemon_delay: 2000,
 
     // fail the gulp task when eslint issues found
     // edit your .eslintrc to refine your eslint settings
@@ -120,9 +121,7 @@ var configs = {
 };
 
 var restartNodemon = function () {
-    setTimeout(function () {
-        nodemon.emit('restart');
-    }, configs.nodemon_restart_delay);
+    nodemon.emit('restart');
 };
 
 var buildLintTask = function (src) {
@@ -194,6 +193,12 @@ var buildApp = function (watch, fullpath, nosave) {
     return bundleAll(b, nosave);
 };
 
+gulp.task('check_devcore', function () {
+    if (!fs.existsSync(configs.static_dir + 'js/devcore.js')) {
+        gulp.start(['build_devcore']);
+    }
+});
+
 gulp.task('build_devcore', function () {
     var b = browserify(undefined, {debug: true});
     b.require(configs.devcore);
@@ -241,7 +246,7 @@ gulp.task('watch_server', ['lint_server'], function () {
     gulp.watch([configs.mainjs, configs.appjs], configs.gulp_watch, ['lint_server'])
     .on('change', function (E) {
         if (E.path !== configs.appjs) {
-            nodemon.emit('restart');
+            restartNodemon();
         }
     });
 });
@@ -252,7 +257,7 @@ gulp.task('lint_server', function () {
 });
 
 // GULP TASK - start nodemon server and browserSync proxy
-gulp.task('nodemon_server', ['build_devcore', 'watch_js', 'watch_app', 'watch_server'], function () {
+gulp.task('nodemon_server', ['check_devcore', 'watch_js', 'watch_app', 'watch_server'], function () {
     nodemon({
         ignore: '*',
         script: configs.mainjs,
@@ -263,12 +268,12 @@ gulp.task('nodemon_server', ['build_devcore', 'watch_js', 'watch_app', 'watch_se
     })
     .on('start', function () {
         if (serverStarted) {
-            setTimeout(browserSync.reload, configs.nodemon_delay);
+            TPU.waitUntilUsed(configs.port, 200, 30000).then(browserSync.reload);
         } else {
             browserSync.init(null, {
-                proxy: 'http://localhost:3000',
+                proxy: 'http://localhost:' + configs.port,
                 files: [configs.static_dir + 'css/*.css'],
-                port: 3001,
+                port: configs.BSport,
                 online: false,
                 open: false,
                 snippetOptions: {

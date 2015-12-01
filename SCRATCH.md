@@ -9,7 +9,7 @@ Prepare the project
 ```
 npm init
 npm install --save fluxex react babel express routr request body-parser
-npm install --save-dev browser-request aliasify browserify watchify babelify envify eslint eslint-plugin-react babel-eslint nodemon browser-sync gulp gulp-babel gulp-cached gulp-jsx-coverage gulp-eslint gulp-util gulp-uglify vinyl-source-stream vinyl-buffer babel-polyfill babel-preset-es2015 babel-preset-react babel-plugin-transform-runtime
+npm install --save-dev browser-request aliasify browserify watchify babelify envify eslint eslint-plugin-react babel-eslint nodemon browser-sync gulp gulp-babel gulp-cached gulp-jsx-coverage gulp-eslint gulp-util gulp-uglify vinyl-source-stream vinyl-buffer babel-polyfill babel-preset-es2015 babel-preset-react babel-plugin-transform-runtime tcp-port-used
 mkdir actions
 mkdir components
 mkdir stores

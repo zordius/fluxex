@@ -6,9 +6,14 @@ current master/nighty releases
 0.7.0 https://github.com/zordius/fluxex/releases/tag/v0.7.0
    * [CORE] fix fluxex-client, use react-dom now
    * [EXTRA] refine gulpfile
+      * add devDep: tcp-port-used
       * add react-dom into devcore
       * removed config: aliasify (you should put aliasify config in your package.json)
       * removed config: babel (you should put babel config into .babelrc)
+      * now do not build devcore.js when it exists to save server start time, you can still use `gulp build_devcore` to force generation.
+      * use tcp-port-used npm moudule to do browserSync reload at correct time.
+      * new config: port (default is 3000)
+      * new config: BSport (default is 3001)
    * [EXTRA] remove extra/polyfill, please change `require('fluxex/extra/polyfill');` to `require('babel-polyfill')`;
    * [EXTRA] use babel 6.0 now:
       * new required devDep for your application: babel-register, babel-polyfill, babel-preset-es2015, babel-preset-react, babel-plugin-transform-runtime

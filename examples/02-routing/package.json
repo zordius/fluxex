@@ -19,6 +19,7 @@
     "express": "*"
   },
   "devDependencies": {
+    "tcp-port-used": "*",
     "routr": "*",
     "babel-eslint": "*",
     "eslint": "*",
