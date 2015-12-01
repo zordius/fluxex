@@ -9,7 +9,7 @@ Prepare the project
 ```
 npm init
 npm install --save fluxex react babel express routr request body-parser
-npm install --save-dev browser-request aliasify browserify watchify babelify envify eslint eslint-plugin-react babel-eslint nodemon browser-sync gulp gulp-babel gulp-cached gulp-jsx-coverage gulp-eslint gulp-util gulp-uglify vinyl-source-stream vinyl-buffer
+npm install --save-dev browser-request aliasify browserify watchify babelify envify eslint eslint-plugin-react babel-eslint nodemon browser-sync gulp gulp-babel gulp-cached gulp-jsx-coverage gulp-eslint gulp-util gulp-uglify vinyl-source-stream vinyl-buffer babel-polyfill babel-preset-es2015 babel-preset-react babel-plugin-transform-runtime
 mkdir actions
 mkdir components
 mkdir stores
@@ -98,7 +98,7 @@ Create Your App
 edit `fluxexapp.js` - Provide store `{name: implementation}` pairs and Html.jsx.
 
 ```javascript
-require('fluxex/extra/polyfill');
+require('babel-polyfill');
 
 module.exports = require('fluxex').createApp({
     product: require('./stores/product')
@@ -110,10 +110,8 @@ The Server
 edit `index.js` - Create an express server.
 
 ```javascript
-// Init ES6 + jsx environments for .require()
-require('babel/register')({
-    extensions: ['.jsx']
-});
+// Init ES2015 + .jsx environments for .require()
+require('babel-register');
 
 var express = require('express');
 var fluxexapp = require('./fluxexapp');

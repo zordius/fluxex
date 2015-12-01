@@ -50,11 +50,6 @@ var configs = {
     // refer to https://github.com/substack/watchify
     watchify: {debug: true, delay: 500},
 
-    // aliasify config
-    // refer to https://github.com/benbria/aliasify
-    // Deprecated and will be removed, please put your aliasify config into your package.json
-    aliasify: Object.assign(require('../package.json').aliasify, packageJSON.aliasify),
-
     // uglify config
     // refer to https://github.com/mishoo/UglifyJS2
     uglify: undefined,
@@ -65,25 +60,18 @@ var configs = {
         'react-dom',
         'fluxex',
         'browser-request',
-        'babelify/polyfill',
+        'babel-polyfill',
         'fluxex/extra/commonStores',
         'fluxex/extra/routing',
         'fluxex/extra/rpc',
         'fluxex/extra/rpc-seturl'
     ],
 
-    // babel config
-    // refer to http://babeljs.io/docs/usage/options/
-    babel: {
-        optional: ['runtime']
-    },
-
-    // babelify config, will be merged with babel config
+    // babelify config
     // refer to https://github.com/babel/babelify
     babelify: {
         // Note: for babelify this is regex, but for babel this is glob
-        ignore: /node_modules/,
-        extensions: ['.js', '.jsx']
+        ignore: /node_modules/
     },
 
     // tests + coverage configs
@@ -101,7 +89,8 @@ var configs = {
             },
             mocha: {},
             babel: {
-                sourceMap: 'inline'
+                presets: ['es2015', 'react'],
+                sourceMap: 'both'
             },
             coffee: {
                 sourceMap: true
@@ -186,8 +175,9 @@ var buildApp = function (watch, fullpath, nosave) {
         debug: watch
     });
 
-    b.transform(babelify.configure(Object.assign({}, configs.babel, configs.babelify)), {global: true});
-    b.transform(aliasify.configure(configs.aliasify), {global: true});
+    b.transform(babelify.configure(configs.babelify));
+
+    b.transform(aliasify.configure(Object.assign(require('../package.json').aliasify, packageJSON.aliasify)), {global: true});
 
     if ('production' !== process.env.NODE_ENV) {
         b.external(configs.devcore);
@@ -207,7 +197,7 @@ var buildApp = function (watch, fullpath, nosave) {
 gulp.task('build_devcore', function () {
     var b = browserify(undefined, {debug: true});
     b.require(configs.devcore);
-    b.transform(babelify.configure(Object.assign({}, configs.babel, configs.babelify)), {global: true});
+    b.transform(babelify.configure(configs.babelify));
     return b
     .bundle()
     .pipe(source('devcore.js'))

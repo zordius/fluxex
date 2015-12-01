@@ -3,14 +3,32 @@ HISTORY
 
 current master/nighty releases
 
+0.7.0 https://github.com/zordius/fluxex/releases/tag/v0.7.0
+   * [CORE] fix fluxex-client, use react-dom now
+   * [EXTRA] refine gulpfile
+      * add react-dom into devcore
+      * removed config: aliasify (you should put aliasify config in your package.json)
+      * removed config: babel (you should put babel config into .babelrc)
+   * [EXTRA] remove extra/polyfill, please change `require('fluxex/extra/polyfill');` to `require('babel-polyfill')`;
+   * [EXTRA] use babel 6.0 now:
+      * new required devDep for your application: babel-register, babel-polyfill, babel-preset-es2015, babel-preset-react, babel-plugin-transform-runtime
+      * remoded devDep for your application: babel-runtime
+      * please change `require('babel/register')` to `require('babel-register');`
+      * please copy .babelrc from node_modules/fluxex/.babelrc if you do not have one.
+
 0.6.0 https://github.com/zordius/fluxex/releases/tag/v0.6.0
    * [CORE] refresh dependency, move to react 0.14.0
    * [CORE] new dependency for your project: react-dom
    * [EXTRA] refine gulpfile
       * remove devDep: jshint jscs gulp-jshint gulp-jscs gulp-jshint jshint-stylish
       * add devDep: gulp-eslint eslint eslint-plugin-react babel-eslint
-      * remove config: jshint_fail , jscs_fail
+      * remove config: jshint_fail, jscs_fail
       * add config: eslint_fail
+   * [EXTRA] migrate to eslint now:
+      * please copy .eslintrc from node_modules/fluxex/.slintrc if you do not have one.
+      * you do not need .jshintrc now
+      * you do not need .jscsrc now
+      * you do not need .jshintignore now
 
 0.5.3 https://github.com/zordius/fluxex/releases/tag/v0.5.3
    * [CORE] update package.json to support webpack
