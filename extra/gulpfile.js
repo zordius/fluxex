@@ -34,9 +34,6 @@ var configs = {
     // Your fluxex application defination
     appjs: process.cwd() + '/fluxexapp.js',
 
-    // wait time after your bundle writen then trigger nodemon restart
-    nodemon_restart_delay: 200,
-
     // fail the gulp task when eslint issues found
     // edit your .eslintrc to refine your eslint settings
     eslint_fail: false,

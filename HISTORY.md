@@ -12,6 +12,7 @@ current master/nighty releases
       * removed config: babel (you should put babel config into .babelrc)
       * now do not build devcore.js when it exists to save server start time, you can still use `gulp build_devcore` to force generation.
       * use tcp-port-used npm moudule to do browserSync reload at correct time.
+      * removed config: nodemon_restart_delay
       * new config: port (default is 3000)
       * new config: BSport (default is 3001)
    * [EXTRA] remove extra/polyfill, please change `require('fluxex/extra/polyfill');` to `require('babel-polyfill')`;
