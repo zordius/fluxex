@@ -256,11 +256,16 @@ gulp.task('lint_server', function () {
 
 // GULP TASK - start nodemon server and browserSync proxy
 gulp.task('nodemon_server', ['check_devcore', 'watch_js', 'watch_app', 'watch_server'], function () {
-    nodemon({
+    var F = __dirname + '/nodemon.json';
+    var nodemonCfg = {
         ignore: '*',
         script: configs.mainjs,
         ext: 'do_not_watch'
-    })
+    };
+    if (fs.existsSync(F)) {
+        nodemonCfg = Object.assign(require(F), nodemonCfg);
+    }
+    nodemon(nodemonCfg)
     .on('log', function (log) {
         gutil.log(log.colour);
     })
