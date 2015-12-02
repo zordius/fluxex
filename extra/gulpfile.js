@@ -65,7 +65,8 @@ var configs = {
         'fluxex/extra/commonStores',
         'fluxex/extra/routing',
         'fluxex/extra/rpc',
-        'fluxex/extra/rpc-seturl'
+        'fluxex/extra/rpc-seturl',
+        'babel-runtime/core-js/promise'
     ],
 
     // babelify config
