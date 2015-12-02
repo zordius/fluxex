@@ -15,6 +15,7 @@ current master/nighty releases
       * removed config: nodemon_restart_delay
       * new config: port (default is 3000)
       * new config: BSport (default is 3001)
+      * now supports nodemon.json
    * [EXTRA] remove extra/polyfill, please change `require('fluxex/extra/polyfill');` to `require('babel-polyfill')`;
    * [EXTRA] use babel 6.0 now:
       * new required devDep for your application: babel-register, babel-polyfill, babel-preset-es2015, babel-preset-react, babel-plugin-transform-runtime
