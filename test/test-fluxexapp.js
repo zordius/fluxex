@@ -103,6 +103,16 @@ describe('a fluxex app', function () {
         done();
     });
 
+    it('.getContextedHtml() will create element with self context', function (done) {
+        var App = new app({d: 4});
+
+        sinon.stub(react, 'createElement');
+        App.getContextedHtml();
+        assert.equal(react.createElement.getCall(0).args[1].fluxex._context.d, 4);
+        react.createElement.restore();
+        done();
+    });
+
     it('can ._get() and ._set()', function (done) {
         var App = new app({a: 2});
 
