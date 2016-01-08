@@ -19,7 +19,7 @@ fi
 
 # push coverage to codeclimate
 npm install codeclimate-test-reporter
-node_modules/.bin/codeclimate < coverage/lcov.info
+node_ node_modules/.bin/codeclimate-test-reporter <coverage/lcov.info
 
 # Skip deploy when not master
 if [ "${TRAVIS_BRANCH}" != "master" ]; then
