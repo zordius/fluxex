@@ -50,7 +50,7 @@
     "gulp": "3.8.11",
     "gulp-eslint": "1.0.0",
     "gulp-shell": "0.4.1",
-    "istanbul": "0.3.13",
+    "istanbul": "0.4.1",
     "jsdoc": "3.3.0-alpha11",
     "mocha": "2.2.4",
     "object.assign": "2.0.1",
