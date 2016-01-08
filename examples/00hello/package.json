@@ -31,7 +31,7 @@
     "babel-preset-react": "6.1.18",
     "babel-plugin-transform-runtime": "*",
     "browser-request": "*",
-    "protractor": "*",
+    "protractor": "2.5.1",
     "badge-render": "*",
     "aliasify": "*",
     "browserify": "*",
