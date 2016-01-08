@@ -18,7 +18,7 @@ var ServerExtra = {
             var app = new Fluxexapp();
 
             /* New for contexted iso-call */
-            /* check extra/rpc.js for mor doc */
+            /* check extra/rpc.js for more doc */
             app._req = req;
 
             app.renderHtml(action, req).then(function (HTML) {
