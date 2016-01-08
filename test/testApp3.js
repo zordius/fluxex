@@ -3,6 +3,9 @@
 var fluxex = require('../');
 
 module.exports = fluxex.createApp({
+    storeE: {
+        handle_TEST1: function () {}
+    },
     storeA: {
         waitFor: {
             TEST1: ['storeB', 'storeC']
@@ -25,9 +28,6 @@ module.exports = fluxex.createApp({
         waitFor: {
             TEST1: 'storeE'
         },
-        handle_TEST1: function () {}
-    },
-    storeE: {
         handle_TEST1: function () {}
     }
 }, 'noneed_htmlJsx');
