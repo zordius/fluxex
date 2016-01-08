@@ -39,6 +39,17 @@ describe('fluxex.mixin', function () {
         done();
     });
 
+    it('.componentDidMount() throws when no listenStores is not an array', function (done) {
+        var C = getMixedComponent();
+        C.listenStores = 'should error';
+        C.onStoreChange = function () {};
+
+        assert.throws(function () {
+            C.componentDidMount();
+        }, Error, 'the component should proide .listenStores[] to list interested stores !');
+        done();
+    });
+
     it('.componentDidMount() will addChangeListener on specific store', function (done) {
         var C = getMixedComponent();
         C.listenStores = ['sampleStore'];
