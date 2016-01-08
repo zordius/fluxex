@@ -62,6 +62,12 @@ describe('a fluxex app', function () {
         done();
     });
 
+    it('will merge into prototype when more arguments provides to .createApp()', function (done) {
+        var P = fluxex.createApp({}, 'nojsx', {foo: 'bar'});
+        assert.equal(P.prototype.foo, 'bar');
+        done();
+    });
+
     it('will throw when ._initStore() be called externally', function (done) {
         assert.throws(function () {
             var App = new app();
