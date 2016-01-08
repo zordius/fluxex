@@ -34,7 +34,7 @@
     "babel-plugin-transform-runtime": "*",
     "through2": "*",
     "browser-request": "*",
-    "protractor": "*",
+    "protractor": "2.5.1",
     "badge-render": "*",
     "aliasify": "*",
     "envify": "*",
