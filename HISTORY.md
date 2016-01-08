@@ -3,6 +3,9 @@ HISTORY
 
 current master/nighty releases
 
+0.7.1 https://github.com/zordius/fluxex/releases/tag/v0.7.1
+   * [CORE] remove context API: ._getHeader() . All request related things should be placed into a rpc.
+
 0.7.0 https://github.com/zordius/fluxex/releases/tag/v0.7.0
    * [CORE] fix fluxex-client, use react-dom now
    * [EXTRA] refine gulpfile

@@ -76,6 +76,14 @@ describe('a fluxex app', function () {
         done();
     });
 
+    it('will throw when ._initDispatch() be called externally', function (done) {
+        assert.throws(function () {
+            var App = new app();
+            App._initDispatch();
+        }, Error, '._initDispatch() should not be called externally!');
+        done();
+    });
+
     it('.initClient() will react.render() with self', function (done) {
         var App = new app({c: 3});
 
