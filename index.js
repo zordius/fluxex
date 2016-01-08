@@ -2,7 +2,6 @@
 
 /** @lends Fluxex */
 var Fluxex = require('./lib/fluxex');
-var React = require('react');
 
 // jscs:disable checkRedundantParams
 /**

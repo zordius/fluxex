@@ -9,7 +9,7 @@
 module.exports = {
     componentDidMount: function () {
         /*global window,document*/
-        var blockDoublePop = (document.readyState != 'complete'),
+        var blockDoublePop = (document.readyState !== 'complete'),
             initState = JSON.stringify(this._getContext()._context),
             location = window.history.location || window.location,
             initUrl = location.href;
@@ -49,18 +49,18 @@ module.exports = {
     },
 
     handleClickLink: function (E) {
-        var closestAnchor = E.target.closest("a[href]");
-        var HREF = closestAnchor && closestAnchor.href;
-        
-        if (!HREF || HREF.match(/#/) || (E.target.target == '_blank')) {
+        var A = E.target.closest('a[href]') || E.target;
+        var HREF = A.href;
+
+        if (!HREF || HREF.match(/#/) || (A.target === '_blank')) {
             return;
         }
 
-        if ((E.target.target == '_top') && (window.top !== window)) {
+        if ((A.target === '_top') && (window.top !== window)) {
             return;
         }
 
-        if ((E.target.target == '_parent') && (window.parent !== window)) {
+        if ((A.target === '_parent') && (window.parent !== window)) {
             return;
         }
 

@@ -44,7 +44,7 @@ module.exports = {
 
         // URL functions
         handle_UPDATE_URL: function (payload) {
-            var isPayloadString = ('string' == typeof payload),
+            var isPayloadString = ('string' === typeof payload),
                 url = isPayloadString ? payload : payload.url,
                 host = isPayloadString ? undefined : payload.host,
                 M = url.match(/^(?:(https?:)\/\/(([^:\/]+)(:([^\/]+))?))?([^#?]*)(\\?[^#]*)?(#.*)?$/),

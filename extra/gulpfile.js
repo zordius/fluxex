@@ -9,7 +9,6 @@ var source = require('vinyl-source-stream');
 var aliasify = require('aliasify');
 var babelify = require('babelify');
 var browserify = require('browserify');
-var babel = require('gulp-babel');
 var uglify = require('gulp-uglify');
 var nodemon = require('nodemon');
 var browserSync = require('browser-sync');
