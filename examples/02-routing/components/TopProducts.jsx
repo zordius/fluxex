@@ -17,7 +17,12 @@ var TopProducts = React.createClass({
             I;
 
         for (I=0;I<this.state.list.length;I++) {
-            list.push(<li key={this.state.list[I].id}><a href={'product/' + this.state.list[I].id}>{this.state.list[I].title}</a></li>);
+            list.push(
+                <li key={this.state.list[I].id}>
+                    <a href={'product/' + this.state.list[I].id}>
+                        <b>{this.state.list[I].title}</b>
+                    </a>
+                </li>);
         }
 
         return (

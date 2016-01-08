@@ -49,8 +49,9 @@ module.exports = {
     },
 
     handleClickLink: function (E) {
-        var HREF = E.target.href;
-
+        var closestAnchor = E.target.closest("a[href]");
+        var HREF = closestAnchor && closestAnchor.href;
+        
         if (!HREF || HREF.match(/#/) || (E.target.target == '_blank')) {
             return;
         }
