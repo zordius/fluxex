@@ -25,6 +25,8 @@ var TopProducts = React.createClass({
                 </li>);
         }
 
+        list.push(<li><a href="http://www.amazon.co.jp/product/111">Outsite Link</a></li>);
+        
         return (
         <div>
          <h1>Main site</h1>

@@ -8,8 +8,13 @@
 // then add require('fluxex/extra/history'); in your fluxexapp.js
 
 module.exports = function (url) {
+    var currentHost = this.getStore('page')._get('url').host;
     // Try to route
     this.dispatch('UPDATE_URL', url).then(function () {
+        var newHost = this.getStore('page')._get('url').host;
+        if (currentHost !==  newHost) {
+            return Promise.reject('redirect to outsite link: ', url);
+        }
         // Run action to update page stores
         return this.executeAction(this.routing);
     }.bind(this)).then(function () {
