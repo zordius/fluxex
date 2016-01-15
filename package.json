@@ -1,6 +1,6 @@
 {
   "name": "fluxex",
-  "version": "0.7.1",
+  "version": "0.7.1-5",
   "description": "An extended Flux implement to build isomorphic javascript React app.",
   "author": "Zordius <zordius@yahoo-inc.com>",
   "contributors": [
@@ -31,7 +31,8 @@
     "build_doc": "gulp build_document",
     "watch_doc": "gulp watch_document",
     "coverage": "istanbul cover -- _mocha",
-    "lint": "gulp eslint"
+    "lint": "gulp eslint",
+    "nighty": "npm version prerelease -m '[NIGHTLY RELEASE] [ci skip]' && npm publish && git push origin --tags"
   },
   "bin": {
     "fluxex_starter": "./starter.sh"

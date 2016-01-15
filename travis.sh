@@ -40,22 +40,6 @@ git commit -m "Auto commit smoke test results for ${TRAVIS_COMMIT} [ci skip]"
 git push --force --quiet "https://${GHTK}@github.com/zordius/fluxex.git" HEAD:last_result > /dev/null 2>&1
 git reset ${TRAVIS_COMMIT} --hard
 
-# Bump npm version and push back to git
-TODAY=`date +"%Y-%m-%d"`
-RELEASED=`npm info fluxex |grep $TODAY | wc -l`
-
-if [ ${RELEASED} -eq 0 ]; then
-  npm version patch -m "[NIGHTLY RELEASE] Auto commit for npm publish version %s [ci skip]"
-  git push "https://${GHTK}@github.com/zordius/fluxex.git" --tags > /dev/null 2>&1
-  git push "https://${GHTK}@github.com/zordius/fluxex.git" HEAD:${TRAVIS_BRANCH} > /dev/null 2>&1
-
-  # Deploy to npm
-  gem install dpl
-  dpl --provider=npm --email='zordius@yahoo-inc.com' --api-key=${NPM_API_KEY} > /dev/null 2>&1
-else
-  echo One day on pre-release, $TODAY already released so skip.
-fi
-
 # trigger example builds (push to fluxex-examples)
 cd examples
 git init
