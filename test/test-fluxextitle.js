@@ -28,4 +28,18 @@ describe('FluxexTitle', function () {
 
         assert.equal(getDOMNode(node).innerHTML, 'Test Title 2');
     });
+
+    it('second time rendering will update document.title', function () {
+        var context = testlib.getMockedContext({
+            page: {
+                getTitle: function () {
+                    return 'Test Title 2';
+                }
+            }
+        });
+        var node = testlib.renderComponent(Title, undefined, context);
+        context.getStore('page').emitChange();
+
+        assert.equal(document.title, 'Test Title 2');
+    });
 });
