@@ -32,7 +32,7 @@
     "watch_doc": "gulp watch_document",
     "coverage": "istanbul cover -- _mocha",
     "lint": "gulp eslint",
-    "nighty": "npm version prerelease -m '[NIGHTLY RELEASE] [ci skip]' && npm publish && git push origin --tags"
+    "nighty": "npm run lint && npm test && npm version prerelease -m '[NIGHTLY RELEASE] [ci skip]' && npm publish && git push origin --tags"
   },
   "bin": {
     "fluxex_starter": "./starter.sh"

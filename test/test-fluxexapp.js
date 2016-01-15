@@ -144,12 +144,13 @@ describe('a fluxex app', function () {
     });
 
     describe('.dispatch()', function () {
-        it('should throw when no name provided', function (done) {
-            assert.throws(function () {
-                var App = new app();
-                App.dispatch();
-            }, Error, 'Can not dispatch without name!');
-            done();
+        it('should throw when no name provided', function () {
+            var App = new app();
+            return App.dispatch().then(function () {
+                throw new Error('should throw!');
+            }, function (E) {
+                assert.equal(E.message, 'Can not dispatch without name!');
+            });
         });
 
         it('should return a promise', function (done) {
@@ -159,21 +160,23 @@ describe('a fluxex app', function () {
             done();
         });
 
-        it('should return rejected promise when no store handle it', function (done) {
+        it('should return rejected promise when no store handle it', function () {
             var App = new app();
 
-            assert.throws(function () {
-                App.dispatch('_none_');
-            }, 'No store handled the "_none_" action. Maybe you forget to provide "handle__none_" method in a store?');
-            done();
+            return App.dispatch('_none_').then(function () {
+                throw new Error('should throw!');
+            }, function (E) {
+                assert.equal(E.message, 'No store handled the "_none_" action. Maybe you forget to provide "handle__none_" method in a store?');
+            });
         });
 
-        it('should throw when dispatch in dispatch', function (done) {
+        it('should return rejected promise when dispatch in dispatch', function () {
             var App = new app();
-            assert.throws(function () {
-                App.dispatch('dispatch', App);
-            }, 'Can not dispatch "more_dispatch" action when previous "dispatch" action is not done!');
-            done();
+            return App.dispatch('dispatch', App).then(function () {
+                throw new Error('should throw!');
+            }, function (E) {
+                assert.equal(E.message, 'Can not dispatch "more_dispatch" action when previous "dispatch" action is not done!');
+            });
         });
 
         it('should dispatch 2 actions one by one well', function (done) {
