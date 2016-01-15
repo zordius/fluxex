@@ -44,30 +44,38 @@ module.exports = {
 
         // URL functions
         handle_UPDATE_URL: function (payload) {
-            var isPayloadString = ('string' === typeof payload),
-                url = isPayloadString ? payload : payload.url,
-                host = isPayloadString ? undefined : payload.host,
-                M = url.match(/^(?:(https?:)\/\/(([^:\/]+)(:([^\/]+))?))?([^#?]*)(\\?[^#]*)?(#.*)?$/),
-                N = host ? host.match(/^([^:]+)(:(.+))?$/) : [],
-                search = M[7] || '',
-                hash = M[8] || '',
-                URL = {
-                    href: M[6] + search + hash,
-                    protocol: fluxex.protocol || M[1] || '',
-                    hostname: fluxex.hostname || M[3] || N[1] || '',
-                    port: fluxex.port || M[5] || N[3] || '',
-                    pathname: M[6] || '',
-                    search: search,
-                    hash: hash,
-                    query: querystring.decode(search.substring(1)) || {}
-                };
+            var isPayloadString = ('string' === typeof payload);
+            var url = isPayloadString ? payload : payload.url;
+            var host = isPayloadString ? undefined : payload.host;
+            var ohost = this._get('url').host;
+            var M = url.match(/^(?:(https?:)\/\/(([^:\/]+)(:([^\/]+))?))?([^#?]*)(\\?[^#]*)?(#.*)?$/);
+            var N = host ? host.match(/^([^:]+)(:(.+))?$/) : [];
+            var search = M[7] || '';
+            var hash = M[8] || '';
+            var URL = {
+                href: M[6] + search + hash,
+                protocol: fluxex.protocol || M[1] || '',
+                hostname: fluxex.hostname || M[3] || N[1] || '',
+                port: fluxex.port || M[5] || N[3] || '',
+                pathname: M[6] || '',
+                search: search,
+                hash: hash,
+                query: querystring.decode(search.substring(1)) || {}
+            };
 
             URL.host = URL.hostname + ((URL.port !== '') ? (':' + URL.port) : '');
+            if (ohost && (ohost !== URL.host)) {
+                console.log('different host!');
+                throw new Error('Try to set URL to different host: ' + URL.host + ' , original host is: ' + ohost);
+            }
 
             this._set('url', URL);
         },
         getQuery: function () {
             return this._get('url').query;
+        },
+        getPath: function () {
+            return this._get('url').pathname;
         },
         getURL: function (query) {
             var url = this._get('url'),

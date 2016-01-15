@@ -8,8 +8,8 @@ router.addRoute('/main', ['top', page.main]);
 
 // The single routing action can be used at both server/client side.
 module.exports = function () {
-    var path = this.getStore('page')._get('url').pathname,
-        match = router.match(path);
+    var path = this.getStore('page').getPath();
+    var match = router.match(path);
 
     if (!match) {
         return Promise.reject(new Error('no matched route for url: ' + path));

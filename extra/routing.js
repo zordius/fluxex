@@ -4,9 +4,8 @@ var router;
 
 // The single routing action can be used at both server/client side.
 var routingAction = function () {
-    var url = this.getStore('page')._get('url');
-    var path = url ? url.pathname : undefined;
-    var route = url ? router.getRoute(path) : undefined;
+    var path = this.getStore('page').getPath();
+    var route = path ? router.getRoute(path) : undefined;
 
     if (!route) {
         return Promise.reject('no matched route for path: ' + path);
