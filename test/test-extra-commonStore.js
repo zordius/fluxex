@@ -14,12 +14,12 @@ var getMockStore = function (name) {
     store.initialize();
 
     return store;
-}
+};
 
 describe('extra - commonStores', function () {
     var getMockedStore = function () {
         return getMockStore('page');
-    }
+    };
     describe('page', function () {
         it('.initialize() sets correct defaults', function () {
             assert.deepEqual([
