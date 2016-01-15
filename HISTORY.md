@@ -5,6 +5,10 @@ current master/nighty releases
 
 0.7.1 https://github.com/zordius/fluxex/releases/tag/v0.7.1
    * [CORE] remove context API: ._getHeader() . All request related things should be placed into a rpc.
+   * [CORE] refine context API: .dispatch() now always returns a Promise and never throw exception.
+   * [EXTRA] now commonStores.page will throw when try to .dispatch('UPDATE_URL') to different host.
+   * [EXTRA] new API: commonStores.page .getPath()
+   * [EXTRA] commonStores.page API change: rename .getRoutingParam() to .getRouteParams()
 
 0.7.0 https://github.com/zordius/fluxex/releases/tag/v0.7.0
    * [CORE] fix fluxex-client, use react-dom now

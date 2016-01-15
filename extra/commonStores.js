@@ -30,7 +30,7 @@ module.exports = {
         getRouteName: function () {
             return this._get('routing').name;
         },
-        getRoutingParam: function () {
+        getRouteParams: function () {
             return this._get('routing').params || {};
         },
 
@@ -88,10 +88,10 @@ module.exports = {
                     console.warn('pageStore.getParam() is deplicated, plase rename to pageStore.getParams()');
                 }
             }
-            return Object.assign({}, this.getRoutingParam(), this.getBody(), this.getQuery());
+            return Object.assign({}, this.getRouteParams(), this.getBody(), this.getQuery());
         },
         getParams: function () {
-            return Object.assign({}, this.getRoutingParam(), this.getBody(), this.getQuery());
+            return Object.assign({}, this.getRouteParams(), this.getBody(), this.getQuery());
         }
     },
 

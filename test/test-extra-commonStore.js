@@ -32,5 +32,41 @@ describe('extra - commonStores', function () {
                 {}
             ]);
         });
+
+        it('.handle_UPDATE_TITLE() will set title', function () {
+            var S = getMockedStore();
+            S.handle_UPDATE_TITLE({foo: 'bar'});
+            assert.deepEqual(S._get('title'), {
+                foo: 'bar'
+            });
+        });
+
+        it('.getTitle() will get title', function () {
+            var S = getMockedStore();
+            S.handle_UPDATE_TITLE({foo: 'bar'});
+            assert.deepEqual(S.getTitle(), {
+                foo: 'bar'
+            });
+        });
+
+        it('.handle_UPDATE_ROUTING() will set routing', function () {
+            var S = getMockedStore();
+            S.handle_UPDATE_ROUTING({foo: 'bar'});
+            assert.deepEqual(S._get('routing'), {
+                foo: 'bar'
+            });
+        });
+
+        it('.getRouteName() will get route name', function () {
+            var S = getMockedStore();
+            S.handle_UPDATE_ROUTING({name: 'bar'});
+            assert.deepEqual(S.getRouteName(), 'bar');
+        });
+
+        it('.getRouteParams() will get route params', function () {
+            var S = getMockedStore();
+            S.handle_UPDATE_ROUTING({params: [1, 2, 3]});
+            assert.deepEqual(S.getRouteParams(), [1, 2, 3]);
+        });
     });
 });
