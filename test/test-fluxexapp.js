@@ -1,12 +1,10 @@
-'use strict';
-
-var assert = require('chai').assert,
-    sinon = require('sinon'),
-    fluxex = require('../'),
-    react = require('react'),
-    reactDom = require('react-dom'),
-    actions = require('./testAction'),
-    app = require('./testApp');
+var assert = require('chai').assert;
+var sinon = require('sinon');
+var fluxex = require('../');
+var react = require('react');
+var reactDom = require('react-dom');
+var actions = require('./testAction');
+var app = require('./testApp');
 
 describe('a fluxex app', function () {
     it('can be constructed by undefined', function (done) {

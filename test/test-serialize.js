@@ -1,7 +1,5 @@
-'use strict';
-
-var assert = require('chai').assert,
-    app = require('./testApp');
+var assert = require('chai').assert;
+var app = require('./testApp');
 
 describe('app serialization', function () {
     it('store status will be updated in app', function (done) {

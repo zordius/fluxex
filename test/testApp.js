@@ -1,5 +1,3 @@
-'use strict';
-
 var fluxex = require('../');
 
 module.exports = fluxex.createApp({

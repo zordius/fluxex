@@ -1,7 +1,5 @@
-'use strict';
-
-var assert = require('chai').assert,
-    fluxstore = require('../lib/fluxstore');
+var assert = require('chai').assert;
+var fluxstore = require('../lib/fluxstore');
 
 describe('FluxexStore', function () {
     it('can be constructed by undefined', function (done) {

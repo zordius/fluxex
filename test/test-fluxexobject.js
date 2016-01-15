@@ -1,7 +1,5 @@
-'use strict';
-
-var assert = require('chai').assert,
-    fluxexobj = require('../lib/fluxobj');
+var assert = require('chai').assert;
+var fluxexobj = require('../lib/fluxobj');
 
 describe('FluxexObject', function () {
     it('can be constructed by undefined', function (done) {

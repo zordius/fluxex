@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
     sampleAction: function (payload) {
         return new Promise(function (resolve) {
