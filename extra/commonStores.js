@@ -65,7 +65,6 @@ module.exports = {
 
             URL.host = URL.hostname + ((URL.port !== '') ? (':' + URL.port) : '');
             if (ohost && (ohost !== URL.host)) {
-                console.log('different host!');
                 throw new Error('Try to set URL to different host: ' + URL.host + ' , original host is: ' + ohost);
             }
 
