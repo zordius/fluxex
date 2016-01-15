@@ -86,7 +86,7 @@ var Testlib = {
     },
 
     renderComponentToString: function (react, props, context) {
-        return React.renderToString(Testlib.getContextedElement(react, props, context));
+        return require('react-dom/server').renderToString(Testlib.getContextedElement(react, props, context));
     }
 };
 
