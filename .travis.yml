@@ -4,6 +4,8 @@ node_js:
   - '0.12'
   - 'iojs'
   - '4.0'
+before_script:
+  - ./fixjsdom.sh
 script:
   - npm run lint
   - npm run coverage

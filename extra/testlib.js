@@ -67,7 +67,7 @@ var Testlib = {
 
     simulateBrowserEnv: function (mockWindow) {
         global.document = jsdom('<!DOCTYPE html><html><body></body></html>');
-        global.window = global.document.parentWindow;
+        global.window = global.document.parentWindow || global.document.defaultView;
         Object.assign(global.window, mockWindow);
     },
 
