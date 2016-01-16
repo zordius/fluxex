@@ -40,6 +40,6 @@ describe('FluxexTitle', function () {
         var node = testlib.renderComponent(Title, undefined, context);
         context.getStore('page').emitChange();
 
-        assert.equal(document.title, 'Test Title 2');
+        assert.equal(global.document.title, 'Test Title 2');
     });
 });
