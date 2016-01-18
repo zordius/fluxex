@@ -136,5 +136,14 @@ describe('FluxexObject', function () {
             assert.deepEqual('{"a":["ok",undefined,null]}', (new fluxexobj({a: ['ok', undefined, null]})).toString());
             done();
         });
+
+        it('can handle Date object', function (done) {
+            var D = new Date(),
+                data = {a: 1, b: D},
+                F = new fluxexobj(data);
+
+            assert.match(F.toString(), /new Date/);
+            done();
+        });
     });
 });
