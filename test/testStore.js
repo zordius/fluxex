@@ -14,6 +14,9 @@ module.exports = {
         this._set('c', payload);
         this.emitChange();
     },
+    handle_ERROR: function () {
+        throw new Error('oh no');
+    },
     getList: function () {
         return this._get('list');
     }

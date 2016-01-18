@@ -177,6 +177,15 @@ describe('a fluxex app', function () {
             });
         });
 
+        it('should return rejected promise when dispatch handler throws', function () {
+            var App = new app();
+            return App.dispatch('ERROR').then(function () {
+                throw new Error('should throw!');
+            }, function (E) {
+                assert.equal(E.message, 'Error: oh no');
+            });
+        });
+
         it('should dispatch 2 actions one by one well', function (done) {
             var App = new app();
 
