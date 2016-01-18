@@ -49,6 +49,22 @@ describe('extra - commonStores', function () {
             });
         });
 
+        it('.handle_UPDATE_BODY() will set body', function () {
+            var S = getMockedStore();
+            S.handle_UPDATE_BODY({foo: 'bar'});
+            assert.deepEqual(S._get('body'), {
+                foo: 'bar'
+            });
+        });
+
+        it('.getBody() will get body', function () {
+            var S = getMockedStore();
+            S.handle_UPDATE_BODY({foo: 'bar'});
+            assert.deepEqual(S.getBody(), {
+                foo: 'bar'
+            });
+        });
+
         it('.handle_UPDATE_ROUTING() will set routing', function () {
             var S = getMockedStore();
             S.handle_UPDATE_ROUTING({foo: 'bar'});
