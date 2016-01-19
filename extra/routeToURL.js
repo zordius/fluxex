@@ -9,7 +9,7 @@
 
 module.exports = function (url) {
     // Try to route
-    this.dispatch('UPDATE_URL', url).then(function () {
+    return this.dispatch('UPDATE_URL', url).then(function () {
         // Run action to update page stores
         return this.executeAction(this.routing);
     }.bind(this)).then(function () {

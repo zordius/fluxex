@@ -67,6 +67,6 @@ module.exports = {
         E.preventDefault();
         E.stopPropagation();
 
-        this._getContext().routeToURL(HREF);
+        return this._getContext().routeToURL(HREF);
     }
 };
