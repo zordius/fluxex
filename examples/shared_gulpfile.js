@@ -16,7 +16,7 @@ var handleExec = function (cb) {
 var execTask = function (cmd) {
     return function (cb) {
         exec(cmd, handleExec(cb));
-    }
+    };
 };
 
 gulp.task('test_server', ['buildall'], function () {
