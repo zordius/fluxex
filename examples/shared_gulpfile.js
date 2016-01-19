@@ -1,19 +1,19 @@
 // This is shared gulptasks for all example projects
 // To do Sauce Lab tests
-var gulp = require(process.cwd() + '/node_modules/gulp'),
-    nodemon = require(process.cwd() + '/node_modules/nodemon'),
-    testcfg = require('./shared_testconf.js');
-    exec = require('child_process').exec,
+var gulp = require(process.cwd() + '/node_modules/gulp');
+var nodemon = require(process.cwd() + '/node_modules/nodemon');
+var testcfg = require('./shared_testconf.js');
+var exec = require('child_process').exec;
 
-handleExec = function (cb) {
+var handleExec = function (cb) {
     return function (err, stdout, stderr) {
         console.log(stdout);
         console.warn(stderr);
         cb();
     };
-},
+};
 
-execTask = function (cmd) {
+var execTask = function (cmd) {
     return function (cb) {
         exec(cmd, handleExec(cb));
     }
