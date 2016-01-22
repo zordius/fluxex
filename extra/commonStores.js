@@ -83,14 +83,6 @@ module.exports = {
 
             return url.protocol + '//' + url.host + url.pathname + (mixedSearch ? '?' : '') + mixedSearch + url.hash;
         },
-        getParam: function () {
-            if ('production' !== process.env.NODE_ENV) {
-                if (console && console.warn) {
-                    console.warn('pageStore.getParam() is deplicated, plase rename to pageStore.getParams()');
-                }
-            }
-            return Object.assign({}, this.getRouteParams(), this.getBody(), this.getQuery());
-        },
         getParams: function () {
             return Object.assign({}, this.getRouteParams(), this.getBody(), this.getQuery());
         }
