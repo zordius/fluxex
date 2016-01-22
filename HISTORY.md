@@ -9,6 +9,8 @@ current master/nighty releases
    * [EXTRA] now commonStores.page will throw when try to .dispatch('UPDATE_URL') to different host.
    * [EXTRA] new API: commonStores.page .getPath()
    * [EXTRA] commonStores.page API change: rename .getRoutingParam() to .getRouteParams()
+   * [EXTRA] commonStores.page now handle url.href more correctly
+   * [EXTRA] remove deplicated commonStores.page API: .getParam() (should migrate to .getParams() )
 
 0.7.0 https://github.com/zordius/fluxex/releases/tag/v0.7.0
    * [CORE] fix fluxex-client, use react-dom now
