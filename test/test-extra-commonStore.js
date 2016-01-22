@@ -92,6 +92,14 @@ describe('extra - commonStores', function () {
                 assert.deepEqual(S._get('url'), expect);
             };
 
+            it('throws when try to set different host', function () {
+                assert.throws(function () {
+                    var S = getMockedStore();
+                    S.handle_UPDATE_URL('http://moo.qoo');
+                    S.handle_UPDATE_URL('https://foo.bar');
+                }, 'Try to set URL to different host: foo.bar , original host is: moo.qoo');
+            });
+
             describe('payload as object', function () {
                 it('should handle /foo/bar', function () {
                     assert_handle_UPDATE_URL({url: '/foo/bar'}, {
@@ -176,6 +184,34 @@ describe('extra - commonStores', function () {
                         search: '',
                         hash: '',
                         query: {}
+                    });
+                });
+
+                it('should handle https://moo.com:9876', function () {
+                    assert_handle_UPDATE_URL('https://moo.com:9876', {
+                        href: 'https://moo.com:9876',
+                        protocol: 'https:',
+                        host: 'moo.com:9876',
+                        hostname: 'moo.com',
+                        port: '9876',
+                        pathname: '',
+                        search: '',
+                        hash: '',
+                        query: {}
+                    });
+                });
+
+                it('should handle https://moo.com:9876/?q=a', function () {
+                    assert_handle_UPDATE_URL('https://moo.com:9876/?q=a', {
+                        href: 'https://moo.com:9876/?q=a',
+                        protocol: 'https:',
+                        host: 'moo.com:9876',
+                        hostname: 'moo.com',
+                        port: '9876',
+                        pathname: '/',
+                        search: '?q=a',
+                        hash: '',
+                        query: {q: 'a'}
                     });
                 });
             });
