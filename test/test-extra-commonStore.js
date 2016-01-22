@@ -92,6 +92,22 @@ describe('extra - commonStores', function () {
                 assert.deepEqual(S._get('url'), expect);
             };
 
+            describe('payload as object', function () {
+                it('should handle /foo/bar', function () {
+                    assert_handle_UPDATE_URL({url: '/foo/bar'}, {
+                        href: '/foo/bar',
+                        protocol: '',
+                        host: '',
+                        hostname: '',
+                        port: '',
+                        pathname: '/foo/bar',
+                        search: '',
+                        hash: '',
+                        query: {}
+                    });
+                });
+            });
+
             describe('payload as string', function () {
                 it('should handle /foo/bar', function () {
                     assert_handle_UPDATE_URL('/foo/bar', {
