@@ -84,5 +84,85 @@ describe('extra - commonStores', function () {
             S.handle_UPDATE_ROUTING({params: [1, 2, 3]});
             assert.deepEqual(S.getRouteParams(), [1, 2, 3]);
         });
+
+        describe('.handle_UPDATE_URL() URL parsing', function () {
+            var assert_handle_UPDATE_URL = function (input, expect) {
+                var S = getMockedStore();
+                S.handle_UPDATE_URL(input);
+                assert.deepEqual(S._get('url'), expect);
+            };
+
+            describe('payload as string', function () {
+                it('should handle /foo/bar', function () {
+                    assert_handle_UPDATE_URL('/foo/bar', {
+                        href: '/foo/bar',
+                        protocol: '',
+                        host: '',
+                        hostname: '',
+                        port: '',
+                        pathname: '/foo/bar',
+                        search: '',
+                        hash: '',
+                        query: {}
+                    });
+                });
+
+                it('should handle /foo/bar?123#456', function () {
+                    assert_handle_UPDATE_URL('/foo/bar?123#456', {
+                        href: '/foo/bar?123#456',
+                        protocol: '',
+                        host: '',
+                        hostname: '',
+                        port: '',
+                        pathname: '/foo/bar',
+                        search: '?123',
+                        hash: '#456',
+                        query: {123: ''}
+                    });
+                });
+
+                it('should handle moo.com/foo/bar?123=4+6#', function () {
+                    assert_handle_UPDATE_URL('moo.com/foo/bar?123=4+6#', {
+                        href: 'moo.com/foo/bar?123=4+6#',
+                        protocol: '',
+                        host: '',
+                        hostname: '',
+                        port: '',
+                        pathname: 'moo.com/foo/bar',
+                        search: '?123=4+6',
+                        hash: '#',
+                        query: {123: '4 6'}
+                    });
+                });
+
+                it('should handle http://moo.com/foo/bar/', function () {
+                    assert_handle_UPDATE_URL('http://moo.com/foo/bar/', {
+                        href: 'http://moo.com/foo/bar/',
+                        protocol: 'http:',
+                        host: 'moo.com',
+                        hostname: 'moo.com',
+                        port: '',
+                        pathname: '/foo/bar/',
+                        search: '',
+                        hash: '',
+                        query: {}
+                    });
+                });
+
+                it('should handle https://moo.com:9876/foo/bar/', function () {
+                    assert_handle_UPDATE_URL('https://moo.com:9876/foo/bar/', {
+                        href: 'https://moo.com:9876/foo/bar/',
+                        protocol: 'https:',
+                        host: 'moo.com:9876',
+                        hostname: 'moo.com',
+                        port: '9876',
+                        pathname: '/foo/bar/',
+                        search: '',
+                        hash: '',
+                        query: {}
+                    });
+                });
+            });
+        });
     });
 });

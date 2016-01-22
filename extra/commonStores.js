@@ -53,7 +53,6 @@ module.exports = {
             var search = M[7] || '';
             var hash = M[8] || '';
             var URL = {
-                href: M[6] + search + hash,
                 protocol: fluxex.protocol || M[1] || '',
                 hostname: fluxex.hostname || M[3] || N[1] || '',
                 port: fluxex.port || M[5] || N[3] || '',
@@ -64,6 +63,8 @@ module.exports = {
             };
 
             URL.host = URL.hostname + ((URL.port !== '') ? (':' + URL.port) : '');
+            URL.href = URL.protocol + (URL.protocol ? '//' : '') + URL.host + URL.pathname + URL.search + URL.hash;
+
             if (ohost && (ohost !== URL.host)) {
                 throw new Error('Try to set URL to different host: ' + URL.host + ' , original host is: ' + ohost);
             }
