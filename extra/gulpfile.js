@@ -128,7 +128,7 @@ var buildLintTask = function (src) {
         task = task.pipe(require('gulp-github')(configs.github));
     }
 
-    if (configs.eshint_fail) {
+    if (configs.eslint_fail) {
         task = task.pipe(('object' === typeof configs.eslint_fail) ? configs.eslint_fail : eslint.failOnError());
     }
 
