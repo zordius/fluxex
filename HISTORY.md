@@ -11,6 +11,8 @@ current master/nighty releases
    * [EXTRA] commonStores.page API change: rename .getRoutingParam() to .getRouteParams()
    * [EXTRA] commonStores.page now handle url.href more correctly
    * [EXTRA] remove deplicated commonStores.page API: .getParam() (should migrate to .getParams() )
+   * [EXTRA] fix a typo in gulpfile
+   * [EXTRA] gulp config eslint_fail changed from through object into function
 
 0.7.0 https://github.com/zordius/fluxex/releases/tag/v0.7.0
    * [CORE] fix fluxex-client, use react-dom now

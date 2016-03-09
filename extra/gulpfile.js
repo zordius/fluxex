@@ -129,7 +129,7 @@ var buildLintTask = function (src) {
     }
 
     if (configs.eslint_fail) {
-        task = task.pipe(('object' === typeof configs.eslint_fail) ? configs.eslint_fail : eslint.failOnError());
+        task = task.pipe(('function' === typeof configs.eslint_fail) ? configs.eslint_fail() : eslint.failOnError());
     }
 
     return task;
