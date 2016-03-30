@@ -46,7 +46,7 @@ var ServerExtra = {
         return ServerExtra.createMiddlewareByAction(fluxexapp, function (req) {
             // dispatch URL information to store is a must have
             // it should be a synchronized operation, so we do not .then()
-            this.dispatch('UPDATE_URL', {url: req.url, host: req.header('Host')}).catch(function (E) {
+            this.dispatch('UPDATE_URL', {url: req.url, host: req.header('Host'), method: req.method}).catch(function (E) {
                 console.log(E.stack || E);
             });
 
@@ -56,6 +56,12 @@ var ServerExtra = {
                 return this.executeAction(this.routing);
             }.bind(this));
         });
+    },
+
+    // Using this as an extra action when your fluxexapp need to handle POST
+    // You may need to use body-parser on your express app with proper setting
+    postHandler: function (req) {
+        return this.dispatch('UPDATE_BODY', req.body);
     }
 };
 

@@ -4,11 +4,13 @@ var router;
 
 // The single routing action can be used at both server/client side.
 var routingAction = function () {
-    var path = this.getStore('page').getPath();
-    var route = path ? router.getRoute(path) : undefined;
+    var page = this.getStore('page');
+    var path = page.getPath();
+    var method = page.getMethod();
+    var route = path ? router.getRoute(path, {method: method}) : undefined;
 
     if (!route) {
-        return Promise.reject('no matched route for path: ' + path);
+        return Promise.reject('no matched route for path(' + method + '): ' + path);
     }
 
     if (!route.config.action || !route.config.action.call) {
@@ -43,7 +45,7 @@ module.exports = function (config) {
     return {
         routing: routingAction,
         getURL: getURL,
-        routeToURL: require('fluxex/extra/routeToURL')
+        routeToURL: require('./routeToURL')
     };
 };
 

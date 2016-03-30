@@ -2,6 +2,9 @@ HISTORY
 =======
 
 current master/nighty releases
+   * [EXTRA] createMiddlewareWithRouting can handle METHOD correctly now
+   * [EXTRA] commonStores.page can store METHOD now
+   * [EXTRA] routingAction can handle POST correctly now
 
 0.7.1 https://github.com/zordius/fluxex/releases/tag/v0.7.1
    * [CORE] remove context API: ._getHeader() . All request related things should be placed into a rpc.

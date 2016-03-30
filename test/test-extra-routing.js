@@ -36,7 +36,7 @@ var assertMockRequest = function (url, routing, name, method) {
            } catch (E) {
                reject(E);
            }
-       });
+       }, method);
    });
 };
 
@@ -81,6 +81,19 @@ describe('extra - routing', function () {
        }, 'test');
    });
 
+   it('should match routing one by one', function () {
+       return assertMockRequest('/foo/bar', {
+           test1: {
+               path: '/foo/bar',
+               method: 'get'
+           },
+           test2: {
+               path: '/foo/:id',
+               method: 'get'
+           }
+       }, 'test1');
+   });
+
    it('should not match url by param when it is empty', function () {
        return assertMockRequest('/foo/', {
            test1: {
@@ -94,16 +107,16 @@ describe('extra - routing', function () {
        }, 'test2');
    });
 
-   it('should match routing one by one', function () {
+   it('should match method', function () {
        return assertMockRequest('/foo/bar', {
            test1: {
                path: '/foo/bar',
                method: 'get'
            },
            test2: {
-               path: '/foo/:id',
-               method: 'get'
+               path: '/foo/bar',
+               method: 'post'
            }
-       }, 'test1');
+       }, 'test2', 'post');
    });
 });

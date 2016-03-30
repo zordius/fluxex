@@ -45,9 +45,11 @@
   "devDependencies": {
     "babel-eslint": "^4.1.1",
     "bluebird": "2.9.24",
+    "body-parser": "^1.15.0",
     "chai": "2.2.0",
     "eslint": "1.4.1",
     "eslint-plugin-react": "3.3.2",
+    "express": "^4.13.4",
     "gulp": "3.8.11",
     "gulp-eslint": "1.0.0",
     "gulp-shell": "0.4.1",
@@ -56,10 +58,12 @@
     "mocha": "2.2.4",
     "object.assign": "2.0.1",
     "react": "0.14.6",
-    "react-dom": "0.14.6",
     "react-addons-test-utils": "0.14.6",
+    "react-dom": "0.14.6",
+    "routr": "^1.0.0",
     "semver": "4.3.3",
-    "sinon": "1.14.1"
+    "sinon": "1.14.1",
+    "supertest": "^1.2.0"
   },
   "engines": {
     "node": ">=0.10.0"
