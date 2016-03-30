@@ -86,10 +86,6 @@ var configs = {
                 directory: 'coverage'
             },
             mocha: {},
-            babel: {
-                presets: ['es2015', 'react'],
-                sourceMap: 'both'
-            },
             coffee: {
                 sourceMap: true
             }
