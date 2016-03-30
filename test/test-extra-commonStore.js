@@ -25,11 +25,13 @@ describe('extra - commonStores', function () {
             assert.deepEqual([
                 getMockedStore()._get('url'),
                 getMockedStore()._get('body'),
-                getMockedStore()._get('routing')
+                getMockedStore()._get('routing'),
+                getMockedStore()._get('method')
             ], [
                 {},
                 {},
-                {}
+                {},
+                'GET'
             ]);
         });
 
@@ -83,6 +85,12 @@ describe('extra - commonStores', function () {
             var S = getMockedStore();
             S.handle_UPDATE_ROUTING({params: [1, 2, 3]});
             assert.deepEqual(S.getRouteParams(), [1, 2, 3]);
+        });
+
+        it('.getMethod() will get method', function () {
+            var S = getMockedStore();
+            S.handle_UPDATE_URL({url:'http://moo.qoo', method: 'POST'});
+            assert.deepEqual(S.getMethod(), 'POST');
         });
 
         describe('.handle_UPDATE_URL() URL parsing', function () {

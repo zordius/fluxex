@@ -12,6 +12,7 @@ module.exports = {
             this._set('routing', {});
             this._set('body', {});
             this._set('url', {});
+            this._set('method', 'GET');
         },
 
         // Title functions
@@ -62,6 +63,8 @@ module.exports = {
                 query: querystring.decode(search.substring(1)) || {}
             };
 
+            this._set('method', payload.method || 'GET');
+
             URL.host = URL.hostname + ((URL.port !== '') ? (':' + URL.port) : '');
             URL.href = URL.protocol + (URL.protocol ? '//' : '') + URL.host + URL.pathname + URL.search + URL.hash;
 
@@ -70,6 +73,9 @@ module.exports = {
             }
 
             this._set('url', URL);
+        },
+        getMethod: function () {
+            return this._get('method');
         },
         getQuery: function () {
             return this._get('url').query;
