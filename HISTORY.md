@@ -1,7 +1,8 @@
 HISTORY
 =======
 
-current master/nighty releases
+0.7.2 https://github.com/zordius/fluxex/releases/tag/v0.7.2
+   * [EXTRA] gulp config test_coverage.default.babel removed, please use .babelrc file
    * [EXTRA] createMiddlewareWithRouting can handle METHOD correctly now
    * [EXTRA] commonStores.page can store METHOD now
    * [EXTRA] routingAction can handle POST correctly now
