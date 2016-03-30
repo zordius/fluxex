@@ -107,7 +107,7 @@ describe('extra - routing', function () {
        }, 'test2');
    });
 
-   it('should match method', function () {
+   it('should match by method', function () {
        return assertMockRequest('/foo/bar', {
            test1: {
                path: '/foo/bar',
@@ -118,5 +118,35 @@ describe('extra - routing', function () {
                method: 'post'
            }
        }, 'test2', 'post');
+   });
+
+   it('should handle urlencoded form post body correctly', function (done) {
+       req(getExpress({
+           test1: {
+               path: '/foo/bar',
+               method: 'get'
+           },
+           test2: {
+               path: '/foo/bar',
+               method: 'post',
+               action: function () {
+                   return this.dispatch('UPDATE_TITLE', 'BODY:' + JSON.stringify(this.getStore('page').getParams()));
+               }
+           }
+       }))
+       .post('/foo/bar')
+       .type('form')
+       .send({
+           test: 'HAHAHA',
+           hello: 'WORLD!'
+       })
+       .end(function (err, res) {
+           try {
+               assert.match(res.text, /BODY:{&quot;test&quot;:&quot;HAHAHA&quot;,&quot;hello&quot;:&quot;WORLD!&quot;}/);
+               done();
+           } catch (E) {
+               done(E);
+           }
+       });
    });
 });
