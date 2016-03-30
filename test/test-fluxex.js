@@ -1,5 +1,5 @@
 var assert = require('chai').assert;
-var testStore = require('./testStore.js');
+var testStore = require('./testStore');
 var fluxex = require('..');
 
 describe('fluxex', function () {

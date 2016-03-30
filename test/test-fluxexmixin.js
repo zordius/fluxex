@@ -1,7 +1,7 @@
 var assert = require('chai').assert;
 var fluxex = require('..');
 var app = require('./testApp');
-var testStore = require('./testStore.js');
+var testStore = require('./testStore');
 var mixin = fluxex.mixin;
 var sinon = require('sinon');
 
