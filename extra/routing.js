@@ -45,7 +45,7 @@ module.exports = function (config) {
     return {
         routing: routingAction,
         getURL: getURL,
-        routeToURL: require('./routeToURL')
+        routeToURL: require('./routeToURL'),
         redirect: require('./redirect').redirect
     };
 };
