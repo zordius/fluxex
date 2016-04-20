@@ -86,6 +86,7 @@
     "aliases": {
       "fluxex/extra/history": "html5-history-api",
       "fluxex/extra/polyfill-ie8": "fluxex/extra/polyfill-ie8-client",
+      "fluxex/extra/redirect": "fluxex/extra/redirect-client",
       "core-js/shim": "core-js/client/shim"
     },
     "global": true
