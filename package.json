@@ -73,6 +73,7 @@
   },
   "browser": {
     "request": "browser-request",
+    "./redirect": "./redirect-client",
     "./lib/fluxex-server.js": "./lib/fluxex-client.js",
     "body-parser": "fluxex/extra/dummy"
   },

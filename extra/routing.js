@@ -46,6 +46,7 @@ module.exports = function (config) {
         routing: routingAction,
         getURL: getURL,
         routeToURL: require('./routeToURL')
+        redirect: require('./redirect').redirect
     };
 };
 

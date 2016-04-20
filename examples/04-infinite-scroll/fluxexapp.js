@@ -10,6 +10,7 @@ module.exports = require('fluxex').createApp({
     page: commonStores.page,
     search: require('./stores/search')
 }, require('./components/Html.jsx'), {
+    redirect: require('fluxex/extra/redirect').redirect,
     routing: require('./actions/routing'),
     routeToURL: require('fluxex/extra/routeToURL'),
     request: require('fluxex/extra/rpc').request

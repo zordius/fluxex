@@ -13,6 +13,10 @@ var Html = React.createClass({
         return {};
     },
 
+    handleclick: function (E) {
+        this._getContext().redirect('https://yahoo.com/');
+    },
+
     render: function () {
         return (
         <html>
@@ -29,6 +33,7 @@ var Html = React.createClass({
            <li><a href="/search?q=banana">Banana</a></li>
            <li><a href="/search?q=orange">Orange</a></li>
           </ul>
+          <div onClick={this.handleclick}>CLICK GOTO YAHOO.COM</div>
           <Results />
           <Fluxex.InitScript />
          </body>

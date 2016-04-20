@@ -3,6 +3,9 @@
 // For most case you will not require this file directly
 // See routing.js for more info
 //
+// you should attach a `redirect()` method on your fluxexapp
+// see redirect.js for more info
+//
 // To support IE8,
 // You will need to npm install html5-history-api,
 // then add require('fluxex/extra/history'); in your fluxexapp.js
@@ -33,6 +36,6 @@ module.exports = function (url) {
         }
 
         // pjax failed, go to url...
-        window.location.href = url;
-    });
+        this.redirect(url);
+    }.bind(this));
 };

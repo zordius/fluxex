@@ -1,6 +1,10 @@
 HISTORY
 =======
 
+0.7.3 https://github.com/zordius/fluxex/releases/tag/v0.7.3
+   * [EXTRA] add new extra to provide .redirect()
+   * [EXTRA] now this.routeToURL() depends on this.redirect() for error handling or external links
+
 0.7.2 https://github.com/zordius/fluxex/releases/tag/v0.7.2
    * [EXTRA] gulp config test_coverage.default.babel removed, please use .babelrc file
    * [EXTRA] createMiddlewareWithRouting can handle METHOD correctly now
