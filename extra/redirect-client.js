@@ -5,6 +5,7 @@ module.exports = {
         if (!url) {
             throw new Error('call .redirect() without url!');
         }
+        /*global window*/
         window.location.href = url;
     }
 };
