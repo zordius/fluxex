@@ -1,7 +1,7 @@
 HISTORY
 =======
 
-0.7.3 https://github.com/zordius/fluxex/releases/tag/v0.7.3
+0.7.4 https://github.com/zordius/fluxex/releases/tag/v0.7.4
    * [EXTRA] add new extra to provide .redirect()
    * [EXTRA] now this.routeToURL() depends on this.redirect() for error handling or external links
 
