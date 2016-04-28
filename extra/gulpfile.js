@@ -259,7 +259,6 @@ gulp.task('nodemon_server', ['check_devcore', 'watch_js', 'watch_app', 'watch_se
         script: configs.mainjs,
         ext: 'do_not_watch'
     };
-    var portUsed = TPU.waitUntilUsed(configs.port, 200, 30000);
 
     if (fs.existsSync(F)) {
         nodemonCfg = Object.assign(require(F), nodemonCfg);
@@ -270,7 +269,7 @@ gulp.task('nodemon_server', ['check_devcore', 'watch_js', 'watch_app', 'watch_se
     })
     .on('start', function () {
         if (serverStarted) {
-            portUsed.then(browserSync.reload);
+            TPU.waitUntilUsed(configs.port, 200, 30000).then(browserSync.reload);
         } else {
             browserSync.init(null, {
                 proxy: 'http://localhost:' + configs.port,
@@ -288,7 +287,7 @@ gulp.task('nodemon_server', ['check_devcore', 'watch_js', 'watch_app', 'watch_se
                 }
             });
 
-            portUsed.then(function () {
+            TPU.waitUntilUsed(configs.port, 200, 30000).then(function () {
                 serverStarted = true;
             });
         }
