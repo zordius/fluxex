@@ -290,7 +290,7 @@ gulp.task('nodemon_server', ['check_devcore', 'watch_js', 'watch_app', 'watch_se
 
             portUsed.then(function () {
                 serverStarted = true;
-            }
+            });
         }
     });
 });
