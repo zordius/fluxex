@@ -114,7 +114,9 @@ var configs = {
 };
 
 var restartNodemon = function () {
-    nodemon.emit('restart');
+    if (serverStarted) {
+        nodemon.emit('restart');
+    }
 };
 
 var buildLintTask = function (src) {
