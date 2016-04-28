@@ -253,7 +253,7 @@ gulp.task('lint_server', function () {
 gulp.task('nodemon_server', ['check_devcore', 'watch_js', 'watch_app', 'watch_server'], function () {
     var F = __dirname + '/nodemon.json';
     var nodemonCfg = {
-        ignore: '*',
+        watch: 'do_not_watch',
         script: configs.mainjs,
         ext: 'do_not_watch'
     };
