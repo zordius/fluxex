@@ -289,6 +289,7 @@ gulp.task('nodemon_server', ['check_devcore', 'watch_js', 'watch_app', 'watch_se
 
             TPU.waitUntilUsed(configs.port, 200, 30000).then(function () {
                 serverStarted = true;
+                browserSync.reload();
             });
         }
     });
