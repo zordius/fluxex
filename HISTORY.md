@@ -1,6 +1,10 @@
 HISTORY
 =======
 
+0.7.7 https://github.com/zordius/fluxex/releases/tag/v0.7.7
+   * [EXTRA] the page store now receive payload.query when .handle_UPDATE_URL()
+   * [EXTRA] the server extra .createMiddlewareWithRouting() now also dispatch req.query
+
 0.7.6 https://github.com/zordius/fluxex/releases/tag/v0.7.6
    * [EXTRA] refine gulp to prevent 1 extra restart when boot server
 
