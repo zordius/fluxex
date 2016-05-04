@@ -46,7 +46,7 @@ var ServerExtra = {
         return ServerExtra.createMiddlewareByAction(fluxexapp, function (req) {
             // dispatch URL information to store is a must have
             // it should be a synchronized operation, so we do not .then()
-            this.dispatch('UPDATE_URL', {url: req.url, host: req.header('Host'), method: req.method}).catch(function (E) {
+            this.dispatch('UPDATE_URL', {url: req.url, host: req.header('Host'), method: req.method, query: req.query}).catch(function (E) {
                 console.log(E.stack || E);
             });
 

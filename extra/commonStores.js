@@ -60,7 +60,7 @@ module.exports = {
                 pathname: M[6] || '',
                 search: search,
                 hash: hash,
-                query: querystring.decode(search.substring(1)) || {}
+                query: payload.query || querystring.decode(search.substring(1)) || {}
             };
 
             this._set('method', payload.method || 'GET');
