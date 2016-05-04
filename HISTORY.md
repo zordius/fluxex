@@ -1,7 +1,7 @@
 HISTORY
 =======
 
-0.7.6 https://github.com/zordius/fluxex/releases/tag/v0.7.5
+0.7.6 https://github.com/zordius/fluxex/releases/tag/v0.7.6
    * [EXTRA] refine gulp to prevent 1 extra restart when boot server
 
 0.7.4 https://github.com/zordius/fluxex/releases/tag/v0.7.4
