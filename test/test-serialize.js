@@ -26,4 +26,14 @@ describe('app serialization', function () {
         assert.equal('{"stores":{"sampleStore":{"a":{"b":"O\'K\\""},"b":"[CIRCULAR!]","c":["[CIRCULAR!]"],"q":"OK!"}}}', App.toString());
         done();
     });
+
+    it('only ancestors will be detected as circular depdency', function (done) {
+        var test = {a: {b: 'O\'K"'}};
+        test.b = ['HA'];
+        test.c = test.b;
+
+        var App = new app({stores: {sampleStore: test}});
+        assert.equal('{"stores":{"sampleStore":{"a":{"b":"O\'K\\""},"b":["HA"],"c":["HA"],"q":"OK!"}}}', App.toString());
+        done();
+    });
 });
