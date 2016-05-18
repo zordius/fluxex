@@ -58,4 +58,5 @@ gulp.task('generate_badge_png', ['generate_badge_json'], execTask(
 
 gulp.task('test_end_protractor', ['generate_badge_png'], function () {
     spawn.kill();
+    process.exit();
 });
