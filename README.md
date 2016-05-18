@@ -153,6 +153,7 @@ var myStore = {
 Notes for IE8 support
 ---------------------
 
+* **NOTE** <a href="https://facebook.github.io/react/blog/2016/01/12/discontinuing-ie8-support.html">React v15+ stop supporting IE8</a>
 * You should add `require('fluxex/extra/polyfill-ie8');` in your `fluxexapp.js` to polyfill EventListener methods and XMLHttpRequest consts for IE8.
 * `catch` is reserved keyword in IE8, you need to replace `somePromise.catch(...)` with `somePromise['catch'](...)`
 * `for (... in ...)` will loop beyond properties in IE8, you need to replace `for (I in myArray)` with `myArray.forEach(function (V, I) { ...}`
