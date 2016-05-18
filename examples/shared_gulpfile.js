@@ -1,10 +1,11 @@
 // This is shared gulptasks for all example projects
 // To do Sauce Lab tests
 var gulp = require(process.cwd() + '/node_modules/gulp');
-var nodemon = require(process.cwd() + '/node_modules/nodemon');
 var testcfg = require('./shared_testconf.js');
 var exec = require('child_process').exec;
 var TPU = require(process.cwd() + '/node_modules/tcp-port-used');
+var child = require('child_process');
+var spawn;
 
 var handleExec = function (cb) {
     return function (err, stdout, stderr) {
@@ -20,18 +21,26 @@ var execTask = function (cmd) {
     };
 };
 
-gulp.task('test_server', ['buildall'], function () {
-    nodemon({
-        ignore: '*',
-        script: 'server.js',
-        ext: 'do_not_watch'
-    }).on('start', function () {
-        TPU.waitUntilUsed(3000, 200, 30000).then(function () {
-            gulp.start(['test_end_protractor']);
+var spawnTask = function (cmd) {
+    return function () {
+        var args = cmd.split(' ');
+        var C = args.shift();
+        spawn = child.spawn(C, args, {stdio: 'inherit'});
+
+        spawn.on('error', function (E) {
+            console.warn(E);
         });
-    }).on('quit', function () {
-        console.log('end process...');
-        process.exit(0);
+    }
+};
+
+gulp.task('test_server', ['buildall'], function () {
+    spawn = child.spawn('node', ['server.js'], {stdio: 'inherit'});
+    spawn.on('error', function (E) {
+        console.warn(E);
+    });
+
+    TPU.waitUntilUsed(3000, 200, 30000).then(function () {
+        gulp.start(['test_end_protractor']);
     });
 });
 
@@ -48,6 +57,5 @@ gulp.task('generate_badge_png', ['generate_badge_json'], execTask(
 ));
 
 gulp.task('test_end_protractor', ['generate_badge_png'], function () {
-    console.log('stop nodemon....');
-    nodemon.emit('quit');
+    spawn.kill();
 });
