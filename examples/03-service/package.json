@@ -14,9 +14,10 @@
     "babel": "*",
     "express": "*",
     "fluxex": "*",
+    "iso-call": "*",
     "react": "*",
     "react-dom": "*",
-    "routr": "*"
+    "routes": "*"
   },
   "devDependencies": {
     "tcp-port-used": "*",

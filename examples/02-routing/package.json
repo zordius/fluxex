@@ -16,7 +16,7 @@
     "fluxex": "*",
     "react": "*",
     "react-dom": "*",
-    "routr": "*"
+    "routes": "*"
   },
   "devDependencies": {
     "tcp-port-used": "*",
