@@ -35,6 +35,7 @@ git config --global user.email "zordius@yahoo-inc.com"
 npm run smoke_test
 
 # Add browser test badge
+git rm .travis.yml
 git add examples
 git commit -m "Auto commit smoke test results for ${TRAVIS_COMMIT} [ci skip]"
 git push --force --quiet "https://${GHTK}@github.com/zordius/fluxex.git" HEAD:last_result > /dev/null 2>&1
