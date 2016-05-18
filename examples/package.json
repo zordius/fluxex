@@ -5,10 +5,6 @@
   "author": "Zordius <zordius@yahoo-inc.com>",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "gulp example_tests"
-  },
-  "devDependencies": {
-    "gulp": "3.8.9",
-    "gulp-exec": "2.1.1"
+    "test": "./run_tests"
   }
 }
