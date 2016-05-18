@@ -47,8 +47,7 @@ gulp.task('generate_badge_png', ['generate_badge_json'], execTask(
     'badge-render badge.json badge.html --png badge.png --scale 0.7 -width 490 -height 60'
 ));
 
-gulp.task('test_end_protractor', ['generate_badge_png'], function (cb) {
+gulp.task('test_end_protractor', ['generate_badge_png'], function () {
     console.log('stop nodemon....');
     nodemon.emit('quit');
-    cb();
 });
