@@ -39,7 +39,7 @@ gulp.task('test_server', ['buildall'], function () {
         console.warn(E);
     });
 
-    TPU.waitUntilUsed(3000, 200, 30000).then(function () {
+    TPU.waitUntilUsed(process.env.TESTPORT || 3000, 200, 30000).then(function () {
         gulp.start(['test_end_protractor']);
     });
 });
