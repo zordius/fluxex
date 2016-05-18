@@ -4,6 +4,7 @@ var gulp = require(process.cwd() + '/node_modules/gulp');
 var nodemon = require(process.cwd() + '/node_modules/nodemon');
 var testcfg = require('./shared_testconf.js');
 var exec = require('child_process').exec;
+var TPU = require('tcp-port-used');
 
 var handleExec = function (cb) {
     return function (err, stdout, stderr) {
@@ -25,9 +26,9 @@ gulp.task('test_server', ['buildall'], function () {
         script: 'server.js',
         ext: 'do_not_watch'
     }).on('start', function () {
-        setTimeout(function () {
+        TPU.waitUntilUsed(3000, 200, 30000).then(function () {
             gulp.start(['test_end_protractor']);
-        }, 1000);
+        });
     }).on('quit', function () {
         console.log('end process...');
         process.exit(0);
