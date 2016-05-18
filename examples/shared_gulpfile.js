@@ -4,7 +4,7 @@ var gulp = require(process.cwd() + '/node_modules/gulp');
 var nodemon = require(process.cwd() + '/node_modules/nodemon');
 var testcfg = require('./shared_testconf.js');
 var exec = require('child_process').exec;
-var TPU = require('tcp-port-used');
+var TPU = require(process.cwd() + 'tcp-port-used');
 
 var handleExec = function (cb) {
     return function (err, stdout, stderr) {
