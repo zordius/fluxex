@@ -36,7 +36,7 @@ gulp.task('test_server', ['buildall'], function () {
 });
 
 gulp.task('test_run_protractor', execTask(
-    'node --harmony node_modules/.bin/protractor ../shared_testconf.js'
+    'protractor ../shared_testconf.js'
 ));
 
 gulp.task('generate_badge_json', ['test_run_protractor'], execTask(
