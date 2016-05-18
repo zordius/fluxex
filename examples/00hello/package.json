@@ -47,7 +47,6 @@
     "gulp-jsx-coverage": "*",
     "gulp-uglify": "*",
     "gulp-util": "*",
-    "tcp-port-used": "0.1.2",
     "vinyl-buffer": "*",
     "vinyl-source-stream": "*"
   }
