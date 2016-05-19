@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "babel": "*",
+    "body-parser": "*",
     "express": "*",
     "fluxex": "*",
     "iso-call": "*",
