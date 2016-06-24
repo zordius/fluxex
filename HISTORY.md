@@ -1,6 +1,9 @@
 HISTORY
 =======
 
+0.7.9 https://github.com/zordius/fluxex/releases/tag/v0.7.9
+   * [EXTRA] support client side .redirect() as location.replace() now
+
 0.7.8 https://github.com/zordius/fluxex/releases/tag/v0.7.8
    * [CORE] fix .toString() CIRCULAR detection bug
 
