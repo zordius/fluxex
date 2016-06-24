@@ -31,7 +31,7 @@ var ServerExtra = {
                     }
                     console.log(E.stack || E);
                 }
-                next();
+                next(E);
             });
         };
     },
