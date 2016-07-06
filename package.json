@@ -40,7 +40,7 @@
   "main": "index.js",
   "dependencies": {
     "eventemitter2": "1.0.3",
-    "iso-call": "0.0.4"
+    "iso-call": "0.0.5"
   },
   "devDependencies": {
     "bluebird": "3.4.0",
