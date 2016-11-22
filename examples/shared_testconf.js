@@ -19,10 +19,10 @@ var config = {
         {browserName: 'Android', version:'4.4', platform: 'Linux'},
         {browserName: 'Android', version:'4.1', platform: 'Linux'},
         {browserName: 'Android', version:'4.0', platform: 'Linux'},
-        {browserName: 'Safari', deviceName: 'iPhone Simulator', version:'8.4', platformName: 'iOS'},
-        {browserName: 'Safari', deviceName: 'iPhone Simulator', version:'9.3', platformName: 'iOS'},
-        {browserName: 'Safari', deviceName: 'iPad Simulator', version:'8.4', platformName: 'iOS'},
-        {browserName: 'Safari', deviceName: 'iPad imulator', version:'9.3', platformName: 'iOS'}
+        {browserName: 'Safari', deviceName: 'iPhone Simulator', platformVersion:'8.4', platformName: 'iOS'},
+        {browserName: 'Safari', deviceName: 'iPhone Simulator', platformVersion:'9.3', platformName: 'iOS'},
+        {browserName: 'Safari', deviceName: 'iPad Simulator', platformVersion:'8.4', platformName: 'iOS'},
+        {browserName: 'Safari', deviceName: 'iPad Simulator', platformVersion:'9.3', platformName: 'iOS'}
     ],
 
     specs: [process.cwd() + '/spec.js'],
