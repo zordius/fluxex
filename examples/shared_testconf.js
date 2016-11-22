@@ -19,14 +19,10 @@ var config = {
         {browserName: 'Android', version:'4.4', platform: 'Linux'},
         {browserName: 'Android', version:'4.1', platform: 'Linux'},
         {browserName: 'Android', version:'4.0', platform: 'Linux'},
-        {browserName: 'iphone', deviceName: 'iPhone Simulator', version:'8.1', platform: 'OS X 10.9'},
-        {browserName: 'iphone', deviceName: 'iPhone Simulator', version:'8.0', platform: 'OS X 10.9'},
-        {browserName: 'iphone', deviceName: 'iPhone Simulator', version:'7.1', platform: 'OS X 10.9'},
-        {browserName: 'iphone', deviceName: 'iPhone Simulator', version:'6.1', platform: 'OS X 10.8'},
-        {browserName: 'ipad', deviceName: 'iPad Simulator', version:'8.1', platform: 'OS X 10.9'},
-        {browserName: 'ipad', deviceName: 'iPad Simulator', version:'8.0', platform: 'OS X 10.9'},
-        {browserName: 'ipad', deviceName: 'iPad Simulator', version:'7.1', platform: 'OS X 10.9'},
-        {browserName: 'ipad', deviceName: 'iPad Simulator', version:'6.1', platform: 'OS X 10.8'}
+        {browserName: 'Safari', deviceName: 'iPhone Simulator', version:'8.4', platformName: 'iOS'},
+        {browserName: 'Safari', deviceName: 'iPhone Simulator', version:'9.3', platformName: 'iOS'},
+        {browserName: 'Safari', deviceName: 'iPad Simulator', version:'8.4', platformName: 'iOS'},
+        {browserName: 'Safari', deviceName: 'iPad imulator', version:'9.3', platformName: 'iOS'}
     ],
 
     specs: [process.cwd() + '/spec.js'],
