@@ -23,8 +23,10 @@ var config = {
         {browserName: 'Android', version:'4.0', platform: 'Linux'},
         {browserName: 'Safari', deviceName: 'iPhone Simulator', platformVersion:'8.4', platformName: 'iOS'},
         {browserName: 'Safari', deviceName: 'iPhone Simulator', platformVersion:'9.3', platformName: 'iOS'},
+        {browserName: 'Safari', deviceName: 'iPhone 7 Simulator', platformVersion:'10.0', platformName: 'iOS'},
         {browserName: 'Safari', deviceName: 'iPad Simulator', platformVersion:'8.4', platformName: 'iOS'},
-        {browserName: 'Safari', deviceName: 'iPad Simulator', platformVersion:'9.3', platformName: 'iOS'}
+        {browserName: 'Safari', deviceName: 'iPad Simulator', platformVersion:'9.3', platformName: 'iOS'},
+        {browserName: 'Safari', deviceName: 'iPad Air 2 Simulator', platformVersion:'10.0', platformName: 'iOS'}
     ],
 
     specs: [process.cwd() + '/spec.js'],
