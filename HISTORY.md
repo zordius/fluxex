@@ -1,5 +1,8 @@
 HISTORY
 =======
+0.7.11 https://github.com/zordius/fluxex/releases/tag/v0.7.11
+   * [EXTRA] remove canUseDOM modification in testlib.stopBrowserEnv()
+
 0.7.10 https://github.com/zordius/fluxex/releases/tag/v0.7.10
    * [EXTRA] the default server extra will pass error to next() now
 
