@@ -74,7 +74,6 @@ var Testlib = {
     stopBrowserEnv: function () {
         delete global.window;
         delete global.document;
-        require('react/lib/ExecutionEnvironment').canUseDOM = false;
     },
 
     renderComponent: function (react, props, context, mockWindow) {
