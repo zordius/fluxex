@@ -40,7 +40,9 @@
   "main": "index.js",
   "dependencies": {
     "eventemitter2": "2.2.0",
-    "iso-call": "0.0.5"
+    "iso-call": "0.0.5",
+    "react-dom": "^15.4.0",
+    "tcp-port-used": "^0.1.2"
   },
   "devDependencies": {
     "bluebird": "3.4.6",
