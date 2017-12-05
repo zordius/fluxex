@@ -1,0 +1,7 @@
+{
+  "testMatch": ["**/test/*.js"],
+  "setupFiles": [
+    "raf/polyfill"
+  ],
+  "transform": {}
+}

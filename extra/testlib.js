@@ -11,7 +11,7 @@ var Testlib = {
         var TestUtils;
 
         process.env.NODE_ENV = 'testing';
-        TestUtils = require('react-addons-test-utils');
+        TestUtils = require('react-dom/test-utils');
         process.env.NODE_ENV = nodeenv;
 
         return TestUtils;
