@@ -134,19 +134,19 @@ describe('extra - routing', function () {
                 }
             }
         }))
-        .post('/foo/bar')
-        .type('form')
-        .send({
-            test: 'HAHAHA',
-            hello: 'WORLD!'
-        })
-        .end(function (err, res) {
-            try {
-                assert.match(res.text, /BODY:{&quot;test&quot;:&quot;HAHAHA&quot;,&quot;hello&quot;:&quot;WORLD!&quot;}/);
-                done();
-            } catch (E) {
-                done(E);
-            }
-        });
+            .post('/foo/bar')
+            .type('form')
+            .send({
+                test: 'HAHAHA',
+                hello: 'WORLD!'
+            })
+            .end(function (err, res) {
+                try {
+                    assert.match(res.text, /BODY:{&quot;test&quot;:&quot;HAHAHA&quot;,&quot;hello&quot;:&quot;WORLD!&quot;}/);
+                    done();
+                } catch (E) {
+                    done(E);
+                }
+            });
     });
 });

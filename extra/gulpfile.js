@@ -147,14 +147,14 @@ var getTestingTask = function (options) {
 
 var bundleAll = function (b, noSave) {
     var B = b.bundle()
-    .on('error', function (E) {
-        gutil.log('[browserify ERROR]', gutil.colors.red(E));
-    });
+        .on('error', function (E) {
+            gutil.log('[browserify ERROR]', gutil.colors.red(E));
+        });
 
     if (!noSave) {
         B.pipe(source('main.js'))
-        .pipe(gulp.dest(configs.static_dir + 'js/'))
-        .on('end', restartNodemon);
+            .pipe(gulp.dest(configs.static_dir + 'js/'))
+            .on('end', restartNodemon);
     }
 
     return B;
@@ -199,9 +199,9 @@ gulp.task('build_devcore', function () {
     b.require(configs.devcore);
     b.transform(babelify.configure(configs.babelify));
     return b
-    .bundle()
-    .pipe(source('devcore.js'))
-    .pipe(gulp.dest(configs.static_dir + 'js/'));
+        .bundle()
+        .pipe(source('devcore.js'))
+        .pipe(gulp.dest(configs.static_dir + 'js/'));
 });
 
 // GULP TASK - build minified bundle file
@@ -239,11 +239,11 @@ gulp.task('lint_js', function () {
 // GULP TASK - watch main and app js to lint then restart nodemon
 gulp.task('watch_server', ['lint_server'], function () {
     gulp.watch([configs.mainjs, configs.appjs], configs.gulp_watch, ['lint_server'])
-    .on('change', function (E) {
-        if (E.path !== configs.appjs) {
-            restartNodemon();
-        }
-    });
+        .on('change', function (E) {
+            if (E.path !== configs.appjs) {
+                restartNodemon();
+            }
+        });
 });
 
 // GULP TASK - lint main and app js files
@@ -264,35 +264,35 @@ gulp.task('nodemon_server', ['check_devcore', 'watch_js', 'watch_app', 'watch_se
         nodemonCfg = Object.assign(require(F), nodemonCfg);
     }
     nodemon(nodemonCfg)
-    .on('log', function (log) {
-        gutil.log(log.colour);
-    })
-    .on('start', function () {
-        if (serverStarted) {
-            TPU.waitUntilUsed(configs.port, 200, 30000).then(browserSync.reload);
-        } else {
-            browserSync.init(null, {
-                proxy: 'http://localhost:' + configs.port,
-                files: [configs.static_dir + 'css/*.css'],
-                port: configs.BSport,
-                online: false,
-                open: false,
-                snippetOptions: {
-                    rule: {
-                        match: /<\/html>$/,
-                        fn: function (s, m) {
-                            return m + s;
+        .on('log', function (log) {
+            gutil.log(log.colour);
+        })
+        .on('start', function () {
+            if (serverStarted) {
+                TPU.waitUntilUsed(configs.port, 200, 30000).then(browserSync.reload);
+            } else {
+                browserSync.init(null, {
+                    proxy: 'http://localhost:' + configs.port,
+                    files: [configs.static_dir + 'css/*.css'],
+                    port: configs.BSport,
+                    online: false,
+                    open: false,
+                    snippetOptions: {
+                        rule: {
+                            match: /<\/html>$/,
+                            fn: function (s, m) {
+                                return m + s;
+                            }
                         }
                     }
-                }
-            });
+                });
 
-            TPU.waitUntilUsed(configs.port, 200, 30000).then(function () {
-                serverStarted = true;
-                browserSync.reload();
-            });
-        }
-    });
+                TPU.waitUntilUsed(configs.port, 200, 30000).then(function () {
+                    serverStarted = true;
+                    browserSync.reload();
+                });
+            }
+        });
 });
 
 // GULP TASK - watch tests files then execute test
