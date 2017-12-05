@@ -3,11 +3,6 @@ var gulp = require('gulp'),
     eslint = require('gulp-eslint'),
     testCommands = ['cd <%=file.path %>;npm install ../..;npm prune;npm install;npm run disc;npm test'];
 
-gulp.task('smoke_test', function () {
-    return gulp.src('examples/00hello/')
-        .pipe(shell(testCommands));
-});
-
 gulp.task('example_tests', function () {
     return gulp.src('examples/*-*/')
         .pipe(shell(testCommands));

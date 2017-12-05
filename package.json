@@ -26,7 +26,7 @@
   "scripts": {
     "clean": "gulp clean",
     "test": "jest --config ./jest.json --coverage",
-    "smoke_test": "gulp smoke_test",
+    "smoke_test": "cd examples/00hello/;npm install ../..;npm prune;npm install;npm test",
     "example_tests": "gulp example_tests",
     "build_doc": "gulp build_document",
     "watch_doc": "gulp watch_document",
