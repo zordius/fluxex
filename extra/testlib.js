@@ -31,7 +31,7 @@ var Testlib = {
         Object.assign(context, require('./rpc'));
 
         if (mockStores) {
-            sinon.stub(context, 'getStore', function (store) {
+            sinon.stub(context, 'getStore').callsFake(function (store) {
                 if (Stores[store]) {
                     return Stores[store]; 
                 } else {

@@ -1,6 +1,5 @@
 var testlib = require('../extra/testlib');
 var assert = require('chai').assert;
-var sinon = require('sinon');
 var Title = require('..').Title;
 var getDOMNode = require('react-dom').findDOMNode;
 
