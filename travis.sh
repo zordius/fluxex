@@ -29,7 +29,7 @@ fi
 
 # Setup git
 git config --global user.name "Travis-CI"
-git config --global user.email "zordius@yahoo-inc.com"
+git config --global user.email "1201409+zordius@users.noreply.github.com"
 
 # Do smoke test (only test 00hello)
 npm run smoke_test
