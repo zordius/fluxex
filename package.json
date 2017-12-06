@@ -28,8 +28,7 @@
     "test": "jest --config ./jest.json --coverage",
     "smoke_test": "cd examples/00hello/;npm install ../..;npm prune;npm install;npm test",
     "example_tests": "gulp example_tests",
-    "build_doc": "gulp build_document",
-    "watch_doc": "gulp watch_document",
+    "build_doc": "jsdoc -p README.md index.js lib/*.js extra/*.js -d documents",
     "lint": "eslint index.js gulpfile.js lib/*.js extra/*.js test/*.js !extra/polyfill-ie8-client.js",
     "nighty": "npm run lint && npm test && npm version prerelease -m '[NIGHTLY RELEASE] [ci skip]' && npm publish && git push origin --tags"
   },

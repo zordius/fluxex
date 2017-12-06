@@ -8,12 +8,6 @@ gulp.task('example_tests', function () {
         .pipe(shell(testCommands));
 });
 
-gulp.task('watch_document', ['build_document'], function () {
-    return gulp.watch(['README.md', 'index.js', 'lib/*.js', 'extra/*.js'], ['build_document']);
-});
-
-gulp.task('build_document', shell.task('jsdoc -p README.md index.js lib/*.js extra/*.js -d documents'));
-
 gulp.task('eslint', function () {
     return gulp.src(['index.js', 'gulpfile.js', 'lib/*.js', 'extra/*.js', 'test/*.js', '!extra/polyfill-ie8-client.js'])
         .pipe(eslint())
