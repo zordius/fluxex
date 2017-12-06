@@ -1,7 +1,8 @@
 var React = require('react');
 var Fluxex = require('fluxex');
+var createReactClass = require('create-react-class');
 
-var Html = React.createClass({
+var Html = createReactClass({
     mixins: [
         Fluxex.mixin,
         require('fluxex/extra/storechange'),

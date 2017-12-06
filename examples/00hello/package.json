@@ -12,8 +12,10 @@
   },
   "dependencies": {
     "babel": "*",
+    "create-react-class": "15.6.2",
     "express": "*",
     "fluxex": "*",
+    "prop-types": "15.6.0",
     "react": "*",
     "react-dom": "*",
     "routr": "*"

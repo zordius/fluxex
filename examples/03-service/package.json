@@ -11,6 +11,8 @@
     "start": "gulp develop"
   },
   "dependencies": {
+    "create-react-class": "15.6.2",
+    "prop-types": "15.6.0",
     "babel": "*",
     "body-parser": "*",
     "express": "*",
