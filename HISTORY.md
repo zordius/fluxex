@@ -1,5 +1,8 @@
 HISTORY
 =======
+0.7.12 https://github.com/zordius/fluxex/releases/tag/v0.7.12
+   * [CORE] update dependencies, move to react16
+
 0.7.11 https://github.com/zordius/fluxex/releases/tag/v0.7.11
    * [EXTRA] remove canUseDOM modification in testlib.stopBrowserEnv()
 
