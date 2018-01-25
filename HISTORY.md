@@ -1,5 +1,8 @@
 HISTORY
 =======
+0.7.13 https://github.com/zordius/fluxex/releases/tag/v0.7.13
+   * [CORE] fix XSS issue
+
 0.7.12 https://github.com/zordius/fluxex/releases/tag/v0.7.12
    * [CORE] update dependencies, move to react16
 
